@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option csharp_namespace = "AuthenticationService";
 
-service GrpcAuthenticationService{
+service AuthenticationService{
     rpc LoginUser(LoginUserRequest) returns(LoggedUserResponse);
 }
 

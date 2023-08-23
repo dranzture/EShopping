@@ -1,11 +1,8 @@
-using AuthenticationService.Core.Helpers;
 using AuthenticationService.Core.Interfaces;
 using AuthenticationService.Core.Services;
 using AuthenticationService.Dtos;
-using AuthenticationService.Infrastructure.Data;
 using AuthenticationService.Models;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using NSubstitute;
 
 

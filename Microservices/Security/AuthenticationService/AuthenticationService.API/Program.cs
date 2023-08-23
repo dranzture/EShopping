@@ -1,7 +1,9 @@
+using AuthenticationService;
 using AuthenticationService.Core.Extensions;
 using AuthenticationService.Core.Helpers;
 using AuthenticationService.Infrastructure.Data;
 using AuthenticationService.Models;
+using AuthenticationService.SyncDataServices;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +16,7 @@ var config = new ConfigurationBuilder()
 var appSecrets = config.GetSection("AppSecrets").Get<AppSecrets>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseInMemoryDatabase("AuthenticationService"));
+    options.UseInMemoryDatabase("AuthenticationServiceDb"));
 
 builder.Services.AddSingleton<AppSecrets>(appSecrets);
 builder.Services.AddAuthenticationSettings(appSecrets);
@@ -33,8 +35,22 @@ builder.Services.AddIdentity<User, Role>(e =>
 }).AddEntityFrameworkStores<AppDbContext>();
 
 var app = builder.Build();
-
-app.PrepDb();
 app.UseAuthentication();
 app.UseAuthorization();
+
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+    endpoints.MapGrpcService<GrpcService>();
+
+    endpoints.MapGet("/protos/authentication.proto", async context =>
+    {
+        await context.Response.WriteAsync(File.ReadAllText("Protos/authentication.proto"));
+    });
+});
+
+
+app.PrepDb();
+
 app.Run();

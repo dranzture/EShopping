@@ -23,4 +23,8 @@
       <ProjectReference Include="..\AuthenticationService.Core\AuthenticationService.Core.csproj" />
       <ProjectReference Include="..\AuthenticationService.Infrastructure\AuthenticationService.Infrastructure.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+        <Protobuf Include="Protos\authentication.proto" GrpcServices="Server" />
+    </ItemGroup>
 </Project>
