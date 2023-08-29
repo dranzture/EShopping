@@ -7,7 +7,7 @@ namespace AuthenticationService.Core.Helpers;
 
 public static class Helpers
 {
-    public static readonly string[] ApplicationRoles = { "Owner", "Admin", "Customer" };
+    private static readonly string[] ApplicationRoles = { "Owner", "Admin", "Customer" };
 
     public static void PrepDb(this IApplicationBuilder builder)
     {
@@ -17,7 +17,7 @@ public static class Helpers
             serviceScope.ServiceProvider.GetService<RoleManager<Role>>());
     }
 
-    public static async void SeedInitial(UserManager<User> userManager, RoleManager<Role> roleManager)
+    private static async void SeedInitial(UserManager<User> userManager, RoleManager<Role> roleManager)
     {
         foreach (var role in ApplicationRoles)
         {
@@ -29,12 +29,19 @@ public static class Helpers
         }
 
 
-        if (!userManager.Users.Any(e=>e.Email == "polatcoban@gmail.com"))
+        if (!userManager.Users.Any(e => e.Email == "polatcoban@gmail.com"))
         {
-            var newUser = new User("Polat", "Coban", "polatcoban@gmail.com");
-            await userManager.CreateAsync(newUser, "qaz123");
+            try
+            {
+                var newUser = new User("Polat", "Coban", "polatcoban@gmail.com");
+                await userManager.CreateAsync(newUser, "qaz123");
 
-            await userManager.AddToRolesAsync(newUser, ApplicationRoles);
+                await userManager.AddToRolesAsync(newUser, ApplicationRoles);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"---> Error on User craete: {ex.Message}");
+            }
         }
     }
 }

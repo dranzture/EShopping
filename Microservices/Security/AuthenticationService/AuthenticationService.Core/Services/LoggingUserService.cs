@@ -32,7 +32,9 @@ public class LoggingUserService : ILoggingUserService
             throw new UnauthorizedAccessException("User/Password combination is incorrect.");
         }
 
-        var accessToken = await GenerateToken(user);
+        var userRoles = await GetRoles(user);
+        
+        var accessToken = await GenerateToken(user, userRoles);
 
         return new LoggedUserDto()
         {
@@ -43,9 +45,9 @@ public class LoggingUserService : ILoggingUserService
         };
     }
 
-    public async Task<LoggedUserDto> RefreshToken(User user, CancellationToken token = default)
+    public async Task<LoggedUserDto> RefreshToken(User user, IList<string> roles, CancellationToken token = default)
     {
-        var accessToken = await _jwtService.GenerateJwtToken(user);
+        var accessToken = await _jwtService.GenerateJwtToken(user, roles);
         
         return new LoggedUserDto()
         {
@@ -58,7 +60,7 @@ public class LoggingUserService : ILoggingUserService
     
     public async Task<User?> GetUser(LoginRequestDto request)
     {
-        return await _manager.FindByNameAsync(request.Username);
+        return await _manager.FindByEmailAsync(request.Username);
     }
     
     public async Task<bool> ValidatePassword(User user, LoginRequestDto request)
@@ -66,9 +68,13 @@ public class LoggingUserService : ILoggingUserService
         return await _manager.CheckPasswordAsync(user, request.Password);
     }
     
-    public async Task<string> GenerateToken(User user)
+    public async Task<string> GenerateToken(User user, IList<string> Roles)
     {
-        return await _jwtService.GenerateJwtToken(user);
+        return await _jwtService.GenerateJwtToken(user, Roles);
     }
-
+    
+    public async Task<IList<string>> GetRoles(User user)
+    {
+        return await _manager.GetRolesAsync(user);
+    }
 }

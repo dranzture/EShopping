@@ -26,7 +26,7 @@ public class LoggingUserServiceTests
         var tokenResult = "GeneratedToken!";
         manager.FindByNameAsync("polatcoban@gmail.com").Returns(Task.FromResult(user));
         manager.CheckPasswordAsync(user, "qaz123").Returns(Task.FromResult(true));
-        jwt.GenerateJwtToken(user).Returns(Task.FromResult(tokenResult));
+        jwt.GenerateJwtToken(user, new List<string>(){"Owner", "Admin", "Customer"}).Returns(Task.FromResult(tokenResult));
 
         _service = new LoggingUserService(manager, jwt);
     }

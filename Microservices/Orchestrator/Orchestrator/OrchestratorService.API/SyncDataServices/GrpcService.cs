@@ -1,5 +1,5 @@
 ﻿using AuthenticationService;
-using AuthenticationServiceClient = AuthenticationService.AuthenticationService.AuthenticationServiceClient;
+using AuthenticationServiceClient = AuthenticationService.GrpcAuthenticationService.GrpcAuthenticationServiceClient;
 using AutoMapper;
 using Grpc.Net.Client;
 using OrchestratorService.Core.Dtos;
@@ -28,10 +28,10 @@ public class GrpcService : IGrpcService
             var client = new AuthenticationServiceClient(_channel);
 
             var request = _mapper.Map<LoginUserRequest>(dto);
-            var call = await client.LoginUserAsync(request);
+            var response = await client.LoginUserAsync(request);
+            var returnItem = _mapper.Map<LoggedUserDto>(response);
 
-
-            return await Task.FromResult(new LoggedUserDto());
+            return await Task.FromResult(returnItem);
         }
         catch(Exception ex)
         {

@@ -9,6 +9,7 @@ public class User : IdentityUser<int>, IBaseEntity
         FirstName = fname;
         LastName = lname;
         Email = email;
+        UserName = email;
         IsDeleted = false;
         SecurityStamp = Guid.NewGuid().ToString("D");
         CreatedBy = createdBy ?? "system";

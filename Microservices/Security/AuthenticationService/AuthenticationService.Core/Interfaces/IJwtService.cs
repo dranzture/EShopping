@@ -4,5 +4,5 @@ namespace AuthenticationService.Core.Interfaces;
 
 public interface IJwtService
 {
-    Task<string> GenerateJwtToken(User user);
+    Task<string> GenerateJwtToken(User user, IList<string> Roles);
 }

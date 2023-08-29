@@ -7,7 +7,9 @@ public class MapperProfile : Profile
 {
     public MapperProfile()
     {
-        CreateMap<LoginRequestDto, LoginUserRequest>();
+        CreateMap<LoginUserRequest, LoginRequestDto>()
+            .ForMember(e=>e.Username, t=>
+                t.MapFrom(e=>e.Email));
         CreateMap<LoggedUserDto, LoggedUserResponse>();
     }
 }

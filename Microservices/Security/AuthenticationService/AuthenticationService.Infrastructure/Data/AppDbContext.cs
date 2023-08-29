@@ -10,4 +10,8 @@ public class AppDbContext : IdentityDbContext<User,Role, int>
     {
         
     }
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        return await base.SaveChangesAsync(cancellationToken);
+    }
 }
