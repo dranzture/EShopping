@@ -2,6 +2,7 @@ using AuthenticationService.Core.Interfaces;
 using AuthenticationService.Core.Services;
 using AuthenticationService.Dtos;
 using AuthenticationService.Models;
+using Grpc.Core;
 using Microsoft.AspNetCore.Identity;
 using NSubstitute;
 
@@ -11,7 +12,7 @@ namespace AuthenticationService.UnitTests;
 public class LoggingUserServiceTests
 {
     private readonly ILoggingUserService _service;
-
+    private readonly List<string> _roleList = new List<string>() { "Owner", "Admin", "Customer" };
     public LoggingUserServiceTests()
     {
         var store = Substitute.For<IUserStore<User>>();
@@ -25,8 +26,10 @@ public class LoggingUserServiceTests
         };
         var tokenResult = "GeneratedToken!";
         manager.FindByNameAsync("polatcoban@gmail.com").Returns(Task.FromResult(user));
+        manager.FindByEmailAsync("polatcoban@gmail.com").Returns(Task.FromResult(user));
         manager.CheckPasswordAsync(user, "qaz123").Returns(Task.FromResult(true));
-        jwt.GenerateJwtToken(user, new List<string>(){"Owner", "Admin", "Customer"}).Returns(Task.FromResult(tokenResult));
+        manager.GetRolesAsync(user).Returns(Task.FromResult((IList<string>)_roleList));
+        jwt.GenerateJwtToken(user, _roleList).Returns(Task.FromResult(tokenResult));
 
         _service = new LoggingUserService(manager, jwt);
     }
@@ -57,6 +60,7 @@ public class LoggingUserServiceTests
         Assert.Equal(desiredResult.LastName, result.LastName);
         Assert.Equal(desiredResult.Email, result.Email);
         Assert.Equal(desiredResult.AccessToken, result.AccessToken);
+        Assert.Equal(_roleList, result.Roles);
     }
 
     [Fact]
@@ -78,7 +82,7 @@ public class LoggingUserServiceTests
         };
 
         //Act & Assert
-        await Assert.ThrowsAsync<UnauthorizedAccessException>(() => _service.LoginUser(loginRequest));
+        await Assert.ThrowsAsync<RpcException>(() => _service.LoginUser(loginRequest));
     }
     
     [Fact]
@@ -100,6 +104,6 @@ public class LoggingUserServiceTests
         };
 
         //Act & Assert
-        await Assert.ThrowsAsync<UnauthorizedAccessException>(() => _service.LoginUser(loginRequest));
+        await Assert.ThrowsAsync<RpcException>(() => _service.LoginUser(loginRequest));
     }
 }

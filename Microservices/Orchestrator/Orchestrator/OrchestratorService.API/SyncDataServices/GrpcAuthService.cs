@@ -1,6 +1,7 @@
 ﻿using AuthenticationService;
 using AuthenticationServiceClient = AuthenticationService.GrpcAuthenticationService.GrpcAuthenticationServiceClient;
 using AutoMapper;
+using Grpc.Core;
 using Grpc.Net.Client;
 using OrchestratorService.Core.Dtos;
 using OrchestratorService.Core.Interfaces;
@@ -8,13 +9,13 @@ using OrchestratorService.Core.Models;
 
 namespace OrchestratorService.API.SyncDataServices;
 
-public class GrpcService : IGrpcService
+public class GrpcAuthService : IGrpcAuthService
 {
     private readonly AppSettings _settings;
     private readonly GrpcChannel _channel;
     private readonly IMapper _mapper;
 
-    public GrpcService(AppSettings settings, IMapper mapper)
+    public GrpcAuthService(AppSettings settings, IMapper mapper)
     {
         _settings = settings;
         _channel = GrpcChannel.ForAddress(_settings.AuthenticationUrl);
@@ -33,8 +34,19 @@ public class GrpcService : IGrpcService
 
             return await Task.FromResult(returnItem);
         }
-        catch(Exception ex)
+        catch (RpcException ex)
         {
+            if (ex.Status.StatusCode == StatusCode.Unauthenticated)
+            {
+                throw new UnauthorizedAccessException(ex.Status.Detail);
+            }
+
+            return await Task.FromException<LoggedUserDto>(ex);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"---> Internal Error on Login: {ex.Message}");
+            
             return await Task.FromException<LoggedUserDto>(ex);
         }
     }

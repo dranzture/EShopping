@@ -30,7 +30,7 @@ builder.Services.AddControllers();
 builder.Services.AddGrpc();
 builder.Services.AddIdentity<User, Role>(e =>
 {
-    e.User.RequireUniqueEmail = true;   
+    e.User.RequireUniqueEmail = true;
     e.Password.RequireDigit = true;
     e.Password.RequireLowercase = true;
     e.Password.RequireUppercase = false;

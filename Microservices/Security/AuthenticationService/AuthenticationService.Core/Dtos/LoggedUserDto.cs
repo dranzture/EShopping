@@ -8,6 +8,8 @@ public class LoggedUserDto
     
     public string LastName { get; set; }
     
+    public string Username { get; set; }
+    
     public IList<string> Roles { get; set; }
     
     public string AccessToken { get; set; }

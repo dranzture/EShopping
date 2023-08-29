@@ -16,13 +16,14 @@ public class JwtService : IJwtService
     {
         _appSecrets = appSecrets;
     }
+    
     public async Task<string> GenerateJwtToken(User user, IList<string> Roles)
     {
         var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Email, user.Email),
-            new Claim(ClaimTypes.Name, user.FirstName),
-            new Claim(ClaimTypes.Surname, user.LastName)
+            new Claim("email", user.Email),
+            new Claim("firstName", user.FirstName),
+            new Claim("lastName", user.LastName)
         };
         claims.AddRange(Roles.Select(role => new Claim(ClaimTypes.Role, role)));
 

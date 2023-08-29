@@ -29,19 +29,17 @@ public static class Helpers
         }
 
 
-        if (!userManager.Users.Any(e => e.Email == "polatcoban@gmail.com"))
+        if (await userManager.FindByEmailAsync("polatcoban@gmail.com") != null) return;
+        try
         {
-            try
-            {
-                var newUser = new User("Polat", "Coban", "polatcoban@gmail.com");
-                await userManager.CreateAsync(newUser, "qaz123");
+            var newUser = new User("Polat", "Coban", "polatcoban@gmail.com", "dranzture");
+            await userManager.CreateAsync(newUser, "qaz123");
 
-                await userManager.AddToRolesAsync(newUser, ApplicationRoles);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"---> Error on User craete: {ex.Message}");
-            }
+            await userManager.AddToRolesAsync(newUser, ApplicationRoles);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"---> Error on User craete: {ex.Message}");
         }
     }
 }

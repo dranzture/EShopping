@@ -4,12 +4,12 @@ namespace AuthenticationService.Models;
 
 public class User : IdentityUser<int>, IBaseEntity
 {
-    public User(string fname, string lname, string email, string? createdBy = null)
+    public User(string fname, string lname, string email, string username, string? createdBy = null)
     {
         FirstName = fname;
         LastName = lname;
         Email = email;
-        UserName = email;
+        UserName = username;
         IsDeleted = false;
         SecurityStamp = Guid.NewGuid().ToString("D");
         CreatedBy = createdBy ?? "system";

@@ -10,5 +10,7 @@ public class LoggedUserDto
     
     public string AccessToken { get; set; }
     
+    public string Username { get; set; }
+    
     public IList<string> Roles { get; set; }
 }

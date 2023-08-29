@@ -7,9 +7,11 @@ public interface ILoggingUserService
 {
     Task<LoggedUserDto> LoginUser(LoginRequestDto request, CancellationToken token = default);
 
-    Task<LoggedUserDto> RefreshToken(User user, IList<string> roles, CancellationToken token = default);
+    Task<LoggedUserDto> RefreshToken(LoggedUserDto user, IList<string> roles, CancellationToken token = default);
     
     Task<User?> GetUser(LoginRequestDto request);
+    
+    Task<User?> GetUser(LoggedUserDto request);
     
     Task<bool> ValidatePassword(User user, LoginRequestDto request);
     

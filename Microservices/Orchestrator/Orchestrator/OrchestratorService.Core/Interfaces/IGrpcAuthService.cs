@@ -2,7 +2,7 @@
 
 namespace OrchestratorService.Core.Interfaces;
 
-public interface IGrpcService
+public interface IGrpcAuthService
 {
     Task<LoggedUserDto> Login(LoginRequestDto dto, CancellationToken token = default);
 }

@@ -4,12 +4,12 @@ using OrchestratorService.Core.Interfaces;
 
 namespace OrchestratorService.API.Controllers;
 [ApiController]
-[Route("/api")]
+[Route("api/[controller]")]
 public class SecurityController : ControllerBase
 {
-    private readonly IGrpcService _service;
+    private readonly IGrpcAuthService _service;
 
-    public SecurityController(IGrpcService service)
+    public SecurityController(IGrpcAuthService service)
     {
         _service = service;
     }

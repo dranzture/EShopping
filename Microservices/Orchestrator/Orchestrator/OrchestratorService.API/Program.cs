@@ -15,7 +15,7 @@ var appSettings = config.GetSection("AppSettings").Get<AppSettings>();
 builder.Services.AddHealthChecks();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSingleton(appSettings!);
-builder.Services.AddScoped<IGrpcService, GrpcService>();
+builder.Services.AddScoped<IGrpcAuthService, GrpcAuthService>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -23,8 +23,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     e.TokenValidationParameters = new()
     {
         ValidateIssuer = true,
-        ValidIssuer = "PolatCoban"
+        ValidateAudience = true,
+        ValidIssuer = "PolatCoban",
+        ValidAudience = "EShopping.NET",
     });
+
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(c =>
