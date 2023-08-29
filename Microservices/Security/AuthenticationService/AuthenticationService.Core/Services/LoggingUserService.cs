@@ -41,7 +41,8 @@ public class LoggingUserService : ILoggingUserService
             AccessToken = accessToken,
             Email = user.Email,
             FirstName = user.FirstName,
-            LastName = user.LastName
+            LastName = user.LastName,
+            Roles = userRoles
         };
     }
 
