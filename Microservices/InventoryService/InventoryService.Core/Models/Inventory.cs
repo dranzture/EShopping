@@ -62,17 +62,7 @@ public class Inventory : BaseEntity
         Width = width;
         UpdateModifiedFields(username);
     }
-
-    public void ChangeWidth(decimal weight, string username)
-    {
-        if (weight < 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(Inventory), "Weight cannot be less than 0");
-        }
-
-        Weight = weight;
-        UpdateModifiedFields(username);
-    }
+    
 
     public void ChangeDescription(string description, string username)
     {

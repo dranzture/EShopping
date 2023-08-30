@@ -8,28 +8,25 @@ public class DecreaseInventoryCommand : ICommand
     private readonly IInventoryRepository _repository;
     private readonly Inventory _item;
     private readonly int _amount;
-    
-    public DecreaseInventoryCommand(IInventoryRepository repository, Inventory item, int amount)
+    private readonly string _username;
+    public DecreaseInventoryCommand(IInventoryRepository repository, Inventory item, int amount, string username)
     {
         _repository = repository;
         _item = item;
         _amount = amount;
+        _username = username;
     }
     
-    public Task<bool> CanExecute()
+    public async Task<bool> CanExecute()
     {
-        return Task.FromResult(_item.InStock >= _amount);
+        var item = await _repository.GetById(_item.Id);
+        return item != null;
     }
 
     public async Task Execute()
     {
-        try
-        {
-            await _repository.DecreaseInventoryById(_item.Id, _amount);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"---> Could not decrease inventory {_item.Description} due to: {ex.Message}");
-        }
-    }
+        var item = await _repository.GetById(_item.Id);
+        item.DecreaseStock(_amount, _username);
+        await _repository.Update(item);
+    }    
 }

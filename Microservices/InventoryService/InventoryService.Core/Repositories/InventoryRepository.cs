@@ -39,14 +39,5 @@ public class InventoryRepository : IInventoryRepository
     {
         throw new NotImplementedException();
     }
-
-    public async Task IncreaseInventoryById(Guid id, int amount, CancellationToken token = default)
-    {
-        throw new NotImplementedException();
-    }
-
-    public async Task DecreaseInventoryById(Guid id, int amount, CancellationToken token = default)
-    {
-        throw new NotImplementedException();
-    }
+    
 }

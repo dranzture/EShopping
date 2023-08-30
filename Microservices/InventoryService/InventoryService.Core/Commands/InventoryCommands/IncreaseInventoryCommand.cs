@@ -8,28 +8,25 @@ public class IncreaseInventoryCommand : ICommand
     private readonly IInventoryRepository _repository;
     private readonly Inventory _item;
     private readonly int _amount;
-    
-    public IncreaseInventoryCommand(IInventoryRepository repository, Inventory item, int amount)
+    private readonly string _username;
+    public IncreaseInventoryCommand(IInventoryRepository repository, Inventory item, int amount, string username)
     {
         _repository = repository;
         _item = item;
         _amount = amount;
+        _username = username;
     }
     
-    public Task<bool> CanExecute()
+    public async Task<bool> CanExecute()
     {
-        return Task.FromResult(true);
+        var item = await _repository.GetById(_item.Id);
+        return item != null;
     }
 
     public async Task Execute()
     {
-        try
-        {
-            _repository.IncreaseInventoryById(_item.Id, _amount);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"---> Could not increase inventory {_item.Description} due to: {ex.Message}");
-        }
+        var item = await _repository.GetById(_item.Id);
+        item.IncreaseStock(_amount, _username);
+        await _repository.Update(item);
     }    
 }

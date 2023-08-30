@@ -4,10 +4,14 @@ namespace InventoryService.Core.Interfaces;
 
 public interface IReviewRepository : IRepositoryBase<Review>
 {
-    public HashSet<Review> GetAllReviewsByInventoryId(Guid inventoryId, CancellationToken token);
+    public Task<HashSet<Review>> GetAllReviewsByInventoryId(Guid inventoryId, CancellationToken token = default);
 
-    public Review GetById(Guid id, CancellationToken token);
+    public Task<Review> GetById(Guid id, CancellationToken token = default);
+    
+    public Task<Review> GetByUsernameAndInventoryId(Guid inventoryId, string username, CancellationToken token = default);
+    
+    public Task<Review> GetByUsername(string username, CancellationToken token = default);
 
-    public float GetStatisticsByInventoryId(Guid inventoryId, CancellationToken token);
+    public Task GetStatisticsByInventoryId(Guid inventoryId, CancellationToken token = default);
 }
     

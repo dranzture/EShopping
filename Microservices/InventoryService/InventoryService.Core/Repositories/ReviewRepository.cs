@@ -25,17 +25,28 @@ public class ReviewRepository : IReviewRepository
         throw new NotImplementedException();
     }
 
-    public HashSet<Review> GetAllReviewsByInventoryId(Guid inventoryId, CancellationToken token)
+
+    public async Task<HashSet<Review>> GetAllReviewsByInventoryId(Guid inventoryId, CancellationToken token = default)
     {
         throw new NotImplementedException();
     }
 
-    public Review GetById(Guid id, CancellationToken token)
+    public async Task<Review> GetById(Guid id, CancellationToken token = default)
     {
         throw new NotImplementedException();
     }
 
-    public float GetStatisticsByInventoryId(Guid inventoryId, CancellationToken token)
+    public async Task<Review> GetByUsernameAndInventoryId(Guid inventoryId, string username, CancellationToken token = default)
+    {
+        throw new NotImplementedException();
+    }
+    
+    public async Task<Review> GetByUsername(string username, CancellationToken token = default)
+    {
+        throw new NotImplementedException();
+    }
+    
+    public async Task GetStatisticsByInventoryId(Guid inventoryId, CancellationToken token = default)
     {
         throw new NotImplementedException();
     }
