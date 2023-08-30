@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using InventoryService.Core.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace InventoryService.Infrastructure.Data;
 
