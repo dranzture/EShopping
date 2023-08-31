@@ -5,7 +5,7 @@ using NSubstitute;
 
 namespace InventoryService.Tests;
 
-public class ReviewTests
+public class ReviewCommandsTests
 {
     private readonly Guid _guid = new();
     private readonly IReviewRepository _repository = Substitute.For<IReviewRepository>();
