@@ -20,7 +20,7 @@ public class DecreaseInventoryCommand : ICommand
     public async Task<bool> CanExecute()
     {
         var item = await _repository.GetById(_item.Id);
-        return item != null;
+        return item != null && _amount >= 0 && item.InStock >= _amount;
     }
 
     public async Task Execute()

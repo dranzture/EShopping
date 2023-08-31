@@ -20,7 +20,7 @@ public class IncreaseInventoryCommand : ICommand
     public async Task<bool> CanExecute()
     {
         var item = await _repository.GetById(_item.Id);
-        return item != null;
+        return item != null && _amount >= 0;;
     }
 
     public async Task Execute()

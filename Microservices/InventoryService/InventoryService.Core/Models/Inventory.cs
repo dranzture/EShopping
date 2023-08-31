@@ -15,7 +15,8 @@ public class Inventory : BaseEntity
         decimal height,
         decimal width,
         decimal weight,
-        string username)
+        string username,
+        Guid? id = null)
     {
         Name = Guard.Against.NullOrEmpty(name);
         Description = Guard.Against.NullOrEmpty(description);
@@ -25,6 +26,12 @@ public class Inventory : BaseEntity
         Weight = Guard.Against.Negative(weight);
         CreatedBy = username;
         CreatedDateTime = DateTimeOffset.Now;
+        
+        //For Unit Test
+        if (id.HasValue)
+        {
+            Id = id.Value;
+        }
     }
 
     public string Name { get; private set; }

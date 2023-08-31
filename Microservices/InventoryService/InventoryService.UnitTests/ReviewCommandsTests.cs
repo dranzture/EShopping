@@ -24,7 +24,6 @@ public class ReviewCommandsTests
         var canExecute = await command.CanExecute();
         
         //Assert
-        
         Assert.True(canExecute);
     }
     
