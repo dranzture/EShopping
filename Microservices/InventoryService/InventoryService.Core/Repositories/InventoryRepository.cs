@@ -1,43 +1,59 @@
 ﻿using InventoryService.Core.Interfaces;
 using InventoryService.Core.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace InventoryService.Core.Services;
+namespace InventoryService.Core.Repositories;
 
 public class InventoryRepository : IInventoryRepository
 {
-    public async Task<bool> Create(Inventory item, CancellationToken cancellationToken)
+    private readonly IRepository<Inventory> _context;
+
+    public InventoryRepository(IRepository<Inventory> context)
     {
-        throw new NotImplementedException();
+        _context = context;
+    }
+    
+    public IQueryable<Inventory> Queryable(CancellationToken cancellationToken = default)
+    {
+        return _context.Queryable(cancellationToken);
     }
 
-    public async Task<bool> Update(Inventory item, CancellationToken cancellationToken)
+    public async Task Create(Inventory item, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        await _context.Create(item, cancellationToken);
+        await SaveChanges(cancellationToken);
     }
 
-    public async Task<bool> Delete(Inventory item, CancellationToken cancellationToken)
+    public async Task Update(Inventory item, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        await _context.Update(item, cancellationToken);
+        await SaveChanges(cancellationToken);
     }
 
-    public async Task<bool> SaveChanges(CancellationToken cancellationToken)
+    public async Task Delete(Inventory item, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        await _context.Delete(item, cancellationToken);
+        await SaveChanges(cancellationToken);
+    }
+
+    public async Task<bool> SaveChanges(CancellationToken cancellationToken = default)
+    {
+        return await _context.SaveChanges(cancellationToken);
     }
 
     public async Task<HashSet<Inventory>> GetAllInventory(CancellationToken token = default)
     {
-        throw new NotImplementedException();
+        var result = await Task.Run(() => Queryable(token).ToHashSet(), token);
+        return result;
     }
 
     public async Task<Inventory> GetById(Guid id, CancellationToken token = default)
     {
-        throw new NotImplementedException();
+        return await Queryable(token).Where(e => e.Id == id).FirstAsync(token);
     }
 
     public async Task<Inventory> GetByName(string name, CancellationToken token = default)
     {
-        throw new NotImplementedException();
+        return await Queryable(token).Where(e => e.Name == name).FirstAsync(token);
     }
-    
 }

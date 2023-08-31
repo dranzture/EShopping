@@ -2,7 +2,7 @@
 
 namespace InventoryService.Core.Interfaces;
 
-public interface IInventoryRepository : IRepositoryBase<Inventory>
+public interface IInventoryRepository : IRepository<Inventory>
 {
     public Task<HashSet<Inventory>> GetAllInventory(CancellationToken token = default);
 

@@ -21,7 +21,6 @@ public class DeleteReviewCommand : ICommand
         var review = await _repository.GetById(_item.Id);
         return review != null && review.CreatedBy == _username;
     }
-
     public async Task Execute()
     {
         var review = await _repository.GetById(_item.Id);

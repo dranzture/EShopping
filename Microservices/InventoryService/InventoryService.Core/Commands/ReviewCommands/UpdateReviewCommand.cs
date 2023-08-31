@@ -21,13 +21,15 @@ public class UpdateReviewCommand : ICommand
         var review = await _repository.GetById(_item.Id);
         return review != null && review.CreatedBy == _username;
     }
-
     public async Task Execute()
     {
         var review = await _repository.GetById(_item.Id);
+        
         if (!string.IsNullOrEmpty(_item.Comment))
             review.UpdateComment(_item.Comment, _username);
+        
         review.UpdateStars(_item.Stars, _username);
+        
         await _repository.Update(review);
         await _repository.SaveChanges();
     }

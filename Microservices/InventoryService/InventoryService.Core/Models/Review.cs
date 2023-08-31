@@ -41,6 +41,4 @@ public class Review : BaseEntity
         Comment = comment;
         UpdateModifiedFields(username);
     }
-
-
 }

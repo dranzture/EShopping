@@ -13,6 +13,7 @@ public class InfrastructureAutofacModule : Module
     {
         AddToAssembliesIfNotNull(callingAssembly);
     }
+    
     private void LoadAssemblies()
     {
         // TODO: Replace these types with any type in the appropriate assembly/project

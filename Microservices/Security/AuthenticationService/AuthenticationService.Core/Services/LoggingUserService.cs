@@ -45,6 +45,7 @@ public class LoggingUserService : ILoggingUserService
 
             return new LoggedUserDto()
             {
+                Id = user.Id,
                 AccessToken = accessToken,
                 Email = user.Email,
                 FirstName = user.FirstName,

@@ -1,8 +1,14 @@
 ﻿using AutoMapper;
+using InventoryService.Core.Dtos;
+using InventoryService.Core.Models;
 
 namespace InventoryService.API.Helpers;
 
 public class MappingProfiles : Profile
 {
-    
+    public MappingProfiles()
+    {
+        CreateMap<ReviewDto, Review>();
+        CreateMap<InventoryDto, Inventory>();
+    }
 }

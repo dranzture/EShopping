@@ -1,53 +1,80 @@
 ﻿using InventoryService.Core.Interfaces;
 using InventoryService.Core.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace InventoryService.Core.Repositories;
 
 public class ReviewRepository : IReviewRepository
 {
-    public async Task<bool> Create(Review item, CancellationToken cancellationToken)
+    private readonly IRepository<Review> _context;
+
+    public ReviewRepository(IRepository<Review> context)
     {
-        throw new NotImplementedException();
+        _context = context;
     }
 
-    public async Task<bool> Update(Review item, CancellationToken cancellationToken)
+    public IQueryable<Review> Queryable(CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        return _context.Queryable(cancellationToken);
     }
 
-    public async Task<bool> Delete(Review item, CancellationToken cancellationToken)
+    public async Task Create(Review item, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        await _context.Create(item, cancellationToken);
+        await SaveChanges(cancellationToken);
+    }
+
+    public async Task Update(Review item, CancellationToken cancellationToken)
+    {
+        await _context.Update(item, cancellationToken);
+        await SaveChanges(cancellationToken);
+    }
+
+    public async Task Delete(Review item, CancellationToken cancellationToken)
+    {
+        await _context.Delete(item, cancellationToken);
+        await SaveChanges(cancellationToken);
     }
 
     public async Task<bool> SaveChanges(CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return await _context.SaveChanges(cancellationToken);
     }
 
 
     public async Task<HashSet<Review>> GetAllReviewsByInventoryId(Guid inventoryId, CancellationToken token = default)
     {
-        throw new NotImplementedException();
+        var result = await Task.Run(() => Queryable(token).Where(e => e.InventoryId == inventoryId).ToHashSet(), token);
+        return result;
     }
 
     public async Task<Review> GetById(Guid id, CancellationToken token = default)
     {
-        throw new NotImplementedException();
+        return await Queryable(token).Where(e => e.Id == id).FirstAsync(token);
     }
 
-    public async Task<Review> GetByUsernameAndInventoryId(Guid inventoryId, string username, CancellationToken token = default)
+    public async Task<Review?> GetByUserIdAndInventoryId(Guid inventoryId, int userId,
+        CancellationToken token = default)
     {
-        throw new NotImplementedException();
+        var result = await Queryable(token).Where(e => e.InventoryId == inventoryId && e.ExternalUserId == userId)
+            .FirstOrDefaultAsync(token);
+        return result;
     }
-    
-    public async Task<Review> GetByUsername(string username, CancellationToken token = default)
+
+    public async Task<HashSet<Review>> GetByUserId(int userId, CancellationToken token = default)
     {
-        throw new NotImplementedException();
+        var result =
+            await Task.Run(
+                () => Queryable(token).Where(e => e.ExternalUserId == userId)
+                    .ToHashSet(), token);
+        return result;
     }
-    
+
     public async Task GetStatisticsByInventoryId(Guid inventoryId, CancellationToken token = default)
     {
-        throw new NotImplementedException();
+        var avg = await Queryable(token).Where(e => e.InventoryId == inventoryId)
+            .AverageAsync(e => e.Stars, token);
+        var count = await Queryable(token).Where(e => e.InventoryId == inventoryId)
+            .CountAsync(token);
     }
 }
