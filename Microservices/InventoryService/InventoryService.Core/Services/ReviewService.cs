@@ -20,20 +20,36 @@ public class ReviewService : IReviewService
 
     public async Task AddReview(ReviewDto dto, CancellationToken token = default)
     {
-        var review = _mapper.Map<Review>(dto);
-        var addCommand = new AddReviewCommand(_repository, review);
-        if (!await addCommand.CanExecute())
-            throw new RpcException(new Status(StatusCode.InvalidArgument, "Cannot add review."));
-        await addCommand.Execute();
+        try
+        {
+            var review = _mapper.Map<Review>(dto);
+            var addCommand = new AddReviewCommand(_repository, review);
+            if (!await addCommand.CanExecute())
+                throw new RpcException(new Status(StatusCode.InvalidArgument, "Cannot add review."));
+            await addCommand.Execute();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"---> Could not add review due to: {ex.Message}");
+        }
+        
     }
 
     public async Task UpdateReview(ReviewDto dto, CancellationToken token = default)
     {
-        var review = _mapper.Map<Review>(dto);
-        var updateCommand = new UpdateReviewCommand(_repository, review, dto.Username);
-        if (!await updateCommand.CanExecute())
-            throw new RpcException(new Status(StatusCode.InvalidArgument, "Cannot update review."));
-        await updateCommand.Execute();
+        try
+        {
+            var review = _mapper.Map<Review>(dto);
+            var updateCommand = new UpdateReviewCommand(_repository, review, dto.Username);
+            if (!await updateCommand.CanExecute())
+                throw new RpcException(new Status(StatusCode.InvalidArgument, "Cannot update review."));
+            await updateCommand.Execute();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"---> Could not update review due to: {ex.Message}");
+        }
+        
     }
 
     public async Task DeleteReview(ReviewDto dto, CancellationToken token = default)

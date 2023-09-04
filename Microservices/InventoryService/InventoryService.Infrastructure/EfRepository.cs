@@ -1,6 +1,6 @@
 ﻿using InventoryService.Core.Interfaces;
 using InventoryService.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace InventoryService.Infrastructure;
 
