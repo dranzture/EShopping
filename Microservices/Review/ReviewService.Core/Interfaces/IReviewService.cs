@@ -1,7 +1,7 @@
-﻿using InventoryService.Core.Dtos;
-using InventoryService.Core.Models;
+﻿using ReviewService.Core.Dtos;
+using ReviewService.Core.Models;
 
-namespace InventoryService.Core.Interfaces;
+namespace ReviewService.Core.Interfaces;
 
 public interface IReviewService
 {
@@ -11,7 +11,7 @@ public interface IReviewService
 
     Task DeleteReview(ReviewDto dto, CancellationToken token = default);
     
-    Task<HashSet<Review>> GetReviewsByInventoryId(ReviewDto dto, CancellationToken token = default);
+    Task<HashSet<Review>> GetReviewsByInventoryId(Guid id, CancellationToken token = default);
 
     Task<HashSet<Review>> GetReviewByUserId(int userId, CancellationToken token = default);
     

@@ -8,7 +8,6 @@ public class MappingProfiles : Profile
 {
     public MappingProfiles()
     {
-        CreateMap<ReviewDto, Review>();
         CreateMap<InventoryDto, Inventory>();
     }
 }

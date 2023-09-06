@@ -1,6 +1,6 @@
-﻿using InventoryService.Core.Models;
+﻿using ReviewService.Core.Models;
 
-namespace InventoryService.Core.Interfaces;
+namespace ReviewService.Core.Interfaces;
 
 public interface IReviewRepository : IRepository<Review>
 {

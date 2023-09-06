@@ -1,8 +1,8 @@
-﻿using InventoryService.Core.Interfaces;
-using InventoryService.Core.Models;
+﻿using ReviewService.Core.Interfaces;
+using ReviewService.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace InventoryService.Core.Repositories;
+namespace ReviewService.Core.Repositories;
 
 public class ReviewRepository : IReviewRepository
 {

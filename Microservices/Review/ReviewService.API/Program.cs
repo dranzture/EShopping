@@ -1,9 +1,10 @@
 using Autofac;
-using InventoryService.Core;
-using InventoryService.Infrastructure;
-using InventoryService.Infrastructure.Data;
+using InventoryService.API.SyncDataServices.Grpc;
+using ReviewService.Core;
+using ReviewService.Core.Interfaces;
+using ReviewService.Infrastructure;
+using ReviewService.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using ReviewService.API.SyncDataServices.Grpc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,7 +39,7 @@ if (app.Environment.IsDevelopment())
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
-    endpoints.MapGrpcService<GrpcInventoryService>();
+    endpoints.MapGrpcService<GrpcReviewService>();
 
     endpoints.MapGet("/protos/inventory.proto", async context =>
     {

@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+option csharp_namespace = "InventoryService";
+
+service GrpcInventoryService {
+    rpc AddInventory (InventoryDto) returns (Empty);
+    rpc UpdateInventory (InventoryDto) returns (InventoryDto);
+    rpc DeleteInventory(InventoryDto) returns(Empty);
+    rpc IncreaseInventory(InventoryChangeDto) returns (Empty);
+    rpc DecreaseInventory(InventoryChangeDto) returns (Empty);
+    rpc GetAllInventory(Empty) returns(ListedInventories);
+    rpc GetById(string) returns(InventoryDto);
+    rpc GetByName(string) returns(InventoryDto);
+}
+
+service GrpcReviewService{
+    rpc AddReview(ReviewDto) returns (Empty);
+    rpc UpdateReview(ReviewDto) returns(ReviewDto);
+    rpc DeleteReview(ReviewDto) returns(Empty);
+    rpc GetReviewsByInventoryId(string) returns(ListedReviews);
+    rpc GetReviewByUserId(int32) returns(ListedReviews);
+    rpc GetReviewByUserIdAndInventoryId(UserAndInventoryId) returns(ReviewDto);
+}
+
+message Empty {
+
+}
+
+message ListedReviews{
+    repeated ReviewDto dto = 1;
+}
+
+message ListedInventories{
+    repeated InventoryDto dto = 1;
+}
+
+message UserAndInventoryId{
+    string inventory_id = 1;
+    int32 user_id = 2;
+}
+
+message InventoryChangeDto{
+    InventoryDto dto = 1;
+    int32 amount = 2;
+    string username = 3;
+}
+
+message InventoryDto {
+    optional string id = 1;
+    string name = 2;
+    string description = 3;
+    int32 in_stock = 4;
+    float height = 5;
+    float width = 6;
+    float weight = 7;
+}
+
+message ReviewDto {
+    optional string id = 1;
+    int32 inventory_id = 2;
+    int32 external_user_id = 3;
+    string username = 4;
+    int32 stars = 5;
+    optional string comment = 6;
+}
+

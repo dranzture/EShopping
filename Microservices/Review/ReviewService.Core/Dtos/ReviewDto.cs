@@ -1,4 +1,4 @@
-﻿namespace InventoryService.Core.Dtos;
+﻿namespace ReviewService.Core.Dtos;
 
 public class ReviewDto
 {

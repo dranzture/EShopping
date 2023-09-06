@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Grpc.Core;
-using InventoryService.Core.Commands.ReviewCommands;
-using InventoryService.Core.Dtos;
-using InventoryService.Core.Interfaces;
-using InventoryService.Core.Models;
+using ReviewService.Core.Commands.ReviewCommands;
+using ReviewService.Core.Dtos;
+using ReviewService.Core.Interfaces;
+using ReviewService.Core.Models;
 
-namespace InventoryService.Core.Services;
+namespace ReviewService.Core.Services;
 
 public class ReviewService : IReviewService
 {
@@ -61,9 +61,9 @@ public class ReviewService : IReviewService
         await deleteCommand.Execute();
     }
 
-    public async Task<HashSet<Review>> GetReviewsByInventoryId(ReviewDto dto, CancellationToken token = default)
+    public async Task<HashSet<Review>> GetReviewsByInventoryId(Guid id, CancellationToken token = default)
     {
-        return await Task.Run(() => _repository.Queryable(token).Where(e => e.InventoryId == dto.InventoryId).ToHashSet(), token);
+        return await Task.Run(() => _repository.Queryable(token).Where(e => e.InventoryId == id).ToHashSet(), token);
     }
 
     public async Task<HashSet<Review>> GetReviewByUserId(int userId, CancellationToken token = default)

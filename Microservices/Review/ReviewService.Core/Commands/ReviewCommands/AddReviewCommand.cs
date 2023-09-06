@@ -1,7 +1,7 @@
-﻿using InventoryService.Core.Interfaces;
-using InventoryService.Core.Models;
+﻿using ReviewService.Core.Interfaces;
+using ReviewService.Core.Models;
 
-namespace InventoryService.Core.Commands.ReviewCommands;
+namespace ReviewService.Core.Commands.ReviewCommands;
 
 public class AddReviewCommand : ICommand
 {

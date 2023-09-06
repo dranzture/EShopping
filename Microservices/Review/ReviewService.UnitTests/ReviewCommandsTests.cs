@@ -1,9 +1,9 @@
-﻿using InventoryService.Core.Commands.ReviewCommands;
-using InventoryService.Core.Interfaces;
-using InventoryService.Core.Models;
+﻿using ReviewService.Core.Commands.ReviewCommands;
+using ReviewService.Core.Interfaces;
+using ReviewService.Core.Models;
 using NSubstitute;
 
-namespace InventoryService.Tests;
+namespace ReviewService.UnitTests;
 
 public class ReviewCommandsTests
 {
