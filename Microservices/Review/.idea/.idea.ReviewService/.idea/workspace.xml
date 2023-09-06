@@ -4,34 +4,56 @@
     <projectFile profileName="IIS Express">ReviewService.API.csproj</projectFile>
     <projectFile profileName="http">ReviewService.API.csproj</projectFile>
     <projectFile profileName="https">ReviewService.API.csproj</projectFile>
+    <projectFile>ReviewService.API/ReviewService.API.csproj</projectFile>
+    <projectFile profileName="IIS Express">ReviewService.Core/ReviewService.Core.csproj</projectFile>
+    <projectFile profileName="http">ReviewService.Core/ReviewService.Core.csproj</projectFile>
+    <projectFile profileName="https">ReviewService.Core/ReviewService.Core.csproj</projectFile>
+    <projectFile profileName="IIS Express">ReviewService.Infrastructrue/ReviewService.Infrastructrue.csproj</projectFile>
+    <projectFile profileName="http">ReviewService.Infrastructrue/ReviewService.Infrastructrue.csproj</projectFile>
+    <projectFile profileName="https">ReviewService.Infrastructrue/ReviewService.Infrastructrue.csproj</projectFile>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b098b9fc-78e3-4b55-9c2d-ccd260dce5f0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Inventory/.idea/.idea.InventoryService/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Inventory/InventoryService.API/SyncDataServices/Grpc/GrpcInventoryService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Inventory/InventoryService.API/SyncDataServices/Grpc/GrpcReviewService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.API/InventoryService.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.API/InventoryService.API.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.API/Program.cs" afterDir="false" />
+    <list default="true" id="b098b9fc-78e3-4b55-9c2d-ccd260dce5f0" name="Changes" comment="Seperated Inventory and Review Services">
+      <change afterPath="$PROJECT_DIR$/ReviewService.API/Protos/review.proto" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.API/Protos/inventory.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.API/Protos/inventory.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Dtos/InventoryDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Dtos/InventoryDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Interfaces/IReviewService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Interfaces/IReviewService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Services/ReviewService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Services/ReviewService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Orchestrator/Orchestrator/OrchestratorService.API/Protos/inventory.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/Orchestrator/OrchestratorService.API/Protos/inventory.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ReviewService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ReviewService/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReviewService.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.API/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReviewService.API/ReviewService.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.API/ReviewService.API.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/Users/polat/RiderProjects/EShopping/Microservices/Inventory/InventoryService.API/Helpers/MappingProfiles.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Inventory/InventoryService.API/Helpers/MappingProfiles.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Inventory/InventoryService.API/SyncDataServices/Grpc/GrpcInventoryService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Inventory/InventoryService.Core/Dtos/InventoryDto.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/polat/RiderProjects/EShopping/Microservices/Inventory/InventoryService.Core/Dtos/InventoryDto.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Orchestrator/Orchestrator/OrchestratorService.API/obj/Debug/net7.0/Protos/Authentication.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ReviewService.UnitTests/Usings.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Security/AuthenticationService/AuthenticationService.API/obj/Debug/net7.0/Protos/Authentication.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Security/AuthenticationService/AuthenticationService.API/obj/Debug/net7.0/Protos/AuthenticationGrpc.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="Toolset" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2Uzr5BLH4FPcjvHiv5HNpgh2u8f" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -43,6 +65,11 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -54,6 +81,24 @@
   }
 }]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.ReviewService.API: http">
+    <configuration name="ReviewService.API" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/ReviewService.API/ReviewService.API.csproj" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="DotNetCore" />
+      <option name="PROJECT_TFM" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
     <configuration name="ReviewService.API: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/ReviewService.API.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net7.0" />
@@ -99,6 +144,180 @@
         <option name="Build" />
       </method>
     </configuration>
+    <configuration name="ReviewService.Core: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/ReviewService.Core/ReviewService.Core.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net7.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="ReviewService.Core: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/ReviewService.Core/ReviewService.Core.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net7.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="http" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="ReviewService.Core: https" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/ReviewService.Core/ReviewService.Core.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net7.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="https" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="ReviewService.Infrastructrue: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/ReviewService.Infrastructure/ReviewService.Infrastructure.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net7.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="ReviewService.Infrastructrue: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/ReviewService.Infrastructure/ReviewService.Infrastructure.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net7.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="http" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="ReviewService.Infrastructrue: https" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/ReviewService.Infrastructure/ReviewService.Infrastructure.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net7.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="https" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="ReviewService.API/Dockerfile" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="imageTag" value="reviewservice.api" />
+          <option name="containerName" value="reviewservice.api" />
+          <option name="contextFolderPath" value="C:\Users\polat\RiderProjects\EShopping\Microservices\Review" />
+          <option name="portBindings">
+            <list>
+              <DockerPortBindingImpl>
+                <option name="containerPort" value="80" />
+                <option name="hostPort" value="8080" />
+              </DockerPortBindingImpl>
+            </list>
+          </option>
+          <option name="sourceFilePath" value="ReviewService.API/Dockerfile" />
+        </settings>
+      </deployment>
+      <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ReviewService.Core/Dockerfile" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="imageTag" value="reviewservice.core" />
+          <option name="containerName" value="reviewservice.core" />
+          <option name="contextFolderPath" value="C:\Users\polat\RiderProjects\EShopping\Microservices\Review" />
+          <option name="portBindings">
+            <list>
+              <DockerPortBindingImpl>
+                <option name="containerPort" value="80" />
+                <option name="hostPort" value="8080" />
+              </DockerPortBindingImpl>
+            </list>
+          </option>
+          <option name="sourceFilePath" value="ReviewService.Core/Dockerfile" />
+        </settings>
+      </deployment>
+      <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ReviewService.Infrastructrue/Dockerfile" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="imageTag" value="reviewservice.infrastructrue" />
+          <option name="containerName" value="reviewservice.infrastructrue" />
+          <option name="contextFolderPath" value="C:\Users\polat\RiderProjects\EShopping\Microservices\Review" />
+          <option name="portBindings">
+            <list>
+              <DockerPortBindingImpl>
+                <option name="containerPort" value="80" />
+                <option name="hostPort" value="8080" />
+              </DockerPortBindingImpl>
+            </list>
+          </option>
+          <option name="sourceFilePath" value="ReviewService.Infrastructrue/Dockerfile" />
+        </settings>
+      </deployment>
+      <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ReviewService.Infrastructure/Dockerfile" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="imageTag" value="reviewservice.infrastructure" />
+          <option name="containerName" value="reviewservice.infrastructure" />
+          <option name="contextFolderPath" value="C:\Users\polat\RiderProjects\EShopping\Microservices\Review" />
+          <option name="portBindings">
+            <list>
+              <DockerPortBindingImpl>
+                <option name="containerPort" value="80" />
+                <option name="hostPort" value="8080" />
+              </DockerPortBindingImpl>
+            </list>
+          </option>
+          <option name="sourceFilePath" value="ReviewService.Infrastructure/Dockerfile" />
+        </settings>
+      </deployment>
+      <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -109,13 +328,26 @@
       <option name="presentableId" value="Default" />
       <updated>1693953064597</updated>
       <workItem from="1693953065730" duration="118000" />
+      <workItem from="1693953401859" duration="5747000" />
     </task>
+    <task id="LOCAL-00001" summary="Seperated Inventory and Review Services">
+      <option name="closed" value="true" />
+      <created>1693958547927</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1693958547927</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Seperated Inventory and Review Services" />
+    <option name="LAST_COMMIT_MESSAGE" value="Seperated Inventory and Review Services" />
   </component>
 </project>

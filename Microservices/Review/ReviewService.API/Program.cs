@@ -1,7 +1,6 @@
 using Autofac;
 using InventoryService.API.SyncDataServices.Grpc;
 using ReviewService.Core;
-using ReviewService.Core.Interfaces;
 using ReviewService.Infrastructure;
 using ReviewService.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -36,20 +35,22 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseRouting();
+
+app.UseAuthorization();
+
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
     endpoints.MapGrpcService<GrpcReviewService>();
 
-    endpoints.MapGet("/protos/inventory.proto", async context =>
+    endpoints.MapGet("/protos/review.proto", async context =>
     {
-        await context.Response.WriteAsync(File.ReadAllText("Protos/inventory.proto"));
+        await context.Response.WriteAsync(File.ReadAllText("Protos/review.proto"));
     });
 });
 
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
 
 app.MapControllers();
 
