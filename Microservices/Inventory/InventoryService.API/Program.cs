@@ -1,9 +1,10 @@
 using Autofac;
+using InventoryService.API.SyncDataServices.Grpc;
 using InventoryService.Core;
 using InventoryService.Infrastructure;
 using InventoryService.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using ReviewService.API.SyncDataServices.Grpc;
+using InventoryService.API.SyncDataServices.Grpc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddGrpc();
+
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 {
     containerBuilder.RegisterModule(new CoreAutofacModule());
@@ -38,7 +41,7 @@ if (app.Environment.IsDevelopment())
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
-    endpoints.MapGrpcService<GrpcInventoryService>();
+    endpoints.MapGrpcService<GrpcService>();
 
     endpoints.MapGet("/protos/inventory.proto", async context =>
     {

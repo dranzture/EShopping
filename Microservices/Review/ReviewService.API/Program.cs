@@ -1,5 +1,5 @@
 using Autofac;
-using InventoryService.API.SyncDataServices.Grpc;
+using ReviewService.API.SyncDataServices.Grpc;
 using ReviewService.Core;
 using ReviewService.Infrastructure;
 using ReviewService.Infrastructure.Data;
@@ -21,6 +21,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddGrpc();
+
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 {
     containerBuilder.RegisterModule(new CoreAutofacModule());
@@ -42,7 +44,7 @@ app.UseAuthorization();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
-    endpoints.MapGrpcService<GrpcReviewService>();
+    endpoints.MapGrpcService<GrpcService>();
 
     endpoints.MapGet("/protos/review.proto", async context =>
     {

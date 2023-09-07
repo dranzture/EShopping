@@ -1,17 +1,17 @@
 syntax = "proto3";
 
-option csharp_namespace = "InventoryService";
+option csharp_namespace = "ReviewService";
 
 service GrpcReviewService{
-    rpc AddReview(ReviewDto) returns (Empty);
-    rpc UpdateReview(ReviewDto) returns(ReviewDto);
-    rpc DeleteReview(ReviewDto) returns(Empty);
-    rpc GetReviewsByInventoryId(string) returns(ListedReviews);
-    rpc GetReviewByUserId(int32) returns(ListedReviews);
-    rpc GetReviewByUserIdAndInventoryId(UserAndInventoryId) returns(ReviewDto);
+    rpc AddReview(GrpcReviewDto) returns (Empty);
+    rpc UpdateReview(GrpcReviewDto) returns(GrpcReviewDto);
+    rpc DeleteReview(GrpcReviewDto) returns(Empty);
+    rpc GetReviewsByInventoryId(GrpcUserAndInventoryId) returns(GrpcListedReviews);
+    rpc GetReviewByUserId(GrpcUserId) returns(GrpcListedReviews);
+    rpc GetReviewByUserIdAndInventoryId(GrpcUserAndInventoryId) returns(GrpcReviewDto);
 }
 
-message ReviewDto {
+message GrpcReviewDto {
     optional string id = 1;
     int32 inventory_id = 2;
     int32 external_user_id = 3;
@@ -20,14 +20,19 @@ message ReviewDto {
     optional string comment = 6;
 }
 
-message ListedReviews{
-    repeated ReviewDto dto = 1;
+message GrpcListedReviews{
+    repeated GrpcReviewDto dto = 1;
 }
 
-message UserAndInventoryId{
+message GrpcUserAndInventoryId{
     string inventory_id = 1;
     int32 user_id = 2;
 }
+
+message GrpcUserId{
+    int32 user_id = 1;
+}
+
 
 message Empty {
 

@@ -8,6 +8,8 @@ public class MappingProfiles : Profile
 {
     public MappingProfiles()
     {
+        CreateMap<GrpcInventoryDto, InventoryDto>();
         CreateMap<InventoryDto, Inventory>();
+        CreateMap<Inventory, GrpcInventoryDto>();
     }
 }

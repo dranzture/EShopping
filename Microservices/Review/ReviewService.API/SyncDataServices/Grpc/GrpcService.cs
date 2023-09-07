@@ -1,6 +1,5 @@
 ﻿namespace ReviewService.API.SyncDataServices.Grpc;
 
-public class GrpcInventoryService
+public class GrpcService
 {
-    
 }

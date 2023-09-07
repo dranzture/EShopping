@@ -3,30 +3,35 @@ syntax = "proto3";
 option csharp_namespace = "InventoryService";
 
 service GrpcInventoryService {
-    rpc AddInventory (InventoryDto) returns (Empty);
-    rpc UpdateInventory (InventoryDto) returns (InventoryDto);
-    rpc DeleteInventory(InventoryDto) returns(Empty);
-    rpc IncreaseInventory(InventoryChangeDto) returns (Empty);
-    rpc DecreaseInventory(InventoryChangeDto) returns (Empty);
-    rpc GetById(GetByIdParam) returns(InventoryDto);
-    rpc GetByName(GetByNameParam) returns(InventoryDto);
+    rpc AddInventory (GrpcMutateInventoryDto) returns (Empty);
+    rpc UpdateInventory (GrpcMutateInventoryDto) returns (GrpcInventoryDto);
+    rpc DeleteInventory(GrpcInventoryDto) returns(Empty);
+    rpc IncreaseInventory(GrpcInventoryChangeDto) returns (Empty);
+    rpc DecreaseInventory(GrpcInventoryChangeDto) returns (Empty);
+    rpc GetById(GrpcGetByIdParam) returns(GrpcInventoryDto);
+    rpc GetByName(GrpcGetByNameParam) returns(GrpcInventoryDto);
 }
 
 message Empty {
 
 }
 
-message ListedInventories{
-    repeated InventoryDto dto = 1;
+message GrpcListedInventories{
+    repeated GrpcInventoryDto dto = 1;
 }
 
-message InventoryChangeDto{
-    InventoryDto dto = 1;
+message GrpcMutateInventoryDto{
+    GrpcInventoryDto dto = 1;
+    string username = 2;
+}
+
+message GrpcInventoryChangeDto{
+    GrpcInventoryDto dto = 1;
     int32 amount = 2;
     string username = 3;
 }
 
-message InventoryDto {
+message GrpcInventoryDto {
     optional string id = 1;
     string name = 2;
     string description = 3;
@@ -36,10 +41,10 @@ message InventoryDto {
     float weight = 7;
 }
 
-message GetByIdParam{
+message GrpcGetByIdParam{
     string id = 1;
 }
 
-message GetByNameParam{
+message GrpcGetByNameParam{
     string name = 1;
 }

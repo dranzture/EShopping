@@ -58,7 +58,7 @@ public class InventoryService : IInventoryService
         }
     }
 
-    public async Task DeleteInventory(InventoryDto dto, string username, CancellationToken token = default)
+    public async Task DeleteInventory(InventoryDto dto, CancellationToken token = default)
     {
         try
         {
