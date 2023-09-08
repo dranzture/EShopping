@@ -24,6 +24,7 @@
       <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.API/Protos/inventory.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.API/Protos/inventory.proto" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.API/SyncDataServices/Grpc/GrpcInventoryService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.API/SyncDataServices/Grpc/GrpcService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Interfaces/IInventoryService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Interfaces/IInventoryService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Models/Review.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Services/InventoryService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Services/InventoryService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ReviewService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ReviewService/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ReviewService.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.API/Program.cs" afterDir="false" />
