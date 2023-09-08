@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+option csharp_namespace = "InventoryService";
+
+service GrpcInventoryService {
+    rpc AddInventory (GrpcMutateInventoryDto) returns (Empty);
+    rpc UpdateInventory (GrpcMutateInventoryDto) returns (Empty);
+    rpc DeleteInventory(GrpcIdParam) returns(Empty);
+    rpc IncreaseInventory(GrpcInventoryChangeDto) returns (Empty);
+    rpc DecreaseInventory(GrpcInventoryChangeDto) returns (Empty);
+    rpc GetById(GrpcIdParam) returns(GrpcInventoryDto);
+    rpc GetByName(GrpcNameParam) returns(GrpcInventoryDto);
+}
+
+message Empty {
+
+}
+
+message GrpcListedInventories{
+    repeated GrpcInventoryDto dto = 1;
+}
+
+message GrpcMutateInventoryDto{
+    GrpcInventoryDto dto = 1;
+    string username = 2;
+}
+
+message GrpcInventoryChangeDto{
+    GrpcInventoryDto dto = 1;
+    int32 amount = 2;
+    string username = 3;
+}
+
+message GrpcInventoryDto {
+    optional string id = 1;
+    string name = 2;
+    string description = 3;
+    int32 in_stock = 4;
+    float height = 5;
+    float width = 6;
+    float weight = 7;
+}
+
+message GrpcIdParam{
+    string id = 1;
+}
+
+message GrpcNameParam{
+    string name = 1;
+}

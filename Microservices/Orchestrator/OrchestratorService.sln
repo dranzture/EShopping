@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrchestratorService.API", "OrchestratorService.API\OrchestratorService.API.csproj", "{FE11BB55-DD6E-47EE-A9CC-7DD437361217}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrchestratorService.Infrastructure", "OrchestratorService.Infrastructure\OrchestratorService.Infrastructure.csproj", "{1337C7CF-EBE5-4BF6-80A9-8D5D77B7896A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrchestratorService.Core", "OrchestratorService.Core\OrchestratorService.Core.csproj", "{775D7246-0B75-4083-A4BC-3B5BC61AA7D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrchestratorService.UnitTests", "OrchestratorService.UnitTests\OrchestratorService.UnitTests.csproj", "{32251D90-6830-4B84-877B-2F7A7A713E16}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE11BB55-DD6E-47EE-A9CC-7DD437361217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE11BB55-DD6E-47EE-A9CC-7DD437361217}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE11BB55-DD6E-47EE-A9CC-7DD437361217}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE11BB55-DD6E-47EE-A9CC-7DD437361217}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1337C7CF-EBE5-4BF6-80A9-8D5D77B7896A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1337C7CF-EBE5-4BF6-80A9-8D5D77B7896A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1337C7CF-EBE5-4BF6-80A9-8D5D77B7896A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1337C7CF-EBE5-4BF6-80A9-8D5D77B7896A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{775D7246-0B75-4083-A4BC-3B5BC61AA7D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{775D7246-0B75-4083-A4BC-3B5BC61AA7D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{775D7246-0B75-4083-A4BC-3B5BC61AA7D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{775D7246-0B75-4083-A4BC-3B5BC61AA7D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32251D90-6830-4B84-877B-2F7A7A713E16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32251D90-6830-4B84-877B-2F7A7A713E16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32251D90-6830-4B84-877B-2F7A7A713E16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32251D90-6830-4B84-877B-2F7A7A713E16}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
