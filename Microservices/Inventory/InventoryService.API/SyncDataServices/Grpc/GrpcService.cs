@@ -103,7 +103,7 @@ public class GrpcService : GrpcInventoryService.GrpcInventoryServiceBase
         }
     }
     
-    public async Task<GrpcInventoryDto> GetById(GrpcGetByIdParam dto, string username)
+    public async Task<GrpcInventoryDto> GetById(GrpcIdParam dto, string username)
     {
         try
         {
@@ -121,7 +121,7 @@ public class GrpcService : GrpcInventoryService.GrpcInventoryServiceBase
         }
     }
     
-    public async Task<GrpcInventoryDto> GetByName(GrpcGetByNameParam dto, string username)
+    public async Task<GrpcInventoryDto> GetByName(GrpcNameParam dto, string username)
     {
         try
         {

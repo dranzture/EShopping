@@ -9,7 +9,7 @@ service GrpcInventoryService {
     rpc IncreaseInventory(GrpcInventoryChangeDto) returns (Empty);
     rpc DecreaseInventory(GrpcInventoryChangeDto) returns (Empty);
     rpc GetById(GrpcIdParam) returns(GrpcInventoryDto);
-    rpc GetByName(GrpcGNameParam) returns(GrpcInventoryDto);
+    rpc GetByName(GrpcNameParam) returns(GrpcInventoryDto);
 }
 
 message Empty {
@@ -45,6 +45,6 @@ message GrpcIdParam{
     string id = 1;
 }
 
-message GrpcGNameParam{
+message GrpcNameParam{
     string name = 1;
 }
