@@ -20,18 +20,18 @@ public class EfRepository<T> : IRepository<T> where T : class
 
     public async Task Create(T item, CancellationToken cancellationToken = default)
     {
-        await _context.AddAsync(item,cancellationToken);
+        await _context.Set<T>().AddAsync(item,cancellationToken);
     }
 
     public Task Update(T item, CancellationToken cancellationToken = default)
     {
-        _context.Update(item);
+        _context.Set<T>().Update(item);
         return Task.CompletedTask;
     }
 
     public Task Delete(T item, CancellationToken cancellationToken = default)
     {
-        _context.Remove(item);
+        _context.Set<T>().Remove(item);
         return Task.CompletedTask;
     }
 

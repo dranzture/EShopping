@@ -5,6 +5,7 @@ using InventoryService.Infrastructure;
 using InventoryService.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using InventoryService.API.SyncDataServices.Grpc;
+using InventoryService.Core.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,5 +55,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.PrepDb();
 
 app.Run();

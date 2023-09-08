@@ -4,6 +4,7 @@ using ReviewService.Core;
 using ReviewService.Infrastructure;
 using ReviewService.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using ReviewService.Core.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -55,5 +56,7 @@ app.UseEndpoints(endpoints =>
 app.UseHttpsRedirection();
 
 app.MapControllers();
+
+app.PrepDb();
 
 app.Run();
