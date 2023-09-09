@@ -56,7 +56,7 @@ public class InventoryCommandsTests
         _repository.GetById(_guid)
             .Returns(Task.FromResult(inventory));
 
-        var command = new DecreaseInventoryCommand(_repository, inventory, 5, username);
+        var command = new DecreaseInventoryCommand(_repository, _guid, 5, username);
 
         //Act
         var result = await command.CanExecute();
@@ -70,12 +70,12 @@ public class InventoryCommandsTests
     {
         //Arrange
         var inventory = new Inventory("TestInv", "TestingThisMethod", 
-            5, 10.0M, 5.0M, 20, "dranzture");
+            5, 10.0M, 5.0M, 20, "dranzture", _guid);
         var username = "dranzure";
         _repository.GetByName("TestInv")
             .Returns(Task.FromResult((Inventory?)null));
 
-        var command = new DecreaseInventoryCommand(_repository, inventory, 6, username);
+        var command = new DecreaseInventoryCommand(_repository, _guid, 6, username);
 
         //Act
         var result = await command.CanExecute();
@@ -89,12 +89,12 @@ public class InventoryCommandsTests
     {
         //Arrange
         var inventory = new Inventory("TestInv", "TestingThisMethod", 
-            5, 10.0M, 5.0M, 20, "dranzture");
+            5, 10.0M, 5.0M, 20, "dranzture", _guid);
         var username = "dranzure";
         _repository.GetByName("TestInv")
             .Returns(inventory);
 
-        var command = new DecreaseInventoryCommand(_repository, inventory, -1, username);
+        var command = new DecreaseInventoryCommand(_repository, _guid, -1, username);
 
         //Act
 
@@ -115,7 +115,7 @@ public class InventoryCommandsTests
         _repository.GetById(_guid)
             .Returns(Task.FromResult(inventory));
 
-        var command = new IncreaseInventoryCommand(_repository, inventory, 5, username);
+        var command = new IncreaseInventoryCommand(_repository, _guid, 5, username);
 
         //Act
 
@@ -136,7 +136,7 @@ public class InventoryCommandsTests
         _repository.GetById(_guid)
             .Returns(Task.FromResult((Inventory?)null));
 
-        var command = new IncreaseInventoryCommand(_repository, inventory, 6, username);
+        var command = new IncreaseInventoryCommand(_repository, _guid, 6, username);
 
         //Act
 
@@ -157,7 +157,7 @@ public class InventoryCommandsTests
         _repository.GetById(_guid)
             .Returns(Task.FromResult(inventory));
 
-        var command = new IncreaseInventoryCommand(_repository, inventory, -1, username);
+        var command = new IncreaseInventoryCommand(_repository, _guid, -1, username);
 
         //Act
 
@@ -220,7 +220,7 @@ public class InventoryCommandsTests
             .Returns(Task.FromResult(inventory));
         
         //Act
-        var command = new DeleteInventoryCommand(_repository, inventory);
+        var command = new DeleteInventoryCommand(_repository, _guid);
 
         var canExecute = await command.CanExecute();
         
@@ -239,7 +239,7 @@ public class InventoryCommandsTests
             .Returns(Task.FromResult((Inventory?)null));
         
         //Act
-        var command = new DeleteInventoryCommand(_repository, inventory);
+        var command = new DeleteInventoryCommand(_repository, _guid);
         
         var canExecute = await command.CanExecute();
         

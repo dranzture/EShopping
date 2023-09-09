@@ -6,26 +6,26 @@ using Models;
 public class IncreaseInventoryCommand : ICommand
 {
     private readonly IInventoryRepository _repository;
-    private readonly Inventory _item;
+    private readonly Guid _id;
     private readonly int _amount;
     private readonly string _username;
-    public IncreaseInventoryCommand(IInventoryRepository repository, Inventory item, int amount, string username)
+    public IncreaseInventoryCommand(IInventoryRepository repository, Guid id, int amount, string username)
     {
         _repository = repository;
-        _item = item;
+        _id = id;
         _amount = amount;
         _username = username;
     }
     
     public async Task<bool> CanExecute()
     {
-        var item = await _repository.GetById(_item.Id);
+        var item = await _repository.GetById(_id);
         return item != null && _amount >= 0;;
     }
 
     public async Task Execute()
     {
-        var item = await _repository.GetById(_item.Id);
+        var item = await _repository.GetById(_id);
         item.IncreaseStock(_amount, _username);
         await _repository.Update(item);
     }    

@@ -11,6 +11,10 @@ public class CoreAutofacModule : Module
         builder.RegisterType<InventoryRepository>()
             .As<IInventoryRepository>()
             .InstancePerLifetimeScope();
+        
+        builder.RegisterType<Services.InventoryService>()
+            .As<IInventoryService>()
+            .InstancePerLifetimeScope();
     }
 }
     

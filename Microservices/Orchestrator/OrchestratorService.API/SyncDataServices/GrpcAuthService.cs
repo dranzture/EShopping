@@ -12,13 +12,11 @@ namespace OrchestratorService.API.SyncDataServices;
 public class GrpcAuthService : IGrpcAuthService
 {
     private readonly AppSettings _settings;
-    private readonly GrpcChannel _channel;
     private readonly IMapper _mapper;
 
     public GrpcAuthService(AppSettings settings, IMapper mapper)
     {
         _settings = settings;
-        _channel = GrpcChannel.ForAddress(_settings.AuthenticationUrl);
         _mapper = mapper;
     }
 
@@ -26,12 +24,16 @@ public class GrpcAuthService : IGrpcAuthService
     {
         try
         {
-            var client = new AuthenticationServiceClient(_channel);
+            var channel = GrpcChannel.ForAddress(_settings.AuthenticationUrl);
+            
+            var client = new AuthenticationServiceClient(channel);
 
             var request = _mapper.Map<LoginUserRequest>(dto);
             var response = await client.LoginUserAsync(request);
             var returnItem = _mapper.Map<LoggedUserDto>(response);
-
+            
+            channel.Dispose();
+            
             return await Task.FromResult(returnItem);
         }
         catch (RpcException ex)

@@ -18,10 +18,11 @@ public class InventoryRepository : IInventoryRepository
         return _context.Queryable(cancellationToken);
     }
 
-    public async Task Create(Inventory item, CancellationToken cancellationToken = default)
+    public async Task<Inventory> Create(Inventory item, CancellationToken cancellationToken = default)
     {
-        await _context.Create(item, cancellationToken);
+        var result = await _context.Create(item, cancellationToken);
         await SaveChanges(cancellationToken);
+        return result;
     }
 
     public async Task Update(Inventory item, CancellationToken cancellationToken = default)
@@ -47,13 +48,13 @@ public class InventoryRepository : IInventoryRepository
         return result;
     }
 
-    public async Task<Inventory> GetById(Guid id, CancellationToken token = default)
+    public async Task<Inventory?> GetById(Guid id, CancellationToken token = default)
     {
-        return await Queryable(token).Where(e => e.Id == id).FirstAsync(token);
+        return await Queryable(token).Where(e => e.Id == id).FirstOrDefaultAsync(token);
     }
 
-    public async Task<Inventory> GetByName(string name, CancellationToken token = default)
+    public async Task<Inventory?> GetByName(string name, CancellationToken token = default)
     {
-        return await Queryable(token).Where(e => e.Name == name).FirstAsync(token);
+        return await Queryable(token).Where(e => e.Name == name).FirstOrDefaultAsync(token);
     }
 }

@@ -5,23 +5,23 @@ namespace InventoryService.Core.Commands.InventoryCommands;
 
 public class DeleteInventoryCommand : ICommand
 {
-    private readonly Inventory _item;
+    private readonly Guid _id;
     private readonly IInventoryRepository _repository;
 
-    public DeleteInventoryCommand(IInventoryRepository repository, Inventory item)
+    public DeleteInventoryCommand(IInventoryRepository repository, Guid id)
     {
         _repository = repository;
-        _item = item;
+        _id = id;
     }
     public async Task<bool> CanExecute()
     {
-        var item = await _repository.GetById(_item.Id);
+        var item = await _repository.GetById(_id);
         return item != null;
     }
 
     public async Task Execute()
     {
-        var item = await _repository.GetById(_item.Id);
+        var item = await _repository.GetById(_id);
         await _repository.Delete(item);
     }
 }

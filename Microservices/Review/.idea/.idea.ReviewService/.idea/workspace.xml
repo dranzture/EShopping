@@ -17,14 +17,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b098b9fc-78e3-4b55-9c2d-ccd260dce5f0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/Protos/review.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/SyncDataServices/GrpcReviewService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Core/Dtos/Review/ReviewDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Core/Dtos/Review/UserAndInventoryIdParam.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Core/Interfaces/IGrpcReviewService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.API/Protos/inventory.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.API/Protos/inventory.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.API/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.API/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/Controllers/InventoryController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/Controllers/InventoryController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/Helpers/MapperProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/Helpers/MapperProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/OrchestratorService.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/OrchestratorService.API.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/SyncDataServices/GrpcInventoryService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/SyncDataServices/GrpcInventoryService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Core/Models/AppSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Core/Models/AppSettings.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ReviewService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ReviewService/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReviewService.API/Protos/review.proto" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.API/Protos/review.proto" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -333,6 +333,7 @@
       <workItem from="1693953401859" duration="7100000" />
       <workItem from="1694047778512" duration="1924000" />
       <workItem from="1694131727724" duration="3001000" />
+      <workItem from="1694218057033" duration="603000" />
     </task>
     <task id="LOCAL-00001" summary="Seperated Inventory and Review Services">
       <option name="closed" value="true" />

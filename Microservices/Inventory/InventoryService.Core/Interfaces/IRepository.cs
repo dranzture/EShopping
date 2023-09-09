@@ -6,7 +6,7 @@ public interface IRepository<T> where  T : class
 {
     public IQueryable<T> Queryable(CancellationToken cancellationToken = default);
     
-    public Task Create(T item, CancellationToken cancellationToken = default);
+    public Task<T> Create(T item, CancellationToken cancellationToken = default);
     
     public Task Update(T item, CancellationToken cancellationToken = default);
     

@@ -1,9 +1,11 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using OrchestratorService.API.SyncDataServices;
 using OrchestratorService.Core.Interfaces;
 using OrchestratorService.Core.Models;
+using GrpcInventoryServiceClient =  OrchestratorService.API.SyncDataServices.GrpcInventoryService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,15 +14,16 @@ var config = new ConfigurationBuilder()
     .AddJsonFile($"appsettings.{env}.json", optional: false)
     .Build();
 var appSettings = config.GetSection("AppSettings").Get<AppSettings>();
-builder.Services.AddHealthChecks();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSingleton(appSettings!);
 builder.Services.AddScoped<IGrpcAuthService, GrpcAuthService>();
+builder.Services.AddScoped<IGrpcInventoryService, GrpcInventoryServiceClient>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(e =>
-    e.TokenValidationParameters = new()
+    e.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
         ValidateAudience = true,
@@ -48,6 +51,8 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+app.UseAuthentication();
+
+app.MapControllers();
 
 app.Run();
