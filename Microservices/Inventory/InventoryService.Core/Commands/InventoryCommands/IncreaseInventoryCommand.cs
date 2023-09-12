@@ -1,7 +1,6 @@
 ﻿using InventoryService.Core.Interfaces;
 
 namespace InventoryService.Core.Commands.InventoryCommands;
-using Models;
 
 public class IncreaseInventoryCommand : ICommand
 {
@@ -17,16 +16,16 @@ public class IncreaseInventoryCommand : ICommand
         _username = username;
     }
     
-    public async Task<bool> CanExecute()
+    public bool CanExecute()
     {
-        var item = await _repository.GetById(_id);
-        return item != null && _amount >= 0;;
+        var item =  _repository.GetById(_id);
+        return item != null && _amount >= 0;
     }
 
-    public async Task Execute()
+    public void Execute()
     {
-        var item = await _repository.GetById(_id);
+        var item = _repository.GetById(_id);
         item.IncreaseStock(_amount, _username);
-        await _repository.Update(item);
+        _repository.Update(item);
     }    
 }

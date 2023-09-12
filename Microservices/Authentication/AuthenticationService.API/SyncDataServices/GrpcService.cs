@@ -2,10 +2,11 @@
 using AuthenticationService.Dtos;
 using AutoMapper;
 using Grpc.Core;
+using GrpcAuthenticationService;
 
 namespace AuthenticationService.SyncDataServices;
 
-public class GrpcService : GrpcAuthenticationService.GrpcAuthenticationServiceBase
+public class GrpcService : GrpcAuthenticationService.GrpcAuthenticationService.GrpcAuthenticationServiceBase
 {
     private readonly ILoggingUserService _authService;
     private readonly IMapper _mapper;

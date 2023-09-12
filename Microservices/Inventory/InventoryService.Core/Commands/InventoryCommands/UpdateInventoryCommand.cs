@@ -16,18 +16,18 @@ public class UpdateInventoryCommand : ICommand
         _username = username;
     }
     
-    public async Task<bool> CanExecute()
+    public bool CanExecute()
     {
-        var item = await _repository.GetById(_item.Id);
+        var item =  _repository.GetById(_item.Id);
         return item != null;
     }
 
-    public async Task Execute()
+    public void Execute()
     {
-        var item = await _repository.GetById(_item.Id);
+        var item = _repository.GetById(_item.Id);
         item.ChangeDescription(_item.Description, _username);
         item.ChangeSize(_item.Height,_item.Width, _username);
-        await _repository.Update(item);
-        await _repository.SaveChanges();
+        _repository.Update(item);
+        _repository.SaveChanges();
     }
 }

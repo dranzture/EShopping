@@ -14,25 +14,20 @@ public class AddInventoryCommand : ICommand
         _repository = repository;
         _item = item;
     }
-    
-    public async Task<bool> CanExecute()
+
+    public bool CanExecute()
     {
-        var item = await _repository.GetByName(_item.Name);
+        var item = _repository.GetByName(_item.Name);
         return item == null;
     }
 
-    public async Task Execute()
+    public void Execute()
     {
-        _result = await _repository.Create(_item);
+        _result = _repository.Create(_item);
     }
 
-    public async Task<Inventory?> GetResult()
+    public Inventory? GetResult()
     {
-        if (_result != null)
-        {
-            return await Task.FromResult(_result);
-        }
-
-        return null;
+        return _result ?? null;
     }
 }

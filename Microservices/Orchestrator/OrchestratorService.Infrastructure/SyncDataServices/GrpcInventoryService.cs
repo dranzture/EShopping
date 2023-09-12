@@ -2,13 +2,12 @@
 using Grpc.Core;
 using Grpc.Net.Client;
 using GrpcInventoryService;
-using Microsoft.OpenApi.Extensions;
 using OrchestratorService.Core.Dtos.Inventory;
 using OrchestratorService.Core.Interfaces;
 using OrchestratorService.Core.Models;
 using InventoryServiceClient = GrpcInventoryService.GrpcInventoryService.GrpcInventoryServiceClient;
 
-namespace OrchestratorService.API.SyncDataServices;
+namespace OrchestratorService.Infrastructure.SyncDataServices;
 
 public class GrpcInventoryService : IGrpcInventoryService, IDisposable
 {
@@ -22,7 +21,7 @@ public class GrpcInventoryService : IGrpcInventoryService, IDisposable
         _mapper = mapper;
     }
 
-    public async Task<Guid> AddInventory(MutateInventoryDto dto, CancellationToken token = default)
+    public Task<Guid> AddInventory(MutateInventoryDto dto, CancellationToken token = default)
     {
         try
         {
@@ -33,19 +32,19 @@ public class GrpcInventoryService : IGrpcInventoryService, IDisposable
             var result = client.AddInventory(request, deadline: DateTime.UtcNow.AddSeconds(10),
                 cancellationToken: token);
             
-            return await Task.FromResult(new Guid(result.Id));
+            return Task.FromResult(new Guid(result.Id));
         }
         catch (RpcException ex)
         {
             Console.WriteLine(ex.StatusCode == StatusCode.DeadlineExceeded
                 ? $"---> Error on Add Inventory: Grpc Client Timeout"
                 : $"---> Error on Add Inventory: {ex.Status.Detail}");
-            return await Task.FromException<Guid>(ex);
+            return Task.FromException<Guid>(ex);
         }
         catch (Exception ex)
         {
             Console.WriteLine($"---> Internal Error on Add Inventory: {ex.Message}");
-            return await Task.FromException<Guid>(ex);
+            return Task.FromException<Guid>(ex);
         }
     }
 
@@ -57,7 +56,7 @@ public class GrpcInventoryService : IGrpcInventoryService, IDisposable
             var client = new InventoryServiceClient(channel);
             var request = _mapper.Map<GrpcMutateInventoryDto>(dto);
             client.UpdateInventory(request, deadline: DateTime.UtcNow.AddSeconds(10), cancellationToken: token);
-            return Task.CompletedTask;
+            return Task.CompletedTask;;
         }
         catch (RpcException ex)
         {
@@ -84,7 +83,7 @@ public class GrpcInventoryService : IGrpcInventoryService, IDisposable
                 Id = id.ToString()
             };
             client.DeleteInventory(grpcIdParam, deadline: DateTime.UtcNow.AddSeconds(10), cancellationToken: token);
-            return Task.CompletedTask;
+            return Task.CompletedTask;;
         }
         catch (RpcException ex)
         {
@@ -108,7 +107,7 @@ public class GrpcInventoryService : IGrpcInventoryService, IDisposable
             var client = new InventoryServiceClient(channel);
             var request = _mapper.Map<GrpcInventoryChangeDto>(dto);
             client.IncreaseInventory(request, deadline: DateTime.UtcNow.AddSeconds(10), cancellationToken: token);
-            return Task.CompletedTask;
+            return Task.CompletedTask;;
         }
         catch (RpcException ex)
         {
@@ -132,7 +131,7 @@ public class GrpcInventoryService : IGrpcInventoryService, IDisposable
             var client = new InventoryServiceClient(channel);
             var request = _mapper.Map<GrpcInventoryChangeDto>(dto);
             client.DecreaseInventory(request, deadline: DateTime.UtcNow.AddSeconds(10), cancellationToken: token);
-            return Task.CompletedTask;
+            return Task.CompletedTask;;
         }
         catch (RpcException ex)
         {
@@ -148,7 +147,7 @@ public class GrpcInventoryService : IGrpcInventoryService, IDisposable
         }
     }
 
-    public async Task<InventoryDto> GetById(Guid id, CancellationToken token = default)
+    public  Task<InventoryDto> GetById(Guid id, CancellationToken token = default)
     {
         try
         {
@@ -160,23 +159,23 @@ public class GrpcInventoryService : IGrpcInventoryService, IDisposable
             };
             var result = client.GetById(request, deadline: DateTime.UtcNow.AddSeconds(10), cancellationToken: token);
             
-            return await Task.FromResult(_mapper.Map<InventoryDto>(result));
+            return  Task.FromResult(_mapper.Map<InventoryDto>(result));
         }
         catch (RpcException ex)
         {
             Console.WriteLine(ex.StatusCode == StatusCode.DeadlineExceeded
                 ? $"---> Error on Get By Id Inventory: Grpc Client Timeout"
                 : $"---> Error on Get By Id Inventory: {ex.Status.Detail}");
-            return await Task.FromException<InventoryDto>(ex);
+            return  Task.FromException<InventoryDto>(ex);
         }
         catch (Exception ex)
         {
             Console.WriteLine($"---> Error on Get By Id Inventory: {ex.Message}");
-            return await Task.FromException<InventoryDto>(ex);
+            return  Task.FromException<InventoryDto>(ex);
         }
     }
 
-    public async Task<InventoryDto> GetByName(string name, CancellationToken token = default)
+    public Task<InventoryDto> GetByName(string name, CancellationToken token = default)
     {
         try
         {
@@ -188,19 +187,19 @@ public class GrpcInventoryService : IGrpcInventoryService, IDisposable
             };
             var result = client.GetByName(request, deadline: DateTime.UtcNow.AddSeconds(10), cancellationToken: token);
             
-            return await Task.FromResult(_mapper.Map<InventoryDto>(result));
+            return  Task.FromResult(_mapper.Map<InventoryDto>(result));
         }
         catch (RpcException ex)
         {
             Console.WriteLine(ex.StatusCode == StatusCode.DeadlineExceeded
                 ? $"---> Error on Get By Name Inventory: Grpc Client Timeout"
                 : $"---> Error on Get By Name Inventory: {ex.Status.Detail}");
-            return await Task.FromException<InventoryDto>(ex);
+            return  Task.FromException<InventoryDto>(ex);
         }
         catch (Exception ex)
         {
             Console.WriteLine($"---> Error on Get By Name Inventory: {ex.Message}");
-            return await Task.FromException<InventoryDto>(ex);
+            return Task.FromException<InventoryDto>(ex);
         }
     }
 

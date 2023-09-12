@@ -18,21 +18,21 @@ public class InventoryService : IInventoryService
         _mapper = mapper;
     }
 
-    public async Task<string> AddInventory(InventoryDto dto, string username, CancellationToken token = default)
+    public string AddInventory(InventoryDto dto, string username, CancellationToken token = default)
     {
         try
         {
             var inventory = new Inventory(dto.Name, dto.Description, dto.InStock, dto.Height, dto.Width, dto.Weight,
                 username);
             var addCommand = new AddInventoryCommand(_repository, inventory);
-            if (!await addCommand.CanExecute())
+            if (!addCommand.CanExecute())
             {
                 throw new RpcException(new Status(StatusCode.InvalidArgument,
                     "This inventory already exists with given name."));
             }
 
-            await addCommand.Execute();
-            var result = await addCommand.GetResult();
+            addCommand.Execute();
+            var result = addCommand.GetResult();
             return result != null ? result.Id.ToString() : "";
         }
         catch (RpcException ex)
@@ -42,24 +42,24 @@ public class InventoryService : IInventoryService
         catch (Exception ex)
         {
             Console.WriteLine($"---> Could not add inventory due to: {ex.Message}");
-            return await Task.FromException<string>(ex);
+            throw;
         }
     }
 
-    public async Task UpdateInventory(InventoryDto dto, string username, CancellationToken token = default)
+    public void UpdateInventory(InventoryDto dto, string username, CancellationToken token = default)
     {
         try
         {
             var inventory = new Inventory(dto.Name, dto.Description, dto.InStock, dto.Height, dto.Width, dto.Weight,
                 username, dto.Id);
             var updateCommand = new UpdateInventoryCommand(_repository, inventory, username);
-            if (!await updateCommand.CanExecute())
+            if (!updateCommand.CanExecute())
             {
                 throw new RpcException(new Status(StatusCode.InvalidArgument,
                     "Requested inventory does not exist."));
             }
 
-            await updateCommand.Execute();
+            updateCommand.Execute();
         }
         catch (RpcException ex)
         {
@@ -68,22 +68,22 @@ public class InventoryService : IInventoryService
         catch (Exception ex)
         {
             Console.WriteLine($"---> Could not update inventory due to: {ex.Message}");
+            throw;
         }
     }
 
-    public async Task DeleteInventory(Guid id, CancellationToken token = default)
+    public void DeleteInventory(Guid id, CancellationToken token = default)
     {
         try
         {
-
             var deleteCommand = new DeleteInventoryCommand(_repository, id);
-            if (await deleteCommand.CanExecute() == false)
+            if (!deleteCommand.CanExecute())
             {
                 throw new RpcException(new Status(StatusCode.InvalidArgument,
                     "Requested inventory does not exist."));
             }
 
-            await deleteCommand.Execute();
+            deleteCommand.Execute();
         }
         catch (RpcException ex)
         {
@@ -92,16 +92,17 @@ public class InventoryService : IInventoryService
         catch (Exception ex)
         {
             Console.WriteLine($"---> Could not delete inventory due to: {ex.Message}");
+            throw;
         }
     }
 
-    public async Task IncreaseInventory(Guid id, int amount, string username,
+    public void IncreaseInventory(Guid id, int amount, string username,
         CancellationToken token = default)
     {
         try
         {
             var increaseInventoryCommand = new IncreaseInventoryCommand(_repository, id, amount, username);
-            if (await increaseInventoryCommand.CanExecute() == false)
+            if (!increaseInventoryCommand.CanExecute())
             {
                 var message = amount < 0
                     ? "Requested incremental amount is less than 0."
@@ -111,7 +112,7 @@ public class InventoryService : IInventoryService
                     message));
             }
 
-            await increaseInventoryCommand.Execute();
+            increaseInventoryCommand.Execute();
         }
         catch (RpcException ex)
         {
@@ -120,16 +121,17 @@ public class InventoryService : IInventoryService
         catch (Exception ex)
         {
             Console.WriteLine($"---> Could not increase inventory due to: {ex.Message}");
+            throw;
         }
     }
 
-    public async Task DecreaseInventory(Guid id, int amount, string username,
+    public void DecreaseInventory(Guid id, int amount, string username,
         CancellationToken token = default)
     {
         try
         {
             var decreaseInventoryCommand = new DecreaseInventoryCommand(_repository, id, amount, username);
-            if (!await decreaseInventoryCommand.CanExecute())
+            if (!decreaseInventoryCommand.CanExecute())
             {
                 var message = "Cannot decrease stock of the inventory";
 
@@ -137,7 +139,7 @@ public class InventoryService : IInventoryService
                     message));
             }
 
-            await decreaseInventoryCommand.Execute();
+            decreaseInventoryCommand.Execute();
         }
         catch (RpcException ex)
         {
@@ -149,11 +151,11 @@ public class InventoryService : IInventoryService
         }
     }
 
-    public async Task<HashSet<Inventory>> GetAllInventory(CancellationToken token = default)
+    public HashSet<Inventory> GetAllInventory(CancellationToken token = default)
     {
         try
         {
-            return await _repository.GetAllInventory(token) ?? new HashSet<Inventory>();
+            return _repository.GetAllInventory(token);
         }
         catch (RpcException ex)
         {
@@ -162,33 +164,33 @@ public class InventoryService : IInventoryService
         catch (Exception ex)
         {
             Console.WriteLine($"---> Could not get all inventory due to: {ex.Message}");
-            return await Task.FromException<HashSet<Inventory>>(exception: ex);
+            throw;
         }
     }
 
-    public async Task<Inventory?> GetById(Guid id, CancellationToken token = default)
+    public Inventory? GetById(Guid id, CancellationToken token = default)
     {
         try
         {
-            return await _repository.GetById(id, token);
+            return _repository.GetById(id, token);
         }
         catch (Exception ex)
         {
             Console.WriteLine($"---> Could not get all inventory due to: {ex.Message}");
-            return await Task.FromException<Inventory>(exception: ex);
+            throw;
         }
     }
 
-    public async Task<Inventory?> GetByName(string name, CancellationToken token = default)
+    public Inventory? GetByName(string name, CancellationToken token = default)
     {
         try
         {
-            return await _repository.GetByName(name, token);
+            return _repository.GetByName(name, token);
         }
         catch (Exception ex)
         {
             Console.WriteLine($"---> Could not get all inventory due to: {ex.Message}");
-            return await Task.FromException<Inventory>(exception: ex);
+            throw;
         }
     }
 }

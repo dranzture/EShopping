@@ -1,5 +1,4 @@
 ﻿using InventoryService.Core.Interfaces;
-using InventoryService.Core.Models;
 
 namespace InventoryService.Core.Commands.InventoryCommands;
 
@@ -13,15 +12,16 @@ public class DeleteInventoryCommand : ICommand
         _repository = repository;
         _id = id;
     }
-    public async Task<bool> CanExecute()
+
+    public bool CanExecute()
     {
-        var item = await _repository.GetById(_id);
+        var item = _repository.GetById(_id);
         return item != null;
     }
 
-    public async Task Execute()
+    public void Execute()
     {
-        var item = await _repository.GetById(_id);
-        await _repository.Delete(item);
+        var item = _repository.GetById(_id);
+        _repository.Delete(item);
     }
 }

@@ -47,15 +47,12 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-    endpoints.MapGrpcService<GrpcService>();
+app.MapControllers();
+app.MapGrpcService<GrpcService>();
 
-    endpoints.MapGet("/protos/authentication.proto", async context =>
-    {
-        await context.Response.WriteAsync(File.ReadAllText("Protos/authentication.proto"));
-    });
+app.MapGet("/protos/authentication.proto", async (context) =>
+{
+    await context.Response.WriteAsync(File.ReadAllText("Protos/authentication.proto"));
 });
 
 

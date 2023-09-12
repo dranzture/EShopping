@@ -1,5 +1,6 @@
 ﻿using AuthenticationService.Dtos;
 using AutoMapper;
+using GrpcAuthenticationService;
 
 namespace AuthenticationService.Helpers;
 

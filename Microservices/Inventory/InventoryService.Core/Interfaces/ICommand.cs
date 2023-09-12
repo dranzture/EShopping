@@ -2,6 +2,6 @@
 
 public interface ICommand
 {
-    Task<bool> CanExecute();
-    Task Execute();
+    bool CanExecute();
+    void Execute();
 }

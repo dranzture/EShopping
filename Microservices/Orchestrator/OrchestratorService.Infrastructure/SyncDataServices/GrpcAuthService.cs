@@ -1,13 +1,13 @@
 ﻿using AuthenticationService;
-using AuthenticationServiceClient = AuthenticationService.GrpcAuthenticationService.GrpcAuthenticationServiceClient;
 using AutoMapper;
 using Grpc.Core;
 using Grpc.Net.Client;
 using OrchestratorService.Core.Dtos;
 using OrchestratorService.Core.Interfaces;
 using OrchestratorService.Core.Models;
+using AuthenticationServiceClient = AuthenticationService.GrpcAuthenticationService.GrpcAuthenticationServiceClient;
 
-namespace OrchestratorService.API.SyncDataServices;
+namespace OrchestratorService.Infrastructure.SyncDataServices;
 
 public class GrpcAuthService : IGrpcAuthService
 {

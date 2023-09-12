@@ -1,7 +1,7 @@
 ﻿using OrchestratorService.Core.Dtos.Review;
 using OrchestratorService.Core.Interfaces;
 
-namespace OrchestratorService.API.SyncDataServices;
+namespace OrchestratorService.Infrastructure.SyncDataServices;
 
 public class GrpcReviewService : IGrpcReviewService
 {

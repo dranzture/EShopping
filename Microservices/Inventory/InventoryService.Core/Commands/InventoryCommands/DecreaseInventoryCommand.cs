@@ -2,8 +2,6 @@
 
 namespace InventoryService.Core.Commands.InventoryCommands;
 
-using Models;
-
 public class DecreaseInventoryCommand : ICommand
 {
     private readonly IInventoryRepository _repository;
@@ -19,16 +17,16 @@ public class DecreaseInventoryCommand : ICommand
         _username = username;
     }
 
-    public async Task<bool> CanExecute()
+    public bool CanExecute()
     {
-        var item = await _repository.GetById(_id);
+        var item = _repository.GetById(_id);
         return item != null && _amount >= 0 && item.InStock >= _amount;
     }
 
-    public async Task Execute()
+    public void Execute()
     {
-        var item = await _repository.GetById(_id);
+        var item = _repository.GetById(_id);
         item.DecreaseStock(_amount, _username);
-        await _repository.Update(item);
+        _repository.Update(item);
     }
 }

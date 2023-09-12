@@ -2,10 +2,10 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using OrchestratorService.API.SyncDataServices;
 using OrchestratorService.Core.Interfaces;
 using OrchestratorService.Core.Models;
-using GrpcInventoryServiceClient =  OrchestratorService.API.SyncDataServices.GrpcInventoryService;
+using OrchestratorService.Infrastructure.SyncDataServices;
+using GrpcInventoryServiceClient =  OrchestratorService.Infrastructure.SyncDataServices.GrpcInventoryService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,5 +54,10 @@ app.UseAuthorization();
 app.UseAuthentication();
 
 app.MapControllers();
+
+app.Use(async (context, next) =>
+{
+    await next.Invoke();
+});
 
 app.Run();

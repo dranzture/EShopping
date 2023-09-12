@@ -2,6 +2,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using InventoryService.API.SyncDataServices.Grpc;
 using InventoryService.Core;
+using InventoryService.Core.Extensions;
 using InventoryService.Infrastructure;
 using InventoryService.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -22,10 +23,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddGrpc(options =>
 {
     options.EnableDetailedErrors = true;
+    options.Interceptors.Add<LoggerInterceptor>();
     
+
 });
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
+builder.Services.AddGrpcReflection();
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 {
@@ -43,18 +46,21 @@ if (app.Environment.IsDevelopment())
 
 app.UseRouting();
 
-app.UseEndpoints(endpoints =>
+app.MapControllers();
+app.MapGrpcService<GrpcService>();
+app.MapGet("/protos/inventory.proto", async context =>
 {
-    endpoints.MapControllers();
-    endpoints.MapGrpcService<GrpcService>();
-    endpoints.MapGet("/protos/inventory.proto", async context =>
-    {
-        await context.Response.WriteAsync(File.ReadAllText("Protos/inventory.proto"));
-    });
+    await context.Response.WriteAsync(File.ReadAllText("Protos/inventory.proto"));
 });
 
-
+app.MapGrpcReflectionService();
 
 app.PrepDb();
+
+app.Use(async (context, next) =>
+{
+    Console.WriteLine($"---> Incoming request: {context.Request.Protocol}");
+    await next.Invoke();
+});
 
 app.Run();

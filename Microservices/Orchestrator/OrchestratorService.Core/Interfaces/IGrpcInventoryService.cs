@@ -1,4 +1,5 @@
-﻿using OrchestratorService.Core.Dtos.Inventory;
+﻿
+using OrchestratorService.Core.Dtos.Inventory;
 
 namespace OrchestratorService.Core.Interfaces;
 
