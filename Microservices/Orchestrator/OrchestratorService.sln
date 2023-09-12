@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrchestratorService.Core", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrchestratorService.UnitTests", "OrchestratorService.UnitTests\OrchestratorService.UnitTests.csproj", "{32251D90-6830-4B84-877B-2F7A7A713E16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrchestratorService.Infrastructure", "OrchestratorService.Infrastructure\OrchestratorService.Infrastructure.csproj", "{355E7C5A-3AAB-4686-8352-88C1189AC730}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrchestratorService.Infrastructure", "OrchestratorService.Infrastructure\OrchestratorService.Infrastructure.csproj", "{63AC520E-EE20-4030-9269-7FC13474D10F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,9 +26,9 @@ Global
 		{32251D90-6830-4B84-877B-2F7A7A713E16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32251D90-6830-4B84-877B-2F7A7A713E16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32251D90-6830-4B84-877B-2F7A7A713E16}.Release|Any CPU.Build.0 = Release|Any CPU
-		{355E7C5A-3AAB-4686-8352-88C1189AC730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{355E7C5A-3AAB-4686-8352-88C1189AC730}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{355E7C5A-3AAB-4686-8352-88C1189AC730}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{355E7C5A-3AAB-4686-8352-88C1189AC730}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63AC520E-EE20-4030-9269-7FC13474D10F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63AC520E-EE20-4030-9269-7FC13474D10F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63AC520E-EE20-4030-9269-7FC13474D10F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63AC520E-EE20-4030-9269-7FC13474D10F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
