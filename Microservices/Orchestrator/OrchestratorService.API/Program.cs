@@ -6,6 +6,7 @@ using OrchestratorService.Core.Interfaces;
 using OrchestratorService.Core.Models;
 using OrchestratorService.Infrastructure.SyncDataServices;
 using GrpcInventoryServiceClient =  OrchestratorService.Infrastructure.SyncDataServices.GrpcInventoryService;
+using GrpcReviewServiceClient =  OrchestratorService.Infrastructure.SyncDataServices.GrpcReviewService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSingleton(appSettings!);
 builder.Services.AddScoped<IGrpcAuthService, GrpcAuthService>();
 builder.Services.AddScoped<IGrpcInventoryService, GrpcInventoryServiceClient>();
+builder.Services.AddScoped<IGrpcReviewService, GrpcReviewServiceClient>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

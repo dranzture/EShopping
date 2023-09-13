@@ -1,19 +1,20 @@
 syntax = "proto3";
-
-option csharp_namespace = "ReviewService";
+import "google/protobuf/wrappers.proto";
+option csharp_namespace = "GrpcReviewService";
 
 service GrpcReviewService{
-    rpc AddReview(GrpcReviewDto) returns (Empty);
+    rpc AddReview(GrpcReviewDto) returns (google.protobuf.StringValue);
     rpc UpdateReview(GrpcReviewDto) returns(Empty);
     rpc DeleteReview(GrpcReviewDto) returns(Empty);
-    rpc GetReviewsByInventoryId(GrpcUserAndInventoryId) returns(GrpcListedReviews);
-    rpc GetReviewByUserId(GrpcUserId) returns(GrpcListedReviews);
+    rpc GetReviewsByInventoryId(google.protobuf.StringValue) returns(GrpcListedReviews);
+    rpc GetReviewsByUserId(GrpcUserId) returns(GrpcListedReviews);
     rpc GetReviewByUserIdAndInventoryId(GrpcUserAndInventoryId) returns(GrpcReviewDto);
+    rpc GetReviewById(google.protobuf.StringValue) returns (GrpcReviewDto);
 }
 
 message GrpcReviewDto {
     optional string id = 1;
-    int32 inventory_id = 2;
+    string inventory_id = 2;
     int32 external_user_id = 3;
     string username = 4;
     int32 stars = 5;

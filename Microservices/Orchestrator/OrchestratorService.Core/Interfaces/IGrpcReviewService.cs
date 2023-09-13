@@ -5,10 +5,17 @@ namespace OrchestratorService.Core.Interfaces;
 
 public interface IGrpcReviewService
 {
-    Task AddReview(ReviewDto request, CancellationToken cancellationToken = default);
-    Task UpdateReview(ReviewDto request, CancellationToken cancellationToken = default);
-    Task DeleteReview(ReviewDto request, CancellationToken cancellationToken = default);
-    Task<List<ReviewDto>> GetReviewsByInventoryId(UserAndInventoryIdParam request, CancellationToken cancellationToken = default);
-    Task<List<ReviewDto>> GetReviewByUserId(int userId, CancellationToken cancellationToken = default);
-    Task<ReviewDto> GetReviewByUserIdAndInventoryId(UserAndInventoryIdParam request, CancellationToken cancellationToken = default);
+    Task<Guid> AddReview(ReviewDto dto, CancellationToken token = default);
+    
+    Task UpdateReview(ReviewDto dto, CancellationToken token = default);
+
+    Task DeleteReview(ReviewDto dto, CancellationToken token = default);
+    
+    Task<HashSet<ReviewDto>> GetReviewsByInventoryId(Guid id, CancellationToken token = default);
+
+    Task<HashSet<ReviewDto>> GetReviewsByUserId(int userId, CancellationToken token = default);
+    
+    Task<ReviewDto?> GetReviewByUserIdAndInventoryId(Guid id, int userId, CancellationToken token = default);
+    
+    Task<ReviewDto?> GetReviewById(Guid id, CancellationToken token = default);
 }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Grpc.Core;
+using Microsoft.EntityFrameworkCore;
 using ReviewService.Core.Commands.ReviewCommands;
 using ReviewService.Core.Dtos;
 using ReviewService.Core.Interfaces;
@@ -12,13 +13,15 @@ public class ReviewService : IReviewService
     private readonly IReviewRepository _repository;
     private readonly IMapper _mapper;
 
+    
+    
     public ReviewService(IReviewRepository repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;
     }
 
-    public async Task AddReview(ReviewDto dto, CancellationToken token = default)
+    public async Task<string> AddReview(ReviewDto dto, CancellationToken token = default)
     {
         try
         {
@@ -27,10 +30,12 @@ public class ReviewService : IReviewService
             if (!await addCommand.CanExecute())
                 throw new RpcException(new Status(StatusCode.InvalidArgument, "Cannot add review."));
             await addCommand.Execute();
+            return addCommand.GetResult()!.Id.ToString();
         }
         catch (Exception ex)
         {
             Console.WriteLine($"---> Could not add review due to: {ex.Message}");
+            throw;
         }
         
     }
@@ -66,14 +71,19 @@ public class ReviewService : IReviewService
         return await Task.Run(() => _repository.Queryable(token).Where(e => e.InventoryId == id).ToHashSet(), token);
     }
 
-    public async Task<HashSet<Review>> GetReviewByUserId(int userId, CancellationToken token = default)
+    public async Task<HashSet<Review>> GetReviewsByUserId(int userId, CancellationToken token = default)
     {
         return await _repository.GetByUserId(userId, token);
     }
 
-    public async Task<Review> GetReviewByUserIdAndInventoryId(Guid id, int userId,
+    public async Task<Review?> GetReviewByUserIdAndInventoryId(Guid id, int userId,
         CancellationToken token = default)
     {
         return await _repository.GetByUserIdAndInventoryId(id ,userId, token);
+    }
+
+    public async Task<Review?> GetReviewById(Guid id, CancellationToken token = default)
+    {
+        return await _repository.Queryable(token).FirstOrDefaultAsync(e=>e.Id == id, token);
     }
 }

@@ -11,6 +11,10 @@ public class CoreAutofacModule : Module
         builder.RegisterType<ReviewRepository>()
             .As<IReviewRepository>()
             .InstancePerLifetimeScope();
+        
+        builder.RegisterType<Services.ReviewService>()
+            .As<IReviewService>()
+            .InstancePerLifetimeScope();
     }
 }
     

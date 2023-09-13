@@ -1,8 +1,10 @@
-﻿using AuthenticationService;
-using AutoMapper;
+﻿using AutoMapper;
+using GrpcAuthenticationService;
 using GrpcInventoryService;
+using GrpcReviewService;
 using OrchestratorService.Core.Dtos;
 using OrchestratorService.Core.Dtos.Inventory;
+using OrchestratorService.Core.Dtos.Review;
 
 namespace OrchestratorService.API.Helpers;
 
@@ -20,6 +22,10 @@ public class MapperProfile : Profile
             .ReverseMap(); // Reverse mapping from InventoryDto to GrpcInventoryDto
 
         CreateMap<ChangeInventoryDto, GrpcInventoryChangeDto>()
+            .ReverseMap();
+        
+        CreateMap<GrpcReviewDto, ReviewDto>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => string.IsNullOrEmpty(src.Id) ? (Guid?)null : Guid.Parse(src.Id)))
             .ReverseMap();
     }
 }

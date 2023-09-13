@@ -23,4 +23,9 @@ public class AddReviewCommand : ICommand
         await _repository.Create(_item);
         await _repository.SaveChanges();
     }
+
+    public Review? GetResult()
+    {
+        return _item;
+    }
 }

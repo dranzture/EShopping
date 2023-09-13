@@ -19,13 +19,13 @@ public class DeleteReviewCommand : ICommand
     public async Task<bool> CanExecute()
     {
         var review = await _repository.GetById(_item.Id);
-        return review != null && review.CreatedBy == _username;
+        return review != null;
     }
     public async Task Execute()
     {
         var review = await _repository.GetById(_item.Id);
 
-        await _repository.Delete(review);
+        await _repository.Delete(review!);
         await _repository.SaveChanges();
     }
 }

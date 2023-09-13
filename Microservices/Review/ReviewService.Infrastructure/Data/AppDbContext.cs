@@ -1,5 +1,5 @@
-﻿using ReviewService.Core.Interfaces;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using ReviewService.Core.Models;
 
 namespace ReviewService.Infrastructure.Data;
 
@@ -9,4 +9,6 @@ public class AppDbContext : DbContext
     {
         
     }
+    
+    public DbSet<Review> Reviews { get; set; } = null!;
 }

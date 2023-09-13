@@ -4,7 +4,7 @@
     <projectFile profileName="IIS Express">ReviewService.API.csproj</projectFile>
     <projectFile profileName="http">ReviewService.API.csproj</projectFile>
     <projectFile profileName="https">ReviewService.API.csproj</projectFile>
-    <projectFile>ReviewService.API/ReviewService.API.csproj</projectFile>
+    <projectFile profileName="http">ReviewService.API/ReviewService.API.csproj</projectFile>
     <projectFile profileName="IIS Express">ReviewService.Core/ReviewService.Core.csproj</projectFile>
     <projectFile profileName="http">ReviewService.Core/ReviewService.Core.csproj</projectFile>
     <projectFile profileName="https">ReviewService.Core/ReviewService.Core.csproj</projectFile>
@@ -17,14 +17,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b098b9fc-78e3-4b55-9c2d-ccd260dce5f0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.API/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.API/appsettings.Development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/Controllers/InventoryController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/Controllers/InventoryController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/Controllers/ReviewController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Core/Dtos/Review/CreatedReviewResultDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ReviewService.API/Helpers/MappingProfiles.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Infrastructure/InventoryService.Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Infrastructure/InventoryService.Infrastructure.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/Helpers/MapperProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/Helpers/MapperProfile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/OrchestratorService.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/OrchestratorService.API.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/SyncDataServices/GrpcInventoryService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/SyncDataServices/GrpcInventoryService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/Properties/launchSettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/appsettings.Development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Core/Models/AppSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Core/Models/AppSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Core/Interfaces/IGrpcReviewService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Core/Interfaces/IGrpcReviewService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Infrastructure/Protos/authentication.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Infrastructure/Protos/authentication.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Infrastructure/Protos/review.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Infrastructure/Protos/review.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Infrastructure/SyncDataServices/GrpcAuthService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Infrastructure/SyncDataServices/GrpcAuthService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Infrastructure/SyncDataServices/GrpcReviewService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Infrastructure/SyncDataServices/GrpcReviewService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ReviewService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ReviewService/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReviewService.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.API/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReviewService.API/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.API/Properties/launchSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReviewService.API/Protos/review.proto" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.API/Protos/review.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReviewService.API/ReviewService.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.API/ReviewService.API.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReviewService.API/SyncDataServices/Grpc/GrpcService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.API/SyncDataServices/Grpc/GrpcService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReviewService.API/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.API/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReviewService.Core/Commands/ReviewCommands/AddReviewCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.Core/Commands/ReviewCommands/AddReviewCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReviewService.Core/Commands/ReviewCommands/DeleteReviewCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.Core/Commands/ReviewCommands/DeleteReviewCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReviewService.Core/Commands/ReviewCommands/UpdateReviewCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.Core/Commands/ReviewCommands/UpdateReviewCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReviewService.Core/CoreAutofacModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.Core/CoreAutofacModule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReviewService.Core/Interfaces/IReviewService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.Core/Interfaces/IReviewService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReviewService.Core/ReviewService.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.Core/ReviewService.Core.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReviewService.Core/Services/ReviewService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.Core/Services/ReviewService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReviewService.Infrastructure/Data/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.Infrastructure/Data/AppDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReviewService.Infrastructure/ReviewService.Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.Infrastructure/ReviewService.Infrastructure.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +68,7 @@
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="Toolset" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -114,7 +135,7 @@
       </method>
     </configuration>
     <configuration name="ReviewService.API: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
-      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/ReviewService.API.csproj" />
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/ReviewService.API/ReviewService.API.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net7.0" />
       <option name="LAUNCH_PROFILE_NAME" value="http" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
@@ -159,9 +180,9 @@
       </method>
     </configuration>
     <configuration name="ReviewService.Core: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
-      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/ReviewService.Core/ReviewService.Core.csproj" />
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/ReviewService.API/ReviewService.API.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net7.0" />
-      <option name="LAUNCH_PROFILE_NAME" value="http" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="USE_MONO" value="0" />
       <option name="RUNTIME_ARGUMENTS" value="" />
@@ -334,6 +355,8 @@
       <workItem from="1694047778512" duration="1924000" />
       <workItem from="1694131727724" duration="3001000" />
       <workItem from="1694218057033" duration="603000" />
+      <workItem from="1694563572305" duration="3332000" />
+      <workItem from="1694567375953" duration="3297000" />
     </task>
     <task id="LOCAL-00001" summary="Seperated Inventory and Review Services">
       <option name="closed" value="true" />

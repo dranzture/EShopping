@@ -1,4 +1,5 @@
 using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using ReviewService.API.SyncDataServices.Grpc;
 using ReviewService.Core;
 using ReviewService.Infrastructure;
@@ -10,10 +11,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var env = builder.Environment.EnvironmentName;
-var config = new ConfigurationBuilder()
-    .AddJsonFile($"appsettings.{env}.json", optional: false)
-    .AddJsonFile($"appsecrets.{env}.json", optional: false)
-    .Build();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseInMemoryDatabase("InventoryServiceDb"));
@@ -23,6 +20,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddGrpc();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 {
@@ -42,16 +41,9 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-    endpoints.MapGrpcService<GrpcService>();
+app.MapControllers();
+app.MapGrpcService<GrpcService>();
 
-    endpoints.MapGet("/protos/review.proto", async context =>
-    {
-        await context.Response.WriteAsync(File.ReadAllText("Protos/review.proto"));
-    });
-});
 
 app.UseHttpsRedirection();
 
