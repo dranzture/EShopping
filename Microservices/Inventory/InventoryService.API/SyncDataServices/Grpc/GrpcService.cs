@@ -18,20 +18,20 @@ public class GrpcService : GrpcInventoryServiceBase
         _mapper = mapper;
     }
 
-    public override Task<GrpcIdParam> AddInventory(GrpcMutateInventoryDto dto, ServerCallContext context)
+    public override async Task<GrpcIdParam> AddInventory(GrpcMutateInventoryDto dto, ServerCallContext context)
     {
         try
         {
             var item = _mapper.Map<InventoryDto>(dto.Dto);
-            var result = _service.AddInventory(item, dto.Username);
+            var result = await _service.AddInventory(item, dto.Username);
 
 
-            return Task.FromResult(new GrpcIdParam()
+            return new GrpcIdParam()
             {
                 Id = result
-            });
-            
-            
+            };
+
+
         }
         catch (RpcException ex)
         {
@@ -43,13 +43,13 @@ public class GrpcService : GrpcInventoryServiceBase
         }
     }
     
-    public override Task<Empty> UpdateInventory(GrpcMutateInventoryDto dto, ServerCallContext context)
+    public override async Task<Empty> UpdateInventory(GrpcMutateInventoryDto dto, ServerCallContext context)
     {
         try
         {
             var item = _mapper.Map<InventoryDto>(dto.Dto);
-            _service.UpdateInventory(item, dto.Username);
-            return Task.FromResult(new Empty());
+            await _service.UpdateInventory(item, dto.Username);
+            return new Empty();
         }
         catch (RpcException ex)
         {
@@ -61,12 +61,12 @@ public class GrpcService : GrpcInventoryServiceBase
         }
     }
     
-    public override  Task<Empty> DeleteInventory(GrpcIdParam dto, ServerCallContext context)
+    public override async Task<Empty> DeleteInventory(GrpcIdParam dto, ServerCallContext context)
     {
         try
         {
-            _service.DeleteInventory(new Guid(dto.Id));
-            return Task.FromResult(new Empty());
+            await _service.DeleteInventory(new Guid(dto.Id));
+            return new Empty();
         }
         catch (RpcException ex)
         {
@@ -78,12 +78,12 @@ public class GrpcService : GrpcInventoryServiceBase
         }
     }
     
-    public override Task<Empty> DecreaseInventory(GrpcInventoryChangeDto dto, ServerCallContext context)
+    public override async Task<Empty> DecreaseInventory(GrpcInventoryChangeDto dto, ServerCallContext context)
     {
         try
         {
-            _service.DecreaseInventory(new Guid(dto.Id), dto.Amount, dto.Username);
-            return Task.FromResult(new Empty());
+            await _service.DecreaseInventory(new Guid(dto.Id), dto.Amount, dto.Username);
+            return new Empty();
         }
         catch (RpcException ex)
         {
@@ -95,12 +95,12 @@ public class GrpcService : GrpcInventoryServiceBase
         }
     }
     
-    public override Task<Empty> IncreaseInventory(GrpcInventoryChangeDto dto, ServerCallContext context)
+    public override async Task<Empty> IncreaseInventory(GrpcInventoryChangeDto dto, ServerCallContext context)
     {
         try
         {
-            _service.IncreaseInventory(new Guid(dto.Id), dto.Amount, dto.Username);
-            return Task.FromResult(new Empty());
+            await _service.IncreaseInventory(new Guid(dto.Id), dto.Amount, dto.Username);
+            return new Empty();
         }
         catch (RpcException ex)
         {
@@ -112,17 +112,17 @@ public class GrpcService : GrpcInventoryServiceBase
         }
     }
     
-    public override Task<GrpcInventoryDto> GetById(GrpcIdParam dto, ServerCallContext context)
+    public override async Task<GrpcInventoryDto> GetById(GrpcIdParam dto, ServerCallContext context)
     {
         try
         {
             var guid = new Guid(dto.Id);
-            var returnItem = _service.GetById(guid);
+            var returnItem = await _service.GetById(guid);
             if (returnItem == null)
             {
                 throw new RpcException(new Status(StatusCode.NotFound, "Inventory Not Found"));
             }
-            return Task.FromResult(_mapper.Map<GrpcInventoryDto>(returnItem));
+            return _mapper.Map<GrpcInventoryDto>(returnItem);
         }
         catch (RpcException ex)
         {
@@ -134,16 +134,16 @@ public class GrpcService : GrpcInventoryServiceBase
         }
     }
     
-    public override Task<GrpcInventoryDto> GetByName(GrpcNameParam dto, ServerCallContext context)
+    public override async Task<GrpcInventoryDto> GetByName(GrpcNameParam dto, ServerCallContext context)
     {
         try
         {
-            var returnItem =  _service.GetByName(dto.Name);
+            var returnItem = await _service.GetByName(dto.Name);
             if (returnItem == null)
             {
                 throw new RpcException(new Status(StatusCode.NotFound, "Inventory Not Found"));
             }
-            return Task.FromResult(_mapper.Map<GrpcInventoryDto>(returnItem));
+            return _mapper.Map<GrpcInventoryDto>(returnItem);
         }
         catch (RpcException ex)
         {

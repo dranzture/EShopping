@@ -17,16 +17,17 @@ public class DecreaseInventoryCommand : ICommand
         _username = username;
     }
 
-    public bool CanExecute()
+    public async Task<bool> CanExecute()
     {
-        var item = _repository.GetById(_id);
+        var item = await _repository.GetById(_id);
         return item != null && _amount >= 0 && item.InStock >= _amount;
     }
 
-    public void Execute()
+    public async Task Execute()
     {
-        var item = _repository.GetById(_id);
+        var item = await _repository.GetById(_id);
         item.DecreaseStock(_amount, _username);
-        _repository.Update(item);
+        await _repository.UpdateAsync(item);
+        await _repository.SaveChangesAsync();
     }
 }

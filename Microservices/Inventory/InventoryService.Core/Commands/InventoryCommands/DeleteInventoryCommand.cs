@@ -13,15 +13,16 @@ public class DeleteInventoryCommand : ICommand
         _id = id;
     }
 
-    public bool CanExecute()
+    public async Task<bool> CanExecute()
     {
-        var item = _repository.GetById(_id);
+        var item = await _repository.GetById(_id);
         return item != null;
     }
 
-    public void Execute()
+    public async Task Execute()
     {
-        var item = _repository.GetById(_id);
-        _repository.Delete(item);
+        var item = await _repository.GetById(_id);
+        await _repository.DeleteAsync(item);
+        await _repository.SaveChangesAsync();
     }
 }

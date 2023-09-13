@@ -13,48 +13,46 @@ public class InventoryRepository : IInventoryRepository
         _context = context;
     }
     
-    public IQueryable<Inventory> Queryable(CancellationToken cancellationToken = default)
+    public async Task<IQueryable<Inventory>> Queryable(CancellationToken cancellationToken = default)
     {
-        return _context.Queryable(cancellationToken);
+        return await _context.Queryable(cancellationToken);
     }
 
-    public Inventory Create(Inventory item, CancellationToken cancellationToken = default)
+    public async Task AddAsync(Inventory item, CancellationToken cancellationToken = default)
     {
-        var result =  _context.Create(item, cancellationToken);
-         SaveChanges();
-        return result;
+        await _context.AddAsync(item, cancellationToken);
     }
 
-    public  void Update(Inventory item, CancellationToken cancellationToken = default)
+    public async Task UpdateAsync(Inventory item, CancellationToken cancellationToken = default)
     {
-         _context.Update(item, cancellationToken);
-         SaveChanges();
+         await _context.UpdateAsync(item, cancellationToken);
     }
 
-    public void Delete(Inventory item, CancellationToken cancellationToken = default)
+    public async Task DeleteAsync(Inventory item, CancellationToken cancellationToken = default)
     {
-         _context.Delete(item, cancellationToken);
-         SaveChanges();
+         await _context.DeleteAsync(item, cancellationToken);
     }
 
-    public bool SaveChanges()
+    public async Task<bool> SaveChangesAsync()
     {
-        return _context.SaveChanges();
+        return await _context.SaveChangesAsync();
     }
 
-    public HashSet<Inventory> GetAllInventory(CancellationToken token = default)
+    public async Task<HashSet<Inventory>> GetAllInventory(CancellationToken token = default)
     {
-        var result = Queryable(token).ToHashSet();
-        return result;
+        var result = await Queryable(token);
+        return result.ToHashSet();
     }
 
-    public Inventory? GetById(Guid id, CancellationToken token = default)
+    public async Task<Inventory?> GetById(Guid id, CancellationToken token = default)
     {
-        return Queryable(token).FirstOrDefault(e => e.Id == id);
+        var result = await Queryable(token);
+        return await result.FirstOrDefaultAsync(e => e.Id == id, token);
     }
 
-    public Inventory? GetByName(string name, CancellationToken token = default)
+    public async Task<Inventory?> GetByName(string name, CancellationToken token = default)
     {
-        return Queryable(token).FirstOrDefault(e => e.Name == name);
+        var result = await Queryable(token);
+        return await result.FirstOrDefaultAsync(e => e.Name == name, token);
     }
 }

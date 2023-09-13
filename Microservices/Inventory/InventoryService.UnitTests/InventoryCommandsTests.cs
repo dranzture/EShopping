@@ -11,7 +11,7 @@ public class InventoryCommandsTests
     private readonly IInventoryRepository _repository = Substitute.For<IInventoryRepository>();
 
     [Fact]
-    public void AddInventoryCommand_CanExecute_Should_Return_True()
+    public async Task AddInventoryCommand_CanExecute_Should_Return_True()
     {
         //Arrange
         var inventory = new Inventory("TestInv", "TestingThisMethod", 5, 10.0M, 5.0M, 20, "dranzture");
@@ -21,7 +21,7 @@ public class InventoryCommandsTests
 
         //Act
 
-        var result = command.CanExecute();
+        var result = await command.CanExecute();
 
         //Assert
 
@@ -29,7 +29,7 @@ public class InventoryCommandsTests
     }
 
     [Fact]
-    public void AddInventoryCommand_CanExecute_Should_Return_False_When_Duplicate_Found()
+    public async Task AddInventoryCommand_CanExecute_Should_Return_False_When_Duplicate_Found()
     {
         //Arrange
         var inventory = new Inventory("TestInv", "TestingThisMethod", 5, 10.0M, 5.0M, 20, "dranzture");
@@ -39,14 +39,14 @@ public class InventoryCommandsTests
         var command = new AddInventoryCommand(_repository, inventory);
 
         //Act
-        var result = command.CanExecute();
+        var result = await command.CanExecute();
 
         //Assert
         Assert.False(result);
     }
 
     [Fact]
-    public void DecreaseInventoryCommand_CanExecute_Should_Return_True()
+    public async Task DecreaseInventoryCommand_CanExecute_Should_Return_True()
     {
         //Arrange
         var inventory = new Inventory("TestInv", "TestingThisMethod",
@@ -58,14 +58,14 @@ public class InventoryCommandsTests
         var command = new DecreaseInventoryCommand(_repository, _guid, 5, username);
 
         //Act
-        var result = command.CanExecute();
+        var result = await command.CanExecute();
 
         //Assert
         Assert.True(result);
     }
 
     [Fact]
-    public void DecreaseInventoryCommand_CanExecute_Should_Return_False_When_Not_Found()
+    public async Task DecreaseInventoryCommand_CanExecute_Should_Return_False_When_Not_Found()
     {
         //Arrange
         var inventory = new Inventory("TestInv", "TestingThisMethod",
@@ -76,14 +76,14 @@ public class InventoryCommandsTests
         var command = new DecreaseInventoryCommand(_repository, _guid, 6, username);
 
         //Act
-        var result = command.CanExecute();
+        var result = await command.CanExecute();
 
         //Assert
         Assert.False(result);
     }
 
     [Fact]
-    public void DecreaseInventoryCommand_CanExecute_Should_Return_False_When_Amount_Less_Than_Zero()
+    public async Task DecreaseInventoryCommand_CanExecute_Should_Return_False_When_Amount_Less_Than_Zero()
     {
         //Arrange
         var inventory = new Inventory("TestInv", "TestingThisMethod",
@@ -96,7 +96,7 @@ public class InventoryCommandsTests
 
         //Act
 
-        var result = command.CanExecute();
+        var result = await command.CanExecute();
 
         //Assert
 
@@ -104,7 +104,7 @@ public class InventoryCommandsTests
     }
 
     [Fact]
-    public void IncreaseInventoryCommand_CanExecute_Should_Return_True()
+    public async Task IncreaseInventoryCommand_CanExecute_Should_Return_True()
     {
         //Arrange
         var inventory = new Inventory("TestInv", "TestingThisMethod",
@@ -117,7 +117,7 @@ public class InventoryCommandsTests
 
         //Act
 
-        var result = command.CanExecute();
+        var result = await command.CanExecute();
 
         //Assert
 
@@ -125,7 +125,7 @@ public class InventoryCommandsTests
     }
 
     [Fact]
-    public void IncreaseInventoryCommand_CanExecute_Should_Return_False_When_Not_Found()
+    public async Task IncreaseInventoryCommand_CanExecute_Should_Return_False_When_Not_Found()
     {
         //Arrange
         var inventory = new Inventory("TestInv", "TestingThisMethod",
@@ -137,7 +137,7 @@ public class InventoryCommandsTests
 
         //Act
 
-        var result = command.CanExecute();
+        var result = await command.CanExecute();
 
         //Assert
 
@@ -145,7 +145,7 @@ public class InventoryCommandsTests
     }
 
     [Fact]
-    public void IncreaseInventoryCommand_CanExecute_Should_Return_False_When_Amount_Less_Than_Zero()
+    public async Task IncreaseInventoryCommand_CanExecute_Should_Return_False_When_Amount_Less_Than_Zero()
     {
         //Arrange
         var inventory = new Inventory("TestInv", "TestingThisMethod",
@@ -158,7 +158,7 @@ public class InventoryCommandsTests
 
         //Act
 
-        var result = command.CanExecute();
+        var result = await command.CanExecute();
 
         //Assert
 
@@ -166,7 +166,7 @@ public class InventoryCommandsTests
     }
 
     [Fact]
-    public void UpdateInventoryCommand_CanExecute_Should_Return_True()
+    public async Task UpdateInventoryCommand_CanExecute_Should_Return_True()
     {
         //Arrange
         var inventory = new Inventory("TestInv", "TestingThisMethod",
@@ -178,7 +178,7 @@ public class InventoryCommandsTests
         //Act
         var command = new UpdateInventoryCommand(_repository, inventory, username);
 
-        var canExecute = command.CanExecute();
+        var canExecute = await command.CanExecute();
 
         //Assert
 
@@ -186,7 +186,7 @@ public class InventoryCommandsTests
     }
 
     [Fact]
-    public void UpdateInventoryCommand_CanExecute_Should_Return_False_When_Not_Found()
+    public async Task UpdateInventoryCommand_CanExecute_Should_Return_False_When_Not_Found()
     {
         //Arrange
         //Arrange
@@ -199,7 +199,7 @@ public class InventoryCommandsTests
         //Act
         var command = new UpdateInventoryCommand(_repository, inventory, username);
 
-        var canExecute = command.CanExecute();
+        var canExecute = await command.CanExecute();
 
         //Assert
 
@@ -207,7 +207,7 @@ public class InventoryCommandsTests
     }
 
     [Fact]
-    public void DeleteInventoryCommand_CanExecute_Should_Return_True()
+    public async Task DeleteInventoryCommand_CanExecute_Should_Return_True()
     {
         //Arrange
         var inventory = new Inventory("TestInv", "TestingThisMethod",
@@ -219,7 +219,7 @@ public class InventoryCommandsTests
         //Act
         var command = new DeleteInventoryCommand(_repository, _guid);
 
-        var canExecute = command.CanExecute();
+        var canExecute = await command.CanExecute();
 
         //Assert
 
@@ -227,7 +227,7 @@ public class InventoryCommandsTests
     }
 
     [Fact]
-    public void DeleteInventoryCommand_CanExecute_Should_Return_False_When_Not_Found()
+    public async Task DeleteInventoryCommand_CanExecute_Should_Return_False_When_Not_Found()
     {
         //Arrange
         var inventory = new Inventory("TestInv", "TestingThisMethod",
@@ -239,7 +239,7 @@ public class InventoryCommandsTests
         //Act
         var command = new DeleteInventoryCommand(_repository, _guid);
 
-        var canExecute = command.CanExecute();
+        var canExecute = await command.CanExecute();
 
         //Assert
 

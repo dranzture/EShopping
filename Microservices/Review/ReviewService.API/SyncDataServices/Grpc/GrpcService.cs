@@ -189,12 +189,14 @@ public class GrpcService : GrpcReviewService.GrpcReviewService.GrpcReviewService
         }
     }
 
-    public override async Task<GrpcReviewDto> GetReviewById(StringValue request, ServerCallContext context)
+    public override async Task<GrpcReviewDto?> GetReviewById(StringValue request, ServerCallContext context)
     {
         try
         {
             var review =
                 await _reviewService.GetReviewById(new Guid(request.Value));
+
+            if (review == null) return null;
 
             return new GrpcReviewDto()
             {

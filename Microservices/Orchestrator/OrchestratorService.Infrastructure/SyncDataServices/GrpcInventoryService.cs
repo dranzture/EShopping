@@ -9,7 +9,7 @@ using InventoryServiceClient = GrpcInventoryService.GrpcInventoryService.GrpcInv
 
 namespace OrchestratorService.Infrastructure.SyncDataServices;
 
-public class GrpcInventoryService : IGrpcInventoryService, IDisposable
+public class GrpcInventoryService : IGrpcInventoryService
 {
     private readonly AppSettings _settings;
     private readonly IMapper _mapper;
@@ -21,42 +21,42 @@ public class GrpcInventoryService : IGrpcInventoryService, IDisposable
         _mapper = mapper;
     }
 
-    public Task<Guid> AddInventory(MutateInventoryDto dto, CancellationToken token = default)
+    public async Task<Guid> AddInventory(MutateInventoryDto dto, CancellationToken token = default)
     {
         try
         {
             var channel = GrpcChannel.ForAddress(_settings.InventoryUrl);
             var client = new InventoryServiceClient(channel);
-            
+
             var request = _mapper.Map<GrpcMutateInventoryDto>(dto);
-            var result = client.AddInventory(request, deadline: DateTime.UtcNow.AddSeconds(10),
+            var result = await client.AddInventoryAsync(request, deadline: DateTime.UtcNow.AddSeconds(10),
                 cancellationToken: token);
-            
-            return Task.FromResult(new Guid(result.Id));
+
+            return new Guid(result.Id);
         }
         catch (RpcException ex)
         {
             Console.WriteLine(ex.StatusCode == StatusCode.DeadlineExceeded
                 ? $"---> Error on Add Inventory: Grpc Client Timeout"
                 : $"---> Error on Add Inventory: {ex.Status.Detail}");
-            return Task.FromException<Guid>(ex);
+            throw;
         }
         catch (Exception ex)
         {
             Console.WriteLine($"---> Internal Error on Add Inventory: {ex.Message}");
-            return Task.FromException<Guid>(ex);
+            throw;
         }
     }
 
-    public Task UpdateInventory(MutateInventoryDto dto, CancellationToken token = default)
+    public async Task UpdateInventory(MutateInventoryDto dto, CancellationToken token = default)
     {
         try
         {
             var channel = GrpcChannel.ForAddress(_settings.InventoryUrl);
             var client = new InventoryServiceClient(channel);
             var request = _mapper.Map<GrpcMutateInventoryDto>(dto);
-            client.UpdateInventory(request, deadline: DateTime.UtcNow.AddSeconds(10), cancellationToken: token);
-            return Task.CompletedTask;;
+            await client.UpdateInventoryAsync(request, deadline: DateTime.UtcNow.AddSeconds(10),
+                cancellationToken: token);
         }
         catch (RpcException ex)
         {
@@ -72,7 +72,7 @@ public class GrpcInventoryService : IGrpcInventoryService, IDisposable
         }
     }
 
-    public Task DeleteInventory(Guid id, CancellationToken token = default)
+    public async Task DeleteInventory(Guid id, CancellationToken token = default)
     {
         try
         {
@@ -82,8 +82,8 @@ public class GrpcInventoryService : IGrpcInventoryService, IDisposable
             {
                 Id = id.ToString()
             };
-            client.DeleteInventory(grpcIdParam, deadline: DateTime.UtcNow.AddSeconds(10), cancellationToken: token);
-            return Task.CompletedTask;;
+            await client.DeleteInventoryAsync(grpcIdParam, deadline: DateTime.UtcNow.AddSeconds(10),
+                cancellationToken: token);
         }
         catch (RpcException ex)
         {
@@ -99,15 +99,15 @@ public class GrpcInventoryService : IGrpcInventoryService, IDisposable
         }
     }
 
-    public Task IncreaseInventory(ChangeInventoryDto dto, CancellationToken token = default)
+    public async Task IncreaseInventory(ChangeInventoryDto dto, CancellationToken token = default)
     {
         try
         {
             var channel = GrpcChannel.ForAddress(_settings.InventoryUrl);
             var client = new InventoryServiceClient(channel);
             var request = _mapper.Map<GrpcInventoryChangeDto>(dto);
-            client.IncreaseInventory(request, deadline: DateTime.UtcNow.AddSeconds(10), cancellationToken: token);
-            return Task.CompletedTask;;
+            await client.IncreaseInventoryAsync(request, deadline: DateTime.UtcNow.AddSeconds(10), cancellationToken: token);
+            ;
         }
         catch (RpcException ex)
         {
@@ -123,15 +123,15 @@ public class GrpcInventoryService : IGrpcInventoryService, IDisposable
         }
     }
 
-    public Task DecreaseInventory(ChangeInventoryDto dto, CancellationToken token = default)
+    public async Task DecreaseInventory(ChangeInventoryDto dto, CancellationToken token = default)
     {
         try
         {
             var channel = GrpcChannel.ForAddress(_settings.InventoryUrl);
             var client = new InventoryServiceClient(channel);
             var request = _mapper.Map<GrpcInventoryChangeDto>(dto);
-            client.DecreaseInventory(request, deadline: DateTime.UtcNow.AddSeconds(10), cancellationToken: token);
-            return Task.CompletedTask;;
+            await client.DecreaseInventoryAsync(request, deadline: DateTime.UtcNow.AddSeconds(10), cancellationToken: token);
+            ;
         }
         catch (RpcException ex)
         {
@@ -147,7 +147,7 @@ public class GrpcInventoryService : IGrpcInventoryService, IDisposable
         }
     }
 
-    public  Task<InventoryDto> GetById(Guid id, CancellationToken token = default)
+    public async Task<InventoryDto> GetById(Guid id, CancellationToken token = default)
     {
         try
         {
@@ -157,25 +157,25 @@ public class GrpcInventoryService : IGrpcInventoryService, IDisposable
             {
                 Id = id.ToString()
             };
-            var result = client.GetById(request, deadline: DateTime.UtcNow.AddSeconds(10), cancellationToken: token);
-            
-            return  Task.FromResult(_mapper.Map<InventoryDto>(result));
+            var result = await client.GetByIdAsync(request, deadline: DateTime.UtcNow.AddSeconds(10), cancellationToken: token);
+
+            return _mapper.Map<InventoryDto>(result);
         }
         catch (RpcException ex)
         {
             Console.WriteLine(ex.StatusCode == StatusCode.DeadlineExceeded
                 ? $"---> Error on Get By Id Inventory: Grpc Client Timeout"
                 : $"---> Error on Get By Id Inventory: {ex.Status.Detail}");
-            return  Task.FromException<InventoryDto>(ex);
+            throw;
         }
         catch (Exception ex)
         {
             Console.WriteLine($"---> Error on Get By Id Inventory: {ex.Message}");
-            return  Task.FromException<InventoryDto>(ex);
+            throw;
         }
     }
 
-    public Task<InventoryDto> GetByName(string name, CancellationToken token = default)
+    public async Task<InventoryDto> GetByName(string name, CancellationToken token = default)
     {
         try
         {
@@ -185,28 +185,22 @@ public class GrpcInventoryService : IGrpcInventoryService, IDisposable
             {
                 Name = name
             };
-            var result = client.GetByName(request, deadline: DateTime.UtcNow.AddSeconds(10), cancellationToken: token);
-            
-            return  Task.FromResult(_mapper.Map<InventoryDto>(result));
+            var result = await client.GetByNameAsync(request, deadline: DateTime.UtcNow.AddSeconds(10), cancellationToken: token);
+
+            return _mapper.Map<InventoryDto>(result);
         }
         catch (RpcException ex)
         {
             Console.WriteLine(ex.StatusCode == StatusCode.DeadlineExceeded
                 ? $"---> Error on Get By Name Inventory: Grpc Client Timeout"
                 : $"---> Error on Get By Name Inventory: {ex.Status.Detail}");
-            return  Task.FromException<InventoryDto>(ex);
+            throw;
         }
         catch (Exception ex)
         {
             Console.WriteLine($"---> Error on Get By Name Inventory: {ex.Message}");
-            return Task.FromException<InventoryDto>(ex);
+            throw;
         }
     }
-
-
-    public void Dispose()
-    {
-        // _channel.ShutdownAsync();
-        // _channel.Dispose();
-    }
+    
 }

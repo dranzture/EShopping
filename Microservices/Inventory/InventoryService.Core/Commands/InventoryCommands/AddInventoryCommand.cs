@@ -15,15 +15,17 @@ public class AddInventoryCommand : ICommand
         _item = item;
     }
 
-    public bool CanExecute()
+    public async Task<bool> CanExecute()
     {
-        var item = _repository.GetByName(_item.Name);
+        var item = await _repository.GetByName(_item.Name);
         return item == null;
     }
 
-    public void Execute()
+    public async Task Execute()
     {
-        _result = _repository.Create(_item);
+        await _repository.AddAsync(_item);
+        await _repository.SaveChangesAsync();
+        _result = _item;
     }
 
     public Inventory? GetResult()
