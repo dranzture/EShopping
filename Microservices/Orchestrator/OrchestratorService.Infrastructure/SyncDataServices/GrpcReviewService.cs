@@ -2,7 +2,6 @@
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using Grpc.Net.Client;
-using GrpcInventoryService;
 using GrpcReviewService;
 using OrchestratorService.Core.Dtos.Review;
 using OrchestratorService.Core.Interfaces;
@@ -23,13 +22,13 @@ public class GrpcReviewService : IGrpcReviewService
         _mapper = mapper;
     }
 
-    public Task<Guid> AddReview(ReviewDto dto, CancellationToken token = default)
+    public async Task<Guid> AddReview(ReviewDto dto, CancellationToken token = default)
     {
         try
         {
             var channel = GrpcChannel.ForAddress(_settings.ReviewUrl);
             var client = new ReviewServiceClient(channel);
-        
+
             var request = new GrpcReviewDto
             {
                 Id = dto.Id.ToString(),
@@ -38,34 +37,33 @@ public class GrpcReviewService : IGrpcReviewService
                 Username = dto.Username,
                 Stars = dto.Stars,
                 Comment = dto.Comment
-        
             };
-            var result = client.AddReview(request, deadline: DateTime.UtcNow.AddSeconds(10),
+            var result = await client.AddReviewAsync(request, deadline: DateTime.UtcNow.AddSeconds(10),
                 cancellationToken: token);
-            
-            return Task.FromResult(new Guid(result.Value));
+
+            return new Guid(result.Value);
         }
         catch (RpcException ex)
         {
             Console.WriteLine(ex.StatusCode == StatusCode.DeadlineExceeded
                 ? $"---> Error on Add Review: Grpc Client Timeout"
                 : $"---> Error on Add Review: {ex.Status.Detail}");
-            return Task.FromException<Guid>(ex);
+            throw;
         }
         catch (Exception ex)
         {
             Console.WriteLine($"---> Internal Error on Add Review: {ex.Message}");
-            return Task.FromException<Guid>(ex);
+            throw;
         }
     }
 
-    public Task UpdateReview(ReviewDto dto, CancellationToken token = default)
+    public async Task UpdateReview(ReviewDto dto, CancellationToken token = default)
     {
         try
         {
             var channel = GrpcChannel.ForAddress(_settings.ReviewUrl);
             var client = new ReviewServiceClient(channel);
-        
+
             var request = new GrpcReviewDto
             {
                 Id = dto.Id.ToString(),
@@ -74,34 +72,33 @@ public class GrpcReviewService : IGrpcReviewService
                 Username = dto.Username,
                 Stars = dto.Stars,
                 Comment = dto.Comment
-        
             };
-            var result = client.UpdateReview(request, deadline: DateTime.UtcNow.AddSeconds(10),
+            var result = await client.UpdateReviewAsync(request, deadline: DateTime.UtcNow.AddSeconds(10),
                 cancellationToken: token);
 
-            return Task.CompletedTask;
         }
         catch (RpcException ex)
         {
             Console.WriteLine(ex.StatusCode == StatusCode.DeadlineExceeded
                 ? $"---> Error on Update Review: Grpc Client Timeout"
                 : $"---> Error on Update Review: {ex.Status.Detail}");
-            return Task.FromException<Guid>(ex);
+            throw;
+            
         }
         catch (Exception ex)
         {
             Console.WriteLine($"---> Internal Error on Update Review: {ex.Message}");
-            return Task.FromException<Guid>(ex);
+            throw;
         }
     }
 
-    public Task DeleteReview(ReviewDto dto, CancellationToken token = default)
+    public async Task DeleteReview(ReviewDto dto, CancellationToken token = default)
     {
         try
         {
             var channel = GrpcChannel.ForAddress(_settings.ReviewUrl);
             var client = new ReviewServiceClient(channel);
-        
+
             var request = new GrpcReviewDto
             {
                 Id = dto.Id.ToString(),
@@ -110,28 +107,26 @@ public class GrpcReviewService : IGrpcReviewService
                 Username = dto.Username,
                 Stars = dto.Stars,
                 Comment = dto.Comment
-        
             };
-            var result = client.DeleteReview(request, deadline: DateTime.UtcNow.AddSeconds(10),
+            var result = client.DeleteReviewAsync(request, deadline: DateTime.UtcNow.AddSeconds(10),
                 cancellationToken: token);
 
-            return Task.CompletedTask;
         }
         catch (RpcException ex)
         {
             Console.WriteLine(ex.StatusCode == StatusCode.DeadlineExceeded
                 ? $"---> Error on Delete Review: Grpc Client Timeout"
                 : $"---> Error on Delete Review: {ex.Status.Detail}");
-            return Task.FromException<Guid>(ex);
+            throw;
         }
         catch (Exception ex)
         {
             Console.WriteLine($"---> Internal Error on Delete Review: {ex.Message}");
-            return Task.FromException<Guid>(ex);
+            throw;
         }
     }
 
-    public Task<HashSet<ReviewDto>> GetReviewsByInventoryId(Guid id, CancellationToken token = default)
+    public async Task<HashSet<ReviewDto>> GetReviewsByInventoryId(Guid id, CancellationToken token = default)
     {
         try
         {
@@ -139,7 +134,7 @@ public class GrpcReviewService : IGrpcReviewService
             var channel = GrpcChannel.ForAddress(_settings.ReviewUrl);
             var client = new ReviewServiceClient(channel);
 
-            var result = client.GetReviewsByInventoryId(new StringValue()
+            var result = await client.GetReviewsByInventoryIdAsync(new StringValue()
                 {
                     Value = id.ToString()
                 }, deadline: DateTime.UtcNow.AddSeconds(10),
@@ -158,23 +153,23 @@ public class GrpcReviewService : IGrpcReviewService
                 });
             }
 
-            return Task.FromResult(returnItem);
+            return returnItem;
         }
         catch (RpcException ex)
         {
             Console.WriteLine(ex.StatusCode == StatusCode.DeadlineExceeded
                 ? $"---> Error on GetReviewsByInventoryId: Grpc Client Timeout"
                 : $"---> Error on GetReviewsByInventoryId: {ex.Status.Detail}");
-            return Task.FromException<HashSet<ReviewDto>>(ex);
+            throw;
         }
         catch (Exception ex)
         {
             Console.WriteLine($"---> Internal Error on GetReviewsByInventoryId: {ex.Message}");
-            return Task.FromException<HashSet<ReviewDto>>(ex);
+            throw;
         }
     }
 
-    public Task<HashSet<ReviewDto>> GetReviewsByUserId(int userId, CancellationToken token = default)
+    public async Task<HashSet<ReviewDto>> GetReviewsByUserId(int userId, CancellationToken token = default)
     {
         try
         {
@@ -182,7 +177,7 @@ public class GrpcReviewService : IGrpcReviewService
             var channel = GrpcChannel.ForAddress(_settings.ReviewUrl);
             var client = new ReviewServiceClient(channel);
 
-            var result = client.GetReviewsByUserId(new GrpcUserId()
+            var result = await client.GetReviewsByUserIdAsync(new GrpcUserId()
                 {
                     UserId = userId
                 }, deadline: DateTime.UtcNow.AddSeconds(10),
@@ -201,78 +196,78 @@ public class GrpcReviewService : IGrpcReviewService
                 });
             }
 
-            return Task.FromResult(returnItem);
+            return returnItem;
         }
         catch (RpcException ex)
         {
             Console.WriteLine(ex.StatusCode == StatusCode.DeadlineExceeded
                 ? $"---> Error on GetReviewsByUserId: Grpc Client Timeout"
                 : $"---> Error on DGetReviewsByUserId: {ex.Status.Detail}");
-            return Task.FromException<HashSet<ReviewDto>>(ex);
+            throw;
         }
         catch (Exception ex)
         {
             Console.WriteLine($"---> Internal Error on GetReviewsByUserId: {ex.Message}");
-            return Task.FromException<HashSet<ReviewDto>>(ex);
+            throw;
         }
     }
 
-    public Task<ReviewDto?> GetReviewByUserIdAndInventoryId(Guid id, int userId, CancellationToken token = default)
+    public async Task<ReviewDto?> GetReviewByUserIdAndInventoryId(Guid id, int userId, CancellationToken token = default)
     {
         try
         {
             var channel = GrpcChannel.ForAddress(_settings.ReviewUrl);
             var client = new ReviewServiceClient(channel);
 
-            var result = client.GetReviewByUserIdAndInventoryId(new GrpcUserAndInventoryId()
+            var result = await client.GetReviewByUserIdAndInventoryIdAsync(new GrpcUserAndInventoryId()
                 {
                     UserId = userId,
                     InventoryId = id.ToString()
                 }, deadline: DateTime.UtcNow.AddSeconds(10),
                 cancellationToken: token);
 
-            return Task.FromResult(_mapper.Map<ReviewDto>(result));
+            return _mapper.Map<ReviewDto>(result);
         }
         catch (RpcException ex)
         {
             Console.WriteLine(ex.StatusCode == StatusCode.DeadlineExceeded
                 ? $"---> Error on GetReviewByUserIdAndInventoryId: Grpc Client Timeout"
                 : $"---> Error on GetReviewByUserIdAndInventoryId: {ex.Status.Detail}");
-            return Task.FromException<ReviewDto?>(ex);
+            throw;
         }
         catch (Exception ex)
         {
             Console.WriteLine($"---> Internal Error on GetReviewByUserIdAndInventoryId: {ex.Message}");
-            return Task.FromException<ReviewDto?>(ex);
+            throw;
         }
     }
 
-    public Task<ReviewDto?> GetReviewById(Guid id, CancellationToken token = default)
+    public async Task<ReviewDto?> GetReviewById(Guid id, CancellationToken token = default)
     {
         try
         {
             var channel = GrpcChannel.ForAddress(_settings.ReviewUrl);
             var client = new ReviewServiceClient(channel);
 
-            var result = client.GetReviewById(new StringValue()
+            var result = client.GetReviewByIdAsync(new StringValue()
                 {
                     Value = id.ToString()
                 }, deadline: DateTime.UtcNow.AddSeconds(10),
                 cancellationToken: token);
 
-            return Task.FromResult(_mapper.Map<ReviewDto>(result));
+            return _mapper.Map<ReviewDto>(result);
         }
         catch (RpcException ex)
         {
             Console.WriteLine(ex.StatusCode == StatusCode.DeadlineExceeded
                 ? $"---> Error on GetReviewById: Grpc Client Timeout"
                 : $"---> Error on GetReviewById: {ex.Status.Detail}");
-            return Task.FromException<ReviewDto?>(ex);
+            throw;
         }
         catch (Exception ex)
         {
             Console.WriteLine($"---> Internal Error on GetReviewById: {ex.Message}");
-            return Task.FromException<ReviewDto?>(ex);
+            throw;
         }
     }
 }
