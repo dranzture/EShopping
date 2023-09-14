@@ -249,7 +249,7 @@ public class GrpcReviewService : IGrpcReviewService
             var channel = GrpcChannel.ForAddress(_settings.ReviewUrl);
             var client = new ReviewServiceClient(channel);
 
-            var result = client.GetReviewByIdAsync(new StringValue()
+            var result = await client.GetReviewByIdAsync(new StringValue()
                 {
                     Value = id.ToString()
                 }, deadline: DateTime.UtcNow.AddSeconds(10),

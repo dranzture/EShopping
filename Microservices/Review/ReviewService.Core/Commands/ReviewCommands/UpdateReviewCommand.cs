@@ -30,7 +30,7 @@ public class UpdateReviewCommand : ICommand
         
         review!.UpdateStars(_item.Stars, _username);
         
-        await _repository.Update(review);
+        await _repository.UpdateAsync(review);
         await _repository.SaveChanges();
     }
 }

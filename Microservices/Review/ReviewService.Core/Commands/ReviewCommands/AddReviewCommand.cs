@@ -20,7 +20,7 @@ public class AddReviewCommand : ICommand
     }
     public async Task Execute()
     {
-        await _repository.Create(_item);
+        await _repository.AddAsync(_item);
         await _repository.SaveChanges();
     }
 

@@ -18,22 +18,21 @@ public class ReviewRepository : IReviewRepository
         return _context.Queryable(cancellationToken);
     }
 
-    public async Task Create(Review item, CancellationToken cancellationToken)
+    public async Task AddAsync(Review item, CancellationToken cancellationToken)
     {
-        await _context.Create(item, cancellationToken);
-        await SaveChanges(cancellationToken);
+        await _context.AddAsync(item, cancellationToken);
     }
 
-    public async Task Update(Review item, CancellationToken cancellationToken)
+    
+    public async Task UpdateAsync(Review item, CancellationToken cancellationToken)
     {
-        await _context.Update(item, cancellationToken);
-        await SaveChanges(cancellationToken);
+        await _context.UpdateAsync(item, cancellationToken);
+        
     }
 
-    public async Task Delete(Review item, CancellationToken cancellationToken)
+    public async Task DeleteAsync(Review item, CancellationToken cancellationToken)
     {
-        await _context.Delete(item, cancellationToken);
-        await SaveChanges(cancellationToken);
+        await _context.DeleteAsync(item, cancellationToken);
     }
 
     public async Task<bool> SaveChanges(CancellationToken cancellationToken)
@@ -48,9 +47,9 @@ public class ReviewRepository : IReviewRepository
         return result;
     }
 
-    public async Task<Review> GetById(Guid id, CancellationToken token = default)
+    public async Task<Review?> GetById(Guid id, CancellationToken token = default)
     {
-        return await Queryable(token).Where(e => e.Id == id).FirstAsync(token);
+        return await Queryable(token).Where(e => e.Id == id).FirstOrDefaultAsync(token);
     }
 
     public async Task<Review?> GetByUserIdAndInventoryId(Guid inventoryId, int userId,

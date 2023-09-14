@@ -15,7 +15,8 @@ public class MappingProfiles : Profile
             .ForMember(dest => dest.Id, opt 
                 => opt.MapFrom(src => !string.IsNullOrEmpty(src.Id) ? new Guid(src.Id) : (Guid?)null))
             .ForMember(e => e.InventoryId, t =>
-                t.MapFrom(e => new Guid(e.InventoryId))).ReverseMap();
+                t.MapFrom(e => new Guid(e.InventoryId)))
+            .ReverseMap();
         
         CreateMap<ReviewDto, Review>().ReverseMap();
 

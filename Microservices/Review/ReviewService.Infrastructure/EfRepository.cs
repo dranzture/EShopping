@@ -18,25 +18,23 @@ public class EfRepository<T> : IRepository<T> where T : class
         return _context.Set<T>();
     }
 
-    public async Task Create(T item, CancellationToken cancellationToken = default)
+    public async Task AddAsync(T item, CancellationToken cancellationToken = default)
     {
-        await _context.Set<T>().AddAsync(item,cancellationToken);
+        await _context.Set<T>().AddAsync(item, cancellationToken);
     }
 
-    public Task Update(T item, CancellationToken cancellationToken = default)
+    public async Task UpdateAsync(T item, CancellationToken cancellationToken = default)
     {
-        _context.Set<T>().Update(item);
-        return Task.CompletedTask;
+        await Task.Run(() => _context.Set<T>().Update(item), cancellationToken);
     }
 
-    public Task Delete(T item, CancellationToken cancellationToken = default)
+    public async Task DeleteAsync(T item, CancellationToken cancellationToken = default)
     {
-        _context.Set<T>().Remove(item);
-        return Task.CompletedTask;
+        await Task.Run(() => _context.Set<T>().Remove(item), cancellationToken);
     }
 
     public async Task<bool> SaveChanges(CancellationToken cancellationToken = default)
     {
-       return await _context.SaveChangesAsync(cancellationToken) > 0;
+        return await _context.SaveChangesAsync(cancellationToken) > 0;
     }
 }

@@ -11,11 +11,11 @@ public interface IReviewService
 
     Task DeleteReview(ReviewDto dto, CancellationToken token = default);
     
-    Task<HashSet<Review>> GetReviewsByInventoryId(Guid id, CancellationToken token = default);
+    Task<HashSet<ReviewDto>> GetReviewsByInventoryId(Guid id, CancellationToken token = default);
 
-    Task<HashSet<Review>> GetReviewsByUserId(int userId, CancellationToken token = default);
+    Task<HashSet<ReviewDto>> GetReviewsByUserId(int userId, CancellationToken token = default);
     
-    Task<Review?> GetReviewByUserIdAndInventoryId(Guid id, int userId, CancellationToken token = default);
+    Task<ReviewDto?> GetReviewByUserIdAndInventoryId(Guid id, int userId, CancellationToken token = default);
     
-    Task<Review?> GetReviewById(Guid id, CancellationToken token = default);
+    Task<ReviewDto?> GetReviewById(Guid id, CancellationToken token = default);
 }

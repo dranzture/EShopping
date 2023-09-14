@@ -66,24 +66,28 @@ public class ReviewService : IReviewService
         await deleteCommand.Execute();
     }
 
-    public async Task<HashSet<Review>> GetReviewsByInventoryId(Guid id, CancellationToken token = default)
+    public async Task<HashSet<ReviewDto>> GetReviewsByInventoryId(Guid id, CancellationToken token = default)
     {
-        return await Task.Run(() => _repository.Queryable(token).Where(e => e.InventoryId == id).ToHashSet(), token);
+        var result = await Task.Run(() => _repository.Queryable(token).Where(e => e.InventoryId == id).ToHashSet(), token);
+        return _mapper.Map<HashSet<ReviewDto>>(result);
     }
 
-    public async Task<HashSet<Review>> GetReviewsByUserId(int userId, CancellationToken token = default)
+    public async Task<HashSet<ReviewDto>> GetReviewsByUserId(int userId, CancellationToken token = default)
     {
-        return await _repository.GetByUserId(userId, token);
+        var result = await _repository.GetByUserId(userId, token);
+        return _mapper.Map<HashSet<ReviewDto>>(result);
     }
 
-    public async Task<Review?> GetReviewByUserIdAndInventoryId(Guid id, int userId,
+    public async Task<ReviewDto?> GetReviewByUserIdAndInventoryId(Guid id, int userId,
         CancellationToken token = default)
     {
-        return await _repository.GetByUserIdAndInventoryId(id ,userId, token);
+        var result = await _repository.GetByUserIdAndInventoryId(id ,userId, token);
+        return _mapper.Map<ReviewDto>(result);
     }
 
-    public async Task<Review?> GetReviewById(Guid id, CancellationToken token = default)
+    public async Task<ReviewDto?> GetReviewById(Guid id, CancellationToken token = default)
     {
-        return await _repository.Queryable(token).FirstOrDefaultAsync(e=>e.Id == id, token);
+        var result = await _repository.Queryable(token).FirstOrDefaultAsync(e=>e.Id == id, token);
+        return _mapper.Map<ReviewDto>(result);
     }
 }

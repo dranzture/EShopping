@@ -93,17 +93,10 @@ public class GrpcService : GrpcReviewService.GrpcReviewService.GrpcReviewService
         {
             var returnItem = new GrpcListedReviews();
             var list = await _reviewService.GetReviewsByUserId(request.UserId);
-            foreach (var review in list)
+
+            foreach (var item in list)
             {
-                returnItem.Dto.Add(new GrpcReviewDto()
-                {
-                    Comment = review.Comment,
-                    Id = review.Id.ToString(),
-                    Stars = review.Stars,
-                    Username = review.Username,
-                    InventoryId = review.InventoryId.ToString(),
-                    ExternalUserId = review.ExternalUserId
-                });
+                returnItem.Dto.Add(_mapper.Map<GrpcReviewDto>(item));
             }
 
             return returnItem;
@@ -129,17 +122,9 @@ public class GrpcService : GrpcReviewService.GrpcReviewService.GrpcReviewService
         {
             var returnItem = new GrpcListedReviews();
             var list = await _reviewService.GetReviewsByInventoryId(new Guid(request.Value));
-            foreach (var review in list)
+            foreach (var item in list)
             {
-                returnItem.Dto.Add(new GrpcReviewDto()
-                {
-                    Comment = review.Comment,
-                    Id = review.Id.ToString(),
-                    Stars = review.Stars,
-                    Username = review.Username,
-                    InventoryId = review.InventoryId.ToString(),
-                    ExternalUserId = review.ExternalUserId
-                });
+                returnItem.Dto.Add(_mapper.Map<GrpcReviewDto>(item));
             }
 
             return returnItem;
@@ -166,15 +151,7 @@ public class GrpcService : GrpcReviewService.GrpcReviewService.GrpcReviewService
             var review =
                 await _reviewService.GetReviewByUserIdAndInventoryId(new Guid(request.InventoryId), request.UserId);
 
-            return new GrpcReviewDto()
-            {
-                Comment = review.Comment,
-                Id = review.Id.ToString(),
-                Stars = review.Stars,
-                Username = review.Username,
-                InventoryId = review.InventoryId.ToString(),
-                ExternalUserId = review.ExternalUserId
-            };
+            return _mapper.Map<GrpcReviewDto>(review);
         }
         catch (RpcException ex)
         {
@@ -196,17 +173,7 @@ public class GrpcService : GrpcReviewService.GrpcReviewService.GrpcReviewService
             var review =
                 await _reviewService.GetReviewById(new Guid(request.Value));
 
-            if (review == null) return null;
-
-            return new GrpcReviewDto()
-            {
-                Comment = review.Comment,
-                Id = review.Id.ToString(),
-                Stars = review.Stars,
-                Username = review.Username,
-                InventoryId = review.InventoryId.ToString(),
-                ExternalUserId = review.ExternalUserId
-            };
+            return _mapper.Map<GrpcReviewDto>(review);
         }
         catch (RpcException ex)
         {

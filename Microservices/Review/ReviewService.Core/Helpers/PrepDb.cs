@@ -19,7 +19,7 @@ public static class Helpers
         try
         {
             var newReview = new Review(guid, 1, "dranzture", 5, "Excellent Product");
-            await repository.Create(newReview);
+            await repository.AddAsync(newReview);
             await repository.SaveChanges();
         }
         catch (Exception ex)
