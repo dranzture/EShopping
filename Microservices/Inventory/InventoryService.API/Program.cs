@@ -47,7 +47,7 @@ if (app.Environment.IsDevelopment())
 app.UseRouting();
 
 app.MapControllers();
-app.MapGrpcService<GrpcService>();
+app.MapGrpcService<InventoryGrpcService>();
 app.MapGet("/protos/inventory.proto", async context =>
 {
     await context.Response.WriteAsync(File.ReadAllText("Protos/inventory.proto"));

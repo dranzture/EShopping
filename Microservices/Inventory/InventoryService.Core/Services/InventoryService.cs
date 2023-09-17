@@ -22,7 +22,7 @@ public class InventoryService : IInventoryService
     {
         try
         {
-            var inventory = new Inventory(dto.Name, dto.Description, dto.InStock, dto.Height, dto.Width, dto.Weight,
+            var inventory = new Inventory(dto.Name, dto.Description, dto.InStock, dto.Height, dto.Width, dto.Weight,dto.Price,
                 username);
             var addCommand = new AddInventoryCommand(_repository, inventory);
             if (!await addCommand.CanExecute())
@@ -50,7 +50,7 @@ public class InventoryService : IInventoryService
     {
         try
         {
-            var inventory = new Inventory(dto.Name, dto.Description, dto.InStock, dto.Height, dto.Width, dto.Weight,
+            var inventory = new Inventory(dto.Name, dto.Description, dto.InStock, dto.Height, dto.Width, dto.Weight, dto.Price,
                 username, dto.Id);
             var updateCommand = new UpdateInventoryCommand(_repository, inventory, username);
             if (!await updateCommand.CanExecute())
@@ -72,11 +72,11 @@ public class InventoryService : IInventoryService
         }
     }
 
-    public async Task DeleteInventory(Guid id, CancellationToken token = default)
+    public async Task DeleteInventory(Guid id, string username, CancellationToken token = default)
     {
         try
         {
-            var deleteCommand = new DeleteInventoryCommand(_repository, id);
+            var deleteCommand = new DeleteInventoryCommand(_repository, id, username);
             if (!await deleteCommand.CanExecute())
             {
                 throw new RpcException(new Status(StatusCode.InvalidArgument,

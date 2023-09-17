@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 using ReviewService.Core.Models;
 
 namespace ReviewService.Infrastructure.Data;
@@ -10,5 +11,6 @@ public class AppDbContext : DbContext
         
     }
     
-    public DbSet<Review> Reviews { get; set; } = null!;
+    public DbSet<Review> Reviews { get; set; }
+    
 }

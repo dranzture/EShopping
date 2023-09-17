@@ -41,18 +41,18 @@ public class InventoryRepository : IInventoryRepository
     public async Task<HashSet<Inventory>> GetAllInventory(CancellationToken token = default)
     {
         var result = await Queryable(token);
-        return result.ToHashSet();
+        return result.Where(e=>e.IsDeleted == false).ToHashSet();
     }
 
     public async Task<Inventory?> GetById(Guid id, CancellationToken token = default)
     {
         var result = await Queryable(token);
-        return await result.FirstOrDefaultAsync(e => e.Id == id, token);
+        return await result.FirstOrDefaultAsync(e => e.Id == id && e.IsDeleted == false, token);
     }
 
     public async Task<Inventory?> GetByName(string name, CancellationToken token = default)
     {
         var result = await Queryable(token);
-        return await result.FirstOrDefaultAsync(e => e.Name == name, token);
+        return await result.FirstOrDefaultAsync(e => e.Name == name && e.IsDeleted == false, token);
     }
 }

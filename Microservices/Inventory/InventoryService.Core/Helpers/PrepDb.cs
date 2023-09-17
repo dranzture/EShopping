@@ -21,7 +21,7 @@ public static class Helpers
         try
         {        
             var newInventory = new Inventory
-                ("Product1", "Great Product1", 10, 10L, 8L, 15L, "dranzture");
+                ("Product1", "Great Product1", 10, 10.0M, 8.0M, 15M, 45.5M,"dranzture");
             await repository.AddAsync(newInventory);
             await repository.SaveChangesAsync();
         }

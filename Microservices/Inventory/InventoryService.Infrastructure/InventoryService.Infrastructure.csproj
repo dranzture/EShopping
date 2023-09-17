@@ -16,4 +16,6 @@
       <ProjectReference Include="..\InventoryService.Core\InventoryService.Core.csproj" />
     </ItemGroup>
 
+
+
 </Project>

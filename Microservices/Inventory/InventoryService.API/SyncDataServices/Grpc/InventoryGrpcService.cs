@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Diagnostics.CodeAnalysis;
+using AutoMapper;
 using Grpc.Core;
 using GrpcInventoryService;
 using GrpcInventoryServiceBase = GrpcInventoryService.GrpcInventoryService.GrpcInventoryServiceBase;
@@ -7,12 +8,12 @@ using InventoryService.Core.Interfaces;
 
 namespace InventoryService.API.SyncDataServices.Grpc;
 
-public class GrpcService : GrpcInventoryServiceBase
+public class InventoryGrpcService : GrpcInventoryServiceBase
 {
     private readonly IInventoryService _service;
     private readonly IMapper _mapper;
 
-    public GrpcService(IInventoryService service, IMapper mapper)
+    public InventoryGrpcService(IInventoryService service, IMapper mapper)
     {
         _service = service;
         _mapper = mapper;
@@ -61,11 +62,11 @@ public class GrpcService : GrpcInventoryServiceBase
         }
     }
     
-    public override async Task<Empty> DeleteInventory(GrpcIdParam dto, ServerCallContext context)
+    public override async Task<Empty> DeleteInventory(GrpcInventoryDeleteDto dto, ServerCallContext context)
     {
         try
         {
-            await _service.DeleteInventory(new Guid(dto.Id));
+            await _service.DeleteInventory(new Guid(dto.Id), dto.Username);
             return new Empty();
         }
         catch (RpcException ex)

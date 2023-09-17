@@ -33,7 +33,7 @@ public class GrpcReviewService : IGrpcReviewService
             {
                 Id = dto.Id.ToString(),
                 InventoryId = dto.InventoryId.ToString(),
-                ExternalUserId = dto.ExternalUserId,
+                UserId = dto.UserId,
                 Username = dto.Username,
                 Stars = dto.Stars,
                 Comment = dto.Comment
@@ -68,7 +68,7 @@ public class GrpcReviewService : IGrpcReviewService
             {
                 Id = dto.Id.ToString(),
                 InventoryId = dto.InventoryId.ToString(),
-                ExternalUserId = dto.ExternalUserId,
+                UserId = dto.UserId,
                 Username = dto.Username,
                 Stars = dto.Stars,
                 Comment = dto.Comment
@@ -103,12 +103,12 @@ public class GrpcReviewService : IGrpcReviewService
             {
                 Id = dto.Id.ToString(),
                 InventoryId = dto.InventoryId.ToString(),
-                ExternalUserId = dto.ExternalUserId,
+                UserId = dto.UserId,
                 Username = dto.Username,
                 Stars = dto.Stars,
                 Comment = dto.Comment
             };
-            var result = client.DeleteReviewAsync(request, deadline: DateTime.UtcNow.AddSeconds(10),
+            var result = await client.DeleteReviewAsync(request, deadline: DateTime.UtcNow.AddSeconds(10),
                 cancellationToken: token);
 
         }
@@ -145,7 +145,7 @@ public class GrpcReviewService : IGrpcReviewService
                 returnItem.Add(new ReviewDto()
                 {
                     Comment = item.Comment,
-                    ExternalUserId = item.ExternalUserId,
+                    UserId = item.UserId,
                     Id = Guid.Parse(item.Id),
                     InventoryId = Guid.Parse(item.InventoryId),
                     Stars = item.Stars,
@@ -188,7 +188,7 @@ public class GrpcReviewService : IGrpcReviewService
                 returnItem.Add(new ReviewDto()
                 {
                     Comment = item.Comment,
-                    ExternalUserId = item.ExternalUserId,
+                    UserId = item.UserId,
                     Id = Guid.Parse(item.Id),
                     InventoryId = Guid.Parse(item.InventoryId),
                     Stars = item.Stars,

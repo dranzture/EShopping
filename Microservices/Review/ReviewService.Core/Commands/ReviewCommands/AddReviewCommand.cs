@@ -15,7 +15,7 @@ public class AddReviewCommand : ICommand
     }
     public async Task<bool> CanExecute()
     {
-        var review = await _repository.GetByUserIdAndInventoryId(_item.InventoryId, _item.ExternalUserId);
+        var review = await _repository.GetByUserIdAndInventoryId(_item.InventoryId, _item.UserId);
         return review == null;
     }
     public async Task Execute()

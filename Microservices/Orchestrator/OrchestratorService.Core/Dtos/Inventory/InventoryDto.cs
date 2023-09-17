@@ -8,4 +8,5 @@ public class InventoryDto : BaseDto<Guid>
     public decimal Height { get; set; }
     public decimal Width { get; set; }
     public decimal Weight { get; set; }
+    public decimal Price { get; set; }
 }

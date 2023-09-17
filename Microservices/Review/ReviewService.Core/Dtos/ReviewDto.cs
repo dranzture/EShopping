@@ -6,7 +6,7 @@ public class ReviewDto
     
     public Guid InventoryId { get; set; }
     
-    public int ExternalUserId { get; set; }
+    public int UserId { get; set; }
     
     public string Username { get; set; }
     

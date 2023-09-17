@@ -39,6 +39,7 @@ message GrpcInventoryDto {
     float height = 5;
     float width = 6;
     float weight = 7;
+    float price = 8;
 }
 
 message GrpcIdParam{

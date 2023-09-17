@@ -5,7 +5,7 @@ option csharp_namespace = "GrpcInventoryService";
 service GrpcInventoryService {
     rpc AddInventory (GrpcMutateInventoryDto) returns (GrpcIdParam);
     rpc UpdateInventory (GrpcMutateInventoryDto) returns (Empty);
-    rpc DeleteInventory(GrpcIdParam) returns(Empty);
+    rpc DeleteInventory(GrpcInventoryDeleteDto) returns(Empty);
     rpc IncreaseInventory(GrpcInventoryChangeDto) returns (Empty);
     rpc DecreaseInventory(GrpcInventoryChangeDto) returns (Empty);
     rpc GetById(GrpcIdParam) returns(GrpcInventoryDto);
@@ -31,14 +31,9 @@ message GrpcInventoryChangeDto{
     string username = 3;
 }
 
-message GrpcInventoryDto {
-    optional string id = 1;
-    string name = 2;
-    string description = 3;
-    int32 in_stock = 4;
-    float height = 5;
-    float width = 6;
-    float weight = 7;
+message GrpcInventoryDeleteDto{
+    string id = 1;
+    string username = 2;
 }
 
 message GrpcIdParam{
@@ -47,4 +42,15 @@ message GrpcIdParam{
 
 message GrpcNameParam{
     string name = 1;
+}
+
+message GrpcInventoryDto {
+    optional string id = 1;
+    string name = 2;
+    string description = 3;
+    int32 in_stock = 4;
+    float height = 5;
+    float width = 6;
+    float weight = 7;
+    float price = 8;
 }

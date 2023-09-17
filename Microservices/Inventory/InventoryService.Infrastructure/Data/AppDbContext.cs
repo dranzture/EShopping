@@ -1,4 +1,5 @@
-﻿using InventoryService.Core.Interfaces;
+﻿using System.Reflection;
+using InventoryService.Core.Interfaces;
 using InventoryService.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,4 +13,11 @@ public class AppDbContext : DbContext
     }
     
     public DbSet<Inventory> Inventories { get; set; }
+    
+    public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+    
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+    }
 }

@@ -24,14 +24,14 @@ public class EfRepository<T> : IRepository<T> where T : class
         await _context.Set<T>().AddAsync(item, cancellationToken);
     }
 
-    public async Task UpdateAsync(T item, CancellationToken cancellationToken = default)
+    public Task UpdateAsync(T item, CancellationToken cancellationToken = default)
     {
-        await Task.Run(() => _context.Set<T>().Update(item), cancellationToken);
+        return Task.FromResult(_context.Set<T>().Update(item));
     }
 
-    public async Task DeleteAsync(T item, CancellationToken cancellationToken = default)
+    public Task DeleteAsync(T item, CancellationToken cancellationToken = default)
     {
-        await Task.Run(() => _context.Set<T>().Remove(item), cancellationToken);
+        return Task.FromResult(_context.Set<T>().Remove(item));
     }
 
     public async Task<bool> SaveChangesAsync()

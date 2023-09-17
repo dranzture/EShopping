@@ -27,6 +27,7 @@ public class UpdateInventoryCommand : ICommand
         var item = await _repository.GetById(_item.Id);
         item.ChangeDescription(_item.Description, _username);
         item.ChangeSize(_item.Height,_item.Width, _username);
+        item.UpdatePrice(_item.Price, _username);
         await _repository.UpdateAsync(item);
         await _repository.SaveChangesAsync();
     }

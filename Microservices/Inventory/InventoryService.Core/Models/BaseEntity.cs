@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace InventoryService.Core.Interfaces;
+namespace InventoryService.Core.Models;
 
 public abstract class BaseEntity
 {
@@ -15,9 +15,21 @@ public abstract class BaseEntity
     public DateTimeOffset? ModifiedDateTime { get; protected set; }
     public string? ModifiedBy { get; protected set; }
     
+    public bool IsDeleted { get; protected set; }
+    
+    public DateTimeOffset? DeletedDateTime { get; protected set; }
+    
+    public string? DeletedBy { get; protected set; }
+    
     protected void UpdateModifiedFields(string username)
     {
         ModifiedDateTime = DateTimeOffset.Now;
         ModifiedBy = username;
+    }
+    
+    protected void UpdateDeletedFields(string username)
+    {
+        DeletedDateTime = DateTimeOffset.Now;
+        DeletedBy = username;
     }
 }

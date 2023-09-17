@@ -15,7 +15,7 @@ service GrpcReviewService{
 message GrpcReviewDto {
     optional string id = 1;
     string inventory_id = 2;
-    int32 external_user_id = 3;
+    int32 user_id = 3;
     string username = 4;
     int32 stars = 5;
     optional string comment = 6;

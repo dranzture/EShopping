@@ -15,6 +15,7 @@ public class Inventory : BaseEntity
         decimal height,
         decimal width,
         decimal weight,
+        decimal price,
         string username,
         Guid? id = null)
     {
@@ -24,6 +25,7 @@ public class Inventory : BaseEntity
         Height = Guard.Against.Negative(height);
         Width = Guard.Against.Negative(width);
         Weight = Guard.Against.Negative(weight);
+        Price = Guard.Against.Negative(price);
         CreatedBy = username;
         CreatedDateTime = DateTimeOffset.Now;
         
@@ -41,6 +43,8 @@ public class Inventory : BaseEntity
     public decimal Width { get; private set; }
     public decimal Weight { get; private set; }
 
+    public decimal Price { get; private set; }
+    
     public void IncreaseStock(int amount, string username)
     {
         InStock += amount;
@@ -69,7 +73,16 @@ public class Inventory : BaseEntity
         Width = width;
         UpdateModifiedFields(username);
     }
-    
+
+    public void UpdatePrice(decimal price, string username)
+    {
+        if (price < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(Inventory), "Price cannot be less than 0");
+        }
+        Price = price;
+        UpdateModifiedFields(username);
+    }
 
     public void ChangeDescription(string description, string username)
     {
@@ -80,5 +93,10 @@ public class Inventory : BaseEntity
 
         Description = description;
         UpdateModifiedFields(username);
+    }
+
+    public void Delete(string username)
+    {
+        Delete(username);
     }
 }

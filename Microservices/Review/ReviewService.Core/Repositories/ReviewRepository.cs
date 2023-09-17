@@ -55,7 +55,7 @@ public class ReviewRepository : IReviewRepository
     public async Task<Review?> GetByUserIdAndInventoryId(Guid inventoryId, int userId,
         CancellationToken token = default)
     {
-        var result = await Queryable(token).Where(e => e.InventoryId == inventoryId && e.ExternalUserId == userId)
+        var result = await Queryable(token).Where(e => e.InventoryId == inventoryId && e.UserId == userId)
             .FirstOrDefaultAsync(token);
         return result;
     }
@@ -64,7 +64,7 @@ public class ReviewRepository : IReviewRepository
     {
         var result =
             await Task.Run(
-                () => Queryable(token).Where(e => e.ExternalUserId == userId)
+                () => Queryable(token).Where(e => e.UserId == userId)
                     .ToHashSet(), token);
         return result;
     }

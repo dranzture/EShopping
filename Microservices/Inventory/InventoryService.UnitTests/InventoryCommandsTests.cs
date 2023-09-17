@@ -14,7 +14,7 @@ public class InventoryCommandsTests
     public async Task AddInventoryCommand_CanExecute_Should_Return_True()
     {
         //Arrange
-        var inventory = new Inventory("TestInv", "TestingThisMethod", 5, 10.0M, 5.0M, 20, "dranzture");
+        var inventory = new Inventory("TestInv", "TestingThisMethod", 5, 10.0M, 5.0M, 20, 45, "dranzture");
         _repository.GetByName("TestInv")
             .Returns((Inventory?)null);
         var command = new AddInventoryCommand(_repository, inventory);
@@ -32,7 +32,7 @@ public class InventoryCommandsTests
     public async Task AddInventoryCommand_CanExecute_Should_Return_False_When_Duplicate_Found()
     {
         //Arrange
-        var inventory = new Inventory("TestInv", "TestingThisMethod", 5, 10.0M, 5.0M, 20, "dranzture");
+        var inventory = new Inventory("TestInv", "TestingThisMethod", 5, 10.0M, 5.0M, 20, 45, "dranzture");
         _repository.GetByName("TestInv")
             .Returns(inventory);
 
@@ -50,7 +50,7 @@ public class InventoryCommandsTests
     {
         //Arrange
         var inventory = new Inventory("TestInv", "TestingThisMethod",
-            5, 10.0M, 5.0M, 20, "dranzture", _guid);
+            5, 10.0M, 5.0M, 20, 45, "dranzture", _guid);
         var username = "dranzure";
         _repository.GetById(_guid)
             .Returns(inventory);
@@ -69,7 +69,7 @@ public class InventoryCommandsTests
     {
         //Arrange
         var inventory = new Inventory("TestInv", "TestingThisMethod",
-            5, 10.0M, 5.0M, 20, "dranzture", _guid);
+            5, 10.0M, 5.0M, 20, 45, "dranzture", _guid);
         var username = "dranzure";
         _repository.GetByName("TestInv")
             .Returns((Inventory?)null);
@@ -87,7 +87,7 @@ public class InventoryCommandsTests
     {
         //Arrange
         var inventory = new Inventory("TestInv", "TestingThisMethod",
-            5, 10.0M, 5.0M, 20, "dranzture", _guid);
+            5, 10.0M, 5.0M, 20, 45, "dranzture", _guid);
         var username = "dranzure";
         _repository.GetByName("TestInv")
             .Returns(inventory);
@@ -108,7 +108,7 @@ public class InventoryCommandsTests
     {
         //Arrange
         var inventory = new Inventory("TestInv", "TestingThisMethod",
-            5, 10.0M, 5.0M, 20, "dranzture", _guid);
+            5, 10.0M, 5.0M, 20, 45, "dranzture", _guid);
         var username = "dranzure";
         _repository.GetById(_guid)
             .Returns(inventory);
@@ -129,7 +129,7 @@ public class InventoryCommandsTests
     {
         //Arrange
         var inventory = new Inventory("TestInv", "TestingThisMethod",
-            5, 10.0M, 5.0M, 20, "dranzture", _guid);
+            5, 10.0M, 5.0M, 20, 45, "dranzture", _guid);
         var username = "dranzure";
         _repository.GetById(_guid)
             .Returns((Inventory?)null);
@@ -149,7 +149,7 @@ public class InventoryCommandsTests
     {
         //Arrange
         var inventory = new Inventory("TestInv", "TestingThisMethod",
-            5, 10.0M, 5.0M, 20, "dranzture", _guid);
+            5, 10.0M, 5.0M, 20, 45, "dranzture", _guid);
         var username = "dranzure";
         _repository.GetById(_guid)
             .Returns(inventory);
@@ -170,7 +170,7 @@ public class InventoryCommandsTests
     {
         //Arrange
         var inventory = new Inventory("TestInv", "TestingThisMethod",
-            5, 10.0M, 5.0M, 20, "dranzture", _guid);
+            5, 10.0M, 5.0M, 20, 45, "dranzture", _guid);
         var username = "dranzure";
         _repository.GetById(_guid)
             .Returns(inventory);
@@ -189,9 +189,8 @@ public class InventoryCommandsTests
     public async Task UpdateInventoryCommand_CanExecute_Should_Return_False_When_Not_Found()
     {
         //Arrange
-        //Arrange
         var inventory = new Inventory("TestInv", "TestingThisMethod",
-            5, 10.0M, 5.0M, 20, "dranzture", _guid);
+            5, 10.0M, 5.0M, 20, 45, "dranzture", _guid);
         var username = "dranzure";
         _repository.GetById(_guid)
             .Returns((Inventory?)null);
@@ -211,13 +210,13 @@ public class InventoryCommandsTests
     {
         //Arrange
         var inventory = new Inventory("TestInv", "TestingThisMethod",
-            5, 10.0M, 5.0M, 20, "dranzture", _guid);
+            5, 10.0M, 5.0M, 20, 45, "dranzture", _guid);
         var username = "dranzure";
         _repository.GetById(_guid)
             .Returns(inventory);
 
         //Act
-        var command = new DeleteInventoryCommand(_repository, _guid);
+        var command = new DeleteInventoryCommand(_repository, _guid, username);
 
         var canExecute = await command.CanExecute();
 
@@ -231,13 +230,13 @@ public class InventoryCommandsTests
     {
         //Arrange
         var inventory = new Inventory("TestInv", "TestingThisMethod",
-            5, 10.0M, 5.0M, 20, "dranzture", _guid);
+            5, 10.0M, 5.0M, 20, 45, "dranzture", _guid);
         var username = "dranzure";
         _repository.GetById(_guid)
             .Returns((Inventory?)null);
 
         //Act
-        var command = new DeleteInventoryCommand(_repository, _guid);
+        var command = new DeleteInventoryCommand(_repository, _guid, username);
 
         var canExecute = await command.CanExecute();
 
