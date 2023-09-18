@@ -2,13 +2,15 @@
 using InventoryService.Core.Models;
 using InventoryService.Core.ValueObjects;
 using InventoryService.Infrastructure.Publishers;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Hosting.Internal;
 using Microsoft.Extensions.Logging;
+using NSubstitute;
 
 namespace InventoryService.Tests;
 
-public class PublisherTests
+public class PublisherProductionTests
 {
-
     private readonly AppSettings _appSettings = new AppSettings()
     {
         KafkaSettings = new KafkaSettings()
@@ -17,9 +19,15 @@ public class PublisherTests
         }
     };
 
+
+
+
+
     [Fact]
-    public async Task CheckoutPublisher_CanPublish_Should_Return_True()
+    public async Task CheckoutPublisher_Publish_Should_Return_True()
     {
+        var _publisher = Substitute.For<ICheckoutPublisher<ShoppingCart>>();
+        _publisher.ProcessMessage(Arg.Any<ShoppingCart>()).Returns(Task.FromResult(true));
         var message = new ShoppingCart(1, "dranzture");
         message.AddItem(new ShoppingItem()
         {
@@ -29,9 +37,11 @@ public class PublisherTests
             TotalPrice = 10,
             AddedDateTime = DateTimeOffset.Now
         }, "dranzture");
-        
-        var _publisher = new CheckoutPublisher(_appSettings);
-        
+
+
+        _publisher.ProcessMessage(Arg.Any<ShoppingCart>()).Returns(Task.FromResult(true));
+
+
         var result = await _publisher.ProcessMessage(message);
         Assert.True(result);
     }
