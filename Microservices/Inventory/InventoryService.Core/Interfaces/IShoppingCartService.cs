@@ -15,4 +15,6 @@ public interface IShoppingCartService
     Task<ShoppingItemDto> UpdateShoppingItem(Guid id, int amount, string username, CancellationToken token = default);
 
     Task<ShoppingItemDto> DeleteShoppingItem(Guid id, string username, CancellationToken token = default);
+    
+    Task CheckoutShoppingCart(Guid id, string username, CancellationToken token = default);
 }

@@ -56,5 +56,9 @@ public class ShoppingCartService : IShoppingCartService
     {
         throw new NotImplementedException();
     }
-    
+
+    public Task CheckoutShoppingCart(Guid id, string username, CancellationToken token = default)
+    {
+        throw new NotImplementedException();
+    }
 }

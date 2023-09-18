@@ -13,7 +13,7 @@ public class ShoppingCart : BaseEntity
     }
 
     public int UserId { get; private set; }
-
+    
     private List<ShoppingItem> _ShoppingItems { get; set; }
 
     public IReadOnlyCollection<ShoppingItem> ShoppingItems => _ShoppingItems;
