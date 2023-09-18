@@ -1,0 +1,4 @@
+- Open Powershell in the directory
+- Run 'docker compose up'
+- Close Powershell and open docker desktop.
+- Open containers and run 'kafka', and make sure images run within. (Starts within couple minutes)
