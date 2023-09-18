@@ -1,3 +1,4 @@
+using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using InventoryService.API.SyncDataServices.Grpc;
@@ -7,11 +8,18 @@ using InventoryService.Infrastructure;
 using InventoryService.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using InventoryService.Core.Helpers;
+using InventoryService.Core.ValueObjects;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var env = builder.Environment.EnvironmentName;
+var config = new ConfigurationBuilder()
+    .AddJsonFile($"appsettings.{env}.json", optional: false)
+    .Build();
+
+var appSettings = config.GetSection("AppSettings").Get<AppSettings>();
+builder.Services.AddSingleton<AppSettings>(appSettings);
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseInMemoryDatabase("InventoryServiceDb"));

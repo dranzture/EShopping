@@ -38,27 +38,6 @@
       <change afterPath="$PROJECT_DIR$/../ShoppingCart/ShoppingCartService/ShoppingCartService.Infrastructure/InfrastructureAutofacModule.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ShoppingCart/ShoppingCartService/ShoppingCartService.Infrastructure/obj/Debug/net7.0/ShoppingCartService.Infrastructure.csproj.AssemblyReference.cache" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../ShoppingCart/ShoppingCartService/ShoppingCartService.Infrastructure/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.API/Protos/inventory.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.API/Protos/inventory.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.API/SyncDataServices/Grpc/GrpcService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.API/SyncDataServices/Grpc/GrpcService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Commands/InventoryCommands/UpdateInventoryCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Commands/InventoryCommands/UpdateInventoryCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Dtos/InventoryDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Dtos/InventoryDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Helpers/PrepDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Helpers/PrepDb.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Models/Inventory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Models/Inventory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Services/InventoryService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Services/InventoryService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.UnitTests/InventoryCommandsTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.UnitTests/InventoryCommandsTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Core/Dtos/Inventory/InventoryDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Core/Dtos/Inventory/InventoryDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Core/Dtos/Review/ReviewDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Core/Dtos/Review/ReviewDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Infrastructure/Protos/inventory.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Infrastructure/Protos/inventory.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Infrastructure/Protos/review.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Infrastructure/Protos/review.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Infrastructure/SyncDataServices/GrpcReviewService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.Infrastructure/SyncDataServices/GrpcReviewService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ReviewService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ReviewService/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReviewService.API/Protos/review.proto" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.API/Protos/review.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReviewService.Core/Commands/ReviewCommands/AddReviewCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.Core/Commands/ReviewCommands/AddReviewCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReviewService.Core/Dtos/ReviewDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.Core/Dtos/ReviewDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReviewService.Core/Models/Review.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.Core/Models/Review.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReviewService.Core/Repositories/ReviewRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.Core/Repositories/ReviewRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReviewService.Infrastructure/Data/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.Infrastructure/Data/AppDbContext.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -390,6 +369,7 @@
       <workItem from="1694645927126" duration="3201000" />
       <workItem from="1694727550904" duration="610000" />
       <workItem from="1694740725605" duration="1782000" />
+      <workItem from="1695005159016" duration="13000" />
     </task>
     <task id="LOCAL-00001" summary="Seperated Inventory and Review Services">
       <option name="closed" value="true" />

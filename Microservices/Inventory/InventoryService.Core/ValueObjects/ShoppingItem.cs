@@ -10,5 +10,6 @@ public record ShoppingItem
     public decimal TotalPrice { get; set;}
     
     public DateTimeOffset AddedDateTime { get; set;}
-    public DateTimeOffset UpdatedDateTime { get; set;}
+    
+    public DateTimeOffset? UpdatedDateTime { get; set;}
 }

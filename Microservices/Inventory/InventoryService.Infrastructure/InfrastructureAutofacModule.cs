@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
 using Autofac;
 using InventoryService.Core.Interfaces;
+using InventoryService.Core.Models;
+using InventoryService.Infrastructure.Publishers;
 using Module = Autofac.Module;
 
 namespace InventoryService.Infrastructure;
@@ -40,6 +42,10 @@ public class InfrastructureAutofacModule : Module
     {
         builder.RegisterGeneric(typeof(EfRepository<>))
             .As(typeof(IRepository<>))
+            .InstancePerLifetimeScope();
+        
+        builder.RegisterType<CheckoutPublisher>()
+            .As<ICheckoutPublisher<ShoppingCart>>()
             .InstancePerLifetimeScope();
     }
 }
