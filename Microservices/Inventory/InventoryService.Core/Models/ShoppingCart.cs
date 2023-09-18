@@ -17,7 +17,10 @@ public class ShoppingCart : BaseEntity
     private List<ShoppingItem> _ShoppingItems { get; set; }
 
     public IReadOnlyCollection<ShoppingItem> ShoppingItems => _ShoppingItems;
+    
 
+    public CheckoutStatus Status { get; private set; } = CheckoutStatus.None;
+    
     public void AddItem(ShoppingItem shoppingItem, string username)
     {
         var item = _ShoppingItems.FirstOrDefault(x => x.InventoryId == shoppingItem.InventoryId);
@@ -49,8 +52,21 @@ public class ShoppingCart : BaseEntity
         UpdateModifiedFields(username);
     }
 
+    public void UpdateCheckoutStatus(CheckoutStatus status)
+    {
+        Status = status;
+    }
+    
     public void Delete(string username)
     {
         Delete(username);
+    }
+
+    public enum CheckoutStatus
+    {
+        None,
+        InProgress,
+        Completed,
+        Failed
     }
 }
