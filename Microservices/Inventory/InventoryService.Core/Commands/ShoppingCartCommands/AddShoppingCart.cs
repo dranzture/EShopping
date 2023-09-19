@@ -16,7 +16,7 @@ public class AddShoppingCart : ICommand
     }
     public async Task<bool> CanExecute()
     {
-        var item = await _repository.GetShoppingCartById(_item.Id);
+        var item = await _repository.GetShoppingCartByUsername(_item.Username);
         return item == null;
     }
 

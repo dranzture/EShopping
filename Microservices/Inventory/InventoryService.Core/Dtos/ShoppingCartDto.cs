@@ -4,7 +4,7 @@ public class ShoppingCartDto
 {
     public Guid? Id { get; set; }
     
-    public int UserId { get; set; }
+    public string Username { get; set; }
     
     List<ShoppingItemDto> ShoppingItems { get; set; }
 }

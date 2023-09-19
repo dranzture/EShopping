@@ -12,6 +12,7 @@ public class ShoppingCartRepository : IShoppingCartRepository
     {
         _context = context;
     }
+
     public async Task<IQueryable<ShoppingCart>> Queryable(CancellationToken cancellationToken = default)
     {
         return await _context.Queryable(cancellationToken);
@@ -38,15 +39,17 @@ public class ShoppingCartRepository : IShoppingCartRepository
     }
 
 
-    public async Task<ShoppingCart?> GetShoppingCartByUserId(int userId, CancellationToken token = default)
+    public async Task<ShoppingCart?> GetShoppingCartByUsername(string username, CancellationToken token = default)
     {
         var result = await Queryable(token);
-        return await result.FirstOrDefaultAsync(e => e.UserId == userId && e.IsDeleted == false, token);
+        return await result.FirstOrDefaultAsync(
+            e => e.Username == username && e.IsDeleted == false && e.Status == ShoppingCart.CheckoutStatus.None, token);
     }
 
-    public async Task<ShoppingCart> GetShoppingCartById(Guid id, CancellationToken token = default)
+    public async Task<ShoppingCart?> GetShoppingCartById(Guid id, CancellationToken token = default)
     {
         var result = await Queryable(token);
-        return await result.FirstOrDefaultAsync(e => e.Id == id && e.IsDeleted == false, token);
+        return await result.FirstOrDefaultAsync(
+            e => e.Id == id && e.IsDeleted == false, token);
     }
 }

@@ -1,10 +1,12 @@
-﻿namespace InventoryService.Core.ValueObjects;
+﻿using InventoryService.Core.Dtos;
+using InventoryService.Core.Models;
+
+namespace InventoryService.Core.ValueObjects;
 
 public record ShoppingItem
 {
-    public Guid InventoryId { get; set;}
+    public Inventory Item { get; set; }
     
-    public string InventoryName { get; set;}
     public int Amount { get; set;}
     
     public decimal TotalPrice { get; set;}

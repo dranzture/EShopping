@@ -1,41 +1,46 @@
 ﻿using InventoryService.Core.Interfaces;
+using InventoryService.Core.Models;
 using InventoryService.Core.ValueObjects;
 
 namespace InventoryService.Core.Commands.ShoppingCartCommands;
 
 public class UpdateAmountShoppingItemCommand : ICommand
 {
-    private readonly IShoppingCartRepository _repository;
     private readonly string _username;
-    private readonly Guid _cartId;
-    private readonly Guid _inventoryId;
+    private readonly IShoppingCartRepository _shoppingCartRepository;
+    private readonly IInventoryRepository _inventoryRepository;
+    private readonly ShoppingCart _cart;
+    private readonly Inventory _inventory;
     private readonly int _amount;
 
-    public UpdateAmountShoppingItemCommand(IShoppingCartRepository repository, Guid cartId, Guid inventoryId, int amount, string username)
+    public UpdateAmountShoppingItemCommand(IShoppingCartRepository shoppingCartRepository, IInventoryRepository inventoryRepository, ShoppingCart cart, 
+        Inventory inventory, int amount, string username)
     {
-        _inventoryId = inventoryId;
+        _shoppingCartRepository = shoppingCartRepository;
+        _inventoryRepository = inventoryRepository;
+        _cart = cart;
+        _inventory = inventory;
         _amount = amount;
-        _repository = repository;
-        _cartId = cartId;
         _username = username;
     }
     
     public async Task<bool> CanExecute()
     {
-        var result = await _repository.GetShoppingCartById(_cartId);
-        if (result == null)
+        var result = await _shoppingCartRepository.GetShoppingCartById(_cart.Id);
+        var inventory = await _inventoryRepository.GetById(_inventory.Id);
+        if (result is not { Status: ShoppingCart.CheckoutStatus.None } || inventory is null)
         {
             return false;
         }
-        var shoppingItem = result.ShoppingItems.FirstOrDefault(e => e.InventoryId == _inventoryId);
+        var shoppingItem = result.ShoppingItems.FirstOrDefault(e => e.Item.Id == _inventory.Id);
         return shoppingItem != null && shoppingItem.Amount >= _amount;
     }
 
     public async Task Execute()
     {
-        var result = await _repository.GetShoppingCartById(_cartId);
-        result.UpdateAmountOfItem(_inventoryId, _amount, _username);
-        await _repository.UpdateAsync(result);
-        await _repository.SaveChangesAsync();
+        var result = await _shoppingCartRepository.GetShoppingCartById(_cart.Id);
+        result!.UpdateAmountOfItem(_inventory, _amount, _username);
+        await _shoppingCartRepository.UpdateAsync(result);
+        await _shoppingCartRepository.SaveChangesAsync();
     }
 }

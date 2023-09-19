@@ -28,21 +28,15 @@ public class PublisherProductionTests
     {
         var _publisher = Substitute.For<ICheckoutPublisher<ShoppingCart>>();
         _publisher.ProcessMessage(Arg.Any<ShoppingCart>()).Returns(Task.FromResult(true));
-        var message = new ShoppingCart(1, "dranzture");
-        message.AddItem(new ShoppingItem()
-        {
-            Amount = 1,
-            InventoryId = new Guid("75fb07b8-3d6f-486d-be9a-3bb799222a83"),
-            InventoryName = "TestInv",
-            TotalPrice = 10,
-            AddedDateTime = DateTimeOffset.Now
-        }, "dranzture");
-
+        var shoppingCart = new ShoppingCart(1, "dranzture");
+        var inventory = new Inventory("apple", "wow", 10, 10, 10, 10, 10, "dranzture", new Guid());
+       
+        shoppingCart.AddItem(inventory, 10, "dranzture");
 
         _publisher.ProcessMessage(Arg.Any<ShoppingCart>()).Returns(Task.FromResult(true));
 
 
-        var result = await _publisher.ProcessMessage(message);
+        var result = await _publisher.ProcessMessage(shoppingCart);
         Assert.True(result);
     }
 }

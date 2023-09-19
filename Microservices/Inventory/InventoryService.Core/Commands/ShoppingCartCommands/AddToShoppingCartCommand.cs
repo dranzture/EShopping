@@ -6,34 +6,43 @@ namespace InventoryService.Core.Commands.ShoppingCartCommands;
 
 public class AddToShoppingCartCommand : ICommand
 {
-    private readonly IShoppingCartRepository _repository;
-    private readonly ShoppingItem _shoppingItem;
+    private readonly IShoppingCartRepository _shoppingCartRepository;
+    private readonly IInventoryRepository _inventoryRepository;
+    private readonly ShoppingCart _cart;
+    private readonly Inventory _inventory;
     private readonly string _username;
-    private readonly Guid _cartId;
+    private readonly int _amount;
 
-    public AddToShoppingCartCommand(IShoppingCartRepository repository, Guid cartId, ShoppingItem shoppingItem, string username)
+    public AddToShoppingCartCommand(IShoppingCartRepository shoppingCartRepository, 
+        IInventoryRepository inventoryRepository, 
+        ShoppingCart cart, 
+        Inventory inventory, 
+        int amount, 
+        string username)
     {
-        _shoppingItem = shoppingItem;
-        _repository = repository;
+        _shoppingCartRepository = shoppingCartRepository;
+        _inventoryRepository = inventoryRepository;
+        _cart = cart;
+        _inventory = inventory;
+        _amount = amount;
         _username = username;
-        _cartId = cartId;
     }
     public async Task<bool> CanExecute()
     {
-        var result = await _repository.GetShoppingCartById(_cartId);
-        if (result == null)
+        var result = await _shoppingCartRepository.GetShoppingCartByUsername(_username);
+        if (result is not { Status: ShoppingCart.CheckoutStatus.None })
         {
             return false;
         }
-        var shoppingItem = result.ShoppingItems.Where(e => e.InventoryId == _shoppingItem.InventoryId);
+        var shoppingItem = result.ShoppingItems.FirstOrDefault(e => e.Item.Id == _inventory.Id);
         return shoppingItem == null;
     }
 
     public async Task Execute()
     {
-        var result = await _repository.GetShoppingCartById(_cartId);
-        result.AddItem(_shoppingItem, _username);
-        await _repository.UpdateAsync(result);
-        await _repository.SaveChangesAsync();
+        var result = await _shoppingCartRepository.GetShoppingCartById(_cart.Id);
+        result!.AddItem(_inventory, _amount,_username);
+        await _shoppingCartRepository.UpdateAsync(result);
+        await _shoppingCartRepository.SaveChangesAsync();
     }
 }

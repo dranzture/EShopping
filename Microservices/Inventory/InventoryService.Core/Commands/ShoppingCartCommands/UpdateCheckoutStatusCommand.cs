@@ -1,16 +1,32 @@
 ﻿using InventoryService.Core.Interfaces;
+using CheckoutStatus = InventoryService.Core.Models.ShoppingCart.CheckoutStatus;
 
 namespace InventoryService.Core.Commands.ShoppingCartCommands;
 
 public class UpdateCheckoutStatusCommand : ICommand
 {
-    public Task<bool> CanExecute()
+    private readonly IShoppingCartRepository _repository;
+    private readonly Guid _cartId;
+    private readonly CheckoutStatus _status;
+
+    public UpdateCheckoutStatusCommand(IShoppingCartRepository repository, Guid cartId, CheckoutStatus status)
     {
-        throw new NotImplementedException();
+        _repository = repository;
+        _cartId = cartId;
+        _status = status;
     }
 
-    public Task Execute()
+    public async Task<bool> CanExecute()
     {
-        throw new NotImplementedException();
+        var result = await _repository.GetShoppingCartById(_cartId);
+        if (result == null) return false;
+        return result.Status != CheckoutStatus.Completed && _status != CheckoutStatus.None;
+    }
+
+    public async Task Execute()
+    {
+        var result = await _repository.GetShoppingCartById(_cartId);
+        result!.UpdateCheckoutStatus(_status);
+        await _repository.SaveChangesAsync();
     }
 }

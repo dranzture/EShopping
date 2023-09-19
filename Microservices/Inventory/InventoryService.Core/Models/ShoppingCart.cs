@@ -6,13 +6,13 @@ public class ShoppingCart : BaseEntity
 {
     public ShoppingCart(int userId, string username)
     {
-        UserId = userId;
+        Username = username;
         CreatedBy = username;
         CreatedDateTime = DateTimeOffset.Now;
         _ShoppingItems = new List<ShoppingItem>();
     }
 
-    public int UserId { get; private set; }
+    public string Username { get; private set; }
     
     private List<ShoppingItem> _ShoppingItems { get; set; }
 
@@ -21,34 +21,34 @@ public class ShoppingCart : BaseEntity
 
     public CheckoutStatus Status { get; private set; } = CheckoutStatus.None;
     
-    public void AddItem(ShoppingItem shoppingItem, string username)
+    public void AddItem(Inventory inventory, int amount, string username)
     {
-        var item = _ShoppingItems.FirstOrDefault(x => x.InventoryId == shoppingItem.InventoryId);
+        var item = _ShoppingItems.FirstOrDefault(x => x.Item.Id == inventory.Id);
         if (item != null) throw new ArgumentException("This item is already in the shopping cart");
-        _ShoppingItems.Add(shoppingItem);
+        _ShoppingItems.Add(new ShoppingItem()
+        {
+            Item = inventory,
+            Amount = amount,
+            TotalPrice = inventory.Price * amount,
+            AddedDateTime = DateTimeOffset.Now
+        });
+    }
+
+    public void UpdateAmountOfItem(Inventory inventory, int amount, string username)
+    {
+        var item = _ShoppingItems.FirstOrDefault(x => x.Item.Id == inventory.Id);
+        if (item == null) return;
+        item.Amount = amount;
+        item.UpdatedDateTime = DateTimeOffset.Now;
+        item.TotalPrice = amount * inventory.Price;
         UpdateModifiedFields(username);
     }
 
-    public void UpdateAmountOfItem(Guid inventoryId, int amount, string username)
+    public void RemoveItem(Inventory inventory, string username)
     {
-        var item = _ShoppingItems.FirstOrDefault(x => x.InventoryId == inventoryId);
-        if (item != null)
-        {
-            item.Amount = amount;
-            item.UpdatedDateTime = DateTimeOffset.Now;
-        }
-
-        UpdateModifiedFields(username);
-    }
-
-    public void RemoveItem(ShoppingItem shoppingItem, string username, int amount = 1)
-    {
-        var item = _ShoppingItems.FirstOrDefault(x => x.InventoryId == shoppingItem.InventoryId);
-        if (item != null && item.Amount >= amount)
-        {
-            item.Amount -= amount;
-        }
-
+        var item = _ShoppingItems.FirstOrDefault(x => x.Item.Id == inventory.Id);
+        if (item == null) return;
+        _ShoppingItems.Remove(item);
         UpdateModifiedFields(username);
     }
 
