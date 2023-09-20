@@ -9,6 +9,7 @@ using InventoryService.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using InventoryService.Core.Helpers;
 using InventoryService.Core.ValueObjects;
+using InventoryService.Infrastructure.Consumer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +24,7 @@ builder.Services.AddSingleton<AppSettings>(appSettings);
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseInMemoryDatabase("InventoryServiceDb"));
-
+builder.Services.AddSingleton<IHostedService>(provider => new ShoppingCartConsumerService(appSettings));
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -32,8 +33,6 @@ builder.Services.AddGrpc(options =>
 {
     options.EnableDetailedErrors = true;
     options.Interceptors.Add<LoggerInterceptor>();
-    
-
 });
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddGrpcReflection();
@@ -56,10 +55,8 @@ app.UseRouting();
 
 app.MapControllers();
 app.MapGrpcService<InventoryGrpcService>();
-app.MapGet("/protos/inventory.proto", async context =>
-{
-    await context.Response.WriteAsync(File.ReadAllText("Protos/inventory.proto"));
-});
+app.MapGet("/protos/inventory.proto",
+    async context => { await context.Response.WriteAsync(File.ReadAllText("Protos/inventory.proto")); });
 
 app.MapGrpcReflectionService();
 
