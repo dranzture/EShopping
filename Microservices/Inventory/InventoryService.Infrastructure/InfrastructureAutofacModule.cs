@@ -44,8 +44,8 @@ public class InfrastructureAutofacModule : Module
             .As(typeof(IRepository<>))
             .InstancePerLifetimeScope();
         
-        builder.RegisterType<CheckoutPublisher>()
-            .As<ICheckoutPublisher<ShoppingCart>>()
+        builder.RegisterType(typeof(Publisher<,>))
+            .As(typeof(IPublisher<,>))
             .InstancePerLifetimeScope();
     }
 }

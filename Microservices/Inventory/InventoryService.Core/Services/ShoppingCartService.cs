@@ -13,12 +13,12 @@ public class ShoppingCartService : IShoppingCartService
     private readonly IShoppingCartRepository _shoppingCartRepository;
     private readonly IInventoryRepository _inventoryRepository;
     private readonly IMapper _mapper;
-    private readonly ICheckoutPublisher<ShoppingCart> _publisher;
+    private readonly IPublisher<string,ShoppingCart> _publisher;
 
     public ShoppingCartService(IShoppingCartRepository shoppingCartRepository, 
         IInventoryRepository inventoryRepository, 
         IMapper mapper, 
-        ICheckoutPublisher<ShoppingCart> publisher)
+        IPublisher<string,ShoppingCart> publisher)
     {
         _shoppingCartRepository = shoppingCartRepository;
         _inventoryRepository = inventoryRepository;

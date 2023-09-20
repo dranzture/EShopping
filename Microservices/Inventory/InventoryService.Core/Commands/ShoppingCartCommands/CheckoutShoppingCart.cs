@@ -7,9 +7,9 @@ public class CheckoutShoppingCart : ICommand
 {
     private readonly IShoppingCartRepository _repository;
     private readonly ShoppingCart _cart;
-    private readonly ICheckoutPublisher<ShoppingCart> _publisher;
+    private readonly IPublisher<string,ShoppingCart> _publisher;
 
-    public CheckoutShoppingCart(IShoppingCartRepository repository, ShoppingCart cart, ICheckoutPublisher<ShoppingCart> publisher)
+    public CheckoutShoppingCart(IShoppingCartRepository repository, ShoppingCart cart, IPublisher<string,ShoppingCart> publisher)
     {
         _repository = repository;
         _cart = cart;
@@ -26,6 +26,6 @@ public class CheckoutShoppingCart : ICommand
     public async Task Execute()
     {
         var cartItem = await _repository.GetShoppingCartById(_cart.Id);
-        await _publisher.ProcessMessage(cartItem!);
+        await _publisher.ProcessMessage(IPublisher<string, ShoppingCart>.CheckoutTopic, new Guid().ToString(), cartItem!);
     }
 }
