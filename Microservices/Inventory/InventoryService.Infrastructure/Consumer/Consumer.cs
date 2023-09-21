@@ -1,19 +1,26 @@
-﻿using Confluent.Kafka;
+﻿using System.Text.Json;
+using Confluent.Kafka;
+using InventoryService.Core.Handlers;
+using InventoryService.Core.Models;
+using InventoryService.Core.Requests;
 using InventoryService.Core.ValueObjects;
+using MediatR;
 using Microsoft.Extensions.Hosting;
 
 namespace InventoryService.Infrastructure.Consumer;
 
-public class ShoppingCartConsumerService : IHostedService
+public class ShoppingCartConsumerService : BackgroundService
 {
     private readonly AppSettings _settings;
+    private readonly IMediator _mediator;
     private readonly string _topic = "update_cart_status";
     private IConsumer<Ignore, string> _consumer;
     private CancellationTokenSource _cancellationTokenSource;
 
-    public ShoppingCartConsumerService(AppSettings settings)
+    public ShoppingCartConsumerService(AppSettings settings, IMediator mediator)
     {
         _settings = settings;
+        _mediator = mediator;
         var config = new ProducerConfig
         {
             BootstrapServers = _settings.KafkaSettings.BootstrapServers
@@ -24,21 +31,12 @@ public class ShoppingCartConsumerService : IHostedService
         _cancellationTokenSource = new CancellationTokenSource();
     }
 
-    public Task StartAsync(CancellationToken cancellationToken)
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-
-        Task.Run(() => StartConsumerLoop(_cancellationTokenSource.Token), cancellationToken);
-
-        return Task.CompletedTask;
+        await Task.Run(() => StartConsumerLoop(_cancellationTokenSource.Token), stoppingToken);
     }
 
-    public Task StopAsync(CancellationToken cancellationToken)
-    {
-        _cancellationTokenSource.Cancel();
-        _consumer.Close();
-        _consumer.Dispose();
-        return Task.CompletedTask;
-    }
+    
 
     private void StartConsumerLoop(CancellationToken cancellationToken)
     {
@@ -51,6 +49,8 @@ public class ShoppingCartConsumerService : IHostedService
                     var consumeResult = _consumer.Consume(cancellationToken);
                     Console.WriteLine($"Received message: {consumeResult.Message.Value}");
                     // Handle the received message here
+                    var shoppingCart = JsonSerializer.Deserialize<ShoppingCart>(consumeResult.Message.Value);
+                    _mediator.Send(new UpdateShoppingCartRequest(shoppingCart), cancellationToken);
                 }
                 catch (ConsumeException ex)
                 {
@@ -61,6 +61,9 @@ public class ShoppingCartConsumerService : IHostedService
         catch (OperationCanceledException)
         {
             Console.WriteLine("---> Consumer stopped.");
+            _cancellationTokenSource.Cancel();
+            _consumer.Close();
+            _consumer.Dispose();
         }
     }
 }
