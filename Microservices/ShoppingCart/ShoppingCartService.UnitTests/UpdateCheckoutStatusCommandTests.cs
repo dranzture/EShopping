@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using NSubstitute;
 using ShoppingCartService.Core.Commands;
 using ShoppingCartService.Core.Entities;

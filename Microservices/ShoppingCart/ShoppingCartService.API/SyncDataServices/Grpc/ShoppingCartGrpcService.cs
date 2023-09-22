@@ -1,7 +1,10 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Threading.Tasks;
+using AutoMapper;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using GrpcShoppingCartService;
+using Microsoft.Extensions.Logging;
 using ShoppingCartService.Core.Dtos;
 using ShoppingCartService.Core.Interfaces;
 

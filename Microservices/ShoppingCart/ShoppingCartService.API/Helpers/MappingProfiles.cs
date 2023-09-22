@@ -1,6 +1,8 @@
+using System;
 using AutoMapper;
 using GrpcShoppingCartService;
 using ShoppingCartService.Core.Dtos;
+using ShoppingCartService.Core.Entities;
 using ShoppingCartService.Core.Models;
 
 namespace ShoppingCartService.API.Helpers;
