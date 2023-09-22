@@ -1,9 +1,7 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=584A0CDA_002D3633_002D4DF4_002DB839_002D5A054DEEE157_002Fd_003ASyncDataServices_002Fd_003AGrpc_002Ff_003AGrpcService_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6ccbb23e_002D169c_002D4e9f_002Dad7c_002D4b0077639dec/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="AutoMapperTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::21313E88-F49C-4FC5-BA72-D28E816CAD82::net7.0::InventoryService.Tests.PublisherProductionTests.CheckoutPublisher_Publish_Should_Return_True&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+  &lt;Project Location="C:\Users\polat\RiderProjects\EShopping\Microservices\Inventory\InventoryService.UnitTests" Presentation="&amp;lt;InventoryService.UnitTests&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d60175de_002D973a_002D4127_002D9fa1_002D36abb5222510/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Map_GrpcInventoryDtoToInventoryDto_ShouldBeValid" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;

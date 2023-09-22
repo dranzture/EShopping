@@ -8,11 +8,15 @@ public abstract class BaseEntity
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Key]
     public Guid Id { get; set; }
+    
     [Required]
     public DateTimeOffset CreatedDateTime { get; protected set; }
+    
     [Required]
     public string CreatedBy { get; protected set; }
+    
     public DateTimeOffset? ModifiedDateTime { get; protected set; }
+    
     public string? ModifiedBy { get; protected set; }
     
     public bool IsDeleted { get; protected set; }

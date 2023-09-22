@@ -1,4 +1,5 @@
-﻿using Ardalis.GuardClauses;
+﻿using System.ComponentModel.DataAnnotations;
+using Ardalis.GuardClauses;
 using InventoryService.Core.Interfaces;
 
 namespace InventoryService.Core.Models;
@@ -35,14 +36,25 @@ public class Inventory : BaseEntity
             Id = id.Value;
         }
     }
-
+    [Required]
     public string Name { get; private set; }
+    
+    [Required]
     public string Description { get; private set; }
+    
+    [Required]
     public int InStock { get; private set; }
+    
+    [Required]
     public decimal Height { get; private set; }
+    
+    [Required]
     public decimal Width { get; private set; }
+    
+    [Required]
     public decimal Weight { get; private set; }
-
+    
+    [Required]
     public decimal Price { get; private set; }
     
     public void IncreaseStock(int amount, string username)

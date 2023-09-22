@@ -33,7 +33,6 @@
 
     <ItemGroup>
         <Protobuf Include="Protos\inventory.proto" GrpcServices="Server"/>
-        <Protobuf Include="Protos\shopping_cart.proto" GrpcServices="Server"/>
     </ItemGroup>
     
 </Project>

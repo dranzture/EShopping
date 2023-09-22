@@ -1,4 +1,3 @@
-using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using InventoryService.API.SyncDataServices.Grpc;
@@ -9,8 +8,6 @@ using InventoryService.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using InventoryService.Core.Helpers;
 using InventoryService.Core.ValueObjects;
-using InventoryService.Infrastructure.Consumer;
-using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +22,6 @@ builder.Services.AddSingleton<AppSettings>(appSettings);
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseInMemoryDatabase("InventoryServiceDb"));
-builder.Services.AddHostedService<ShoppingCartConsumerService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

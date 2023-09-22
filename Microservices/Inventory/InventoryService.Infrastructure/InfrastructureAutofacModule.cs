@@ -1,8 +1,6 @@
 ﻿using System.Reflection;
 using Autofac;
 using InventoryService.Core.Interfaces;
-using InventoryService.Core.Models;
-using InventoryService.Infrastructure.Publishers;
 using MediatR;
 using Module = Autofac.Module;
 
@@ -38,29 +36,12 @@ public class InfrastructureAutofacModule : Module
         LoadAssemblies();
 
         RegisterEf(builder);
-        RegisterMediatr(builder);
-        RegisterPublisher(builder);
     }
 
     private void RegisterEf(ContainerBuilder builder)
     {
         builder.RegisterGeneric(typeof(EfRepository<>))
             .As(typeof(IRepository<>))
-            .InstancePerLifetimeScope();
-    }
-
-    private void RegisterMediatr(ContainerBuilder builder)
-    {
-        builder
-            .RegisterType<Mediator>()
-            .As<IMediator>()
-            .InstancePerLifetimeScope();
-    }
-
-    private void RegisterPublisher(ContainerBuilder builder)
-    {
-        builder.RegisterType(typeof(Publisher<,>))
-            .As(typeof(IPublisher<,>))
             .InstancePerLifetimeScope();
     }
 }

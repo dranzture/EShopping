@@ -6,7 +6,7 @@ using InventoryService.Core.Dtos;
 using InventoryService.Core.Interfaces;
 using InventoryService.Core.Models;
 using InventoryCoreService = InventoryService.Core.Services.InventoryService;
-
+namespace InventoryService.Tests;
 public class InventoryServiceTests
 {
     private readonly IMapper _mapper;

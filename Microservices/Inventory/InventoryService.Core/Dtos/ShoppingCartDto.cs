@@ -1,10 +1,14 @@
-﻿namespace InventoryService.Core.Dtos;
+﻿using InventoryService.Core.Models;
+
+namespace InventoryService.Core.Dtos;
 
 public class ShoppingCartDto
 {
     public Guid? Id { get; set; }
     
     public string Username { get; set; }
+
+    public ShoppingCart.CheckoutStatus Status { get; private set; } = ShoppingCart.CheckoutStatus.None;
     
-    List<ShoppingItemDto> ShoppingItems { get; set; }
+    public List<ShoppingItemDto> ShoppingItems { get; set; }
 }

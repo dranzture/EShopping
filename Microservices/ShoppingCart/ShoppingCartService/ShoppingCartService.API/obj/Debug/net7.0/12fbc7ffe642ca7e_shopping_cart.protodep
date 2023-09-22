@@ -1,0 +1,4 @@
+obj\Debug\net7.0\Protos/ShoppingCart.cs \
+obj\Debug\net7.0\Protos/ShoppingCartGrpc.cs: C:/Users/polat/.nuget/packages/grpc.tools/2.57.0/build/native/include/google/protobuf/empty.proto\
+ C:/Users/polat/.nuget/packages/grpc.tools/2.57.0/build/native/include/google/protobuf/wrappers.proto\
+ Protos/shopping_cart.proto

@@ -1,26 +1,31 @@
-﻿using InventoryService.Core.ValueObjects;
+﻿using System.ComponentModel.DataAnnotations;
+using InventoryService.Core.ValueObjects;
 
 namespace InventoryService.Core.Models;
 
 public class ShoppingCart : BaseEntity
 {
-    public ShoppingCart(int userId, string username)
+    public ShoppingCart(string username, Guid? id = null)
     {
         Username = username;
         CreatedBy = username;
         CreatedDateTime = DateTimeOffset.Now;
         _ShoppingItems = new List<ShoppingItem>();
+        if (id.HasValue)
+        {
+            Id = id.Value;
+        }
     }
 
-    public string Username { get; private set; }
-    
+    [Required] public string Username { get; private set; }
+
     private List<ShoppingItem> _ShoppingItems { get; set; }
 
     public IReadOnlyCollection<ShoppingItem> ShoppingItems => _ShoppingItems;
-    
+
 
     public CheckoutStatus Status { get; private set; } = CheckoutStatus.None;
-    
+
     public void AddItem(Inventory inventory, int amount, string username)
     {
         var item = _ShoppingItems.FirstOrDefault(x => x.Item.Id == inventory.Id);
@@ -56,7 +61,7 @@ public class ShoppingCart : BaseEntity
     {
         Status = status;
     }
-    
+
     public void Delete(string username)
     {
         Delete(username);

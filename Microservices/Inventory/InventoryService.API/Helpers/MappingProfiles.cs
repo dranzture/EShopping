@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using GrpcShoppingCartService;
 using InventoryService.Core.Dtos;
 using InventoryService.Core.Models;
 using GrpcInventoryDto = GrpcInventoryService.GrpcInventoryDto;
@@ -25,12 +24,6 @@ public class MappingProfiles : Profile
                 => opt.MapFrom(src => !string.IsNullOrEmpty(src.Id) ? new Guid(src.Id) : (Guid?)null));
         
         CreateMap<InventoryDto, GrpcInventoryDto>()
-            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id.HasValue ? src.Id.Value.ToString() : string.Empty));
-        
-        CreateMap<GrpcShoppingCartDto, ShoppingCartDto>()
-            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => !string.IsNullOrEmpty(src.Id) ? new Guid(src.Id) : (Guid?)null));
-            
-        CreateMap<ShoppingCartDto, GrpcShoppingCartDto>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id.HasValue ? src.Id.Value.ToString() : string.Empty));
         
     }
