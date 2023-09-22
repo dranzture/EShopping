@@ -1,8 +1,8 @@
-﻿using InventoryService.Core.Requests;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using ShoppingCartService.Core.Commands;
 using ShoppingCartService.Core.Interfaces;
+using ShoppingCartService.Core.Requests;
 
 namespace ShoppingCartService.Core.Handlers;
 

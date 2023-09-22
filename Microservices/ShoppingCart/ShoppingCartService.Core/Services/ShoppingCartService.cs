@@ -2,6 +2,7 @@
 using Grpc.Core;
 using ShoppingCartService.Core.Commands;
 using ShoppingCartService.Core.Dtos;
+using ShoppingCartService.Core.Entities;
 using ShoppingCartService.Core.Interfaces;
 using ShoppingCartService.Core.Models;
 
@@ -36,11 +37,11 @@ public class ShoppingCartService : IShoppingCartService
         return command.GetResult()!.Id.ToString();
     }
 
-    public async Task AddShoppingItem(ShoppingCartDto shoppingCartDto, InventoryDto inventoryDto, int amount,string username, CancellationToken token = default)
+    public async Task AddShoppingItem(ShoppingCartDto shoppingCartDto, InventoryDto inventoryDto, int quantity,string username, CancellationToken token = default)
     {
         var shoppingCart = _mapper.Map<ShoppingCart>(shoppingCartDto);
         var inventory = _mapper.Map<Inventory>(inventoryDto);
-        var command = new AddToShoppingCartCommand(_shoppingCartRepository,shoppingCart, inventory, amount, username);
+        var command = new AddToShoppingCartCommand(_shoppingCartRepository,shoppingCart, inventory, quantity, username);
         if (!await command.CanExecute())
         {
             throw new RpcException(new Status(StatusCode.InvalidArgument,
@@ -51,11 +52,11 @@ public class ShoppingCartService : IShoppingCartService
     }
 
     public async Task UpdateShoppingItem(ShoppingCartDto shoppingCartDto, InventoryDto inventoryDto,
-        int amount, string username, CancellationToken token = default)
+        int quantity, string username, CancellationToken token = default)
     {
         var shoppingCart = _mapper.Map<ShoppingCart>(shoppingCartDto);
         var inventory = _mapper.Map<Inventory>(inventoryDto);
-        var command = new UpdateAmountShoppingItemCommand(_shoppingCartRepository, shoppingCart, inventory,amount, username);
+        var command = new UpdateQuantityShoppingItemCommand(_shoppingCartRepository, shoppingCart, inventory,quantity, username);
         if (!await command.CanExecute())
         {
             throw new RpcException(new Status(StatusCode.InvalidArgument,

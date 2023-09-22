@@ -1,6 +1,7 @@
-﻿using ShoppingCartService.Core.Interfaces;
+﻿using ShoppingCartService.Core.Entities;
+using ShoppingCartService.Core.Interfaces;
 using ShoppingCartService.Core.Models;
-using CheckoutStatus = ShoppingCartService.Core.Models.ShoppingCart.CheckoutStatus;
+using CheckoutStatus = ShoppingCartService.Core.Entities.ShoppingCart.CheckoutStatus;
 
 namespace ShoppingCartService.Core.Commands;
 

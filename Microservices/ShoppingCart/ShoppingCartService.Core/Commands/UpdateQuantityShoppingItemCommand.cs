@@ -1,23 +1,24 @@
-﻿using ShoppingCartService.Core.Interfaces;
+﻿using ShoppingCartService.Core.Entities;
+using ShoppingCartService.Core.Interfaces;
 using ShoppingCartService.Core.Models;
 
 namespace ShoppingCartService.Core.Commands;
 
-public class UpdateAmountShoppingItemCommand : ICommand
+public class UpdateQuantityShoppingItemCommand : ICommand
 {
     private readonly string _username;
     private readonly IShoppingCartRepository _shoppingCartRepository;
     private readonly ShoppingCart _cart;
     private readonly Inventory _inventory;
-    private readonly int _amount;
+    private readonly int _quantity;
 
-    public UpdateAmountShoppingItemCommand(IShoppingCartRepository shoppingCartRepository, ShoppingCart cart, 
-        Inventory inventory, int amount, string username)
+    public UpdateQuantityShoppingItemCommand(IShoppingCartRepository shoppingCartRepository, ShoppingCart cart, 
+        Inventory inventory, int quantity, string username)
     {
         _shoppingCartRepository = shoppingCartRepository;
         _cart = cart;
         _inventory = inventory;
-        _amount = amount;
+        _quantity = quantity;
         _username = username;
     }
     
@@ -29,13 +30,13 @@ public class UpdateAmountShoppingItemCommand : ICommand
             return false;
         }
         var shoppingItem = result.ShoppingItems.FirstOrDefault(e => e.Item.Id == _inventory.Id);
-        return shoppingItem != null && shoppingItem.Amount >= _amount;
+        return shoppingItem != null &&  _quantity > 0;
     }
 
     public async Task Execute()
     {
         var result = await _shoppingCartRepository.GetShoppingCartById(_cart.Id);
-        result!.UpdateAmountOfItem(_inventory, _amount, _username);
+        result!.UpdateQuantityOfItem(_inventory, _quantity, _username);
         await _shoppingCartRepository.UpdateAsync(result);
         await _shoppingCartRepository.SaveChangesAsync();
     }

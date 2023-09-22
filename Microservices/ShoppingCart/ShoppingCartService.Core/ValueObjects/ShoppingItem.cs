@@ -1,13 +1,14 @@
+using ShoppingCartService.Core.Entities;
 using ShoppingCartService.Core.Models;
 
 namespace ShoppingCartService.Core.ValueObjects;
 
 public record ShoppingItem
 {
-    public ShoppingItem(Inventory item, int amount, decimal totalPrice, Guid shoppingCartId)
+    public ShoppingItem(Inventory item, int quantity, decimal totalPrice, Guid shoppingCartId)
     {
         Item = item;
-        Amount = amount;
+        Quantity = quantity;
         TotalPrice = totalPrice;
         _shoppingCartId = shoppingCartId;
         ItemAdded();
@@ -15,12 +16,10 @@ public record ShoppingItem
     
     
     private readonly Guid _shoppingCartId;
-
-    public Guid ShoppingCartId => _shoppingCartId;
-
+    
     public Inventory Item { get; private set; }
 
-    public int Amount { get; private set; }
+    public int Quantity { get; private set; }
 
     public decimal TotalPrice { get; private set; }
 
@@ -38,10 +37,10 @@ public record ShoppingItem
         AddedDateTime = DateTimeOffset.Now;
     }
 
-    public void UpdateAmount(int amount, Inventory inventory)
+    public void UpdateQuantity(int quantity, Inventory inventory)
     {
-        Amount = amount;
-        TotalPrice = amount * inventory.Price;
+        Quantity = quantity;
+        TotalPrice = quantity * inventory.Price;
         ItemUpdated();
     }
 }

@@ -1,5 +1,6 @@
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using ShoppingCartService.Core.Entities;
 using ShoppingCartService.Core.Models;
 using ShoppingCartService.Core.ValueObjects;
 

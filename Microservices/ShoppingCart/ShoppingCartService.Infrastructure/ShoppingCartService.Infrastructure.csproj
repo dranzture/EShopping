@@ -21,6 +21,7 @@
 
     <ItemGroup>
       <Compile Include="obj\Debug\net7.0\.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" />
+      <Compile Remove="obj\**" />
     </ItemGroup>
 
 
@@ -34,6 +35,16 @@
       <Content Include="obj\rider.project.model.nuget.info" />
       <Content Include="obj\rider.project.restore.info" />
       <Content Include="obj\ShoppingCartService.Infrastructure.csproj.nuget.dgspec.json" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <EmbeddedResource Remove="obj\**" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <None Remove="obj\**" />
     </ItemGroup>
 
 </Project>

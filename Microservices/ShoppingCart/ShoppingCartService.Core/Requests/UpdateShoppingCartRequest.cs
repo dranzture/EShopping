@@ -1,7 +1,8 @@
 ﻿using MediatR;
+using ShoppingCartService.Core.Entities;
 using ShoppingCartService.Core.Models;
 
-namespace InventoryService.Core.Requests;
+namespace ShoppingCartService.Core.Requests;
 
 public class UpdateShoppingCartRequest : IRequest
 {

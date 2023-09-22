@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using ShoppingCartService.Core.Entities;
 using ShoppingCartService.Core.Interfaces;
 using ShoppingCartService.Core.Models;
 

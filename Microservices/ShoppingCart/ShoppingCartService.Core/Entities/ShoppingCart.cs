@@ -1,7 +1,8 @@
 using System.ComponentModel.DataAnnotations;
+using ShoppingCartService.Core.Models;
 using ShoppingCartService.Core.ValueObjects;
 
-namespace ShoppingCartService.Core.Models;
+namespace ShoppingCartService.Core.Entities;
 
 public class ShoppingCart : BaseEntity
 {
@@ -27,18 +28,19 @@ public class ShoppingCart : BaseEntity
 
     public CheckoutStatus Status { get; private set; } = CheckoutStatus.None;
 
-    public void AddItem(Inventory inventory, int amount, string username)
+    public void AddItem(Inventory inventory, int quantity, string username)
     {
         var item = _shoppingItems.FirstOrDefault(x => x.Item.Id == inventory.Id);
         if (item != null) throw new ArgumentException("This item is already in the shopping cart");
-        _shoppingItems.Add(new ShoppingItem(inventory, amount, inventory.Price, Id));
+        _shoppingItems.Add(new ShoppingItem(inventory, quantity, inventory.Price, Id));
+        UpdateModifiedFields(username);
     }
 
-    public void UpdateAmountOfItem(Inventory inventory, int amount, string username)
+    public void UpdateQuantityOfItem(Inventory inventory, int quantity, string username)
     {
         var item = _shoppingItems.FirstOrDefault(x => x.Item.Id == inventory.Id);
         if (item == null) return;
-        item.UpdateAmount(amount,inventory);
+        item.UpdateQuantity(quantity,inventory);
         UpdateModifiedFields(username);
     }
 

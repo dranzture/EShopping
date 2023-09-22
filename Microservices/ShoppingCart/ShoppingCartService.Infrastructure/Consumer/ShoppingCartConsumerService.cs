@@ -1,9 +1,10 @@
 ﻿using System.Text.Json;
 using Confluent.Kafka;
-using InventoryService.Core.Requests;
 using MediatR;
 using Microsoft.Extensions.Hosting;
+using ShoppingCartService.Core.Entities;
 using ShoppingCartService.Core.Models;
+using ShoppingCartService.Core.Requests;
 using ShoppingCartService.Core.ValueObjects;
 
 namespace ShoppingCartService.Infrastructure.Consumer;

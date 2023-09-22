@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Ardalis.GuardClauses;
+using ShoppingCartService.Core.Models;
 
-namespace ShoppingCartService.Core.Models;
+namespace ShoppingCartService.Core.Entities;
 
 public class Inventory : BaseEntity
 {
@@ -56,15 +57,15 @@ public class Inventory : BaseEntity
     [Required]
     public decimal Price { get; private set; }
     
-    public void IncreaseStock(int amount, string username)
+    public void IncreaseStock(int quantity, string username)
     {
-        InStock += amount;
+        InStock += quantity;
         UpdateModifiedFields(username);
     }
 
-    public void DecreaseStock(int amount, string username)
+    public void DecreaseStock(int quantity, string username)
     {
-        InStock -= amount;
+        InStock -= quantity;
         if (InStock < 0)
         {
             throw new ArgumentOutOfRangeException(nameof(Inventory), "In stock cannot be less than 0");

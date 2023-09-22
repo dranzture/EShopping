@@ -1,4 +1,5 @@
-﻿using ShoppingCartService.Core.Interfaces;
+﻿using ShoppingCartService.Core.Entities;
+using ShoppingCartService.Core.Interfaces;
 using ShoppingCartService.Core.Models;
 
 namespace ShoppingCartService.Core.Commands;
@@ -27,5 +28,8 @@ public class CheckoutShoppingCart : ICommand
     {
         var cartItem = await _repository.GetShoppingCartById(_cart.Id);
         await _publisher.ProcessMessage(IPublisher<string, ShoppingCart>.CheckoutTopic, new Guid().ToString(), cartItem!);
+        cartItem.UpdateCheckoutStatus(ShoppingCart.CheckoutStatus.InProgress);
+        await _repository.UpdateAsync(cartItem);
+        await _repository.SaveChangesAsync();
     }
 }
