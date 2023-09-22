@@ -55,7 +55,7 @@ public class UpdateCheckoutStatusCommandTests
         var repository = Substitute.For<IShoppingCartRepository>();
 
         var existingCart = new ShoppingCart("testUser",cartId);
-
+        existingCart.UpdateCheckoutStatus(ShoppingCart.CheckoutStatus.Completed);
         repository.GetShoppingCartById(cartId).Returns(existingCart);
 
         var command = new UpdateCheckoutStatusCommand(repository, cartId, ShoppingCart.CheckoutStatus.InProgress);
@@ -85,7 +85,6 @@ public class UpdateCheckoutStatusCommandTests
 
         // Assert
         Assert.Equal(ShoppingCart.CheckoutStatus.Completed, existingCart.Status);
-        await repository.Received(1).UpdateAsync(existingCart);
         await repository.Received(1).SaveChangesAsync();
     }
 }

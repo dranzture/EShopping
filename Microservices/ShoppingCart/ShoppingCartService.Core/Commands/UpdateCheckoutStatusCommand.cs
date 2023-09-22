@@ -22,7 +22,7 @@ public class UpdateCheckoutStatusCommand : ICommand
     {
         var result = await _repository.GetShoppingCartById(_cartId);
         if (result == null) return false;
-        return result.Status != ShoppingCart.CheckoutStatus.Completed && _status != ShoppingCart.CheckoutStatus.None;
+        return result.Status != ShoppingCart.CheckoutStatus.Completed && _status != CheckoutStatus.None;
     }
 
     public async Task Execute()
