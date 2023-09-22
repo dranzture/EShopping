@@ -28,4 +28,8 @@
       <ProjectReference Include="..\ShoppingCartService.Core\ShoppingCartService.Core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="obj\Debug\net7.0\" />
+    </ItemGroup>
+
 </Project>
