@@ -1,10 +1,11 @@
 syntax = "proto3";
 option csharp_namespace = "GrpcInventoryService";
 import "google/protobuf/empty.proto";
+
 service GrpcInventoryService {
     rpc AddInventory (GrpcMutateInventoryDto) returns (GrpcIdParam);
     rpc UpdateInventory (GrpcMutateInventoryDto) returns (google.protobuf.Empty);
-    rpc DeleteInventory(GrpcInventoryDeleteDto) returns(google.protobuf.Empty);
+    rpc DeleteInventory(GrpcMutateInventoryDto) returns(google.protobuf.Empty);
     rpc IncreaseInventory(GrpcInventoryChangeDto) returns (google.protobuf.Empty);
     rpc DecreaseInventory(GrpcInventoryChangeDto) returns (google.protobuf.Empty);
     rpc GetById(GrpcIdParam) returns(GrpcInventoryDto);
@@ -23,15 +24,11 @@ message GrpcMutateInventoryDto{
 }
 
 message GrpcInventoryChangeDto{
-    string id = 1;
+    GrpcInventoryDto dto = 1;
     int32 amount = 2;
     string username = 3;
 }
 
-message GrpcInventoryDeleteDto{
-    string id = 1;
-    string username = 2;
-}
 
 message GrpcIdParam{
     string id = 1;

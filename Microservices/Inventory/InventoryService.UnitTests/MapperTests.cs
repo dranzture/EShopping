@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using GrpcInventoryService;
-using InventoryService.Core.Models;
 
 namespace InventoryService.Tests;
 

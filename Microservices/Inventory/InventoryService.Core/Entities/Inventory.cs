@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Ardalis.GuardClauses;
-using InventoryService.Core.Interfaces;
 
-namespace InventoryService.Core.Models;
+namespace InventoryService.Core.Entities;
 
 public class Inventory : BaseEntity
 {
@@ -109,6 +108,6 @@ public class Inventory : BaseEntity
 
     public void Delete(string username)
     {
-        Delete(username);
+        base.Delete(username);
     }
 }

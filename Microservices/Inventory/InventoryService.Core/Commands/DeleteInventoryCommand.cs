@@ -1,30 +1,30 @@
-﻿using InventoryService.Core.Interfaces;
+﻿using InventoryService.Core.Entities;
+using InventoryService.Core.Interfaces;
 
-namespace InventoryService.Core.Commands.InventoryCommands;
+namespace InventoryService.Core.Commands;
 
 public class DeleteInventoryCommand : ICommand
 {
-    private readonly Guid _id;
     private readonly IInventoryRepository _repository;
+    private readonly Inventory _inventory;
     private readonly string _username;
-    public DeleteInventoryCommand(IInventoryRepository repository, Guid id, string username)
+    public DeleteInventoryCommand(IInventoryRepository repository, Inventory inventory, string username)
     {
         _repository = repository;
-        _id = id;
+        _inventory = inventory;
         _username = username;
     }
 
     public async Task<bool> CanExecute()
     {
-        var item = await _repository.GetById(_id);
+        var item = await _repository.GetById(_inventory.Id);
         return item != null;
     }
 
     public async Task Execute()
     {
-        var item = await _repository.GetById(_id);
-        item.Delete(_username);
-        await _repository.UpdateAsync(item);
+        _inventory.Delete(_username);
+        await _repository.UpdateAsync(_inventory);
         await _repository.SaveChangesAsync();
     }
 }

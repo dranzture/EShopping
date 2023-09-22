@@ -1,5 +1,5 @@
 ﻿using InventoryService.Core.Dtos;
-using InventoryService.Core.Models;
+using InventoryService.Core.Entities;
 
 namespace InventoryService.Core.ValueObjects;
 

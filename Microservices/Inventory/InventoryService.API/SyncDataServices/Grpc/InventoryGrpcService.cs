@@ -63,11 +63,12 @@ public class InventoryGrpcService : GrpcInventoryServiceBase
         }
     }
     
-    public override async Task<Empty> DeleteInventory(GrpcInventoryDeleteDto dto, ServerCallContext context)
+    public override async Task<Empty> DeleteInventory(GrpcMutateInventoryDto dto, ServerCallContext context)
     {
         try
         {
-            await _service.DeleteInventory(new Guid(dto.Id), dto.Username);
+            var inventoryDto = _mapper.Map<InventoryDto>(dto);
+            await _service.DeleteInventory(inventoryDto, dto.Username);
             return new Empty();
         }
         catch (RpcException ex)
@@ -84,7 +85,8 @@ public class InventoryGrpcService : GrpcInventoryServiceBase
     {
         try
         {
-            await _service.DecreaseInventory(new Guid(dto.Id), dto.Amount, dto.Username);
+            var inventoryDto = _mapper.Map<InventoryDto>(dto);
+            await _service.DecreaseInventory(inventoryDto, dto.Amount, dto.Username);
             return new Empty();
         }
         catch (RpcException ex)
@@ -101,7 +103,8 @@ public class InventoryGrpcService : GrpcInventoryServiceBase
     {
         try
         {
-            await _service.IncreaseInventory(new Guid(dto.Id), dto.Amount, dto.Username);
+            var inventoryDto = _mapper.Map<InventoryDto>(dto);
+            await _service.IncreaseInventory(inventoryDto, dto.Amount, dto.Username);
             return new Empty();
         }
         catch (RpcException ex)

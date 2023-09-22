@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
 using Grpc.Core;
+using InventoryService.Core.Commands;
 using InventoryService.Core.Commands.InventoryCommands;
 using InventoryService.Core.Dtos;
+using InventoryService.Core.Entities;
 using InventoryService.Core.Interfaces;
-using InventoryService.Core.Models;
 
 namespace InventoryService.Core.Services;
 
@@ -22,8 +23,7 @@ public class InventoryService : IInventoryService
     {
         try
         {
-            var inventory = new Inventory(dto.Name, dto.Description, dto.InStock, dto.Height, dto.Width, dto.Weight,dto.Price,
-                username);
+            var inventory = _mapper.Map<Inventory>(dto);
             var addCommand = new AddInventoryCommand(_repository, inventory);
             if (!await addCommand.CanExecute())
             {
@@ -50,8 +50,7 @@ public class InventoryService : IInventoryService
     {
         try
         {
-            var inventory = new Inventory(dto.Name, dto.Description, dto.InStock, dto.Height, dto.Width, dto.Weight, dto.Price,
-                username, dto.Id);
+            var inventory = _mapper.Map<Inventory>(dto);
             var updateCommand = new UpdateInventoryCommand(_repository, inventory, username);
             if (!await updateCommand.CanExecute())
             {
@@ -72,11 +71,12 @@ public class InventoryService : IInventoryService
         }
     }
 
-    public async Task DeleteInventory(Guid id, string username, CancellationToken token = default)
+    public async Task DeleteInventory(InventoryDto dto, string username, CancellationToken token = default)
     {
         try
         {
-            var deleteCommand = new DeleteInventoryCommand(_repository, id, username);
+            var inventory = _mapper.Map<Inventory>(dto);
+            var deleteCommand = new DeleteInventoryCommand(_repository, inventory, username);
             if (!await deleteCommand.CanExecute())
             {
                 throw new RpcException(new Status(StatusCode.InvalidArgument,
@@ -96,12 +96,13 @@ public class InventoryService : IInventoryService
         }
     }
 
-    public async Task IncreaseInventory(Guid id, int amount, string username,
+    public async Task IncreaseInventory(InventoryDto dto, int amount, string username,
         CancellationToken token = default)
     {
         try
         {
-            var increaseInventoryCommand = new IncreaseInventoryCommand(_repository, id, amount, username);
+            var inventory = _mapper.Map<Inventory>(dto);
+            var increaseInventoryCommand = new IncreaseInventoryCommand(_repository, inventory, amount, username);
             if (!await increaseInventoryCommand.CanExecute())
             {
                 var message = amount < 0
@@ -125,12 +126,13 @@ public class InventoryService : IInventoryService
         }
     }
 
-    public async Task DecreaseInventory(Guid id, int amount, string username,
+    public async Task DecreaseInventory(InventoryDto dto, int amount, string username,
         CancellationToken token = default)
     {
         try
         {
-            var decreaseInventoryCommand = new DecreaseInventoryCommand(_repository, id, amount, username);
+            var inventory = _mapper.Map<Inventory>(dto);
+            var decreaseInventoryCommand = new DecreaseInventoryCommand(_repository, inventory, amount, username);
             if (!await decreaseInventoryCommand.CanExecute())
             {
                 var message = "Cannot decrease stock of the inventory";

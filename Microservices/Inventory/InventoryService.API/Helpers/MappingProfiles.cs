@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using InventoryService.Core.Dtos;
-using InventoryService.Core.Models;
+using InventoryService.Core.Entities;
 using GrpcInventoryDto = GrpcInventoryService.GrpcInventoryDto;
 
 namespace InventoryService.API.Helpers;

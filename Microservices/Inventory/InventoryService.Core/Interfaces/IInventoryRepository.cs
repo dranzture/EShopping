@@ -1,4 +1,4 @@
-﻿using InventoryService.Core.Models;
+﻿using InventoryService.Core.Entities;
 
 namespace InventoryService.Core.Interfaces;
 

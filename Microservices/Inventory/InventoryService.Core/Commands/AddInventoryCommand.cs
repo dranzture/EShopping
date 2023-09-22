@@ -1,5 +1,5 @@
-﻿using InventoryService.Core.Interfaces;
-using InventoryService.Core.Models;
+﻿using InventoryService.Core.Entities;
+using InventoryService.Core.Interfaces;
 
 namespace InventoryService.Core.Commands.InventoryCommands;
 

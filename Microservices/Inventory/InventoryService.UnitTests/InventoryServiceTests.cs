@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Grpc.Core;
+using InventoryService.Core.Commands;
 using NSubstitute;
 using InventoryService.Core.Commands.InventoryCommands;
 using InventoryService.Core.Dtos;
+using InventoryService.Core.Entities;
 using InventoryService.Core.Interfaces;
-using InventoryService.Core.Models;
+using NSubstitute.ReceivedExtensions;
 using InventoryCoreService = InventoryService.Core.Services.InventoryService;
 namespace InventoryService.Tests;
 public class InventoryServiceTests
@@ -24,21 +26,26 @@ public class InventoryServiceTests
     public async Task AddInventory_ValidInput_Success()
     {
         // Arrange
+        var inventoryId = Guid.NewGuid();
+        var username = "testuser";
         var inventoryDto = new InventoryDto
         {
-            Name = "TestItem",
-            Description = "Test description",
-            InStock = 10,
-            Height = 5,
-            Width = 3,
-            Weight = 2,
-            Price = 100
+            Id = inventoryId,
+            Description = "test",
+            Height = 1,
+            Width = 1,
+            Weight = 1,
+            Price = 1,
+            Name = "test",
+            // Initialize with necessary data using object initializer
         };
-        var username = "TestUser";
+        var inventory = new Inventory(inventoryDto.Name,
+            inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
+            inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
+        
         var cancellationToken = CancellationToken.None;
 
-        var addInventoryCommand = Substitute.For<AddInventoryCommand>(_repository, Arg.Any<Inventory>());
-        addInventoryCommand.CanExecute().Returns(true);
+        _repository.GetByName(Arg.Any<string>()).Returns((Inventory?)null);
         _mapper.Map<Inventory>(inventoryDto).Returns(new Inventory());
 
         // Act
@@ -52,22 +59,27 @@ public class InventoryServiceTests
     public async Task AddInventory_DuplicateInventory_ThrowsRpcException()
     {
         // Arrange
+        var inventoryId = Guid.NewGuid();
+        var username = "testuser";
         var inventoryDto = new InventoryDto
         {
-            Name = "TestItem",
-            Description = "Test description",
-            InStock = 10,
-            Height = 5,
-            Width = 3,
-            Weight = 2,
-            Price = 100
+            Id = inventoryId,
+            Description = "test",
+            Height = 1,
+            Width = 1,
+            Weight = 1,
+            Price = 1,
+            Name = "test",
+            // Initialize with necessary data using object initializer
         };
-        var username = "TestUser";
+        var inventory = new Inventory(inventoryDto.Name,
+            inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
+            inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
+        
         var cancellationToken = CancellationToken.None;
 
-        var addInventoryCommand = Substitute.For<AddInventoryCommand>(_repository, Arg.Any<Inventory>());
-        addInventoryCommand.CanExecute().Returns(false);
-        _mapper.Map<Inventory>(inventoryDto).Returns(new Inventory());
+        _repository.GetByName(Arg.Any<string>()).Returns(inventory);
+        _mapper.Map<Inventory>(inventoryDto).Returns(inventory);
 
         // Act & Assert
         await Assert.ThrowsAsync<RpcException>(() =>
@@ -78,53 +90,60 @@ public class InventoryServiceTests
     public async Task UpdateInventory_ValidInput_Success()
     {
         // Arrange
+        var inventoryId = Guid.NewGuid();
+        var username = "testuser";
         var inventoryDto = new InventoryDto
         {
-            Name = "UpdatedItem",
-            Description = "Updated description",
-            InStock = 15,
-            Height = 6,
-            Width = 4,
-            Weight = 3,
-            Price = 120,
-            Id = Guid.NewGuid()
+            Id = inventoryId,
+            Description = "test",
+            Height = 1,
+            Width = 1,
+            Weight = 1,
+            Price = 1,
+            Name = "test",
+            // Initialize with necessary data using object initializer
         };
-        var username = "TestUser";
+        var inventory = new Inventory(inventoryDto.Name,
+            inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
+            inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
+        
         var cancellationToken = CancellationToken.None;
 
-        var updateInventoryCommand =
-            Substitute.For<UpdateInventoryCommand>(_repository, Arg.Any<Inventory>(), username);
-        updateInventoryCommand.CanExecute().Returns(true);
-        _mapper.Map<Inventory>(inventoryDto).Returns(new Inventory());
+        _repository.GetById(Arg.Any<Guid>()).Returns(inventory);
+        _mapper.Map<Inventory>(inventoryDto).Returns(inventory);
 
         // Act
         await _inventoryService.UpdateInventory(inventoryDto, username, cancellationToken);
 
-        // Assert: No exceptions are thrown for a successful update
+        //Assert
+        await _repository.Received(1).SaveChangesAsync();
     }
 
     [Fact]
     public async Task UpdateInventory_InvalidInput_ThrowsRpcException()
     {
-        // Arrange
+// Arrange
+        var inventoryId = Guid.NewGuid();
+        var username = "testuser";
         var inventoryDto = new InventoryDto
         {
-            Name = "UpdatedItem",
-            Description = "Updated description",
-            InStock = 15,
-            Height = 6,
-            Width = 4,
-            Weight = 3,
-            Price = 120,
-            Id = Guid.NewGuid()
+            Id = inventoryId,
+            Description = "test",
+            Height = 1,
+            Width = 1,
+            Weight = 1,
+            Price = 1,
+            Name = "test",
+            // Initialize with necessary data using object initializer
         };
-        var username = "TestUser";
+        var inventory = new Inventory(inventoryDto.Name,
+            inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
+            inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
+        
         var cancellationToken = CancellationToken.None;
 
-        var updateInventoryCommand =
-            Substitute.For<UpdateInventoryCommand>(_repository, Arg.Any<Inventory>(), username);
-        updateInventoryCommand.CanExecute().Returns(false);
-        _mapper.Map<Inventory>(inventoryDto).Returns(new Inventory());
+        _repository.GetById(Arg.Any<Guid>()).Returns((Inventory?)null);
+        _mapper.Map<Inventory>(inventoryDto).Returns(inventory);
 
         // Act & Assert
         await Assert.ThrowsAsync<RpcException>(() =>
@@ -135,84 +154,158 @@ public class InventoryServiceTests
     public async Task DeleteInventory_ValidInput_Success()
     {
         // Arrange
-        var id = Guid.NewGuid();
-        var username = "TestUser";
+        var inventoryId = Guid.NewGuid();
+        var username = "testuser";
+        var inventoryDto = new InventoryDto
+        {
+            Id = inventoryId,
+            Description = "test",
+            Height = 1,
+            Width = 1,
+            Weight = 1,
+            Price = 1,
+            Name = "test",
+            // Initialize with necessary data using object initializer
+        };
+        var inventory = new Inventory(inventoryDto.Name,
+            inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
+            inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
+        
         var cancellationToken = CancellationToken.None;
 
-        var deleteInventoryCommand = Substitute.For<DeleteInventoryCommand>(_repository, id, username);
-        deleteInventoryCommand.CanExecute().Returns(true);
-
+        _repository.GetById(Arg.Any<Guid>()).Returns(inventory);
+        _mapper.Map<Inventory>(inventoryDto).Returns(inventory);
         // Act
-        await _inventoryService.DeleteInventory(id, username, cancellationToken);
+        await _inventoryService.DeleteInventory(inventoryDto, username, cancellationToken);
 
         // Assert: No exceptions are thrown for a successful deletion
+        await _repository.Received(1).SaveChangesAsync();
     }
 
     [Fact]
     public async Task DeleteInventory_InvalidInput_ThrowsRpcException()
     {
         // Arrange
-        var id = Guid.NewGuid();
-        var username = "TestUser";
+        var inventoryId = Guid.NewGuid();
+        var username = "testuser";
+        var inventoryDto = new InventoryDto
+        {
+            Id = inventoryId,
+            Description = "test",
+            Height = 1,
+            Width = 1,
+            Weight = 1,
+            Price = 1,
+            Name = "test",
+            // Initialize with necessary data using object initializer
+        };
+        var inventory = new Inventory(inventoryDto.Name,
+            inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
+            inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
+        
         var cancellationToken = CancellationToken.None;
 
-        var deleteInventoryCommand = Substitute.For<DeleteInventoryCommand>(_repository, id, username);
-        deleteInventoryCommand.CanExecute().Returns(false);
+        _repository.GetById(Arg.Any<Guid>()).Returns((Inventory?)null);
+        _mapper.Map<Inventory>(inventoryDto).Returns(inventory);
 
         // Act & Assert
         await Assert.ThrowsAsync<RpcException>(() =>
-            _inventoryService.DeleteInventory(id, username, cancellationToken));
+            _inventoryService.DeleteInventory(inventoryDto, username, cancellationToken));
     }
 
     [Fact]
     public async Task IncreaseInventory_ValidInput_Success()
     {
         // Arrange
-        var id = Guid.NewGuid();
-        var amount = 5;
-        var username = "TestUser";
+        var inventoryId = Guid.NewGuid();
+        var username = "testuser";
+        int amount = 5;
+        var inventoryDto = new InventoryDto
+        {
+            Id = inventoryId,
+            Description = "test",
+            Height = 1,
+            Width = 1,
+            Weight = 1,
+            Price = 1,
+            Name = "test",
+            InStock = 3
+            // Initialize with necessary data using object initializer
+        };
+        var inventory = new Inventory(inventoryDto.Name,
+            inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
+            inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
+        
         var cancellationToken = CancellationToken.None;
 
-        var increaseInventoryCommand = Substitute.For<IncreaseInventoryCommand>(_repository, id, amount, username);
-        increaseInventoryCommand.CanExecute().Returns(true);
+        _repository.GetById(Arg.Any<Guid>()).Returns(inventory);
+        _mapper.Map<Inventory>(inventoryDto).Returns(inventory);
 
         // Act
-        await _inventoryService.IncreaseInventory(id, amount, username, cancellationToken);
+        await _inventoryService.IncreaseInventory(inventoryDto, amount, username);
 
         // Assert: No exceptions are thrown for a successful increase
+        await _repository.Received(1).SaveChangesAsync();
     }
 
     [Fact]
     public async Task IncreaseInventory_InvalidInput_ThrowsRpcException()
     {
-        // Arrange
-        var id = Guid.NewGuid();
-        var amount = -5; // Invalid amount
-        var username = "TestUser";
+        var inventoryId = Guid.NewGuid();
+        var username = "testuser";
+        int amount = -5;
+        var inventoryDto = new InventoryDto
+        {
+            Id = inventoryId,
+            Description = "test",
+            Height = 1,
+            Width = 1,
+            Weight = 1,
+            Price = 1,
+            Name = "test",
+            InStock = 3
+            // Initialize with necessary data using object initializer
+        };
+        var inventory = new Inventory(inventoryDto.Name,
+            inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
+            inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
+        
         var cancellationToken = CancellationToken.None;
 
-        var increaseInventoryCommand = Substitute.For<IncreaseInventoryCommand>(_repository, id, amount, username);
-        increaseInventoryCommand.CanExecute().Returns(false);
-
+        _repository.GetById(Arg.Any<Guid>()).Returns(inventory);
+        _mapper.Map<Inventory>(inventoryDto).Returns(inventory);
+        
         // Act & Assert
         await Assert.ThrowsAsync<RpcException>(() =>
-            _inventoryService.IncreaseInventory(id, amount, username, cancellationToken));
+            _inventoryService.IncreaseInventory(inventoryDto, amount, username, cancellationToken));
     }
 
     [Fact]
     public async Task DecreaseInventory_ValidInput_Success()
     {
         // Arrange
-        var id = Guid.NewGuid();
-        var amount = 5;
-        var username = "TestUser";
-        var cancellationToken = CancellationToken.None;
-
-        var decreaseInventoryCommand = Substitute.For<DecreaseInventoryCommand>(_repository, id, amount, username);
-        decreaseInventoryCommand.CanExecute().Returns(true);
+        var inventoryId = Guid.NewGuid();
+        var username = "testuser";
+        int amount = 5;
+        var inventoryDto = new InventoryDto
+        {
+            Id = inventoryId,
+            Description = "test",
+            Height = 1,
+            Width = 1,
+            Weight = 1,
+            Price = 1,
+            Name = "test",
+            InStock = 10
+            // Initialize with necessary data using object initializer
+        };
+        var inventory = new Inventory(inventoryDto.Name,
+            inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
+            inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
+        
 
         // Act
-        await _inventoryService.DecreaseInventory(id, amount, username, cancellationToken);
+        await _inventoryService.DecreaseInventory(inventoryDto, amount, username);
 
         // Assert: No exceptions are thrown for a successful decrease
     }
@@ -221,19 +314,65 @@ public class InventoryServiceTests
     public async Task DecreaseInventory_InvalidInput_ThrowsRpcException()
     {
         // Arrange
-        var id = Guid.NewGuid();
-        var amount = -5; // Invalid amount
-        var username = "TestUser";
+        var inventoryId = Guid.NewGuid();
+        var username = "testuser";
+        int amount = 5;
+        var inventoryDto = new InventoryDto
+        {
+            Id = inventoryId,
+            Description = "test",
+            Height = 1,
+            Width = 1,
+            Weight = 1,
+            Price = 1,
+            Name = "test",
+            InStock = 3
+            // Initialize with necessary data using object initializer
+        };
+        var inventory = new Inventory(inventoryDto.Name,
+            inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
+            inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
+        
         var cancellationToken = CancellationToken.None;
 
-        var decreaseInventoryCommand = Substitute.For<DecreaseInventoryCommand>(_repository, id, amount, username);
-        decreaseInventoryCommand.CanExecute().Returns(false);
+        _repository.GetByName(Arg.Any<string>()).Returns(inventory);
+        _mapper.Map<Inventory>(inventoryDto).Returns(new Inventory());
 
         // Act & Assert
         await Assert.ThrowsAsync<RpcException>(() =>
-            _inventoryService.DecreaseInventory(id, amount, username, cancellationToken));
+            _inventoryService.DecreaseInventory(inventoryDto, amount, username, cancellationToken));
     }
+    [Fact]
+    public async Task DecreaseInventory_WhenNotFound_ThrowsRpcException()
+    {
+        // Arrange
+        var inventoryId = Guid.NewGuid();
+        var username = "testuser";
+        int amount = -5;
+        var inventoryDto = new InventoryDto
+        {
+            Id = inventoryId,
+            Description = "test",
+            Height = 1,
+            Width = 1,
+            Weight = 1,
+            Price = 1,
+            Name = "test",
+            // Initialize with necessary data using object initializer
+        };
+        var inventory = new Inventory(inventoryDto.Name,
+            inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
+            inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
+        
+        var cancellationToken = CancellationToken.None;
 
+        _repository.GetByName(Arg.Any<string>()).Returns((Inventory?)null);
+        _mapper.Map<Inventory>(inventoryDto).Returns(new Inventory());
+
+        // Act & Assert
+        await Assert.ThrowsAsync<RpcException>(() =>
+            _inventoryService.DecreaseInventory(inventoryDto, amount, username, cancellationToken));
+    }
     [Fact]
     public async Task GetAllInventory_ValidInput_Success()
     {
@@ -289,7 +428,7 @@ public class InventoryServiceTests
             2, // Weight
             100, // Price
             "TestUser", // Username
-            new Guid() // Id
+            id // Id
         );
         _repository.GetById(id, cancellationToken).Returns(inventory);
 
@@ -320,7 +459,7 @@ public class InventoryServiceTests
     public async Task GetByName_ValidName_Success()
     {
         // Arrange
-        var name = "TestItem";
+        var name = "TestItem1";
         var cancellationToken = CancellationToken.None;
         var inventory = new Inventory(
             "TestItem1", // Name

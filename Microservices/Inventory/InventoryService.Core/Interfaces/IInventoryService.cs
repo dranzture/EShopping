@@ -1,5 +1,5 @@
 ﻿using InventoryService.Core.Dtos;
-using InventoryService.Core.Models;
+using InventoryService.Core.Entities;
 
 namespace InventoryService.Core.Interfaces;
 
@@ -9,11 +9,11 @@ public interface IInventoryService
     
     Task UpdateInventory(InventoryDto dto, string username, CancellationToken token = default);
 
-    Task DeleteInventory(Guid id, string username, CancellationToken token = default);
+    Task DeleteInventory(InventoryDto dto, string username, CancellationToken token = default);
     
-    Task IncreaseInventory(Guid id, int amount, string username, CancellationToken token = default);
+    Task IncreaseInventory(InventoryDto dto, int amount, string username, CancellationToken token = default);
     
-    Task DecreaseInventory(Guid id, int amount, string username, CancellationToken token = default);
+    Task DecreaseInventory(InventoryDto dto, int amount, string username, CancellationToken token = default);
 
     Task<HashSet<Inventory>> GetAllInventory(CancellationToken token = default);
 

@@ -15,7 +15,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f1709b6-fca2-4cfd-9a9e-505d5f094e8f" name="Changes" comment="Missed mapper file" />
+    <list default="true" id="8f1709b6-fca2-4cfd-9a9e-505d5f094e8f" name="Changes" comment="Fix">
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.API/Helpers/MappingProfiles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.API/Helpers/MappingProfiles.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.API/Protos/inventory.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.API/Protos/inventory.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.API/SyncDataServices/Grpc/InventoryGrpcService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.API/SyncDataServices/Grpc/InventoryGrpcService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Commands/AddInventoryCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Commands/AddInventoryCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Commands/DecreaseInventoryCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Commands/DecreaseInventoryCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Commands/DeleteInventoryCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Commands/DeleteInventoryCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Commands/IncreaseInventoryCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Commands/IncreaseInventoryCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Commands/UpdateInventoryCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Commands/UpdateInventoryCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Dtos/ShoppingCartDto.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Helpers/PrepDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Helpers/PrepDb.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Interfaces/IInventoryRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Interfaces/IInventoryRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Interfaces/IInventoryService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Interfaces/IInventoryService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Models/BaseEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Entities/BaseEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Models/Inventory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Entities/Inventory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Models/ShoppingCart.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Repositories/InventoryRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Repositories/InventoryRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Requests/UpdateShoppingCartRequest.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Services/InventoryService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Services/InventoryService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/ValueObjects/ShoppingItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/ValueObjects/ShoppingItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Infrastructure/Data/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Infrastructure/Data/AppDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.UnitTests/InventoryCommandsTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.UnitTests/InventoryCommandsTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.UnitTests/InventoryServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.UnitTests/InventoryServiceTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.UnitTests/MapperTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.UnitTests/MapperTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ShoppingCartService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ShoppingCartService/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,30 +87,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/polat/RiderProjects/EShopping/Microservices/ShoppingCart/ShoppingCartService.sln&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/polat/RiderProjects/EShopping/Microservices/ShoppingCart/ShoppingCartService.sln",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;ChangesTree.GroupingKeys&quot;: [
-      &quot;directory&quot;
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+      "directory"
     ],
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\polat\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\polat\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\polat\\AppData\\Local\\Symbols\\src&quot;
+    "rider.external.source.directories": [
+      "C:\\Users\\polat\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache",
+      "C:\\Users\\polat\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache",
+      "C:\\Users\\polat\\AppData\\Local\\Symbols\\src"
     ]
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -95,7 +122,7 @@
       <updated>1695346542997</updated>
       <workItem from="1695346544032" duration="315000" />
       <workItem from="1695346869791" duration="1030000" />
-      <workItem from="1695348581997" duration="12459000" />
+      <workItem from="1695348581997" duration="14079000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <option name="closed" value="true" />
@@ -145,7 +172,15 @@
       <option name="project" value="LOCAL" />
       <updated>1695418753579</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Fix">
+      <option name="closed" value="true" />
+      <created>1695419093794</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1695419093794</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,7 +195,8 @@
     <MESSAGE value="Finished unit tests, and shopping cart service is ready to roll" />
     <MESSAGE value="ignore these files" />
     <MESSAGE value="Missed mapper file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Missed mapper file" />
+    <MESSAGE value="Fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

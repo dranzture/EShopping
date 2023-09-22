@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace InventoryService.Core.Models;
+namespace InventoryService.Core.Entities;
 
 public abstract class BaseEntity
 {
@@ -31,7 +31,7 @@ public abstract class BaseEntity
         ModifiedBy = username;
     }
     
-    protected void UpdateDeletedFields(string username)
+    protected void Delete(string username)
     {
         DeletedDateTime = DateTimeOffset.Now;
         DeletedBy = username;

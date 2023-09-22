@@ -1,34 +1,34 @@
-﻿using InventoryService.Core.Interfaces;
-using InventoryService.Core.Models;
+﻿using InventoryService.Core.Entities;
+using InventoryService.Core.Interfaces;
 
 namespace InventoryService.Core.Commands.InventoryCommands;
 
 public class UpdateInventoryCommand : ICommand
 {
-    private readonly Inventory _item;
     private readonly IInventoryRepository _repository;
+    private readonly Inventory _inventory;
     private readonly string _username;
     
-    public UpdateInventoryCommand(IInventoryRepository repository, Inventory item, string username)
+    public UpdateInventoryCommand(IInventoryRepository repository, Inventory inventory, string username)
     {
         _repository = repository;
-        _item = item;
+         _inventory = inventory;
         _username = username;
     }
     
     public async Task<bool> CanExecute()
     {
-        var item = await _repository.GetById(_item.Id);
+        var item = await _repository.GetById(_inventory.Id);
         return item != null;
     }
 
     public async Task Execute()
     {
-        var item = await _repository.GetById(_item.Id);
-        item.ChangeDescription(_item.Description, _username);
-        item.ChangeSize(_item.Height,_item.Width, _username);
-        item.UpdatePrice(_item.Price, _username);
-        await _repository.UpdateAsync(item);
+        var item = await _repository.GetById(_inventory.Id);
+        item!.ChangeDescription(_inventory.Description, _username);
+        item!.ChangeSize(_inventory.Height,_inventory.Width, _username);
+        item!.UpdatePrice(_inventory.Price, _username);
+        await _repository.UpdateAsync(item!);
         await _repository.SaveChangesAsync();
     }
 }
