@@ -57,9 +57,4 @@ app.UseAuthentication();
 
 app.MapControllers();
 
-app.Use(async (context, next) =>
-{
-    await next.Invoke();
-});
-
 app.Run();

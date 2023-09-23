@@ -20,7 +20,7 @@ public class InventoryGrpcService : GrpcInventoryServiceBase
         _mapper = mapper;
     }
 
-    public override async Task<GrpcIdParam> AddInventory(GrpcMutateInventoryDto dto, ServerCallContext context)
+    public override async Task<StringValue> AddInventory(GrpcUpdateInventoryDto dto, ServerCallContext context)
     {
         try
         {
@@ -28,9 +28,9 @@ public class InventoryGrpcService : GrpcInventoryServiceBase
             var result = await _service.AddInventory(item, dto.Username);
 
 
-            return new GrpcIdParam()
+            return new StringValue()
             {
-                Id = result
+                Value = result
             };
 
 
@@ -45,7 +45,7 @@ public class InventoryGrpcService : GrpcInventoryServiceBase
         }
     }
     
-    public override async Task<Empty> UpdateInventory(GrpcMutateInventoryDto dto, ServerCallContext context)
+    public override async Task<Empty> UpdateInventory(GrpcUpdateInventoryDto dto, ServerCallContext context)
     {
         try
         {
@@ -63,7 +63,7 @@ public class InventoryGrpcService : GrpcInventoryServiceBase
         }
     }
     
-    public override async Task<Empty> DeleteInventory(GrpcMutateInventoryDto dto, ServerCallContext context)
+    public override async Task<Empty> DeleteInventory(GrpcUpdateInventoryDto dto, ServerCallContext context)
     {
         try
         {
@@ -81,7 +81,7 @@ public class InventoryGrpcService : GrpcInventoryServiceBase
         }
     }
     
-    public override async Task<Empty> DecreaseInventory(GrpcInventoryChangeDto dto, ServerCallContext context)
+    public override async Task<Empty> DecreaseInventory(GrpcInventoryQuantityChangeDto dto, ServerCallContext context)
     {
         try
         {
@@ -99,7 +99,7 @@ public class InventoryGrpcService : GrpcInventoryServiceBase
         }
     }
     
-    public override async Task<Empty> IncreaseInventory(GrpcInventoryChangeDto dto, ServerCallContext context)
+    public override async Task<Empty> IncreaseInventory(GrpcInventoryQuantityChangeDto dto, ServerCallContext context)
     {
         try
         {
@@ -117,11 +117,11 @@ public class InventoryGrpcService : GrpcInventoryServiceBase
         }
     }
     
-    public override async Task<GrpcInventoryDto> GetById(GrpcIdParam dto, ServerCallContext context)
+    public override async Task<GrpcInventoryDto> GetById(StringValue id, ServerCallContext context)
     {
         try
         {
-            var guid = new Guid(dto.Id);
+            var guid = new Guid(id.Value);
             var returnItem = await _service.GetById(guid);
             if (returnItem == null)
             {
@@ -139,11 +139,11 @@ public class InventoryGrpcService : GrpcInventoryServiceBase
         }
     }
     
-    public override async Task<GrpcInventoryDto> GetByName(GrpcNameParam dto, ServerCallContext context)
+    public override async Task<GrpcInventoryDto> GetByName(StringValue name, ServerCallContext context)
     {
         try
         {
-            var returnItem = await _service.GetByName(dto.Name);
+            var returnItem = await _service.GetByName(name.Value);
             if (returnItem == null)
             {
                 throw new RpcException(new Status(StatusCode.NotFound, "Inventory Not Found"));

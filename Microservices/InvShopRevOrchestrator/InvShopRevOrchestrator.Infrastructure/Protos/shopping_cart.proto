@@ -1,0 +1,59 @@
+syntax = "proto3";
+option csharp_namespace = "GrpcShoppingCartService";
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+message GrpcShoppingCartDto {
+    optional string id = 1; 
+    string username = 2;
+    repeated GrpcShoppingItemDto shopping_items = 3;
+}
+
+message GrpcInventoryDto {
+    string id = 1; 
+    string name = 2;
+    string description = 3;
+    int32 in_stock = 4;
+    double height = 5;
+    double width = 6;
+    double weight = 7;
+    double price = 8;
+}
+
+message GrpcShoppingItemDto {
+    string id = 1; 
+    string item_name = 2;
+    int32 quantity = 3;
+    double item_price = 4;
+}
+
+message GrpcAddShoppingCartItemCommandDto{
+    GrpcShoppingCartDto shopping_cart = 1;
+    GrpcInventoryDto inventory = 2;
+    int32 quantity = 3;
+}
+
+message GrpcUpdateShoppingCartItemCommandDto{
+    GrpcShoppingCartDto shopping_cart = 1;
+    GrpcInventoryDto inventory = 2;
+    int32 quantity = 3;
+}
+
+message GrpcDeleteShoppingCartItemCommandDto{
+    GrpcShoppingCartDto shopping_cart = 1;
+    GrpcInventoryDto inventory = 2;
+}
+
+
+service GrpcShoppingCartService {
+    rpc AddShoppingCart(GrpcShoppingCartDto) returns (google.protobuf.StringValue);
+    rpc AddShoppingItem(GrpcAddShoppingCartItemCommandDto) returns (google.protobuf.Empty);
+    rpc UpdateShoppingItem(GrpcUpdateShoppingCartItemCommandDto) returns (google.protobuf.Empty);
+    rpc DeleteShoppingItem(GrpcDeleteShoppingCartItemCommandDto) returns (google.protobuf.Empty);
+    rpc CheckoutShoppingCart(GrpcShoppingCartDto) returns (google.protobuf.Empty);
+    rpc GetOrderDetails(OrderDetailsRequest) returns (GrpcShoppingCartDto);
+}
+
+message OrderDetailsRequest {
+    string cart_id = 1;
+}

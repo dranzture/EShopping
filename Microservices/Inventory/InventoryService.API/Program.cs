@@ -11,15 +11,6 @@ using InventoryService.Core.ValueObjects;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-var env = builder.Environment.EnvironmentName;
-var config = new ConfigurationBuilder()
-    .AddJsonFile($"appsettings.{env}.json", optional: false)
-    .Build();
-
-var appSettings = config.GetSection("AppSettings").Get<AppSettings>();
-builder.Services.AddSingleton<AppSettings>(appSettings);
-
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseInMemoryDatabase("InventoryServiceDb"));
 builder.Services.AddControllers();
