@@ -52,7 +52,7 @@ public class ReviewRepository : IReviewRepository
         return await Queryable(token).Where(e => e.Id == id).FirstOrDefaultAsync(token);
     }
 
-    public async Task<Review?> GetByUserIdAndInventoryId(Guid inventoryId, int userId,
+    public async Task<Review?> GetByInventoryIdAndUserId(Guid inventoryId, int userId,
         CancellationToken token = default)
     {
         var result = await Queryable(token).Where(e => e.InventoryId == inventoryId && e.UserId == userId)

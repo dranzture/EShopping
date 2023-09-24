@@ -1,6 +1,6 @@
-﻿namespace InvShopRevOrchestrator.Core.Dtos.Inventory;
+﻿namespace InvShopRevOrchestrator.Core.Dtos;
 
-public class UpdateInventoryDto
+public class InventoryWithUsernameDto
 {
     public InventoryDto Dto { get; set; } 
     

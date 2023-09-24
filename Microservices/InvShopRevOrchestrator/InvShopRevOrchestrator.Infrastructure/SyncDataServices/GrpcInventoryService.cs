@@ -3,7 +3,7 @@ using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using Grpc.Net.Client;
 using GrpcInventoryService;
-using InvShopRevOrchestrator.Core.Dtos.Inventory;
+using InvShopRevOrchestrator.Core.Dtos;
 using InvShopRevOrchestrator.Core.Interfaces;
 using InvShopRevOrchestrator.Core.ValueObjects;
 using InventoryServiceClient = GrpcInventoryService.GrpcInventoryService.GrpcInventoryServiceClient;
@@ -12,24 +12,23 @@ namespace InvShopRevOrchestrator.Infrastructure.SyncDataServices;
 
 public class GrpcInventoryService : IGrpcInventoryService
 {
-    private readonly AppSettings _settings;
+    private readonly GrpcChannel _channel;
     private readonly IMapper _mapper;
 
 
     public GrpcInventoryService(AppSettings settings, IMapper mapper)
     {
-        _settings = settings;
         _mapper = mapper;
+        _channel = GrpcChannel.ForAddress(settings.InventoryUrl);
     }
 
-    public async Task<StringValue> AddInventory(UpdateInventoryDto dto, CancellationToken token = default)
+    public async Task<StringValue> AddInventory(InventoryDto dto, CancellationToken token = default)
     {
         try
         {
-            var channel = GrpcChannel.ForAddress(_settings.InventoryUrl);
-            var client = new InventoryServiceClient(channel);
+            var client = new InventoryServiceClient(_channel);
 
-            var request = _mapper.Map<GrpcUpdateInventoryDto>(dto);
+            var request = _mapper.Map<GrpcInventoryDto>(dto);
             var result = await client.AddInventoryAsync(request, deadline: DateTime.UtcNow.AddSeconds(10),
                 cancellationToken: token);
 
@@ -52,13 +51,12 @@ public class GrpcInventoryService : IGrpcInventoryService
         }
     }
 
-    public async Task UpdateInventory(UpdateInventoryDto dto, CancellationToken token = default)
+    public async Task UpdateInventory(InventoryWithUsernameDto dto, CancellationToken token = default)
     {
         try
         {
-            var channel = GrpcChannel.ForAddress(_settings.InventoryUrl);
-            var client = new InventoryServiceClient(channel);
-            var request = _mapper.Map<GrpcUpdateInventoryDto>(dto);
+            var client = new InventoryServiceClient(_channel);
+            var request = _mapper.Map<GrpcInventoryWithUsernameDto>(dto);
             await client.UpdateInventoryAsync(request, deadline: DateTime.UtcNow.AddSeconds(10),
                 cancellationToken: token);
         }
@@ -75,15 +73,14 @@ public class GrpcInventoryService : IGrpcInventoryService
             throw;
         }
     }
-
-    public async Task DeleteInventory(InventoryDto dto, CancellationToken token = default)
+    
+    public async Task DeleteInventory(InventoryWithUsernameDto dto, CancellationToken token = default)
     {
         try
         {
-            var channel = GrpcChannel.ForAddress(_settings.InventoryUrl);
-            var client = new InventoryServiceClient(channel);
-            var grpcUpdateInventoryDto = _mapper.Map<GrpcUpdateInventoryDto>(dto);
-            await client.DeleteInventoryAsync(grpcUpdateInventoryDto, deadline: DateTime.UtcNow.AddSeconds(10),
+            var client = new InventoryServiceClient(_channel);
+            var grpcInventoryDtoWithUsername = _mapper.Map<GrpcInventoryWithUsernameDto>(dto);
+            await client.DeleteInventoryAsync(grpcInventoryDtoWithUsername, deadline: DateTime.UtcNow.AddSeconds(10),
                 cancellationToken: token);
         }
         catch (RpcException ex)
@@ -100,13 +97,12 @@ public class GrpcInventoryService : IGrpcInventoryService
         }
     }
 
-    public async Task IncreaseInventory(InventoryQuantityChangeDto dto, CancellationToken token = default)
+    public async Task IncreaseInventory(InventoryQuantityChangeRequestDto baseDto, CancellationToken token = default)
     {
         try
         {
-            var channel = GrpcChannel.ForAddress(_settings.InventoryUrl);
-            var client = new InventoryServiceClient(channel);
-            var request = _mapper.Map<GrpcInventoryQuantityChangeDto>(dto);
+            var client = new InventoryServiceClient(_channel);
+            var request = _mapper.Map<GrpcInventoryQuantityChangeDto>(baseDto);
             await client.IncreaseInventoryAsync(request, deadline: DateTime.UtcNow.AddSeconds(10), cancellationToken: token);
             ;
         }
@@ -124,13 +120,12 @@ public class GrpcInventoryService : IGrpcInventoryService
         }
     }
 
-    public async Task DecreaseInventory(InventoryQuantityChangeDto dto, CancellationToken token = default)
+    public async Task DecreaseInventory(InventoryQuantityChangeRequestDto baseDto, CancellationToken token = default)
     {
         try
         {
-            var channel = GrpcChannel.ForAddress(_settings.InventoryUrl);
-            var client = new InventoryServiceClient(channel);
-            var request = _mapper.Map<GrpcInventoryQuantityChangeDto>(dto);
+            var client = new InventoryServiceClient(_channel);
+            var request = _mapper.Map<GrpcInventoryQuantityChangeDto>(baseDto);
             await client.DecreaseInventoryAsync(request, deadline: DateTime.UtcNow.AddSeconds(10), cancellationToken: token);
             ;
         }
@@ -148,12 +143,11 @@ public class GrpcInventoryService : IGrpcInventoryService
         }
     }
 
-    public async Task<InventoryDto> GetById(StringValue id, CancellationToken token = default)
+    public async Task<InventoryDto> GetById(Guid id, CancellationToken token = default)
     {
         try
         {
-            var channel = GrpcChannel.ForAddress(_settings.InventoryUrl);
-            var client = new InventoryServiceClient(channel);
+            var client = new InventoryServiceClient(_channel);
             var request = new StringValue()
             {
                 Value = id.ToString()
@@ -176,12 +170,11 @@ public class GrpcInventoryService : IGrpcInventoryService
         }
     }
 
-    public async Task<InventoryDto> GetByName(StringValue name, CancellationToken token = default)
+    public async Task<InventoryDto> GetByName(string name, CancellationToken token = default)
     {
         try
         {
-            var channel = GrpcChannel.ForAddress(_settings.InventoryUrl);
-            var client = new InventoryServiceClient(channel);
+            var client = new InventoryServiceClient(_channel);
             var request = new StringValue()
             {
                 Value = name.ToString()
@@ -208,8 +201,7 @@ public class GrpcInventoryService : IGrpcInventoryService
     {
         try
         {
-            var channel = GrpcChannel.ForAddress(_settings.InventoryUrl);
-            var client = new InventoryServiceClient(channel);
+            var client = new InventoryServiceClient(_channel);
 
             var results = await client.GetInventoryListAsync(new Empty(),deadline: DateTime.UtcNow.AddSeconds(10), cancellationToken: token);
             var returnItems = new HashSet<InventoryListItemDto>();

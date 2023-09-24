@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Grpc.Core;
 using InventoryService.Core.Commands;
-using InventoryService.Core.Commands.InventoryCommands;
 using InventoryService.Core.Dtos;
 using InventoryService.Core.Entities;
 using InventoryService.Core.Interfaces;

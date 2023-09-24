@@ -1,6 +1,6 @@
 ﻿using ShoppingCartService.Core.Entities;
 using ShoppingCartService.Core.Interfaces;
-using ShoppingCartService.Core.Models;
+using ShoppingCartService.Core.ValueObjects;
 
 namespace ShoppingCartService.Core.Commands;
 
@@ -27,7 +27,7 @@ public class AddToShoppingCartCommand : ICommand
     public async Task<bool> CanExecute()
     {
         var result = await _shoppingCartRepository.GetShoppingCartByUsername(_username);
-        if (result is not { Status: ShoppingCart.CheckoutStatus.None })
+        if (result is not { Status: CheckoutStatus.None })
         {
             return false;
         }

@@ -1,4 +1,4 @@
-﻿namespace InvShopRevOrchestrator.Core.Dtos.Inventory;
+﻿namespace InvShopRevOrchestrator.Core.Dtos;
 
 public class InventoryDto : BaseDto<Guid>
 {
@@ -9,4 +9,5 @@ public class InventoryDto : BaseDto<Guid>
     public decimal Width { get; set; }
     public decimal Weight { get; set; }
     public decimal Price { get; set; }
+    public string Username { get; set; }
 }

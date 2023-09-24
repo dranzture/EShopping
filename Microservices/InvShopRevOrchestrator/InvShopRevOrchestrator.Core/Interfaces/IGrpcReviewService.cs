@@ -1,5 +1,4 @@
-﻿
-using InvShopRevOrchestrator.Core.Dtos.Review;
+﻿using InvShopRevOrchestrator.Core.Dtos;
 
 namespace InvShopRevOrchestrator.Core.Interfaces;
 
@@ -15,7 +14,7 @@ public interface IGrpcReviewService
 
     Task<HashSet<ReviewDto>> GetReviewsByUserId(int userId, CancellationToken token = default);
     
-    Task<ReviewDto?> GetReviewByUserIdAndInventoryId(Guid id, int userId, CancellationToken token = default);
+    Task<ReviewDto?> GetReviewByInventoryIdAndUserId(Guid id, int userId, CancellationToken token = default);
     
     Task<ReviewDto?> GetReviewById(Guid id, CancellationToken token = default);
 }

@@ -1,7 +1,7 @@
 ﻿using InventoryService.Core.Entities;
 using InventoryService.Core.Interfaces;
 
-namespace InventoryService.Core.Commands.InventoryCommands;
+namespace InventoryService.Core.Commands;
 
 public class UpdateInventoryCommand : ICommand
 {

@@ -1,24 +1,24 @@
 ﻿
 using Google.Protobuf.WellKnownTypes;
-using InvShopRevOrchestrator.Core.Dtos.Inventory;
+using InvShopRevOrchestrator.Core.Dtos;
 
 namespace InvShopRevOrchestrator.Core.Interfaces;
 
 public interface IGrpcInventoryService
 {
-    Task<StringValue> AddInventory(UpdateInventoryDto request, CancellationToken token = default);
+    Task<StringValue> AddInventory(InventoryDto request, CancellationToken token = default);
     
-    Task UpdateInventory(UpdateInventoryDto request, CancellationToken token = default);
+    Task UpdateInventory(InventoryWithUsernameDto request, CancellationToken token = default);
     
-    Task DeleteInventory(InventoryDto id, CancellationToken token = default);
+    Task DeleteInventory(InventoryWithUsernameDto id, CancellationToken token = default);
     
-    Task IncreaseInventory(InventoryQuantityChangeDto request, CancellationToken token = default);
+    Task IncreaseInventory(InventoryQuantityChangeRequestDto request, CancellationToken token = default);
     
-    Task DecreaseInventory(InventoryQuantityChangeDto request, CancellationToken token = default);
+    Task DecreaseInventory(InventoryQuantityChangeRequestDto request, CancellationToken token = default);
     
-    Task<InventoryDto> GetById(StringValue id, CancellationToken token = default);
+    Task<InventoryDto> GetById(Guid id, CancellationToken token = default);
     
-    Task<InventoryDto> GetByName(StringValue name, CancellationToken token = default); 
+    Task<InventoryDto> GetByName(string name, CancellationToken token = default); 
     
     Task<HashSet<InventoryListItemDto>> GetInventoryList(CancellationToken token = default);
 }

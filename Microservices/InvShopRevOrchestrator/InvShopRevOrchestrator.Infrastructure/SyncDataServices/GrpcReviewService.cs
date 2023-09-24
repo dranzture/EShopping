@@ -3,7 +3,7 @@ using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using Grpc.Net.Client;
 using GrpcReviewService;
-using InvShopRevOrchestrator.Core.Dtos.Review;
+using InvShopRevOrchestrator.Core.Dtos;
 using InvShopRevOrchestrator.Core.Interfaces;
 using InvShopRevOrchestrator.Core.ValueObjects;
 using ReviewServiceClient = GrpcReviewService.GrpcReviewService.GrpcReviewServiceClient;
@@ -12,22 +12,20 @@ namespace InvShopRevOrchestrator.Infrastructure.SyncDataServices;
 
 public class GrpcReviewService : IGrpcReviewService
 {
-    private readonly AppSettings _settings;
     private readonly IMapper _mapper;
-
+    private readonly GrpcChannel _channel; 
 
     public GrpcReviewService(AppSettings settings, IMapper mapper)
     {
-        _settings = settings;
         _mapper = mapper;
+        _channel = GrpcChannel.ForAddress(settings.ReviewUrl);
     }
 
     public async Task<Guid> AddReview(ReviewDto dto, CancellationToken token = default)
     {
         try
         {
-            var channel = GrpcChannel.ForAddress(_settings.ReviewUrl);
-            var client = new ReviewServiceClient(channel);
+            var client = new ReviewServiceClient(_channel);
 
             var request = new GrpcReviewDto
             {
@@ -61,8 +59,8 @@ public class GrpcReviewService : IGrpcReviewService
     {
         try
         {
-            var channel = GrpcChannel.ForAddress(_settings.ReviewUrl);
-            var client = new ReviewServiceClient(channel);
+            
+            var client = new ReviewServiceClient(_channel);
 
             var request = new GrpcReviewDto
             {
@@ -96,8 +94,7 @@ public class GrpcReviewService : IGrpcReviewService
     {
         try
         {
-            var channel = GrpcChannel.ForAddress(_settings.ReviewUrl);
-            var client = new ReviewServiceClient(channel);
+            var client = new ReviewServiceClient(_channel);
 
             var request = new GrpcReviewDto
             {
@@ -131,8 +128,7 @@ public class GrpcReviewService : IGrpcReviewService
         try
         {
             var returnItem = new HashSet<ReviewDto>();
-            var channel = GrpcChannel.ForAddress(_settings.ReviewUrl);
-            var client = new ReviewServiceClient(channel);
+            var client = new ReviewServiceClient(_channel);
 
             var result = await client.GetReviewsByInventoryIdAsync(new StringValue()
                 {
@@ -174,8 +170,7 @@ public class GrpcReviewService : IGrpcReviewService
         try
         {
             var returnItem = new HashSet<ReviewDto>();
-            var channel = GrpcChannel.ForAddress(_settings.ReviewUrl);
-            var client = new ReviewServiceClient(channel);
+            var client = new ReviewServiceClient(_channel);
 
             var result = await client.GetReviewsByUserIdAsync(new GrpcUserId()
                 {
@@ -212,14 +207,13 @@ public class GrpcReviewService : IGrpcReviewService
         }
     }
 
-    public async Task<ReviewDto?> GetReviewByUserIdAndInventoryId(Guid id, int userId, CancellationToken token = default)
+    public async Task<ReviewDto?> GetReviewByInventoryIdAndUserId(Guid id, int userId, CancellationToken token = default)
     {
         try
         {
-            var channel = GrpcChannel.ForAddress(_settings.ReviewUrl);
-            var client = new ReviewServiceClient(channel);
+            var client = new ReviewServiceClient(_channel);
 
-            var result = await client.GetReviewByUserIdAndInventoryIdAsync(new GrpcUserAndInventoryId()
+            var result = await client.GetReviewByInventoryIdAndUserIdAsync(new GrpcUserAndInventoryId()
                 {
                     UserId = userId,
                     InventoryId = id.ToString()
@@ -246,8 +240,7 @@ public class GrpcReviewService : IGrpcReviewService
     {
         try
         {
-            var channel = GrpcChannel.ForAddress(_settings.ReviewUrl);
-            var client = new ReviewServiceClient(channel);
+            var client = new ReviewServiceClient(_channel);
 
             var result = await client.GetReviewByIdAsync(new StringValue()
                 {

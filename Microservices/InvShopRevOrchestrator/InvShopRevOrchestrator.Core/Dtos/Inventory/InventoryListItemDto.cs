@@ -1,4 +1,4 @@
-﻿namespace InvShopRevOrchestrator.Core.Dtos.Inventory;
+﻿namespace InvShopRevOrchestrator.Core.Dtos;
 
 public class InventoryListItemDto : BaseDto<Guid>
 {

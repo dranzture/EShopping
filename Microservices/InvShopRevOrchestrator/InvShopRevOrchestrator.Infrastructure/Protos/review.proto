@@ -8,7 +8,7 @@ service GrpcReviewService{
     rpc DeleteReview(GrpcReviewDto) returns(Empty);
     rpc GetReviewsByInventoryId(google.protobuf.StringValue) returns(GrpcListedReviews);
     rpc GetReviewsByUserId(GrpcUserId) returns(GrpcListedReviews);
-    rpc GetReviewByUserIdAndInventoryId(GrpcUserAndInventoryId) returns(GrpcReviewDto);
+    rpc GetReviewByInventoryIdAndUserId(GrpcUserAndInventoryId) returns(GrpcReviewDto);
     rpc GetReviewById(google.protobuf.StringValue) returns (GrpcReviewDto);
 }
 

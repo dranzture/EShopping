@@ -4,9 +4,9 @@ import "google/protobuf/wrappers.proto";
 import "google/protobuf/empty.proto";
 
 service GrpcInventoryService {
-    rpc AddInventory (GrpcUpdateInventoryDto) returns (google.protobuf.StringValue);
-    rpc UpdateInventory (GrpcUpdateInventoryDto) returns (google.protobuf.Empty);
-    rpc DeleteInventory(GrpcUpdateInventoryDto) returns(google.protobuf.Empty);
+    rpc AddInventory (GrpcInventoryDto) returns (google.protobuf.StringValue);
+    rpc UpdateInventory (GrpcInventoryWithUsernameDto) returns (google.protobuf.Empty);
+    rpc DeleteInventory(GrpcInventoryWithUsernameDto) returns(google.protobuf.Empty);
     rpc IncreaseInventory(GrpcInventoryQuantityChangeDto) returns (google.protobuf.Empty);
     rpc DecreaseInventory(GrpcInventoryQuantityChangeDto) returns (google.protobuf.Empty);
     rpc GetById(google.protobuf.StringValue) returns(GrpcInventoryDto);
@@ -18,15 +18,15 @@ message GrpcListedInventories{
     repeated GrpcListInventoryDto dto_list = 1;
 }
 
-message GrpcUpdateInventoryDto{
+message GrpcInventoryWithUsernameDto{
     GrpcInventoryDto dto = 1;
-    string username = 2;
+    string username = 2; // User who modifies the inventory- for tracking
 }
 
 message GrpcInventoryQuantityChangeDto{
     GrpcInventoryDto dto = 1;
     int32 amount = 2;
-    string username = 3;
+    string username = 3; // User who modifies the inventory - for tracking
 }
 
 message GrpcInventoryDto {
@@ -38,6 +38,7 @@ message GrpcInventoryDto {
     float width = 6;
     float weight = 7;
     float price = 8;
+    optional string username = 9;
 }
 
 message GrpcListInventoryDto {

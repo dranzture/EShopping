@@ -11,4 +11,6 @@ public class InventoryDto
     public decimal Weight { get; set; }
     
     public decimal Price { get; set; }
+
+    public string Username { get; set; }
 }

@@ -1,4 +1,4 @@
-﻿namespace InvShopRevOrchestrator.Core.Dtos.Review;
+﻿namespace InvShopRevOrchestrator.Core.Dtos;
 
 public class ReviewDto : BaseDto<Guid>
 {

@@ -15,7 +15,7 @@ public class ReviewCommandsTests
     {
         //Arrange
         var review = new Review(_guid, 1, "dranzture", 5, "Awesome!");
-        _repository.GetByUserIdAndInventoryId(_guid, 1)
+        _repository.GetByInventoryIdAndUserId(_guid, 1)
             .Returns(Task.FromResult((Review?)null));
         
         //Act
@@ -32,7 +32,7 @@ public class ReviewCommandsTests
     {
         //Arrange
         var review = new Review(_guid, 1, "dranzture", 5, "Awesome!");
-        _repository.GetByUserIdAndInventoryId(_guid, 1, new CancellationToken())
+        _repository.GetByInventoryIdAndUserId(_guid, 1, new CancellationToken())
             .Returns(Task.FromResult(review));
         
         //Act

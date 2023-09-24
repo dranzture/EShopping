@@ -1,5 +1,6 @@
 using ShoppingCartService.Core.Entities;
 using ShoppingCartService.Core.Models;
+using ShoppingCartService.Core.ValueObjects;
 
 namespace ShoppingCartService.UnitTests;
 
@@ -66,7 +67,7 @@ public class ConstructorTests
         Assert.Equal(username, shoppingCart.CreatedBy);
         Assert.True(shoppingCart.CreatedDateTime <= DateTimeOffset.Now);
         Assert.Empty(shoppingCart.ShoppingItems);
-        Assert.Equal(ShoppingCart.CheckoutStatus.None, shoppingCart.Status);
+        Assert.Equal(CheckoutStatus.None, shoppingCart.Status);
     }
     
 }

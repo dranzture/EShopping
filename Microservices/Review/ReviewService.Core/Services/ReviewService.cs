@@ -78,10 +78,10 @@ public class ReviewService : IReviewService
         return _mapper.Map<HashSet<ReviewDto>>(result);
     }
 
-    public async Task<ReviewDto?> GetReviewByUserIdAndInventoryId(Guid id, int userId,
+    public async Task<ReviewDto?> GetReviewByInventoryIdAndUserId(Guid id, int userId,
         CancellationToken token = default)
     {
-        var result = await _repository.GetByUserIdAndInventoryId(id ,userId, token);
+        var result = await _repository.GetByInventoryIdAndUserId(id ,userId, token);
         return _mapper.Map<ReviewDto>(result);
     }
 

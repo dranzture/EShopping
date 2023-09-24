@@ -1,5 +1,4 @@
 ﻿using InventoryService.Core.Commands;
-using InventoryService.Core.Commands.InventoryCommands;
 using InventoryService.Core.Entities;
 using InventoryService.Core.Interfaces;
 using NSubstitute;

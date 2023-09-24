@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ShoppingCartService.Core.Entities;
 using ShoppingCartService.Core.Interfaces;
-using ShoppingCartService.Core.Models;
+using ShoppingCartService.Core.ValueObjects;
 
 namespace InventoryService.Core.Repositories;
 
@@ -44,7 +44,7 @@ public class ShoppingCartRepository : IShoppingCartRepository
     {
         var result = await Queryable(token);
         return await result.FirstOrDefaultAsync(
-            e => e.Username == username && e.IsDeleted == false && e.Status == ShoppingCart.CheckoutStatus.None, token);
+            e => e.Username == username && e.IsDeleted == false && e.Status == CheckoutStatus.None, token);
     }
 
     public async Task<ShoppingCart?> GetShoppingCartById(Guid id, CancellationToken token = default)

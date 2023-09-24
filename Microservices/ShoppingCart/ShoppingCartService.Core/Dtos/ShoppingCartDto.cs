@@ -1,6 +1,7 @@
 ﻿
 using ShoppingCartService.Core.Entities;
 using ShoppingCartService.Core.Models;
+using ShoppingCartService.Core.ValueObjects;
 
 namespace ShoppingCartService.Core.Dtos;
 
@@ -10,7 +11,7 @@ public class ShoppingCartDto
     
     public string Username { get; set; }
 
-    public ShoppingCart.CheckoutStatus Status { get; private set; } = ShoppingCart.CheckoutStatus.None;
+    public CheckoutStatus Status { get; private set; } = CheckoutStatus.None;
     
     public List<ShoppingItemDto> ShoppingItems { get; set; }
 }

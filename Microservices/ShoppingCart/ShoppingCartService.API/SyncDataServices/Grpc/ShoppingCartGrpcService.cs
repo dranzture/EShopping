@@ -121,13 +121,32 @@ public class ShoppingCartGrpcService : GrpcShoppingCartService.GrpcShoppingCartS
 
     public override async Task<Empty> CheckoutShoppingCart(GrpcShoppingCartDto request, ServerCallContext context)
     {
-        var username = request.Username;
-        var shoppingCartDto = _mapper.Map<ShoppingCartDto>(request);
-
         try
         {
+            var username = request.Username;
+            var shoppingCartDto = _mapper.Map<ShoppingCartDto>(request);
             await _shoppingCartService.CheckoutShoppingCart(shoppingCartDto, username);
             return new Empty();
+        }
+        catch (RpcException ex)
+        {
+            _logger.LogError($"Error in CheckoutShoppingCart: {ex}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Unhandled exception in CheckoutShoppingCart: {ex}");
+            throw new RpcException(new Status(StatusCode.Internal, "Internal server error"));
+        }
+    }
+
+    public override async Task<GrpcShoppingCartDto> GetOrderDetails(GrpcOrderDetailsRequest request,
+        ServerCallContext context)
+    {
+        try
+        {
+            var returnItem = await _shoppingCartService.GetOrderDetails(new Guid(request.CartId));
+            return _mapper.Map<GrpcShoppingCartDto>(returnItem);
         }
         catch (RpcException ex)
         {

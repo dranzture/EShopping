@@ -20,11 +20,11 @@ public class InventoryGrpcService : GrpcInventoryServiceBase
         _mapper = mapper;
     }
 
-    public override async Task<StringValue> AddInventory(GrpcUpdateInventoryDto dto, ServerCallContext context)
+    public override async Task<StringValue> AddInventory(GrpcInventoryDto dto, ServerCallContext context)
     {
         try
         {
-            var item = _mapper.Map<InventoryDto>(dto.Dto);
+            var item = _mapper.Map<InventoryDto>(dto);
             var result = await _service.AddInventory(item, dto.Username);
 
 
@@ -45,7 +45,7 @@ public class InventoryGrpcService : GrpcInventoryServiceBase
         }
     }
     
-    public override async Task<Empty> UpdateInventory(GrpcUpdateInventoryDto dto, ServerCallContext context)
+    public override async Task<Empty> UpdateInventory(GrpcInventoryWithUsernameDto dto, ServerCallContext context)
     {
         try
         {
@@ -63,7 +63,7 @@ public class InventoryGrpcService : GrpcInventoryServiceBase
         }
     }
     
-    public override async Task<Empty> DeleteInventory(GrpcUpdateInventoryDto dto, ServerCallContext context)
+    public override async Task<Empty> DeleteInventory(GrpcInventoryWithUsernameDto dto, ServerCallContext context)
     {
         try
         {

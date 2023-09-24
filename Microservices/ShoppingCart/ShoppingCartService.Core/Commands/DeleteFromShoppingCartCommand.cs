@@ -1,6 +1,6 @@
 ﻿using ShoppingCartService.Core.Entities;
 using ShoppingCartService.Core.Interfaces;
-using ShoppingCartService.Core.Models;
+using ShoppingCartService.Core.ValueObjects;
 
 namespace ShoppingCartService.Core.Commands;
 
@@ -24,7 +24,7 @@ public class DeleteFromShoppingCartCommand : ICommand
     public async Task<bool> CanExecute()
     {
         var result = await _shoppingCartRepository.GetShoppingCartById(_cart.Id);
-        if (result is not { Status: ShoppingCart.CheckoutStatus.None })
+        if (result is not { Status: CheckoutStatus.None })
         {
             return false;
         }

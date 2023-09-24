@@ -143,13 +143,13 @@ public class GrpcService : GrpcReviewService.GrpcReviewService.GrpcReviewService
         }
     }
 
-    public override async Task<GrpcReviewDto> GetReviewByUserIdAndInventoryId(GrpcUserAndInventoryId request,
+    public override async Task<GrpcReviewDto> GetReviewByInventoryIdAndUserId(GrpcUserAndInventoryId request,
         ServerCallContext context)
     {
         try
         {
             var review =
-                await _reviewService.GetReviewByUserIdAndInventoryId(new Guid(request.InventoryId), request.UserId);
+                await _reviewService.GetReviewByInventoryIdAndUserId(new Guid(request.InventoryId), request.UserId);
 
             return _mapper.Map<GrpcReviewDto>(review);
         }

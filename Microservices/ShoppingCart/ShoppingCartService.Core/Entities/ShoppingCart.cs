@@ -62,11 +62,5 @@ public class ShoppingCart : BaseEntity
         Delete(username);
     }
 
-    public enum CheckoutStatus
-    {
-        None,
-        InProgress,
-        Completed,
-        Failed
-    }
+
 }

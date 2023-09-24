@@ -1,6 +1,7 @@
 ﻿using ShoppingCartService.Core.Entities;
 using ShoppingCartService.Core.Interfaces;
 using ShoppingCartService.Core.Models;
+using ShoppingCartService.Core.ValueObjects;
 
 namespace ShoppingCartService.Core.Commands;
 
@@ -20,7 +21,7 @@ public class CheckoutShoppingCart : ICommand
     public async Task<bool> CanExecute()
     {
         var result = await _repository.GetShoppingCartById(_cart.Id);
-        if (result is not { Status: ShoppingCart.CheckoutStatus.None }) return false;
+        if (result is not { Status: CheckoutStatus.None }) return false;
         return result.ShoppingItems.Count > 0;
     }
 
@@ -28,7 +29,7 @@ public class CheckoutShoppingCart : ICommand
     {
         var cartItem = await _repository.GetShoppingCartById(_cart.Id);
         await _publisher.ProcessMessage(IPublisher<string, ShoppingCart>.CheckoutTopic, new Guid().ToString(), cartItem!);
-        cartItem.UpdateCheckoutStatus(ShoppingCart.CheckoutStatus.InProgress);
+        cartItem.UpdateCheckoutStatus(CheckoutStatus.InProgress);
         await _repository.UpdateAsync(cartItem);
         await _repository.SaveChangesAsync();
     }

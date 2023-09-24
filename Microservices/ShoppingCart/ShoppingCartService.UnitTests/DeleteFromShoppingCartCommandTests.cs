@@ -3,6 +3,7 @@ using ShoppingCartService.Core.Commands;
 using ShoppingCartService.Core.Entities;
 using ShoppingCartService.Core.Interfaces;
 using ShoppingCartService.Core.Models;
+using ShoppingCartService.Core.ValueObjects;
 
 namespace ShoppingCartService.UnitTests;
 
@@ -38,7 +39,7 @@ public class DeleteFromShoppingCartCommandTests
             var username = "testuser";
             var inventoryId = Guid.NewGuid();
             var cart = new ShoppingCart(username, cartId);
-            cart.UpdateCheckoutStatus(ShoppingCart.CheckoutStatus.Completed); // Checked out
+            cart.UpdateCheckoutStatus(CheckoutStatus.Completed); // Checked out
             var inventory = new Inventory("Product", "Description", 10, 5.0m, 3.0m, 1.5m, 25.99m, username, inventoryId);
             var mockRepository = Substitute.For<IShoppingCartRepository>();
             mockRepository.GetShoppingCartById(cartId).Returns(Task.FromResult(cart));

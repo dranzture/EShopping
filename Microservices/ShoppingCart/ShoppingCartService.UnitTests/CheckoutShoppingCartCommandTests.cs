@@ -3,6 +3,7 @@ using ShoppingCartService.Core.Commands;
 using ShoppingCartService.Core.Entities;
 using ShoppingCartService.Core.Interfaces;
 using ShoppingCartService.Core.Models;
+using ShoppingCartService.Core.ValueObjects;
 
 namespace ShoppingCartService.UnitTests;
 
@@ -63,7 +64,7 @@ public class CheckoutShoppingCartCommandTests
         var publisher = Substitute.For<IPublisher<string, ShoppingCart>>();
 
         var cart = new ShoppingCart("testuser", cartId);
-        cart.UpdateCheckoutStatus(ShoppingCart.CheckoutStatus.InProgress);
+        cart.UpdateCheckoutStatus(CheckoutStatus.InProgress);
         cart.AddItem(new Inventory(), 1, "testuser");
 
         repository.GetShoppingCartById(cartId).Returns(cart);
@@ -102,7 +103,7 @@ public class CheckoutShoppingCartCommandTests
             Arg.Any<string>(),
             cart);
 
-        Assert.Equal(ShoppingCart.CheckoutStatus.InProgress, cart.Status);
+        Assert.Equal(CheckoutStatus.InProgress, cart.Status);
 
         await repository.Received(1).UpdateAsync(cart);
         await repository.Received(1).SaveChangesAsync();

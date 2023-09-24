@@ -1,242 +1,156 @@
 ﻿using Grpc.Core;
-using InvShopRevOrchestrator.Core.Dtos.Review;
+using InvShopRevOrchestrator.API.Helpers;
+using InvShopRevOrchestrator.Core.Dtos;
 using InvShopRevOrchestrator.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace InvShopRevOrchestrator.API.Controllers
+namespace InvShopRevOrchestrator.API.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class ReviewController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ReviewController : ControllerBase
+    private readonly IReviewService _reviewService;
+    private readonly ILogger<ReviewController> _logger;
+
+    public ReviewController(IReviewService reviewService, ILogger<ReviewController> logger)
     {
-        private readonly IGrpcReviewService _grpcReviewService;
-        private readonly ILogger<ReviewController> _logger;
+        _reviewService = reviewService;
+        _logger = logger;
+    }
 
-        public ReviewController(IGrpcReviewService grpcReviewService, ILogger<ReviewController> logger)
+    [HttpPost("AddReview")]
+    public async Task<IActionResult> AddReview([FromBody] ReviewDto dto)
+    {
+        try
         {
-            _grpcReviewService = grpcReviewService;
-            _logger = logger;
+            var reviewId = await _reviewService.AddReview(dto, CancellationToken.None);
+
+            return Ok(new CreatedReviewResultDto
+            {
+                Id = reviewId,
+                Message = "Review added successfully"
+            });
         }
-
-        [HttpPost("AddReview")]
-        public async Task<IActionResult> AddReview([FromBody] ReviewDto dto)
+        catch (RpcException rpcEx)
         {
-            try
-            {
-                var result = await _grpcReviewService.AddReview(dto);
-                _logger.LogInformation($"Review added successfully with Id: {result.ToString()}.", result);
-
-                return Ok(new CreatedReviewResultDto()
-                {
-                    Id = result,
-                    Message = "Review added successfully"
-                });
-            }
-            catch (RpcException rpcEx)
-            {
-                if (rpcEx.StatusCode == Grpc.Core.StatusCode.NotFound)
-                {
-                    _logger.LogWarning("Review not found.");
-                    return NotFound("Review not found.");
-                }
-                else if (rpcEx.StatusCode == Grpc.Core.StatusCode.InvalidArgument)
-                {
-                    _logger.LogWarning("Invalid argument provided.");
-                    return BadRequest("Invalid argument provided.");
-                }
-                else
-                {
-                    _logger.LogError($"gRPC error: {rpcEx.Status.Detail}");
-                    return StatusCode(500, $"gRPC error: {rpcEx.Status.Detail}");
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Internal server error: {ex.Message}");
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
+            return this.HandleRpcException(rpcEx, _logger);
         }
-
-        [HttpPut("UpdateReview")]
-        public async Task<IActionResult> UpdateReview([FromBody] ReviewDto dto)
+        catch (Exception ex)
         {
-            try
-            {
-                await _grpcReviewService.UpdateReview(dto);
-                _logger.LogInformation("Review updated successfully.");
-                return Ok("Review updated successfully.");
-            }
-            catch (RpcException rpcEx)
-            {
-                if (rpcEx.StatusCode == Grpc.Core.StatusCode.NotFound)
-                {
-                    _logger.LogWarning("Review not found.");
-                    return NotFound("Review not found.");
-                }
-                else if (rpcEx.StatusCode == Grpc.Core.StatusCode.InvalidArgument)
-                {
-                    _logger.LogWarning("Invalid argument provided.");
-                    return BadRequest("Invalid argument provided.");
-                }
-                else
-                {
-                    _logger.LogError($"gRPC error: {rpcEx.Status.Detail}");
-                    return StatusCode(500, $"gRPC error: {rpcEx.Status.Detail}");
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Internal server error: {ex.Message}");
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
+            return this.HandleException(ex, _logger);
         }
-        
-        [HttpGet("GetReviewsByInventoryId")]
-        public async Task<IActionResult> GetReviewsByInventoryId(Guid id)
-        {
-            try
-            {
-                var result = await _grpcReviewService.GetReviewsByInventoryId(id);
-                if (result != null)
-                {
-                    _logger.LogInformation("Reviews retrieved successfully.");
-                    return Ok(result);
-                }
-                else
-                {
-                    _logger.LogWarning("Reviews not found.");
-                    return NotFound();
-                }
-            }
-            catch (RpcException rpcEx)
-            {
-                if (rpcEx.StatusCode == Grpc.Core.StatusCode.NotFound)
-                {
-                    _logger.LogWarning("Reviews not found.");
-                    return NotFound("Reviews not found.");
-                }
-                else
-                {
-                    _logger.LogError($"gRPC error: {rpcEx.Status.Detail}");
-                    return StatusCode(500, $"gRPC error: {rpcEx.Status.Detail}");
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Internal server error: {ex.Message}");
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
-        }
+    }
 
-        [HttpGet("GetReviewsByUserId")]
-        public async Task<IActionResult> GetReviewsByUserId(int userId)
+    [HttpPut("UpdateReview")]
+    public async Task<IActionResult> UpdateReview([FromBody] ReviewDto dto)
+    {
+        try
         {
-            try
-            {
-                var result = await _grpcReviewService.GetReviewsByUserId(userId);
-                if (result != null)
-                {
-                    _logger.LogInformation("Reviews retrieved successfully.");
-                    return Ok(result);
-                }
-                else
-                {
-                    _logger.LogWarning("Reviews not found.");
-                    return NotFound();
-                }
-            }
-            catch (RpcException rpcEx)
-            {
-                if (rpcEx.StatusCode == Grpc.Core.StatusCode.NotFound)
-                {
-                    _logger.LogWarning("Reviews not found.");
-                    return NotFound("Reviews not found.");
-                }
-                else
-                {
-                    _logger.LogError($"gRPC error: {rpcEx.Status.Detail}");
-                    return StatusCode(500, $"gRPC error: {rpcEx.Status.Detail}");
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Internal server error: {ex.Message}");
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
-        }
+            await _reviewService.UpdateReview(dto, CancellationToken.None);
 
-        [HttpGet("GetReviewByUserIdAndInventoryId")]
-        public async Task<IActionResult> GetReviewByUserIdAndInventoryId(Guid id, int userId)
-        {
-            try
-            {
-                var result = await _grpcReviewService.GetReviewByUserIdAndInventoryId(id, userId);
-                if (result != null)
-                {
-                    _logger.LogInformation("Review retrieved successfully.");
-                    return Ok(result);
-                }
-                else
-                {
-                    _logger.LogWarning("Review not found.");
-                    return NotFound();
-                }
-            }
-            catch (RpcException rpcEx)
-            {
-                if (rpcEx.StatusCode == Grpc.Core.StatusCode.NotFound)
-                {
-                    _logger.LogWarning("Review not found.");
-                    return NotFound("Review not found.");
-                }
-                else
-                {
-                    _logger.LogError($"gRPC error: {rpcEx.Status.Detail}");
-                    return StatusCode(500, $"gRPC error: {rpcEx.Status.Detail}");
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Internal server error: {ex.Message}");
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
+            _logger.LogInformation("Review updated successfully");
+            return Ok("Review updated successfully.");
         }
-
-        [HttpGet("GetReviewById")]
-        public async Task<IActionResult> GetReviewById(Guid id)
+        catch (RpcException rpcEx)
         {
-            try
-            {
-                var result = await _grpcReviewService.GetReviewById(id);
-                if (result != null)
-                {
-                    _logger.LogInformation("Review retrieved successfully.");
-                    return Ok(result);
-                }
-                else
-                {
-                    _logger.LogWarning("Review not found.");
-                    return NotFound();
-                }
-            }
-            catch (RpcException rpcEx)
-            {
-                if (rpcEx.StatusCode == Grpc.Core.StatusCode.NotFound)
-                {
-                    _logger.LogWarning("Review not found.");
-                    return NotFound("Review not found.");
-                }
-                else
-                {
-                    _logger.LogError($"gRPC error: {rpcEx.Status.Detail}");
-                    return StatusCode(500, $"gRPC error: {rpcEx.Status.Detail}");
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Internal server error: {ex.Message}");
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
+            return this.HandleRpcException(rpcEx, _logger);
+        }
+        catch (Exception ex)
+        {
+            return this.HandleException(ex, _logger);
+        }
+    }
+
+    [HttpDelete("DeleteReview")]
+    public async Task<IActionResult> DeleteReview([FromBody] ReviewDto dto)
+    {
+        try
+        {
+            await _reviewService.DeleteReview(dto, CancellationToken.None);
+
+            _logger.LogInformation("Review deleted successfully");
+            return Ok("Review deleted successfully.");
+        }
+        catch (RpcException rpcEx)
+        {
+            return this.HandleRpcException(rpcEx, _logger);
+        }
+        catch (Exception ex)
+        {
+            return this.HandleException(ex, _logger);
+        }
+    }
+
+    [HttpGet("GetReviewsByInventoryId")]
+    public async Task<IActionResult> GetReviewsByInventoryId(Guid id)
+    {
+        try
+        {
+            var reviews = await _reviewService.GetReviewsByInventoryId(id, CancellationToken.None);
+            return Ok(reviews);
+        }
+        catch (RpcException rpcEx)
+        {
+            return this.HandleRpcException(rpcEx, _logger);
+        }
+        catch (Exception ex)
+        {
+            return this.HandleException(ex, _logger);
+        }
+    }
+
+    [HttpGet("GetReviewsByUserId")]
+    public async Task<IActionResult> GetReviewsByUserId(int userId)
+    {
+        try
+        {
+            var reviews = await _reviewService.GetReviewsByUserId(userId, CancellationToken.None);
+            return Ok(reviews);
+        }
+        catch (RpcException rpcEx)
+        {
+            return this.HandleRpcException(rpcEx, _logger);
+        }
+        catch (Exception ex)
+        {
+            return this.HandleException(ex, _logger);
+        }
+    }
+
+    [HttpGet("GetReviewByUserIdAndInventoryId")]
+    public async Task<IActionResult> GetReviewByUserIdAndInventoryId(Guid id, int userId)
+    {
+        try
+        {
+            var review = await _reviewService.GetReviewByUserIdAndInventoryId(id, userId, CancellationToken.None);
+            return Ok(review);
+        }
+        catch (RpcException rpcEx)
+        {
+            return this.HandleRpcException(rpcEx, _logger);
+        }
+        catch (Exception ex)
+        {
+            return this.HandleException(ex, _logger);
+        }
+    }
+
+    [HttpGet("GetReviewById")]
+    public async Task<IActionResult> GetReviewById(Guid id)
+    {
+        try
+        {
+            var review = await _reviewService.GetReviewById(id, CancellationToken.None);
+            return Ok(review);
+        }
+        catch (RpcException rpcEx)
+        {
+            return this.HandleRpcException(rpcEx, _logger);
+        }
+        catch (Exception ex)
+        {
+            return this.HandleException(ex, _logger);
         }
     }
 }
