@@ -5,8 +5,8 @@ using Microsoft.OpenApi.Models;
 using OrchestratorService.Core.Interfaces;
 using OrchestratorService.Core.Models;
 using OrchestratorService.Infrastructure.SyncDataServices;
-using GrpcInventoryServiceClient =  OrchestratorService.Infrastructure.SyncDataServices.GrpcInventoryService;
-using GrpcReviewServiceClient =  OrchestratorService.Infrastructure.SyncDataServices.GrpcReviewService;
+using GrpcInventoryServiceClient = OrchestratorService.Infrastructure.SyncDataServices.GrpcInventoryService;
+using GrpcReviewServiceClient = OrchestratorService.Infrastructure.SyncDataServices.GrpcReviewService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,15 +23,19 @@ builder.Services.AddScoped<IGrpcInventoryService, GrpcInventoryServiceClient>();
 builder.Services.AddScoped<IGrpcReviewService, GrpcReviewServiceClient>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(e =>
-    e.TokenValidationParameters = new TokenValidationParameters
+builder.Services.AddAuthentication(e=>
     {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidIssuer = "PolatCoban",
-        ValidAudience = "EShopping.NET",
-    });
+        e.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        e.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(e =>
+        e.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidIssuer = "PolatCoban",
+            ValidAudience = "EShopping.NET",
+        });
 
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();

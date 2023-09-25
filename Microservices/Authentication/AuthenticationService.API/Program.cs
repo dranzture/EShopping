@@ -21,7 +21,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseInMemoryDatabase("AuthenticationServiceDb"));
 
 builder.Services.AddSingleton<AppSecrets>(appSecrets);
-builder.Services.AddAuthenticationSettings(appSecrets);
+// builder.Services.AddAuthenticationSettings(appSecrets);
 builder.Services.AddScoped<ILoggingUserService, LoggingUserService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -44,8 +44,8 @@ builder.Services.AddIdentity<User, Role>(e =>
 
 var app = builder.Build();
 app.UseRouting();
-app.UseAuthentication();
-app.UseAuthorization();
+// app.UseAuthentication();
+// app.UseAuthorization();
 
 app.MapControllers();
 app.MapGrpcService<GrpcService>();

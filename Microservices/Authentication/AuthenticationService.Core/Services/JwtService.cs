@@ -21,24 +21,24 @@ public class JwtService : IJwtService
     {
         var claims = new List<Claim>
         {
+            new Claim("id", user.Id.ToString()),
             new Claim("email", user.Email),
+            new Claim(JwtRegisteredClaimNames.Sub,user.UserName),
             new Claim("firstName", user.FirstName),
             new Claim("lastName", user.LastName)
         };
         claims.AddRange(Roles.Select(role => new Claim(ClaimTypes.Role, role)));
 
-        return await TokenGeneratorAsync(user.UserName, claims.ToArray());
+        return await TokenGeneratorAsync(claims.ToArray());
     }
 
-    public Task<string> TokenGeneratorAsync(string username,
-        Claim[] additionalClaims = null)
+    private Task<string> TokenGeneratorAsync(
+        IEnumerable<Claim>? additionalClaims = null)
     {
         var claims = new[] {
-            new Claim(JwtRegisteredClaimNames.Sub,username),
-            // this guarantees the token is unique
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
         };
-        if (additionalClaims is object)
+        if (additionalClaims != null)
         {
             var claimList = new List<Claim>(claims);
             claimList.AddRange(additionalClaims);
@@ -50,16 +50,14 @@ public class JwtService : IJwtService
 
         var jwtSecurityToken = new SecurityTokenDescriptor{
             Subject = new ClaimsIdentity(claims),
-            
             Issuer = _appSecrets.JwtSettings.Issuer,
-            Audience = _appSecrets.JwtSettings.Auidence,
+            Audience = _appSecrets.JwtSettings.Audience,
             Expires = DateTime.UtcNow.AddMinutes(_appSecrets.JwtSettings.ExpirationSpan),
             SigningCredentials = creds
         };
         var tokenHandler = new JwtSecurityTokenHandler();
 
         var token = tokenHandler.CreateToken(jwtSecurityToken);
-        
-        return Task.Run(()=>tokenHandler.WriteToken(token));
+        return Task.FromResult(tokenHandler.WriteToken(token));
     }
 }

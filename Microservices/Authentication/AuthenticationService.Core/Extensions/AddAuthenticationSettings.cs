@@ -20,7 +20,7 @@ public static class AuthenticationSettings
             opt.TokenValidationParameters = new TokenValidationParameters
             {
                 ValidIssuer = secrets.JwtSettings.Issuer,
-                ValidAudience = secrets.JwtSettings.Auidence,
+                ValidAudience = secrets.JwtSettings.Audience,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secrets.JwtSettings.TokenKey)),
                 ValidateIssuer = true,
                 ValidateAudience = true,

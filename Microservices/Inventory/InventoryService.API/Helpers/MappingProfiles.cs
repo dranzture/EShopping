@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GrpcInventoryService;
 using InventoryService.Core.Dtos;
 using InventoryService.Core.Entities;
 using GrpcInventoryDto = GrpcInventoryService.GrpcInventoryDto;
@@ -17,7 +18,10 @@ public class MappingProfiles : Profile
         CreateMap<InventoryDto, Inventory>();
 
         CreateMap<Inventory, GrpcInventoryDto>().ForMember(e => e.Id, t =>
-            t.MapFrom(e => e.Id.ToString()));;
+            t.MapFrom(e => e.Id.ToString()));
+        
+        CreateMap<Inventory, GrpcListInventoryDto>().ForMember(e => e.Id, t =>
+            t.MapFrom(e => e.Id.ToString()));
         
         CreateMap<GrpcInventoryDto, InventoryDto>()
             .ForMember(dest => dest.Id, opt 

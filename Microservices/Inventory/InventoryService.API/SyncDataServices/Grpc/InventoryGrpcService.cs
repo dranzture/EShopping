@@ -159,5 +159,30 @@ public class InventoryGrpcService : GrpcInventoryServiceBase
             throw new RpcException(new Status(StatusCode.Internal, "Internal Server Error"));
         }
     }
-    
+    public override async Task<GrpcListedInventories> GetInventoryList(Empty request, ServerCallContext context)
+    {
+        try
+        {
+            var inventories = await _service.GetAllInventory();
+            if (inventories == null)
+            {
+                throw new RpcException(new Status(StatusCode.NotFound, "Inventory Not Found"));
+            }
+
+            var returnItems = new GrpcListedInventories();
+            foreach (var inventory in inventories)
+            {
+                returnItems.DtoList.Add(_mapper.Map<GrpcListInventoryDto>(inventory));
+            }
+            return returnItems;
+        }
+        catch (RpcException ex)
+        {
+            throw;
+        }
+        catch (Exception ex)
+        {
+            throw new RpcException(new Status(StatusCode.Internal, "Internal Server Error"));
+        }
+    }
 }

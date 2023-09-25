@@ -18,6 +18,9 @@ public class MapperProfile : Profile
         
         CreateMap<InventoryQuantityChangeRequestDto, GrpcInventoryQuantityChangeDto>()
             .ReverseMap();
+
+        CreateMap<GrpcListInventoryDto, InventoryListItemDto>().ForMember(dest => dest.Id,
+            opt => opt.MapFrom(src => string.IsNullOrEmpty(src.Id) ? (Guid?)null : Guid.Parse(src.Id)));
         
         CreateMap<GrpcReviewDto, ReviewDto>()
             .ForMember(dest => dest.Id, opt
@@ -29,6 +32,7 @@ public class MapperProfile : Profile
         CreateMap<GrpcShoppingCartDto, ShoppingCartDto>().ForMember(dest => dest.Id,
                 opt => opt.MapFrom(src => string.IsNullOrEmpty(src.Id) ? (Guid?)null : Guid.Parse(src.Id)))
             .ReverseMap(); 
+        
         
         CreateMap<GrpcAddShoppingCartItemCommandDto, AddShoppingCartItemCommandDto>();
         CreateMap<GrpcUpdateShoppingCartItemCommandDto, UpdateShoppingCartItemCommandDto>();

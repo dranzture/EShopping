@@ -58,7 +58,7 @@ public class InventoryService : IInventoryService
             throw;
         }
     }
-    
+
 
     public async Task IncreaseInventory(InventoryQuantityChangeBaseDto request, string username,
         CancellationToken token = default)
@@ -92,7 +92,7 @@ public class InventoryService : IInventoryService
     {
         try
         {
-            var inventory =  await _grpcInventoryService.GetById(id, token);
+            var inventory = await _grpcInventoryService.GetById(id, token);
             return inventory;
         }
         catch
@@ -101,15 +101,29 @@ public class InventoryService : IInventoryService
         }
     }
 
-    public async  Task<InventoryDto?> GetByName(string name, CancellationToken token = default)
+    public async Task<InventoryDto?> GetByName(string name, CancellationToken token = default)
     {
-        var inventory =  await _grpcInventoryService.GetByName(name, token);
-        return inventory;
+        try
+        {
+            var inventory = await _grpcInventoryService.GetByName(name, token);
+            return inventory;
+        }
+        catch
+        {
+            throw;
+        }
     }
 
     public async Task<HashSet<InventoryListItemDto>> GetAllInventory(CancellationToken token = default)
     {
-        var inventories =  await _grpcInventoryService.GetInventoryList(token);
-        return inventories;
+        try
+        {
+            var inventories = await _grpcInventoryService.GetInventoryList(token);
+            return inventories;
+        }
+        catch
+        {
+            throw;
+        }
     }
 }
