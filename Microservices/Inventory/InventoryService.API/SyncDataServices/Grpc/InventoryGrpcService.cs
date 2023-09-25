@@ -20,7 +20,7 @@ public class InventoryGrpcService : GrpcInventoryServiceBase
         _mapper = mapper;
     }
 
-    public override async Task<StringValue> AddInventory(GrpcInventoryDto dto, ServerCallContext context)
+    public override async Task<StringValue> AddInventory(GrpcInventoryWithUsernameDto dto, ServerCallContext context)
     {
         try
         {

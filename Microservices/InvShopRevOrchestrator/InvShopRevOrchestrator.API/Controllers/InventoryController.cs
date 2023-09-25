@@ -26,7 +26,8 @@ public class InventoryController : ControllerBase
     {
         try
         {
-            var result = _inventoryService.AddInventory(dto, CancellationToken.None).Result;
+            var username = User.Identity.Name; // Get the username from the authenticated user
+            var result = _inventoryService.AddInventory(dto, username, CancellationToken.None).Result;
 
             return Ok(new
             {

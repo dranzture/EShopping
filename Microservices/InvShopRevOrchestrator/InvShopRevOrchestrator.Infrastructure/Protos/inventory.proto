@@ -4,7 +4,7 @@ import "google/protobuf/wrappers.proto";
 import "google/protobuf/empty.proto";
 
 service GrpcInventoryService {
-    rpc AddInventory (GrpcInventoryDto) returns (google.protobuf.StringValue);
+    rpc AddInventory (GrpcInventoryWithUsernameDto) returns (google.protobuf.StringValue);
     rpc UpdateInventory (GrpcInventoryWithUsernameDto) returns (google.protobuf.Empty);
     rpc DeleteInventory(GrpcInventoryWithUsernameDto) returns(google.protobuf.Empty);
     rpc IncreaseInventory(GrpcInventoryQuantityChangeDto) returns (google.protobuf.Empty);
@@ -38,7 +38,6 @@ message GrpcInventoryDto {
     float width = 6;
     float weight = 7;
     float price = 8;
-    optional string username = 9;
 }
 
 message GrpcListInventoryDto {

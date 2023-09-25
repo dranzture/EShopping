@@ -9,7 +9,7 @@ public class AddInventoryCommand : ICommand
     private readonly IInventoryRepository _repository;
     private Inventory? _result = null;
 
-    public AddInventoryCommand(IInventoryRepository repository, Inventory item)
+    public AddInventoryCommand(IInventoryRepository repository, Inventory item, string username)
     {
         _repository = repository;
         _item = item;
@@ -23,6 +23,7 @@ public class AddInventoryCommand : ICommand
 
     public async Task Execute()
     {
+        _item.UpdateCreatedFields(_item.CreatedBy);
         await _repository.AddAsync(_item);
         await _repository.SaveChangesAsync();
         _result = _item;

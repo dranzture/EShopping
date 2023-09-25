@@ -40,7 +40,8 @@ public class InventoryServiceTests
         };
         var inventory = new Inventory(inventoryDto.Name,
             inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
-            inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
+            inventoryDto.Weight, inventoryDto.Price, inventoryId);
+        inventory.UpdateCreatedFields(username);
         
         var cancellationToken = CancellationToken.None;
 
@@ -73,7 +74,8 @@ public class InventoryServiceTests
         };
         var inventory = new Inventory(inventoryDto.Name,
             inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
-            inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
+            inventoryDto.Weight, inventoryDto.Price, inventoryId);
+        inventory.UpdateCreatedFields(username);
         
         var cancellationToken = CancellationToken.None;
 
@@ -104,7 +106,8 @@ public class InventoryServiceTests
         };
         var inventory = new Inventory(inventoryDto.Name,
             inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
-            inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
+            inventoryDto.Weight, inventoryDto.Price, inventoryId);
+        inventory.UpdateCreatedFields(username);
         
         var cancellationToken = CancellationToken.None;
 
@@ -137,7 +140,8 @@ public class InventoryServiceTests
         };
         var inventory = new Inventory(inventoryDto.Name,
             inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
-            inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
+            inventoryDto.Weight, inventoryDto.Price, inventoryId);
+        inventory.UpdateCreatedFields(username);
         
         var cancellationToken = CancellationToken.None;
 
@@ -168,7 +172,8 @@ public class InventoryServiceTests
         };
         var inventory = new Inventory(inventoryDto.Name,
             inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
-            inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
+            inventoryDto.Weight, inventoryDto.Price, inventoryId);
+        inventory.UpdateCreatedFields(username);
         
         var cancellationToken = CancellationToken.None;
 
@@ -200,7 +205,8 @@ public class InventoryServiceTests
         };
         var inventory = new Inventory(inventoryDto.Name,
             inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
-            inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
+            inventoryDto.Weight, inventoryDto.Price, inventoryId);
+        inventory.UpdateCreatedFields(username);
         
         var cancellationToken = CancellationToken.None;
 
@@ -233,7 +239,8 @@ public class InventoryServiceTests
         };
         var inventory = new Inventory(inventoryDto.Name,
             inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
-            inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
+            inventoryDto.Weight, inventoryDto.Price, inventoryId);
+        inventory.UpdateCreatedFields(username);
         
         var cancellationToken = CancellationToken.None;
 
@@ -267,7 +274,8 @@ public class InventoryServiceTests
         };
         var inventory = new Inventory(inventoryDto.Name,
             inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
-            inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
+            inventoryDto.Weight, inventoryDto.Price, inventoryId);
+        inventory.UpdateCreatedFields(username);
         
         var cancellationToken = CancellationToken.None;
 
@@ -300,7 +308,8 @@ public class InventoryServiceTests
         };
         var inventory = new Inventory(inventoryDto.Name,
             inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
-            inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
+            inventoryDto.Weight, inventoryDto.Price, inventoryId);
+        inventory.UpdateCreatedFields(username);
         
 
         // Act
@@ -330,7 +339,8 @@ public class InventoryServiceTests
         };
         var inventory = new Inventory(inventoryDto.Name,
             inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
-            inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
+            inventoryDto.Weight, inventoryDto.Price, inventoryId);
+        inventory.UpdateCreatedFields(username);
         
         var cancellationToken = CancellationToken.None;
 
@@ -361,8 +371,8 @@ public class InventoryServiceTests
         };
         var inventory = new Inventory(inventoryDto.Name,
             inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
-            inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
-        
+            inventoryDto.Weight, inventoryDto.Price, inventoryId);
+        inventory.UpdateCreatedFields(username);
         var cancellationToken = CancellationToken.None;
 
         _repository.GetByName(Arg.Any<string>()).Returns((Inventory?)null);
@@ -377,30 +387,16 @@ public class InventoryServiceTests
     {
         // Arrange
         var cancellationToken = CancellationToken.None;
+        var inventory1 = new Inventory("TestInv1", "TestingThisMethod",
+            5, 10.0M, 5.0M, 20, 45, new Guid());
+        inventory1.UpdateCreatedFields("dranzture");  
+        var inventory2 = new Inventory("TestInv2", "TestingThisMethod",
+            5, 10.0M, 5.0M, 20, 45, new Guid());
+        inventory2.UpdateCreatedFields("dranzture");  
         var inventorySet = new HashSet<Inventory>
         {
-            new Inventory(
-                "TestItem1", // Name
-                "Test description", // Description
-                10, // InStock
-                5, // Height
-                3, // Width
-                2, // Weight
-                100, // Price
-                "TestUser", // Username
-                new Guid() // Id
-            ),
-            new Inventory(
-                "TestItem2", // Name
-                "Test description", // Description
-                10, // InStock
-                5, // Height
-                3, // Width
-                2, // Weight
-                100, // Price
-                "TestUser", // Username
-                new Guid() // Id
-            )
+            inventory1,
+            inventory2
         };
         _repository.GetAllInventory(cancellationToken).Returns(inventorySet);
 
@@ -418,17 +414,9 @@ public class InventoryServiceTests
         // Arrange
         var id = Guid.NewGuid();
         var cancellationToken = CancellationToken.None;
-        var inventory = new Inventory(
-            "TestItem1", // Name
-            "Test description", // Description
-            10, // InStock
-            5, // Height
-            3, // Width
-            2, // Weight
-            100, // Price
-            "TestUser", // Username
-            id // Id
-        );
+        var inventory = new Inventory("TestInv", "TestingThisMethod",
+            5, 10.0M, 5.0M, 20, 45, id);
+        inventory.UpdateCreatedFields("dranzture");  
         _repository.GetById(id, cancellationToken).Returns(inventory);
 
         // Act
@@ -460,17 +448,9 @@ public class InventoryServiceTests
         // Arrange
         var name = "TestItem1";
         var cancellationToken = CancellationToken.None;
-        var inventory = new Inventory(
-            "TestItem1", // Name
-            "Test description", // Description
-            10, // InStock
-            5, // Height
-            3, // Width
-            2, // Weight
-            100, // Price
-            "TestUser", // Username
-            new Guid() // Id
-        );
+        var inventory = new Inventory("TestItem1", "TestingThisMethod",
+            5, 10.0M, 5.0M, 20, 45, new Guid());
+        inventory.UpdateCreatedFields("dranzture");  
         _repository.GetByName(name, cancellationToken).Returns(inventory);
 
         // Act

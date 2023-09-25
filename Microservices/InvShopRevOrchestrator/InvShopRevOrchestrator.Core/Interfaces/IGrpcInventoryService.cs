@@ -6,7 +6,7 @@ namespace InvShopRevOrchestrator.Core.Interfaces;
 
 public interface IGrpcInventoryService
 {
-    Task<StringValue> AddInventory(InventoryDto request, CancellationToken token = default);
+    Task<StringValue> AddInventory(InventoryWithUsernameDto request, CancellationToken token = default);
     
     Task UpdateInventory(InventoryWithUsernameDto request, CancellationToken token = default);
     

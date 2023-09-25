@@ -25,6 +25,12 @@ public abstract class BaseEntity
     
     public string? DeletedBy { get; protected set; }
     
+    protected void UpdateCreatedFields(string username)
+    {
+         CreatedDateTime = DateTimeOffset.Now;
+         CreatedBy = username;
+    }
+    
     protected void UpdateModifiedFields(string username)
     {
         ModifiedDateTime = DateTimeOffset.Now;

@@ -12,11 +12,16 @@ public class InventoryService : IInventoryService
         _grpcInventoryService = grpcInventoryService;
     }
 
-    public async Task<Guid> AddInventory(InventoryDto request, CancellationToken token = default)
+    public async Task<Guid> AddInventory(InventoryDto request, string username, CancellationToken token = default)
     {
         try
         {
-            var inventoryId = await _grpcInventoryService.AddInventory(request, token);
+            var inventoryWithUsernameDto = new InventoryWithUsernameDto
+            {
+                Dto = request,
+                Username = username
+            };
+            var inventoryId = await _grpcInventoryService.AddInventory(inventoryWithUsernameDto, token);
             return new Guid(inventoryId.Value);
         }
         catch

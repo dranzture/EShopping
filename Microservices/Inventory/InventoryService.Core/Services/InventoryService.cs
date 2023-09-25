@@ -23,7 +23,7 @@ public class InventoryService : IInventoryService
         try
         {
             var inventory = _mapper.Map<Inventory>(dto);
-            var addCommand = new AddInventoryCommand(_repository, inventory);
+            var addCommand = new AddInventoryCommand(_repository, inventory, username);
             if (!await addCommand.CanExecute())
             {
                 throw new RpcException(new Status(StatusCode.InvalidArgument,

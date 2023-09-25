@@ -16,7 +16,6 @@ public class Inventory : BaseEntity
         decimal width,
         decimal weight,
         decimal price,
-        string username,
         Guid? id = null)
     {
         Name = Guard.Against.NullOrEmpty(name);
@@ -26,8 +25,7 @@ public class Inventory : BaseEntity
         Width = Guard.Against.Negative(width);
         Weight = Guard.Against.Negative(weight);
         Price = Guard.Against.Negative(price);
-        CreatedBy = username;
-        CreatedDateTime = DateTimeOffset.Now;
+
         
         //For Unit Test
         if (id.HasValue)
@@ -105,7 +103,12 @@ public class Inventory : BaseEntity
         Description = description;
         UpdateModifiedFields(username);
     }
-
+    
+    public void UpdateCreatedFields(string username)
+    {
+        base.UpdateCreatedFields(username);
+    }
+    
     public void Delete(string username)
     {
         base.Delete(username);

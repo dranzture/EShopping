@@ -22,13 +22,13 @@ public class GrpcInventoryService : IGrpcInventoryService
         _channel = GrpcChannel.ForAddress(settings.InventoryUrl);
     }
 
-    public async Task<StringValue> AddInventory(InventoryDto dto, CancellationToken token = default)
+    public async Task<StringValue> AddInventory(InventoryWithUsernameDto dto, CancellationToken token = default)
     {
         try
         {
             var client = new InventoryServiceClient(_channel);
 
-            var request = _mapper.Map<GrpcInventoryDto>(dto);
+            var request = _mapper.Map<GrpcInventoryWithUsernameDto>(dto);
             var result = await client.AddInventoryAsync(request, deadline: DateTime.UtcNow.AddSeconds(10),
                 cancellationToken: token);
 
