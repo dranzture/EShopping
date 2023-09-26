@@ -13,12 +13,19 @@ public class MapperProfile : Profile
     {
         CreateMap<GrpcInventoryDto, InventoryDto>()
             .ForMember(dest => dest.Id,
-                opt => 
-                    opt.MapFrom(src => string.IsNullOrEmpty(src.Id) ? (Guid?)null : Guid.Parse(src.Id)))
-            .ReverseMap(); // Reverse mapping from InventoryDto to GrpcInventoryDto
-
+                opt =>
+                    opt.MapFrom(src => string.IsNullOrEmpty(src.Id) ? (Guid?)null : Guid.Parse(src.Id)));
+        
+        CreateMap<InventoryDto, GrpcInventoryDto>()
+            .ForMember(dest => dest.Id,
+                opt =>
+                    opt.MapFrom(src => src.Id.ToString()));
+        
         CreateMap<InventoryQuantityChangeRequestDto, GrpcInventoryQuantityChangeDto>()
             .ReverseMap();
+
+        CreateMap<InventoryWithUsernameDto, GrpcInventoryWithUsernameDto>();
+          
 
         CreateMap<GrpcListInventoryDto, InventoryListItemDto>().ForMember(dest => dest.Id,
             opt => opt.MapFrom(src => string.IsNullOrEmpty(src.Id) ? (Guid?)null : Guid.Parse(src.Id)));

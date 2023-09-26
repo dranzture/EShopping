@@ -26,8 +26,9 @@ public class DecreaseInventoryCommand : ICommand
 
     public async Task Execute()
     {
-        _inventory.DecreaseStock(_amount, _username);
-        await _repository.UpdateAsync(_inventory);
+        var item = await _repository.GetById(_inventory.Id);
+        item!.DecreaseStock(_amount, _username);
+        await _repository.UpdateAsync(item);
         await _repository.SaveChangesAsync();
     }
 }

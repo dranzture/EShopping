@@ -54,6 +54,13 @@ public class Inventory : BaseEntity
     [Required]
     public decimal Price { get; private set; }
     
+    public void UpdateStock(int amount, string username)
+    {
+        InStock = amount;
+        UpdateModifiedFields(username);
+    }
+
+    
     public void IncreaseStock(int amount, string username)
     {
         InStock += amount;

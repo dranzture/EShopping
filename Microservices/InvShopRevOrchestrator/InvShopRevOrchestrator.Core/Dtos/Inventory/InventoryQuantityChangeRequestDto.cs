@@ -1,10 +1,17 @@
 ﻿namespace InvShopRevOrchestrator.Core.Dtos;
 
-public class InventoryQuantityChangeRequestDto : InventoryQuantityChangeBaseDto
+public class InventoryQuantityChangeRequestDto
 {
-    public InventoryQuantityChangeRequestDto(InventoryQuantityChangeBaseDto baseDto, string username) : base(baseDto)
+    public InventoryQuantityChangeRequestDto(InventoryDto dto, int amount, string username)
     {
+        Dto = dto;
+        Amount = amount;
         Username = username;
+        
     }
+    public InventoryDto Dto { get; set; }
+
+    public int Amount { get; set; }
+    
     public string Username { get; set; }
 }

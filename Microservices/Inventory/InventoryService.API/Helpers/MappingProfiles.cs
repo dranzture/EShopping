@@ -13,22 +13,24 @@ public class MappingProfiles : Profile
     {
         CreateMap<GrpcInventoryDto, InventoryDto>()
             .ForMember(e => e.Id, t =>
-                t.MapFrom(e => new Guid(e.Id)));;
-        
-        CreateMap<InventoryDto, Inventory>();
+                t.MapFrom(e => new Guid(e.Id)));
+        ;
+
+        CreateMap<InventoryDto, Inventory>().ReverseMap();
 
         CreateMap<Inventory, GrpcInventoryDto>().ForMember(e => e.Id, t =>
             t.MapFrom(e => e.Id.ToString()));
-        
+
         CreateMap<Inventory, GrpcListInventoryDto>().ForMember(e => e.Id, t =>
             t.MapFrom(e => e.Id.ToString()));
-        
+
         CreateMap<GrpcInventoryDto, InventoryDto>()
-            .ForMember(dest => dest.Id, opt 
+            .ForMember(dest => dest.Id, opt
                 => opt.MapFrom(src => !string.IsNullOrEmpty(src.Id) ? new Guid(src.Id) : (Guid?)null));
-        
+
         CreateMap<InventoryDto, GrpcInventoryDto>()
-            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id.HasValue ? src.Id.Value.ToString() : string.Empty));
-        
+            .ForMember(dest =>
+                dest.Id, opt =>
+                opt.MapFrom(src => src.Id.HasValue ? src.Id.Value.ToString() : string.Empty));
     }
 }

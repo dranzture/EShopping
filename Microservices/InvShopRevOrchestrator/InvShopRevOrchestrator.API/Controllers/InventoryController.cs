@@ -22,12 +22,12 @@ public class InventoryController : ControllerBase
     }
 
     [HttpPost("AddInventory")]
-    public IActionResult AddInventory([FromBody] InventoryDto dto)
+    public async Task<IActionResult> AddInventory([FromBody] InventoryDto dto)
     {
         try
         {
-            var username = User.Identity.Name; // Get the username from the authenticated user
-            var result = _inventoryService.AddInventory(dto, username, CancellationToken.None).Result;
+            var username = HttpContext.User.Identity.Name; // Get the username from the authenticated user
+            var result = await _inventoryService.AddInventory(dto, username, CancellationToken.None);
 
             return Ok(new
             {
@@ -46,12 +46,12 @@ public class InventoryController : ControllerBase
     }
 
     [HttpPut("UpdateInventory")]
-    public IActionResult UpdateInventory([FromBody] InventoryDto dto)
+    public async Task<IActionResult> UpdateInventory([FromBody] InventoryDto dto)
     {
         try
         {
-            var username = User.Identity.Name; // Get the username from the authenticated user
-            _inventoryService.UpdateInventory(dto, username, CancellationToken.None).Wait();
+            var username = HttpContext.User.Identity.Name; // Get the username from the authenticated user
+            await _inventoryService.UpdateInventory(dto, username, CancellationToken.None);
 
             _logger.LogInformation("Inventory updated successfully");
             return Ok("Inventory updated successfully.");
@@ -67,12 +67,12 @@ public class InventoryController : ControllerBase
     }
 
     [HttpPut("DecreaseInventory")]
-    public IActionResult DecreaseInventory([FromBody] InventoryQuantityChangeBaseDto dto)
+    public async Task<IActionResult> DecreaseInventory([FromBody] InventoryQuantityChangeBaseDto dto)
     {
         try
         {
-            var username = User.Identity.Name; // Get the username from the authenticated user
-            _inventoryService.DecreaseInventory(dto, username, CancellationToken.None).Wait();
+            var username = HttpContext.User.Identity.Name; // Get the username from the authenticated user
+            await _inventoryService.DecreaseInventory(dto, username, CancellationToken.None);
 
             _logger.LogInformation("Inventory decreased successfully");
             return Ok("Inventory decreased successfully.");
@@ -88,12 +88,12 @@ public class InventoryController : ControllerBase
     }
 
     [HttpPut("IncreaseInventory")]
-    public IActionResult IncreaseInventory([FromBody] InventoryQuantityChangeBaseDto dto)
+    public async Task<IActionResult> IncreaseInventory([FromBody] InventoryQuantityChangeBaseDto dto)
     {
         try
         {
-            var username = User.Identity.Name; // Get the username from the authenticated user
-            _inventoryService.IncreaseInventory(dto, username, CancellationToken.None).Wait();
+            var username = HttpContext.User.Identity.Name; // Get the username from the authenticated user
+            await _inventoryService.IncreaseInventory(dto, username, CancellationToken.None);
 
             _logger.LogInformation("Inventory increased successfully");
             return Ok("Inventory increased successfully.");
@@ -109,12 +109,12 @@ public class InventoryController : ControllerBase
     }
 
     [HttpDelete("DeleteInventory")]
-    public IActionResult DeleteInventory([FromBody] InventoryDto dto)
+    public async Task<IActionResult> DeleteInventory([FromBody] InventoryDto dto)
     {
         try
         {
-            var username = User.Identity.Name; // Get the username from the authenticated user
-            _inventoryService.DeleteInventory(dto, username, CancellationToken.None).Wait();
+            var username = HttpContext.User.Identity.Name; // Get the username from the authenticated user
+            await _inventoryService.DeleteInventory(dto, username, CancellationToken.None);
 
             _logger.LogInformation("Inventory deleted successfully");
             return Ok("Inventory deleted successfully.");
@@ -130,11 +130,11 @@ public class InventoryController : ControllerBase
     }
 
     [HttpGet("GetById")]
-    public IActionResult GetById(Guid id)
+    public async Task<IActionResult> GetById(Guid id)
     {
         try
         {
-            var inventory = _inventoryService.GetById(id, CancellationToken.None).Result;
+            var inventory = await _inventoryService.GetById(id, CancellationToken.None);
             if (inventory != null)
             {
                 return Ok(inventory);
@@ -155,11 +155,11 @@ public class InventoryController : ControllerBase
     }
 
     [HttpGet("GetByName")]
-    public IActionResult GetByName(string name)
+    public async Task<IActionResult> GetByName(string name)
     {
         try
         {
-            var inventory = _inventoryService.GetByName(name, CancellationToken.None).Result;
+            var inventory = await _inventoryService.GetByName(name, CancellationToken.None);
             if (inventory != null)
             {
                 return Ok(inventory);
@@ -180,11 +180,11 @@ public class InventoryController : ControllerBase
     }
 
     [HttpGet("GetAllInventory")]
-    public IActionResult GetAllInventory()
+    public async Task<IActionResult> GetAllInventory()
     {
         try
         {
-            var inventories = _inventoryService.GetAllInventory(CancellationToken.None).Result;
+            var inventories = await _inventoryService.GetAllInventory(CancellationToken.None);
             if (inventories.Count > 0)
             {
                 return Ok(inventories);

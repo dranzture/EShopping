@@ -70,7 +70,7 @@ public class InventoryService : IInventoryService
     {
         try
         {
-            var inventoryQuantityChangeDto = new InventoryQuantityChangeRequestDto(request, username);
+            var inventoryQuantityChangeDto = new InventoryQuantityChangeRequestDto(request.Dto, request.Amount, username);
             await _grpcInventoryService.IncreaseInventory(inventoryQuantityChangeDto, token);
         }
         catch
@@ -84,7 +84,7 @@ public class InventoryService : IInventoryService
     {
         try
         {
-            var inventoryQuantityChangeDto = new InventoryQuantityChangeRequestDto(request, username);
+            var inventoryQuantityChangeDto = new InventoryQuantityChangeRequestDto(request.Dto, request.Amount, username);
             await _grpcInventoryService.DecreaseInventory(inventoryQuantityChangeDto, token);
         }
         catch

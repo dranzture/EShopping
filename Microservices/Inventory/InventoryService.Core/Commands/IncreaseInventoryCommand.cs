@@ -25,8 +25,9 @@ public class IncreaseInventoryCommand : ICommand
 
     public async Task Execute()
     {
-        _inventory.IncreaseStock(_amount, _username);
-        await _repository.UpdateAsync(_inventory);
+        var item = await _repository.GetById(_inventory.Id);
+        item!.IncreaseStock(_amount, _username);
+        await _repository.UpdateAsync(item);
         await _repository.SaveChangesAsync();
     }    
 }

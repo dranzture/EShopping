@@ -24,7 +24,7 @@ public class InventoryGrpcService : GrpcInventoryServiceBase
     {
         try
         {
-            var item = _mapper.Map<InventoryDto>(dto);
+            var item = _mapper.Map<InventoryDto>(dto.Dto);
             var result = await _service.AddInventory(item, dto.Username);
 
 
@@ -67,7 +67,7 @@ public class InventoryGrpcService : GrpcInventoryServiceBase
     {
         try
         {
-            var inventoryDto = _mapper.Map<InventoryDto>(dto);
+            var inventoryDto = _mapper.Map<InventoryDto>(dto.Dto);
             await _service.DeleteInventory(inventoryDto, dto.Username);
             return new Empty();
         }
@@ -85,7 +85,7 @@ public class InventoryGrpcService : GrpcInventoryServiceBase
     {
         try
         {
-            var inventoryDto = _mapper.Map<InventoryDto>(dto);
+            var inventoryDto = _mapper.Map<InventoryDto>(dto.Dto);
             await _service.DecreaseInventory(inventoryDto, dto.Amount, dto.Username);
             return new Empty();
         }
@@ -103,7 +103,7 @@ public class InventoryGrpcService : GrpcInventoryServiceBase
     {
         try
         {
-            var inventoryDto = _mapper.Map<InventoryDto>(dto);
+            var inventoryDto = _mapper.Map<InventoryDto>(dto.Dto);
             await _service.IncreaseInventory(inventoryDto, dto.Amount, dto.Username);
             return new Empty();
         }

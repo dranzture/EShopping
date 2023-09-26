@@ -23,8 +23,9 @@ public class DeleteInventoryCommand : ICommand
 
     public async Task Execute()
     {
-        _inventory.Delete(_username);
-        await _repository.UpdateAsync(_inventory);
+        var item = await _repository.GetById(_inventory.Id);
+        item!.Delete(_username);
+        await _repository.UpdateAsync(item);
         await _repository.SaveChangesAsync();
     }
 }
