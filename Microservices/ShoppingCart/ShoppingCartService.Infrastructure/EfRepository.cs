@@ -1,3 +1,6 @@
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using ShoppingCartService.Core.Interfaces;
 using ShoppingCartService.Infrastructure.Data;
 

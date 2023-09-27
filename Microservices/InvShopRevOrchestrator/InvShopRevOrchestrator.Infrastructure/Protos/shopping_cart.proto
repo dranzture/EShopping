@@ -8,18 +8,19 @@ service GrpcShoppingCartService {
     rpc AddShoppingItem(GrpcAddShoppingCartItemCommandDto) returns (google.protobuf.Empty);
     rpc UpdateShoppingItem(GrpcUpdateShoppingCartItemCommandDto) returns (google.protobuf.Empty);
     rpc DeleteShoppingItem(GrpcDeleteShoppingCartItemCommandDto) returns (google.protobuf.Empty);
-    rpc CheckoutShoppingCart(GrpcShoppingCartDto) returns (google.protobuf.Empty);
+    rpc CheckoutShoppingCart(google.protobuf.StringValue) returns (google.protobuf.Empty);
     rpc GetOrderDetails(GrpcOrderDetailsRequest) returns (GrpcShoppingCartDto);
+    rpc GetShoppingCartByUsername(google.protobuf.StringValue) returns (GrpcShoppingCartDto);
 }
 
 message GrpcShoppingCartDto {
-    optional string id = 1; 
+    optional string id = 1;
     string username = 2;
     repeated GrpcShoppingItemDto shopping_items = 3;
 }
 
 message GrpcInventoryDto {
-    string id = 1; 
+    string id = 1;
     string name = 2;
     string description = 3;
     int32 in_stock = 4;
@@ -30,28 +31,32 @@ message GrpcInventoryDto {
 }
 
 message GrpcShoppingItemDto {
-    string id = 1; 
-    string item_name = 2;
+    string shopping_cart_id = 1;
+    string inventory_id = 2;
     int32 quantity = 3;
-    double item_price = 4;
+    float total_price = 4;
 }
 
 message GrpcAddShoppingCartItemCommandDto{
-    GrpcShoppingCartDto shopping_cart = 1;
+    string shopping_cart_id = 1;
     GrpcInventoryDto inventory = 2;
     int32 quantity = 3;
+    string username = 4;
 }
 
 message GrpcUpdateShoppingCartItemCommandDto{
-    GrpcShoppingCartDto shopping_cart = 1;
+    string shopping_cart_id = 1;
     GrpcInventoryDto inventory = 2;
     int32 quantity = 3;
+    string username = 4;
 }
 
 message GrpcDeleteShoppingCartItemCommandDto{
-    GrpcShoppingCartDto shopping_cart = 1;
+    string shopping_cart_id = 1;
     GrpcInventoryDto inventory = 2;
+    string username = 3;
 }
+
 
 message GrpcOrderDetailsRequest {
     string cart_id = 1;

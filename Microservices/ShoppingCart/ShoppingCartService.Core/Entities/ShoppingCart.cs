@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using ShoppingCartService.Core.Extensions;
 using ShoppingCartService.Core.Models;
 using ShoppingCartService.Core.ValueObjects;
 
@@ -6,6 +7,8 @@ namespace ShoppingCartService.Core.Entities;
 
 public class ShoppingCart : BaseEntity
 {
+    public ShoppingCart(){} //Ef Required
+    
     public ShoppingCart(string username, Guid? id = null)
     {
         Username = username;
@@ -21,7 +24,7 @@ public class ShoppingCart : BaseEntity
     [Required] 
     public string Username { get; private set; }
 
-    private readonly List<ShoppingItem> _shoppingItems;
+    private readonly List<ShoppingItem> _shoppingItems = new List<ShoppingItem>();
 
     public IReadOnlyCollection<ShoppingItem> ShoppingItems => _shoppingItems;
 
@@ -30,23 +33,25 @@ public class ShoppingCart : BaseEntity
 
     public void AddItem(Inventory inventory, int quantity, string username)
     {
-        var item = _shoppingItems.FirstOrDefault(x => x.Item.Id == inventory.Id);
+        var item = _shoppingItems.FirstOrDefault(x => x.InventoryId == inventory.Id);
         if (item != null) throw new ArgumentException("This item is already in the shopping cart");
-        _shoppingItems.Add(new ShoppingItem(inventory, quantity, inventory.Price, Id));
+        var newItem = new ShoppingItem(inventory.Id, Id, username);
+        newItem.UpdateQuantity(quantity, inventory, username);
+        _shoppingItems.Add(newItem);
         UpdateModifiedFields(username);
     }
 
     public void UpdateQuantityOfItem(Inventory inventory, int quantity, string username)
     {
-        var item = _shoppingItems.FirstOrDefault(x => x.Item.Id == inventory.Id);
+        var item = _shoppingItems.FirstOrDefault(x => x.InventoryId == inventory.Id);
         if (item == null) return;
-        item.UpdateQuantity(quantity,inventory);
+        item.UpdateQuantity(quantity,inventory, username);
         UpdateModifiedFields(username);
     }
 
     public void RemoveItem(Inventory inventory, string username)
     {
-        var item = _shoppingItems.FirstOrDefault(x => x.Item.Id == inventory.Id);
+        var item = _shoppingItems.FirstOrDefault(x => x.InventoryId == inventory.Id);
         if (item == null) return;
         _shoppingItems.Remove(item);
         UpdateModifiedFields(username);

@@ -2,6 +2,7 @@
 
 public class DeleteShoppingCartItemCommandDto
 {
-    public ShoppingCartDto ShoppingCart { get; set; }
+    public Guid ShoppingCartId { get; set; }
     public InventoryDto Inventory { get; set; }
+    public string Username { get; set; }
 }

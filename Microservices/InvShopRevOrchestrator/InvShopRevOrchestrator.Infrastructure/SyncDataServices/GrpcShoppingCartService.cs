@@ -1,4 +1,5 @@
 using AutoMapper;
+using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using Grpc.Net.Client;
 using GrpcShoppingCartService;
@@ -125,14 +126,16 @@ public class GrpcShoppingCartService : IGrpcShoppingCartService
         }
     }
 
-    public async Task CheckoutShoppingCart(ShoppingCartDto request, CancellationToken token = default)
+    public async Task CheckoutShoppingCart(Guid shoppingCartId, CancellationToken token = default)
     {
         try
         {
             var client = new ShoppingCartServiceClient(_channel);
-            var grpcRequest = _mapper.Map<GrpcShoppingCartDto>(request);
 
-            await client.CheckoutShoppingCartAsync(grpcRequest, cancellationToken: token);
+            await client.CheckoutShoppingCartAsync(new StringValue()
+            {
+                Value = shoppingCartId.ToString()
+            }, cancellationToken: token);
         }
         catch (RpcException ex)
         {
@@ -158,6 +161,36 @@ public class GrpcShoppingCartService : IGrpcShoppingCartService
             var request = new GrpcOrderDetailsRequest { CartId = id.ToString() };
 
             var result = await client.GetOrderDetailsAsync(request, cancellationToken: token);
+
+            // Map the gRPC response to your DTO
+            return _mapper.Map<ShoppingCartDto>(result);
+        }
+        catch (RpcException ex)
+        {
+            // Handle gRPC exceptions
+            Console.WriteLine(ex.StatusCode == StatusCode.DeadlineExceeded
+                ? "---> Error on GetOrderDetailsAsync: gRPC Client Timeout"
+                : $"---> Error on GetOrderDetailsAsync: {ex.Status.Detail}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            // Handle other exceptions
+            Console.WriteLine($"---> Internal Error on GetOrderDetailsAsync: {ex.Message}");
+            throw;
+        }
+    }
+
+    public async Task<ShoppingCartDto> GetShoppingCartByUsername(string username, CancellationToken token = default)
+    {
+        try
+        {
+            var client = new ShoppingCartServiceClient(_channel);
+
+            var result = await client.GetShoppingCartByUsernameAsync(new StringValue()
+            {
+                Value = username
+            }, cancellationToken: token);
 
             // Map the gRPC response to your DTO
             return _mapper.Map<ShoppingCartDto>(result);

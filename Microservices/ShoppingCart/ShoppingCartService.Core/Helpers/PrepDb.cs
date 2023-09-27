@@ -22,7 +22,6 @@ public static class Helpers
         try
         {
             var newInventory = new ShoppingCart("dranzture", new Guid());
-            newInventory.AddItem(new Inventory("Product1", "Product1", 2, 1, 1, 1, 1, "dranzture"), 2, "dranzture");
             await repository.AddAsync(newInventory);
             await repository.SaveChangesAsync();
         }

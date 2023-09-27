@@ -12,7 +12,9 @@ public interface IGrpcShoppingCartService
 
     Task DeleteShoppingItem(DeleteShoppingCartItemCommandDto request, CancellationToken token = default);
 
-    Task CheckoutShoppingCart(ShoppingCartDto request, CancellationToken token = default);
+    Task CheckoutShoppingCart(Guid shoppingCartId, CancellationToken token = default);
 
-    Task<ShoppingCartDto> GetOrderDetails(Guid id, CancellationToken token = default);
+    Task<ShoppingCartDto> GetOrderDetails(Guid shoppingCartId, CancellationToken token = default);
+    
+    Task<ShoppingCartDto> GetShoppingCartByUsername(string username, CancellationToken token = default);
 }

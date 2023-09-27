@@ -16,26 +16,57 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f1709b6-fca2-4cfd-9a9e-505d5f094e8f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/Helpers/InventoryMapperProfile.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/Helpers/ReviewMapperProfile.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/Helpers/ShoppingCartMapperProfile.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/Controllers/InventoryController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/Controllers/InventoryController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/Helpers/MapperProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/Helpers/MapperProfile.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Entities/ShoppingItem.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/Serializer/ShoppingCartSerializer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/Controllers/ShoppingCartController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/Controllers/ShoppingCartController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/Helpers/ControllerExceptionExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/Helpers/ControllerExceptionExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/Helpers/MapperProfile.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Dtos/Inventory/InventoryDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Dtos/Inventory/InventoryDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Dtos/Inventory/InventoryListItemDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Dtos/Inventory/InventoryListItemDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Interfaces/IGrpcInventoryService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Interfaces/IGrpcInventoryService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Interfaces/IInventoryService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Interfaces/IInventoryService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Services/InventoryService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Services/InventoryService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Infrastructure/Protos/inventory.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Infrastructure/Protos/inventory.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Infrastructure/SyncDataServices/GrpcInventoryService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Infrastructure/SyncDataServices/GrpcInventoryService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.API/Protos/inventory.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.API/Protos/inventory.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.API/SyncDataServices/Grpc/InventoryGrpcService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.API/SyncDataServices/Grpc/InventoryGrpcService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Commands/AddInventoryCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Commands/AddInventoryCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Entities/BaseEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Entities/BaseEntity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Entities/Inventory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Entities/Inventory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Helpers/PrepDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Helpers/PrepDb.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Services/InventoryService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Services/InventoryService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.UnitTests/InventoryCommandsTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.UnitTests/InventoryCommandsTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.UnitTests/InventoryServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.UnitTests/InventoryServiceTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Dtos/ShoppingCartDto/AddShoppingCartItemCommandDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Dtos/ShoppingCartDto/AddShoppingCartItemCommandDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Dtos/ShoppingCartDto/AddShoppingItemRequestDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Dtos/ShoppingCartDto/AddShoppingItemRequestDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Dtos/ShoppingCartDto/DeleteShoppingCartItemCommandDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Dtos/ShoppingCartDto/DeleteShoppingCartItemCommandDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Dtos/ShoppingCartDto/DeleteShoppingItemRequestDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Dtos/ShoppingCartDto/DeleteShoppingItemRequestDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Dtos/ShoppingCartDto/ShoppingItemDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Dtos/ShoppingCartDto/ShoppingItemDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Dtos/ShoppingCartDto/UpdateShoppingCartItemCommandDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Dtos/ShoppingCartDto/UpdateShoppingCartItemCommandDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Dtos/ShoppingCartDto/UpdateShoppingItemRequestDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Dtos/ShoppingCartDto/UpdateShoppingItemRequestDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Interfaces/IGrpcShoppingCartService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Interfaces/IGrpcShoppingCartService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Interfaces/IShoppingCartService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Interfaces/IShoppingCartService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Services/ShoppingCartService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Services/ShoppingCartService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Infrastructure/Protos/shopping_cart.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Infrastructure/Protos/shopping_cart.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Infrastructure/SyncDataServices/GrpcShoppingCartService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Infrastructure/SyncDataServices/GrpcShoppingCartService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ShoppingCartService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ShoppingCartService/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.API/Helpers/MappingProfiles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.API/Helpers/MappingProfiles.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.API/Protos/shopping_cart.proto" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.API/Protos/shopping_cart.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.API/SyncDataServices/Grpc/ShoppingCartGrpcService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.API/SyncDataServices/Grpc/ShoppingCartGrpcService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Commands/AddToShoppingCartCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Commands/AddToShoppingCartCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Commands/CheckoutShoppingCart.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Commands/CheckoutShoppingCart.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Commands/DeleteFromShoppingCartCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Commands/DeleteFromShoppingCartCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Commands/UpdateQuantityShoppingItemCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Commands/UpdateQuantityShoppingItemCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/CoreAutofacModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/CoreAutofacModule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Dtos/ShoppingItemDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Dtos/ShoppingItemDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Entities/BaseEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Entities/BaseEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Entities/ShoppingCart.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Entities/ShoppingCart.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Helpers/PrepDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Helpers/PrepDb.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Interfaces/IPublisher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Interfaces/IPublisher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Interfaces/IShoppingCartService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Interfaces/IShoppingCartService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Repositories/ShoppingCartRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Repositories/ShoppingCartRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Requests/UpdateShoppingCartRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Requests/UpdateShoppingCartRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Services/ShoppingCartService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Services/ShoppingCartService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/ValueObjects/ShoppingItem.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/Consumer/ShoppingCartConsumerService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/Consumer/ShoppingCartConsumerService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/Data/Configurations/ShoppingItemConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/Data/Configurations/ShoppingItemConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/EfRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/EfRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/InfrastructureAutofacModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/InfrastructureAutofacModule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/Publisher/Publisher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/Publisher/Publisher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.UnitTests/AddToShoppingCartCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.UnitTests/AddToShoppingCartCommandTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.UnitTests/CheckoutShoppingCartCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.UnitTests/CheckoutShoppingCartCommandTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.UnitTests/DeleteFromShoppingCartCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.UnitTests/DeleteFromShoppingCartCommandTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.UnitTests/ShoppingServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.UnitTests/ShoppingServiceTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,15 +88,12 @@
     <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0ad848ebb9c34dd39327e28804f790c45be00/d8/33a06a05/ProducerBuilder`2.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e4fc9df04d6240989834bdda6da6697c6c518/4a/09a12c53/StringValue.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6879c9ed20391a5ccfea363be5964fbcfe4f1dfde9558aa84b36df6b6ec92c6/List.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/829d6ac6e62b9bee9ef8e79e827d87d0c31a7c2eefbc354135d9a8f2c4deb/Mapper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b8d2795a624ec1ca285de7c049f728624e8b8a82388f8d67db20c33442b28f53/NullReferenceException.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f5545b2656401abe1a371ad2756d7d2328a38293f7ee8b163801bbf55cee8/TestInvoker.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/polat/RiderProjects/EShopping/Microservices/ShoppingCart/ShoppingCartService.API/Helpers/MappingProfiles.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/polat/RiderProjects/EShopping/Microservices/ShoppingCart/ShoppingCartService.API/Helpers/MappingProfiles.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/polat/RiderProjects/EShopping/Microservices/ShoppingCart/ShoppingCartService.API/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/polat/RiderProjects/EShopping/Microservices/ShoppingCart/ShoppingCartService.API/SyncDataServices/Grpc/ShoppingCartGrpcService.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/polat/RiderProjects/EShopping/Microservices/ShoppingCart/ShoppingCartService.Core/Commands/AddShoppingCart.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/polat/RiderProjects/EShopping/Microservices/ShoppingCart/ShoppingCartService.Infrastructure/Consumer/ShoppingCartConsumerService.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -107,6 +135,28 @@
     ]
   }
 }</component>
+  <component name="RunManager" selected=".NET Launch Settings Profile.ShoppingCartService.API: http">
+    <configuration name="ShoppingCartService.API: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile" temporary="true">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/ShoppingCartService.API/ShoppingCartService.API.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net7.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="http" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue=".NET Launch Settings Profile.ShoppingCartService.API: http" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -120,6 +170,8 @@
       <workItem from="1695348581997" duration="15153000" />
       <workItem from="1695481442512" duration="2063000" />
       <workItem from="1695577925773" duration="3161000" />
+      <workItem from="1695769498971" duration="65000" />
+      <workItem from="1695769649192" duration="22899000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <option name="closed" value="true" />
@@ -216,8 +268,80 @@
     <option name="LAST_COMMIT_MESSAGE" value="Unit test update and fix on the shopping cart checkout command." />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/ShoppingCartService.Core/Commands/AddToShoppingCartCommand.cs</url>
+          <line>41</line>
+          <properties documentPath="C:\Users\polat\RiderProjects\EShopping\Microservices\ShoppingCart\ShoppingCartService.Core\Commands\AddToShoppingCartCommand.cs" initialLine="39" containingFunctionPresentation="Method 'Execute'">
+            <startOffsets>
+              <option value="1379" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1459" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/ShoppingCartService.API/SyncDataServices/Grpc/ShoppingCartGrpcService.cs</url>
+          <line>49</line>
+          <properties documentPath="C:\Users\polat\RiderProjects\EShopping\Microservices\ShoppingCart\ShoppingCartService.API\SyncDataServices\Grpc\ShoppingCartGrpcService.cs" initialLine="49" containingFunctionPresentation="Method 'AddShoppingItem'">
+            <startOffsets>
+              <option value="1696" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1728" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/ShoppingCartService.API/SyncDataServices/Grpc/ShoppingCartGrpcService.cs</url>
+          <line>59</line>
+          <properties documentPath="C:\Users\polat\RiderProjects\EShopping\Microservices\ShoppingCart\ShoppingCartService.API\SyncDataServices\Grpc\ShoppingCartGrpcService.cs" initialLine="59" containingFunctionPresentation="Method 'AddShoppingItem'">
+            <startOffsets>
+              <option value="2055" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2056" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/ShoppingCartService.API/SyncDataServices/Grpc/ShoppingCartGrpcService.cs</url>
+          <line>65</line>
+          <properties documentPath="C:\Users\polat\RiderProjects\EShopping\Microservices\ShoppingCart\ShoppingCartService.API\SyncDataServices\Grpc\ShoppingCartGrpcService.cs" initialLine="65" containingFunctionPresentation="Method 'AddShoppingItem'">
+            <startOffsets>
+              <option value="2202" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2268" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/ShoppingCartService.Core/Commands/AddToShoppingCartCommand.cs</url>
+          <line>34</line>
+          <properties documentPath="C:\Users\polat\RiderProjects\EShopping\Microservices\ShoppingCart\ShoppingCartService.Core\Commands\AddToShoppingCartCommand.cs" initialLine="34" containingFunctionPresentation="Method 'CanExecute'">
+            <startOffsets>
+              <option value="1106" />
+              <option value="1175" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1174" />
+              <option value="1187" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
+        <PinnedItemInfo parentTag="Type#ShoppingCartService.Core.Models.BaseEntity" memberName="DeletedBy" />
         <PinnedItemInfo parentTag="Type#System.Threading.Tasks.SystemThreadingTasks_FutureDebugView`1" memberName="Exception" />
       </pinned-members>
     </pin-to-top-manager>

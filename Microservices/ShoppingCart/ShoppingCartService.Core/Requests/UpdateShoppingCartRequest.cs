@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using ShoppingCartService.Core.Entities;
-using ShoppingCartService.Core.Models;
 
 namespace ShoppingCartService.Core.Requests;
 

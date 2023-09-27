@@ -1,4 +1,7 @@
-﻿using System.Text.Json;
+﻿using System;
+using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
 using Confluent.Kafka;
 using MediatR;
 using Microsoft.Extensions.Hosting;
@@ -11,19 +14,18 @@ namespace ShoppingCartService.Infrastructure.Consumer;
 
 public class ShoppingCartConsumerService : BackgroundService
 {
-    private readonly AppSettings _settings;
     private readonly IMediator _mediator;
     private readonly string _topic = "update_cart_status";
-    private IConsumer<Ignore, string> _consumer;
-    private CancellationTokenSource _cancellationTokenSource;
+    private readonly IConsumer<Ignore, string> _consumer;
+    private readonly CancellationTokenSource _cancellationTokenSource;
 
     public ShoppingCartConsumerService(AppSettings settings, IMediator mediator)
     {
-        _settings = settings;
         _mediator = mediator;
-        var config = new ProducerConfig
+        var config = new ConsumerConfig
         {
-            BootstrapServers = _settings.KafkaSettings.BootstrapServers
+            BootstrapServers = settings.KafkaSettings.BootstrapServers,
+            GroupId = new Guid().ToString()
         }; 
         _consumer = new ConsumerBuilder<Ignore, string>(config).Build();
         _consumer.Subscribe(_topic);
@@ -35,8 +37,6 @@ public class ShoppingCartConsumerService : BackgroundService
     {
         await Task.Run(() => StartConsumerLoop(_cancellationTokenSource.Token), stoppingToken);
     }
-
-    
 
     private void StartConsumerLoop(CancellationToken cancellationToken)
     {

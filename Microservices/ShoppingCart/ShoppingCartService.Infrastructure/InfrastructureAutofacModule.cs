@@ -2,7 +2,7 @@ using System.Reflection;
 using Autofac;
 using MediatR;
 using ShoppingCartService.Core.Interfaces;
-using ShoppingCartService.Infrastructure.Publisher;
+using IPublisher = ShoppingCartService.Core.Interfaces.IPublisher;
 using Module = Autofac.Module;
 
 namespace ShoppingCartService.Infrastructure;
@@ -58,8 +58,8 @@ public class InfrastructureAutofacModule : Module
 
     private void RegisterPublisher(ContainerBuilder builder)
     {
-        builder.RegisterType(typeof(Publisher<,>))
-            .As(typeof(IPublisher<,>))
+        builder.RegisterType<Publisher.Publisher>()
+            .As<IPublisher>()
             .InstancePerLifetimeScope();
     }
 }

@@ -3,7 +3,7 @@ using ShoppingCartService.Core.Entities;
 using ShoppingCartService.Core.Interfaces;
 using ShoppingCartService.Core.ValueObjects;
 
-namespace InventoryService.Core.Repositories;
+namespace ShoppingCartService.Core.Repositories;
 
 public class ShoppingCartRepository : IShoppingCartRepository
 {
@@ -43,14 +43,14 @@ public class ShoppingCartRepository : IShoppingCartRepository
     public async Task<ShoppingCart?> GetShoppingCartByUsername(string username, CancellationToken token = default)
     {
         var result = await Queryable(token);
-        return await result.FirstOrDefaultAsync(
+        return await result.Include(e=>e.ShoppingItems).FirstOrDefaultAsync(
             e => e.Username == username && e.IsDeleted == false && e.Status == CheckoutStatus.None, token);
     }
 
     public async Task<ShoppingCart?> GetShoppingCartById(Guid id, CancellationToken token = default)
     {
         var result = await Queryable(token);
-        return await result.FirstOrDefaultAsync(
+        return await result.Include(e=>e.ShoppingItems).FirstOrDefaultAsync(
             e => e.Id == id && e.IsDeleted == false, token);
     }
 }

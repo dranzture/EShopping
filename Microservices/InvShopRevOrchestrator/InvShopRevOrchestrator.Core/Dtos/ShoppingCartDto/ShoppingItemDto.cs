@@ -8,7 +8,5 @@ public class ShoppingItemDto
     
     public int Quantity { get; set;}
     
-    public decimal Price { get; set;}
-    
-    public DateTimeOffset AddedDateTime { get; set;}
+    public decimal TotalPrice { get; set;}
 }

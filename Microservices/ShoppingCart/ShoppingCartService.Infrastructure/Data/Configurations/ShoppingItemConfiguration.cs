@@ -12,6 +12,6 @@ public class ShoppingItemConfiguration : IEntityTypeConfiguration<ShoppingItem>
     {
         builder.HasOne<ShoppingCart>()
             .WithMany(e => e.ShoppingItems)
-            .HasForeignKey("_shoppingCartId");
+            .HasForeignKey(e=>e.ShoppingCartId);
     }
 }

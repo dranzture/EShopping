@@ -9,11 +9,11 @@ public static class ControllerExceptionExtensions
         switch (rpcEx.StatusCode)
         {
             case StatusCode.NotFound:
-                logger.LogWarning("Resource not found");
-                return controller.NotFound("Resource not found.");
+                logger.LogWarning(rpcEx.Status.Detail);
+                return controller.NotFound(rpcEx.Status.Detail);
             case StatusCode.InvalidArgument:
-                logger.LogWarning("Invalid argument provided");
-                return controller.BadRequest("Invalid argument provided.");
+                logger.LogWarning(rpcEx.Status.Detail);
+                return controller.BadRequest(rpcEx.Status.Detail);
             default:
                 logger.LogError("gRPC error: {StatusDetail}", rpcEx.Status.Detail);
                 return controller.StatusCode(500, $"gRPC error: {rpcEx.Status.Detail}");

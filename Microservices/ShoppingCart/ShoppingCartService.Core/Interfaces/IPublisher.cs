@@ -1,9 +1,11 @@
-﻿namespace ShoppingCartService.Core.Interfaces;
+﻿using ShoppingCartService.Core.Entities;
 
-public interface IPublisher<in TKey, in TValue>
+namespace ShoppingCartService.Core.Interfaces;
+
+public interface IPublisher
 {
     public const string CheckoutTopic = "checkout";
     public const string InventoryTopic = "inventory";
     
-    Task<bool> ProcessMessage(string topic, TKey key, TValue value);
+    Task<bool> ProcessMessage(string topic, string key, ShoppingCart value);
 }

@@ -2,7 +2,7 @@
 
 public class UpdateShoppingItemRequestDto
 {
-    public ShoppingCartDto ShoppingCartDto { get; set; }
+    public Guid ShoppingCartId { get; set; }
     public InventoryDto InventoryDto { get; set; }
     public int Quantity { get; set; }    
 }

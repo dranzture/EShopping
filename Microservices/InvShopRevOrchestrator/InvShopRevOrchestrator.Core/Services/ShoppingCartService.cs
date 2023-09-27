@@ -28,12 +28,12 @@ public class ShoppingCartService : IShoppingCartService
         }
     }
 
-    public async Task AddShoppingItem(ShoppingCartDto shoppingCartDto, InventoryDto inventoryDto, int quantity,
+    public async Task AddShoppingItem(Guid shoppingCartId, InventoryDto inventoryDto, int quantity, string username, 
         CancellationToken token = default)
     {
         try
         {
-            var inventory = await _grpcInventoryService.GetById(inventoryDto.Id, token);
+            var inventory = await _grpcInventoryService.GetById(inventoryDto.Id.Value, token);
             if (inventory == null)
             {
                 throw new ArgumentException("Inventory not found");
@@ -41,9 +41,10 @@ public class ShoppingCartService : IShoppingCartService
 
             var newAddShoppingItemDto = new AddShoppingCartItemCommandDto
             {
-                ShoppingCart = shoppingCartDto,
+                ShoppingCartId = shoppingCartId,
                 Inventory = inventory,
-                Quantity = quantity
+                Quantity = quantity,
+                Username = username
             };
             await _grpcShoppingCartService.AddShoppingItem(newAddShoppingItemDto, token);
         }
@@ -53,16 +54,17 @@ public class ShoppingCartService : IShoppingCartService
         }
     }
 
-    public async Task UpdateShoppingItem(ShoppingCartDto shoppingCartDto, InventoryDto inventoryDto, int quantity,
+    public async Task UpdateShoppingItem(Guid shoppingCartId, InventoryDto inventoryDto, int quantity, string username, 
         CancellationToken token = default)
     {
         try
         {
             var newUpdateShoppingItemDto = new UpdateShoppingCartItemCommandDto
             {
-                ShoppingCart = shoppingCartDto,
+                ShoppingCartId = shoppingCartId,
                 Inventory = inventoryDto,
-                Quantity = quantity
+                Quantity = quantity,
+                Username = username
             };
             await _grpcShoppingCartService.UpdateShoppingItem(newUpdateShoppingItemDto, token);
         }
@@ -72,15 +74,16 @@ public class ShoppingCartService : IShoppingCartService
         }
     }
 
-    public async Task DeleteShoppingItem(ShoppingCartDto shoppingCartDto, InventoryDto inventoryDto,
+    public async Task DeleteShoppingItem(Guid shoppingCartId, InventoryDto inventoryDto, string username, 
         CancellationToken token = default)
     {
         try
         {
             var newDeleteShoppingItemDto = new DeleteShoppingCartItemCommandDto()
             {
-                ShoppingCart = shoppingCartDto,
+                ShoppingCartId = shoppingCartId,
                 Inventory = inventoryDto,
+                Username = username
             };
             await _grpcShoppingCartService.DeleteShoppingItem(newDeleteShoppingItemDto, token);
         }
@@ -90,11 +93,24 @@ public class ShoppingCartService : IShoppingCartService
         }
     }
 
-    public async Task CheckoutShoppingCart(ShoppingCartDto dto, CancellationToken token = default)
+    public async Task CheckoutShoppingCart(Guid shoppingCartId, CancellationToken token = default)
     {
         try
         {
-            await _grpcShoppingCartService.CheckoutShoppingCart(dto, token);
+            await _grpcShoppingCartService.CheckoutShoppingCart(shoppingCartId, token);
+        }
+        catch
+        {
+            throw;
+        }
+    }
+
+    public async Task<ShoppingCartDto> GetShoppingCartByUsername(string username, CancellationToken token = default)
+    {
+        try
+        {
+            var result = await _grpcShoppingCartService.GetShoppingCartByUsername(username, token);
+            return result;
         }
         catch
         {

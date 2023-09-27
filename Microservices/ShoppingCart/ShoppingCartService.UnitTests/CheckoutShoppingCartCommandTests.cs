@@ -16,14 +16,14 @@ public class CheckoutShoppingCartCommandTests
         var cartId = Guid.NewGuid();
 
         var repository = Substitute.For<IShoppingCartRepository>();
-        var publisher = Substitute.For<IPublisher<string, ShoppingCart>>();
+        var publisher = Substitute.For<IPublisher>();
 
         var cart = new ShoppingCart("testuser", cartId);
         cart.AddItem(new Inventory(), 1, "testuser"); // Add a sample item to make the cart not empty
 
         repository.GetShoppingCartById(cartId).Returns(cart);
 
-        var command = new CheckoutShoppingCart(repository, cart, publisher);
+        var command = new CheckoutShoppingCart(repository, cartId, publisher);
 
         // Act
         var canExecute = await command.CanExecute();
@@ -39,13 +39,13 @@ public class CheckoutShoppingCartCommandTests
         var cartId = Guid.NewGuid();
 
         var repository = Substitute.For<IShoppingCartRepository>();
-        var publisher = Substitute.For<IPublisher<string, ShoppingCart>>();
+        var publisher = Substitute.For<IPublisher>();
 
         var cart = new ShoppingCart("testuser", cartId);
 
         repository.GetShoppingCartById(cartId).Returns(cart);
 
-        var command = new CheckoutShoppingCart(repository, cart, publisher);
+        var command = new CheckoutShoppingCart(repository, cartId, publisher);
 
         // Act
         var canExecute = await command.CanExecute();
@@ -61,7 +61,7 @@ public class CheckoutShoppingCartCommandTests
         var cartId = Guid.NewGuid();
 
         var repository = Substitute.For<IShoppingCartRepository>();
-        var publisher = Substitute.For<IPublisher<string, ShoppingCart>>();
+        var publisher = Substitute.For<IPublisher>();
 
         var cart = new ShoppingCart("testuser", cartId);
         cart.UpdateCheckoutStatus(CheckoutStatus.InProgress);
@@ -69,7 +69,7 @@ public class CheckoutShoppingCartCommandTests
 
         repository.GetShoppingCartById(cartId).Returns(cart);
 
-        var command = new CheckoutShoppingCart(repository, cart, publisher);
+        var command = new CheckoutShoppingCart(repository, cartId, publisher);
 
         // Act
         var canExecute = await command.CanExecute();
@@ -85,21 +85,21 @@ public class CheckoutShoppingCartCommandTests
         var cartId = Guid.NewGuid();
 
         var repository = Substitute.For<IShoppingCartRepository>();
-        var publisher = Substitute.For<IPublisher<string, ShoppingCart>>();
+        var publisher = Substitute.For<IPublisher>();
 
         var cart = new ShoppingCart("testuser", cartId);
         cart.AddItem(new Inventory(), 1, "testuser");
 
         repository.GetShoppingCartById(cartId).Returns(cart);
 
-        var command = new CheckoutShoppingCart(repository, cart, publisher);
+        var command = new CheckoutShoppingCart(repository, cartId, publisher);
 
         // Act
         await command.Execute();
 
         // Assert
         await publisher.Received(1).ProcessMessage(
-            IPublisher<string, ShoppingCart>.CheckoutTopic,
+            IPublisher.CheckoutTopic,
             Arg.Any<string>(),
             cart);
 

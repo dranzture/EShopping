@@ -1,6 +1,6 @@
 ﻿using Autofac;
-using InventoryService.Core.Repositories;
 using ShoppingCartService.Core.Interfaces;
+using ShoppingCartService.Core.Repositories;
 
 namespace ShoppingCartService.Core;
 
@@ -12,8 +12,8 @@ public class CoreAutofacModule : Module
             .As<IShoppingCartService>()
             .InstancePerLifetimeScope();
         
-        builder.RegisterType<IShoppingCartRepository>()
-            .As<ShoppingCartRepository>()
+        builder.RegisterType<ShoppingCartRepository>()
+            .As<IShoppingCartRepository>()
             .InstancePerLifetimeScope();
     }
 }

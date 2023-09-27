@@ -1,10 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using GrpcShoppingCartService;
-using Microsoft.Extensions.Logging;
 using ShoppingCartService.Core.Dtos;
 using ShoppingCartService.Core.Interfaces;
 
@@ -50,13 +47,13 @@ public class ShoppingCartGrpcService : GrpcShoppingCartService.GrpcShoppingCartS
     public override async Task<Empty> AddShoppingItem(GrpcAddShoppingCartItemCommandDto request,
         ServerCallContext context)
     {
-        var username = request.ShoppingCart.Username;
-        var shoppingCartDto = _mapper.Map<ShoppingCartDto>(request.ShoppingCart);
+        var username = request.Username;
         var inventoryDto = _mapper.Map<InventoryDto>(request.Inventory);
 
         try
         {
-            await _shoppingCartService.AddShoppingItem(shoppingCartDto, inventoryDto, request.Quantity, username);
+            await _shoppingCartService.AddShoppingItem(new Guid(request.ShoppingCartId), inventoryDto, request.Quantity,
+                username);
             return new Empty();
         }
         catch (RpcException ex)
@@ -74,13 +71,13 @@ public class ShoppingCartGrpcService : GrpcShoppingCartService.GrpcShoppingCartS
     public override async Task<Empty> UpdateShoppingItem(GrpcUpdateShoppingCartItemCommandDto request,
         ServerCallContext context)
     {
-        var username = request.ShoppingCart.Username;
-        var shoppingCartDto = _mapper.Map<ShoppingCartDto>(request.ShoppingCart);
+        var username = request.Username;
         var inventoryDto = _mapper.Map<InventoryDto>(request.Inventory);
 
         try
         {
-            await _shoppingCartService.UpdateShoppingItem(shoppingCartDto, inventoryDto, request.Quantity, username);
+            await _shoppingCartService.UpdateShoppingItem(new Guid(request.ShoppingCartId), inventoryDto,
+                request.Quantity, username);
             return new Empty();
         }
         catch (RpcException ex)
@@ -98,13 +95,12 @@ public class ShoppingCartGrpcService : GrpcShoppingCartService.GrpcShoppingCartS
     public override async Task<Empty> DeleteShoppingItem(GrpcDeleteShoppingCartItemCommandDto request,
         ServerCallContext context)
     {
-        var username = request.ShoppingCart.Username;
-        var shoppingCartDto = _mapper.Map<ShoppingCartDto>(request.ShoppingCart);
+        var username = request.Username;
         var inventoryDto = _mapper.Map<InventoryDto>(request.Inventory);
 
         try
         {
-            await _shoppingCartService.DeleteShoppingItem(shoppingCartDto, inventoryDto, username);
+            await _shoppingCartService.DeleteShoppingItem(new Guid(request.ShoppingCartId), inventoryDto, username);
             return new Empty();
         }
         catch (RpcException ex)
@@ -119,13 +115,11 @@ public class ShoppingCartGrpcService : GrpcShoppingCartService.GrpcShoppingCartS
         }
     }
 
-    public override async Task<Empty> CheckoutShoppingCart(GrpcShoppingCartDto request, ServerCallContext context)
+    public override async Task<Empty> CheckoutShoppingCart(StringValue shoppingCartId, ServerCallContext context)
     {
         try
         {
-            var username = request.Username;
-            var shoppingCartDto = _mapper.Map<ShoppingCartDto>(request);
-            await _shoppingCartService.CheckoutShoppingCart(shoppingCartDto, username);
+            await _shoppingCartService.CheckoutShoppingCart(new Guid(shoppingCartId.Value));
             return new Empty();
         }
         catch (RpcException ex)
@@ -156,6 +150,25 @@ public class ShoppingCartGrpcService : GrpcShoppingCartService.GrpcShoppingCartS
         catch (Exception ex)
         {
             _logger.LogError($"Unhandled exception in CheckoutShoppingCart: {ex}");
+            throw new RpcException(new Status(StatusCode.Internal, "Internal server error"));
+        }
+    }
+
+    public override async Task<GrpcShoppingCartDto> GetShoppingCartByUsername(StringValue request, ServerCallContext context)
+    {
+        try
+        {
+            var returnItem = await _shoppingCartService.GetShoppingCartByUsername(request.Value);
+            return _mapper.Map<GrpcShoppingCartDto>(returnItem);
+        }
+        catch (RpcException ex)
+        {
+            _logger.LogError($"Error in GetShoppingCartByUsername: {ex}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Unhandled exception in GetShoppingCartByUsername: {ex}");
             throw new RpcException(new Status(StatusCode.Internal, "Internal server error"));
         }
     }
