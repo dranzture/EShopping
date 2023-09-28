@@ -11,9 +11,9 @@ public interface IInventoryService
 
     Task DeleteInventory(InventoryDto dto, string username, CancellationToken token = default);
     
-    Task IncreaseInventory(InventoryDto dto, int amount, string username, CancellationToken token = default);
+    Task IncreaseInventory(ChangeInventoryQuantityDto dto, CancellationToken token = default);
     
-    Task DecreaseInventory(InventoryDto dto, int amount, string username, CancellationToken token = default);
+    Task DecreaseInventory(ChangeInventoryQuantityDto dto, CancellationToken token = default);
 
     Task<HashSet<Inventory>> GetAllInventory(CancellationToken token = default);
 

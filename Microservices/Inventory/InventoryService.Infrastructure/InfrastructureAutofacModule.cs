@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
 using Autofac;
+using InventoryService.Core.Handlers;
 using InventoryService.Core.Interfaces;
+using InventoryService.Core.Requests;
 using MediatR;
 using Module = Autofac.Module;
 
@@ -36,8 +38,24 @@ public class InfrastructureAutofacModule : Module
         LoadAssemblies();
 
         RegisterEf(builder);
+        RegisterMediatr(builder);
     }
+    private void RegisterMediatr(ContainerBuilder builder)
+    {
+        builder
+            .RegisterType<Mediator>()
+            .As<IMediator>()
+            .InstancePerLifetimeScope();
+        
+        builder.RegisterType<DecreaseInventoryQuantityHandler>()
+            .As(typeof(IRequestHandler<DecreaseInventoryQuantityRequest>))
+            .InstancePerLifetimeScope();
+        
+        builder.RegisterType<IncreaseInventoryQuantityHandler>()
+            .As(typeof(IRequestHandler<IncreaseInventoryQuantityRequest>))
+            .InstancePerLifetimeScope();
 
+    }
     private void RegisterEf(ContainerBuilder builder)
     {
         builder.RegisterGeneric(typeof(EfRepository<>))

@@ -35,9 +35,11 @@ public class ShoppingServiceTests
         shoppingCartRepository.SaveChangesAsync().Returns(true);
 
         var mapper = Substitute.For<IMapper>();
-        var publisher = Substitute.For<IPublisher>();
-        var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, publisher);
-
+        
+        var shoppingCartPublisher = Substitute.For<IPublisher<ShoppingCartDto>>();
+        shoppingCartPublisher.ProcessMessage(Arg.Any<string>(),Arg.Any<string>(), new ShoppingCartDto()).Returns(true);
+    
+        var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, shoppingCartPublisher);
         var shoppingCart = new ShoppingCart(username, cartId);
         mapper.Map<ShoppingCart>(Arg.Any<ShoppingCartDto>()).Returns(shoppingCart);
 
@@ -76,9 +78,11 @@ public class ShoppingServiceTests
         shoppingCartRepository.SaveChangesAsync().Returns(true);
 
         var mapper = Substitute.For<IMapper>();
-        var publisher = Substitute.For<IPublisher>();
-        var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, publisher);
-
+        
+        var shoppingCartPublisher = Substitute.For<IPublisher<ShoppingCartDto>>();
+        shoppingCartPublisher.ProcessMessage(Arg.Any<string>(),Arg.Any<string>(), new ShoppingCartDto()).Returns(true);
+    
+        var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, shoppingCartPublisher);
         var shoppingCart = new ShoppingCart(username, cartId);
         mapper.Map<ShoppingCart>(Arg.Any<ShoppingCartDto>()).Returns(shoppingCart);
 
@@ -129,10 +133,10 @@ public class ShoppingServiceTests
         mapper.Map<ShoppingCart>(Arg.Any<ShoppingCartDto>()).Returns(shoppingCart);
         mapper.Map<Inventory>(Arg.Any<InventoryDto>()).Returns(inventory); 
 
-        var publisher = Substitute.For<IPublisher>();
-
-        var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, publisher);
-
+        var shoppingCartPublisher = Substitute.For<IPublisher<ShoppingCartDto>>();
+        shoppingCartPublisher.ProcessMessage(Arg.Any<string>(),Arg.Any<string>(), new ShoppingCartDto()).Returns(true);
+    
+        var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, shoppingCartPublisher);
         var addShoppingItemCommand = Substitute.For<ICommand>();
         addShoppingItemCommand.CanExecute().Returns(true);
 
@@ -157,10 +161,11 @@ public class ShoppingServiceTests
 
         var shoppingCartRepository = Substitute.For<IShoppingCartRepository>();
         var mapper = Substitute.For<IMapper>();
-        var publisher = Substitute.For<IPublisher>();
-
-        var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, publisher);
-
+        
+        var shoppingCartPublisher = Substitute.For<IPublisher<ShoppingCartDto>>();
+        shoppingCartPublisher.ProcessMessage(Arg.Any<string>(),Arg.Any<string>(), new ShoppingCartDto()).Returns(true);
+    
+        var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, shoppingCartPublisher);
         var addShoppingItemCommand = Substitute.For<ICommand>();
         addShoppingItemCommand.CanExecute().Returns(false);
 
@@ -229,9 +234,10 @@ public class ShoppingServiceTests
         mapper.Map<Inventory>(Arg.Any<InventoryDto>()).Returns(inventory); 
         mapper.Map<ShoppingItem>(Arg.Any<ShoppingItemDto>()).Returns(shoppingItem); 
 
-        var publisher = Substitute.For<IPublisher>();
-        
-        var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, publisher);
+        var shoppingCartPublisher = Substitute.For<IPublisher<ShoppingCartDto>>();
+        shoppingCartPublisher.ProcessMessage(Arg.Any<string>(),Arg.Any<string>(), new ShoppingCartDto()).Returns(true);
+    
+        var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, shoppingCartPublisher);
 
         // Act
         await service.UpdateShoppingItem(cartId, inventoryDto, quantity, username);
@@ -283,10 +289,10 @@ public class ShoppingServiceTests
         mapper.Map<ShoppingCart>(Arg.Any<ShoppingCartDto>()).Returns(shoppingCart);
         mapper.Map<Inventory>(Arg.Any<InventoryDto>()).Returns(inventory); 
 
-        var publisher = Substitute.For<IPublisher>();
-
-
-        var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, publisher);
+        var shoppingCartPublisher = Substitute.For<IPublisher<ShoppingCartDto>>();
+        shoppingCartPublisher.ProcessMessage(Arg.Any<string>(),Arg.Any<string>(), new ShoppingCartDto()).Returns(true);
+    
+        var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, shoppingCartPublisher);
 
         var updateShoppingItemCommand = Substitute.For<ICommand>();
         updateShoppingItemCommand.CanExecute().Returns(false);
@@ -356,10 +362,10 @@ public class ShoppingServiceTests
         mapper.Map<Inventory>(Arg.Any<InventoryDto>()).Returns(inventory); 
         mapper.Map<ShoppingItem>(Arg.Any<ShoppingItemDto>()).Returns(shoppingItem); 
 
-        var publisher = Substitute.For<IPublisher>();
-
-
-        var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, publisher);
+        var shoppingCartPublisher = Substitute.For<IPublisher<ShoppingCartDto>>();
+        shoppingCartPublisher.ProcessMessage(Arg.Any<string>(),Arg.Any<string>(), new ShoppingCartDto()).Returns(true);
+    
+        var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, shoppingCartPublisher);
 
         // Act
         await service.DeleteShoppingItem(cartId, inventoryDto, username);
@@ -411,11 +417,11 @@ public class ShoppingServiceTests
         mapper.Map<ShoppingCart>(Arg.Any<ShoppingCartDto>()).Returns(shoppingCart);
         mapper.Map<Inventory>(Arg.Any<InventoryDto>()).Returns(inventory); 
 
-        var publisher = Substitute.For<IPublisher>();
-
-
-        var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, publisher);
-
+        var shoppingCartPublisher = Substitute.For<IPublisher<ShoppingCartDto>>();
+        shoppingCartPublisher.ProcessMessage(Arg.Any<string>(),Arg.Any<string>(), new ShoppingCartDto()).Returns(true);
+    
+        var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, shoppingCartPublisher);
+        
         var deleteShoppingItemCommand = Substitute.For<ICommand>();
         deleteShoppingItemCommand.CanExecute().Returns(false);
 
@@ -484,10 +490,10 @@ public class ShoppingServiceTests
         mapper.Map<Inventory>(Arg.Any<InventoryDto>()).Returns(inventory); 
         mapper.Map<ShoppingItem>(Arg.Any<ShoppingItemDto>()).Returns(shoppingItem); 
 
-        var publisher = Substitute.For<IPublisher>();
-
-
-        var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, publisher);
+        var shoppingCartPublisher = Substitute.For<IPublisher<ShoppingCartDto>>();
+        shoppingCartPublisher.ProcessMessage(Arg.Any<string>(),Arg.Any<string>(), new ShoppingCartDto()).Returns(true);
+    
+        var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, shoppingCartPublisher);
 
         // Act
         await service.CheckoutShoppingCart(cartId);
@@ -554,11 +560,10 @@ public class ShoppingServiceTests
         mapper.Map<Inventory>(Arg.Any<InventoryDto>()).Returns(inventory); 
         mapper.Map<ShoppingItem>(Arg.Any<ShoppingItemDto>()).Returns(shoppingItem); 
 
-        var publisher = Substitute.For<IPublisher>();
-
-
-        var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, publisher);
-        
+        var shoppingCartPublisher = Substitute.For<IPublisher<ShoppingCartDto>>();
+        shoppingCartPublisher.ProcessMessage(Arg.Any<string>(),Arg.Any<string>(), new ShoppingCartDto()).Returns(true);
+    
+        var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, shoppingCartPublisher);
 
         // Act & Assert
         await Assert.ThrowsAsync<RpcException>(() => service.CheckoutShoppingCart(cartId));
@@ -581,10 +586,11 @@ public class ShoppingServiceTests
 
         var shoppingCartRepository = Substitute.For<IShoppingCartRepository>();
         var mapper = Substitute.For<IMapper>();
-        var publisher = Substitute.For<IPublisher>();
-
-        var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, publisher);
-
+        
+        var shoppingCartPublisher = Substitute.For<IPublisher<ShoppingCartDto>>();
+        shoppingCartPublisher.ProcessMessage(Arg.Any<string>(),Arg.Any<string>(), new ShoppingCartDto()).Returns(true);
+    
+        var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, shoppingCartPublisher);
         var shoppingCart = new ShoppingCart("testuser", cartId);
         mapper.Map<ShoppingCartDto>(Arg.Any<ShoppingCart>()).Returns(shoppingCartDto);
 

@@ -1,8 +1,14 @@
 using System.Reflection;
 using Autofac;
 using MediatR;
+using ShoppingCartService.Core.Dtos;
+using ShoppingCartService.Core.Handlers;
 using ShoppingCartService.Core.Interfaces;
-using IPublisher = ShoppingCartService.Core.Interfaces.IPublisher;
+using ShoppingCartService.Core.Notifications;
+using ShoppingCartService.Core.Requests;
+using ShoppingCartService.Infrastructure.Helpers;
+using ShoppingCartService.Infrastructure.Interfaces;
+using ShoppingCartService.Infrastructure.Publisher;
 using Module = Autofac.Module;
 
 namespace ShoppingCartService.Infrastructure;
@@ -54,12 +60,33 @@ public class InfrastructureAutofacModule : Module
             .RegisterType<Mediator>()
             .As<IMediator>()
             .InstancePerLifetimeScope();
+
+        builder
+            .RegisterType<DomainEventDispatcher>()
+            .As<IDomainEventDispatcher>()
+            .InstancePerLifetimeScope();
+        
+        builder.RegisterType<ItemAddedToShoppingCartHandler>()
+            .As(typeof(INotificationHandler<ItemAddedToShoppingCartEvent>))
+            .InstancePerLifetimeScope();
+        
+        builder.RegisterType<ItemRemovedFromShoppingCartHandler>()
+            .As(typeof(INotificationHandler<ItemRemovedFromShoppingCartEvent>))
+            .InstancePerLifetimeScope();
+        
+        builder.RegisterType<UpdateShoppingCartStatusHandler>()
+            .As(typeof(IRequestHandler<UpdateShoppingCartRequest>))
+            .InstancePerLifetimeScope();
     }
 
     private void RegisterPublisher(ContainerBuilder builder)
     {
-        builder.RegisterType<Publisher.Publisher>()
-            .As<IPublisher>()
+        builder.RegisterType<CheckoutPublisher>()
+            .As(typeof(IPublisher<ShoppingCartDto>))
+            .InstancePerLifetimeScope();
+
+        builder.RegisterType<ChangeInventoryQuantityPublisher>()
+            .As(typeof(IPublisher<ChangeInventoryQuantityDto>))
             .InstancePerLifetimeScope();
     }
 }

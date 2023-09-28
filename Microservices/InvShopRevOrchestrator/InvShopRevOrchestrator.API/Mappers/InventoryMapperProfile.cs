@@ -2,7 +2,7 @@
 using GrpcInventoryService;
 using InvShopRevOrchestrator.Core.Dtos;
 
-namespace InvShopRevOrchestrator.API.Helpers;
+namespace InvShopRevOrchestrator.API.Mappers;
 
 public class InventoryMapperProfile : Profile
 {

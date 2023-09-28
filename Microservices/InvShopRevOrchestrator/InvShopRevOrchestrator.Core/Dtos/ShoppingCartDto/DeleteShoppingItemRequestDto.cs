@@ -3,5 +3,5 @@
 public class DeleteShoppingItemRequestDto
 {
     public Guid ShoppingCartId { get; set; }
-    public InventoryDto InventoryDto { get; set; }
+    public InventoryDto Inventory { get; set; }
 }

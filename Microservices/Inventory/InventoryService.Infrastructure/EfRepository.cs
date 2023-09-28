@@ -36,6 +36,17 @@ public class EfRepository<T> : IRepository<T> where T : class
 
     public async Task<bool> SaveChangesAsync()
     {
-       return await _context.SaveChangesAsync() > 0;
+        var semaphore = new SemaphoreSlim(1, 1);
+        try
+        {
+            await semaphore.WaitAsync();
+            var result = await _context.SaveChangesAsync() > 0;
+            _context.ChangeTracker.Clear();
+            return result;
+        }
+        finally
+        {
+            semaphore.Release();
+        }
     }
 }

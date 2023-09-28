@@ -60,7 +60,7 @@ public class InventoryCommandsTests
         _repository.GetById(_guid)
             .Returns(inventory);
 
-        var command = new DecreaseInventoryCommand(_repository, inventory, 5, username);
+        var command = new DecreaseInventoryCommand(_repository, inventory.Id, 5);
 
         //Act
         var result = await command.CanExecute();
@@ -79,7 +79,7 @@ public class InventoryCommandsTests
         var username = "dranzure";
         _repository.GetByName("TestInv")
             .Returns((Inventory?)null);
-        var command = new DecreaseInventoryCommand(_repository, inventory, 6, username);
+        var command = new DecreaseInventoryCommand(_repository, inventory.Id, 6);
 
         //Act
         var result = await command.CanExecute();
@@ -99,7 +99,7 @@ public class InventoryCommandsTests
         _repository.GetByName("TestInv")
             .Returns(inventory);
 
-        var command = new DecreaseInventoryCommand(_repository, inventory, -1, username);
+        var command = new DecreaseInventoryCommand(_repository, inventory.Id,  -1);
 
         //Act
 
@@ -121,7 +121,7 @@ public class InventoryCommandsTests
         _repository.GetById(_guid)
             .Returns(inventory);
 
-        var command = new IncreaseInventoryCommand(_repository, inventory, 5, username);
+        var command = new IncreaseInventoryCommand(_repository, inventory.Id,  5);
 
         //Act
 
@@ -142,7 +142,7 @@ public class InventoryCommandsTests
         var username = "dranzure";
         _repository.GetById(_guid)
             .Returns((Inventory?)null);
-        var command = new IncreaseInventoryCommand(_repository, inventory, 6, username);
+        var command = new IncreaseInventoryCommand(_repository, inventory.Id,  6);
 
         //Act
 
@@ -164,7 +164,7 @@ public class InventoryCommandsTests
         _repository.GetById(_guid)
             .Returns(inventory);
 
-        var command = new IncreaseInventoryCommand(_repository, inventory, -1, username);
+        var command = new IncreaseInventoryCommand(_repository, inventory.Id,  -1);
 
         //Act
 

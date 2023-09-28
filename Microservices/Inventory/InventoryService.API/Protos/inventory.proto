@@ -24,9 +24,8 @@ message GrpcInventoryWithUsernameDto{
 }
 
 message GrpcInventoryQuantityChangeDto{
-    GrpcInventoryDto dto = 1;
+    string id = 1;
     int32 amount = 2;
-    string username = 3; // User who modifies the inventory - for tracking
 }
 
 message GrpcInventoryDto {

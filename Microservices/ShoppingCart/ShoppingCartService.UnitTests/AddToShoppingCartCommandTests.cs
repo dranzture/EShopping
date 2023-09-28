@@ -1,5 +1,6 @@
 using NSubstitute;
 using ShoppingCartService.Core.Commands;
+using ShoppingCartService.Core.Dtos;
 using ShoppingCartService.Core.Entities;
 using ShoppingCartService.Core.Extensions;
 using ShoppingCartService.Core.Interfaces;
@@ -58,6 +59,7 @@ public class AddToShoppingCartCommandTests
         var username = "testuser";
         var inventory = new Inventory("Product", "Description", 10, 5.0m, 3.0m, 1.5m, 25.99m, username);
         var cart = new ShoppingCart(username);
+        
         cart.AddItem(inventory, 1, username); // Add the item to the cart
         var mockRepository = Substitute.For<IShoppingCartRepository>();
         mockRepository.GetShoppingCartById(guid).Returns(Task.FromResult(cart));
@@ -81,7 +83,6 @@ public class AddToShoppingCartCommandTests
         var cart = new ShoppingCart(username, guid);
         var mockRepository = Substitute.For<IShoppingCartRepository>();
         mockRepository.GetShoppingCartById(cart.Id).Returns(Task.FromResult(cart));
-
         var command = new AddToShoppingCartCommand(mockRepository, guid, inventory, 2, username);
 
         // Act

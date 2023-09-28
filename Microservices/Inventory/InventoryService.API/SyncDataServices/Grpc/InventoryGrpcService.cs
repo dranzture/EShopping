@@ -85,8 +85,8 @@ public class InventoryGrpcService : GrpcInventoryServiceBase
     {
         try
         {
-            var inventoryDto = _mapper.Map<InventoryDto>(dto.Dto);
-            await _service.DecreaseInventory(inventoryDto, dto.Amount, dto.Username);
+            var changeInventoryQuantityDto = _mapper.Map<ChangeInventoryQuantityDto>(dto);
+            await _service.DecreaseInventory(changeInventoryQuantityDto);
             return new Empty();
         }
         catch (RpcException ex)
@@ -103,8 +103,8 @@ public class InventoryGrpcService : GrpcInventoryServiceBase
     {
         try
         {
-            var inventoryDto = _mapper.Map<InventoryDto>(dto.Dto);
-            await _service.IncreaseInventory(inventoryDto, dto.Amount, dto.Username);
+            var changeInventoryQuantityDto = _mapper.Map<ChangeInventoryQuantityDto>(dto);
+            await _service.IncreaseInventory(changeInventoryQuantityDto);
             return new Empty();
         }
         catch (RpcException ex)

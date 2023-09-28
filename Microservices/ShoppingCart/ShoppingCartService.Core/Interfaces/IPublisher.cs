@@ -1,11 +1,10 @@
-﻿using ShoppingCartService.Core.Entities;
+﻿namespace ShoppingCartService.Core.Interfaces;
 
-namespace ShoppingCartService.Core.Interfaces;
-
-public interface IPublisher
+public interface IPublisher<in T>
 {
-    public const string CheckoutTopic = "checkout";
-    public const string InventoryTopic = "inventory";
+    public const string CheckoutTopic = "checkout_topic";
+    public const string IncreaseInventoryTopic = "increase_inventory_quantity_topic";
+    public const string DecreaseInventoryTopic = "decrease_inventory_quantity_topic";
     
-    Task<bool> ProcessMessage(string topic, string key, ShoppingCart value);
+    Task<bool> ProcessMessage(string topic, string key, T value);
 }

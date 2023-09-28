@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using ShoppingCartService.Core.Interfaces;
+using ShoppingCartService.Core.Notifications;
 using ShoppingCartService.Core.Repositories;
 
 namespace ShoppingCartService.Core;

@@ -1,8 +1,11 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
 using ShoppingCartService.Core.Interfaces;
 using ShoppingCartService.Infrastructure.Data;
+using ShoppingCartService.Infrastructure.Helpers;
+using ShoppingCartService.Infrastructure.Interfaces;
 
 namespace ShoppingCartService.Infrastructure;
 
@@ -38,6 +41,6 @@ public class EfRepository<T> : IRepository<T> where T : class
 
     public async Task<bool> SaveChangesAsync()
     {
-        return await _context.SaveChangesAsync() > 0;
+        return await _context.SaveChangesAsync() > 0; 
     }
 }

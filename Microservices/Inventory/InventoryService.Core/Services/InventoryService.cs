@@ -95,16 +95,15 @@ public class InventoryService : IInventoryService
         }
     }
 
-    public async Task IncreaseInventory(InventoryDto dto, int amount, string username,
+    public async Task IncreaseInventory(ChangeInventoryQuantityDto dto,
         CancellationToken token = default)
     {
         try
         {
-            var inventory = _mapper.Map<Inventory>(dto);
-            var increaseInventoryCommand = new IncreaseInventoryCommand(_repository, inventory, amount, username);
+            var increaseInventoryCommand = new IncreaseInventoryCommand(_repository, dto.InventoryId, dto.Quantity);
             if (!await increaseInventoryCommand.CanExecute())
             {
-                var message = amount < 0
+                var message = dto.Quantity < 0
                     ? "Requested incremental amount is less than 0."
                     : "Requested inventory does not exist.";
 
@@ -125,13 +124,12 @@ public class InventoryService : IInventoryService
         }
     }
 
-    public async Task DecreaseInventory(InventoryDto dto, int amount, string username,
+    public async Task DecreaseInventory(ChangeInventoryQuantityDto dto,
         CancellationToken token = default)
     {
         try
         {
-            var inventory = _mapper.Map<Inventory>(dto);
-            var decreaseInventoryCommand = new DecreaseInventoryCommand(_repository, inventory, amount, username);
+            var decreaseInventoryCommand = new DecreaseInventoryCommand(_repository, dto.InventoryId, dto.Quantity);
             if (!await decreaseInventoryCommand.CanExecute())
             {
                 var message = "Cannot decrease stock of the inventory";

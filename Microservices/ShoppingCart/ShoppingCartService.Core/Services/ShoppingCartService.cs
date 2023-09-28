@@ -11,15 +11,16 @@ public class ShoppingCartService : IShoppingCartService
 {
     private readonly IShoppingCartRepository _shoppingCartRepository;
     private readonly IMapper _mapper;
-    private readonly IPublisher _publisher;
+    private readonly IPublisher<ShoppingCartDto> _shoppingCartPublisher;
 
     public ShoppingCartService(IShoppingCartRepository shoppingCartRepository,
         IMapper mapper,
-        IPublisher publisher)
+        IPublisher<ShoppingCartDto> shoppingCartPublisher
+    )
     {
         _shoppingCartRepository = shoppingCartRepository;
         _mapper = mapper;
-        _publisher = publisher;
+        _shoppingCartPublisher = shoppingCartPublisher;
     }
 
     public async Task<string> AddShoppingCart(ShoppingCartDto dto, string username, CancellationToken token = default)
@@ -83,7 +84,7 @@ public class ShoppingCartService : IShoppingCartService
 
     public async Task CheckoutShoppingCart(Guid shoppingCartId, CancellationToken token = default)
     {
-        var command = new CheckoutShoppingCart(_shoppingCartRepository, shoppingCartId, _publisher);
+        var command = new CheckoutShoppingCartCommand(_shoppingCartRepository, shoppingCartId, _shoppingCartPublisher);
         if (!await command.CanExecute())
         {
             throw new RpcException(new Status(StatusCode.InvalidArgument,

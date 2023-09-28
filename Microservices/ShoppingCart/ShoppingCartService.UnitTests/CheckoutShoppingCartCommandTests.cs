@@ -1,8 +1,8 @@
 using NSubstitute;
 using ShoppingCartService.Core.Commands;
+using ShoppingCartService.Core.Dtos;
 using ShoppingCartService.Core.Entities;
 using ShoppingCartService.Core.Interfaces;
-using ShoppingCartService.Core.Models;
 using ShoppingCartService.Core.ValueObjects;
 
 namespace ShoppingCartService.UnitTests;
@@ -16,14 +16,14 @@ public class CheckoutShoppingCartCommandTests
         var cartId = Guid.NewGuid();
 
         var repository = Substitute.For<IShoppingCartRepository>();
-        var publisher = Substitute.For<IPublisher>();
+        var publisher1 = Substitute.For<IPublisher<ShoppingCartDto>>();
 
         var cart = new ShoppingCart("testuser", cartId);
         cart.AddItem(new Inventory(), 1, "testuser"); // Add a sample item to make the cart not empty
 
         repository.GetShoppingCartById(cartId).Returns(cart);
 
-        var command = new CheckoutShoppingCart(repository, cartId, publisher);
+        var command = new CheckoutShoppingCartCommand(repository, cartId, publisher1);
 
         // Act
         var canExecute = await command.CanExecute();
@@ -39,13 +39,13 @@ public class CheckoutShoppingCartCommandTests
         var cartId = Guid.NewGuid();
 
         var repository = Substitute.For<IShoppingCartRepository>();
-        var publisher = Substitute.For<IPublisher>();
+        var publisher = Substitute.For<IPublisher<ShoppingCartDto>>();
 
         var cart = new ShoppingCart("testuser", cartId);
 
         repository.GetShoppingCartById(cartId).Returns(cart);
 
-        var command = new CheckoutShoppingCart(repository, cartId, publisher);
+        var command = new CheckoutShoppingCartCommand(repository, cartId, publisher);
 
         // Act
         var canExecute = await command.CanExecute();
@@ -61,7 +61,7 @@ public class CheckoutShoppingCartCommandTests
         var cartId = Guid.NewGuid();
 
         var repository = Substitute.For<IShoppingCartRepository>();
-        var publisher = Substitute.For<IPublisher>();
+        var publisher1 = Substitute.For<IPublisher<ShoppingCartDto>>();
 
         var cart = new ShoppingCart("testuser", cartId);
         cart.UpdateCheckoutStatus(CheckoutStatus.InProgress);
@@ -69,7 +69,7 @@ public class CheckoutShoppingCartCommandTests
 
         repository.GetShoppingCartById(cartId).Returns(cart);
 
-        var command = new CheckoutShoppingCart(repository, cartId, publisher);
+        var command = new CheckoutShoppingCartCommand(repository, cartId, publisher1);
 
         // Act
         var canExecute = await command.CanExecute();
@@ -85,23 +85,24 @@ public class CheckoutShoppingCartCommandTests
         var cartId = Guid.NewGuid();
 
         var repository = Substitute.For<IShoppingCartRepository>();
-        var publisher = Substitute.For<IPublisher>();
+        var publisher1 = Substitute.For<IPublisher<ShoppingCartDto>>();
+        
 
         var cart = new ShoppingCart("testuser", cartId);
         cart.AddItem(new Inventory(), 1, "testuser");
 
         repository.GetShoppingCartById(cartId).Returns(cart);
 
-        var command = new CheckoutShoppingCart(repository, cartId, publisher);
+        var command = new CheckoutShoppingCartCommand(repository, cartId, publisher1);
 
         // Act
         await command.Execute();
 
         // Assert
-        await publisher.Received(1).ProcessMessage(
-            IPublisher.CheckoutTopic,
+        await publisher1.Received(1).ProcessMessage(
+            IPublisher<ShoppingCart>.CheckoutTopic,
             Arg.Any<string>(),
-            cart);
+            Arg.Any<ShoppingCartDto>());
 
         Assert.Equal(CheckoutStatus.InProgress, cart.Status);
 

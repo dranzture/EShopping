@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using ShoppingCartService.Core.Entities;
 using ShoppingCartService.Core.Interfaces;
 using ShoppingCartService.Core.ValueObjects;

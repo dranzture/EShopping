@@ -61,21 +61,18 @@ public class Inventory : BaseEntity
     }
 
     
-    public void IncreaseStock(int amount, string username)
+    public void IncreaseStock(int amount)
     {
         InStock += amount;
-        UpdateModifiedFields(username);
     }
 
-    public void DecreaseStock(int amount, string username)
+    public void DecreaseStock(int amount)
     {
         InStock -= amount;
         if (InStock < 0)
         {
             throw new ArgumentOutOfRangeException(nameof(Inventory), "In stock cannot be less than 0");
         }
-
-        UpdateModifiedFields(username);
     }
 
     public void ChangeSize(decimal height, decimal width, string username)

@@ -246,9 +246,13 @@ public class InventoryServiceTests
 
         _repository.GetById(Arg.Any<Guid>()).Returns(inventory);
         _mapper.Map<Inventory>(inventoryDto).Returns(inventory);
-
+        var changeInventoryQuantityDto = new ChangeInventoryQuantityDto()
+        {
+            InventoryId = inventoryId,
+            Quantity = 5,
+        };
         // Act
-        await _inventoryService.IncreaseInventory(inventoryDto, amount, username);
+        await _inventoryService.IncreaseInventory(changeInventoryQuantityDto, cancellationToken);
 
         // Assert: No exceptions are thrown for a successful increase
         await _repository.Received(1).SaveChangesAsync();
@@ -276,15 +280,19 @@ public class InventoryServiceTests
             inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
             inventoryDto.Weight, inventoryDto.Price, inventoryId);
         inventory.UpdateCreatedFields(username);
-        
+        var changeInventoryQuantityDto = new ChangeInventoryQuantityDto()
+        {
+            InventoryId = inventoryId,
+            Quantity = 5,
+        };
         var cancellationToken = CancellationToken.None;
 
         _repository.GetById(Arg.Any<Guid>()).Returns(inventory);
         _mapper.Map<Inventory>(inventoryDto).Returns(inventory);
-        
+
         // Act & Assert
         await Assert.ThrowsAsync<RpcException>(() =>
-            _inventoryService.IncreaseInventory(inventoryDto, amount, username, cancellationToken));
+            _inventoryService.IncreaseInventory(changeInventoryQuantityDto, cancellationToken));
     }
 
     [Fact]
@@ -310,10 +318,14 @@ public class InventoryServiceTests
             inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
             inventoryDto.Weight, inventoryDto.Price, inventoryId);
         inventory.UpdateCreatedFields(username);
-        
+        var changeInventoryQuantityDto = new ChangeInventoryQuantityDto()
+        {
+            InventoryId = inventoryId,
+            Quantity = 5,
+        };
 
         // Act
-        await _inventoryService.DecreaseInventory(inventoryDto, amount, username);
+        await _inventoryService.DecreaseInventory(changeInventoryQuantityDto);
 
         // Assert: No exceptions are thrown for a successful decrease
     }
@@ -343,13 +355,17 @@ public class InventoryServiceTests
         inventory.UpdateCreatedFields(username);
         
         var cancellationToken = CancellationToken.None;
-
+        var changeInventoryQuantityDto = new ChangeInventoryQuantityDto()
+        {
+            InventoryId = inventoryId,
+            Quantity = 5,
+        };
         _repository.GetByName(Arg.Any<string>()).Returns(inventory);
         _mapper.Map<Inventory>(inventoryDto).Returns(new Inventory());
 
         // Act & Assert
         await Assert.ThrowsAsync<RpcException>(() =>
-            _inventoryService.DecreaseInventory(inventoryDto, amount, username, cancellationToken));
+            _inventoryService.DecreaseInventory(changeInventoryQuantityDto, cancellationToken));
     }
     [Fact]
     public async Task DecreaseInventory_WhenNotFound_ThrowsRpcException()
@@ -372,6 +388,13 @@ public class InventoryServiceTests
         var inventory = new Inventory(inventoryDto.Name,
             inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
             inventoryDto.Weight, inventoryDto.Price, inventoryId);
+
+        var changeInventoryQuantityDto = new ChangeInventoryQuantityDto()
+        {
+            InventoryId = inventoryId,
+            Quantity = 5,
+        };
+        
         inventory.UpdateCreatedFields(username);
         var cancellationToken = CancellationToken.None;
 
@@ -380,7 +403,7 @@ public class InventoryServiceTests
 
         // Act & Assert
         await Assert.ThrowsAsync<RpcException>(() =>
-            _inventoryService.DecreaseInventory(inventoryDto, amount, username, cancellationToken));
+            _inventoryService.DecreaseInventory(changeInventoryQuantityDto, cancellationToken));
     }
     [Fact]
     public async Task GetAllInventory_ValidInput_Success()

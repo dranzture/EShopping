@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MediatR;
 
 namespace ShoppingCartService.Core.Models;
 
@@ -31,15 +32,35 @@ public abstract class BaseEntity
         CreatedBy = username;
     }
     
-    protected void UpdateModifiedFields(string username)
+    protected internal void UpdateModifiedFields(string username)
     {
         ModifiedDateTime = DateTimeOffset.Now;
         ModifiedBy = username;
     }
     
-    protected void UpdateDeletedFields(string username)
+    protected internal void UpdateDeletedFields(string username)
     {
         DeletedDateTime = DateTimeOffset.Now;
         DeletedBy = username;
+        IsDeleted = true;
+    }
+    private List<INotification> _domainEvents;
+    
+    public IReadOnlyCollection<INotification> DomainEvents => _domainEvents?.AsReadOnly();
+
+    public void AddDomainEvent(INotification eventItem)
+    {
+        _domainEvents = _domainEvents ?? new List<INotification>();
+        _domainEvents.Add(eventItem);
+    }
+
+    public void RemoveDomainEvent(INotification eventItem)
+    {
+        _domainEvents.Remove(eventItem);
+    }
+
+    public void ClearDomainEvents()
+    {
+        _domainEvents.Clear();
     }
 }

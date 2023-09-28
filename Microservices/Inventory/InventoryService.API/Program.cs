@@ -8,9 +8,16 @@ using InventoryService.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using InventoryService.Core.Helpers;
 using InventoryService.Core.ValueObjects;
+using InventoryService.Infrastructure.Consumer;
 
 var builder = WebApplication.CreateBuilder(args);
+var env = builder.Environment.EnvironmentName;
+var config = new ConfigurationBuilder()
+    .AddJsonFile($"appsettings.{env}.json", optional: false)
+    .Build();
 
+var appSettings = config.GetSection("AppSettings").Get<AppSettings>();
+builder.Services.AddSingleton<AppSettings>(appSettings);
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseInMemoryDatabase("InventoryServiceDb"));
 builder.Services.AddControllers();
@@ -30,6 +37,9 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
     containerBuilder.RegisterModule(new CoreAutofacModule());
     containerBuilder.RegisterModule(new InfrastructureAutofacModule());
 });
+builder.Services.AddHostedService<DecreaseInventoryQuantityConsumer>();
+builder.Services.AddHostedService<IncreaseInventoryQuantityConsumer>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

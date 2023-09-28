@@ -1,4 +1,5 @@
-﻿using ShoppingCartService.Core.Entities;
+﻿using ShoppingCartService.Core.Dtos;
+using ShoppingCartService.Core.Entities;
 using ShoppingCartService.Core.Interfaces;
 using ShoppingCartService.Core.ValueObjects;
 
@@ -12,8 +13,11 @@ public class UpdateQuantityShoppingItemCommand : ICommand
     private readonly Inventory _inventory;
     private readonly int _quantity;
 
-    public UpdateQuantityShoppingItemCommand(IShoppingCartRepository shoppingCartRepository, Guid shoppingCartId, 
-        Inventory inventory, int quantity, string username)
+    public UpdateQuantityShoppingItemCommand(IShoppingCartRepository shoppingCartRepository, 
+        Guid shoppingCartId,
+        Inventory inventory, 
+        int quantity, 
+        string username)
     {
         _shoppingCartRepository = shoppingCartRepository;
         _shoppingCartId = shoppingCartId;
@@ -21,7 +25,7 @@ public class UpdateQuantityShoppingItemCommand : ICommand
         _quantity = quantity;
         _username = username;
     }
-    
+
     public async Task<bool> CanExecute()
     {
         var result = await _shoppingCartRepository.GetShoppingCartById(_shoppingCartId);
@@ -29,8 +33,9 @@ public class UpdateQuantityShoppingItemCommand : ICommand
         {
             return false;
         }
+
         var shoppingItem = result.ShoppingItems.FirstOrDefault(e => e.InventoryId == _inventory.Id);
-        return shoppingItem != null &&  _quantity > 0;
+        return shoppingItem != null && _quantity > 0;
     }
 
     public async Task Execute()

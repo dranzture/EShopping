@@ -48,7 +48,7 @@ public class ShoppingCartController : ControllerBase
     {
         try
         {
-            await _shoppingCartService.UpdateShoppingItem(request.ShoppingCartId, request.InventoryDto,
+            await _shoppingCartService.UpdateShoppingItem(request.ShoppingCartId, request.Inventory,
                 request.Quantity, HttpContext.User.Identity.Name,CancellationToken.None);
             return Ok("Shopping item updated successfully.");
         }
@@ -86,7 +86,7 @@ public class ShoppingCartController : ControllerBase
     {
         try
         {
-            await _shoppingCartService.DeleteShoppingItem(request.ShoppingCartId, request.InventoryDto,HttpContext.User.Identity.Name,
+            await _shoppingCartService.DeleteShoppingItem(request.ShoppingCartId, request.Inventory,HttpContext.User.Identity.Name,
                 CancellationToken.None);
             return Ok("Shopping item deleted successfully.");
         }

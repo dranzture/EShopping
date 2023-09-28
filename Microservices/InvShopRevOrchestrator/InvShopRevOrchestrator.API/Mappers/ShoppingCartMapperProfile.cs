@@ -2,7 +2,7 @@
 using GrpcShoppingCartService;
 using InvShopRevOrchestrator.Core.Dtos;
 
-namespace InvShopRevOrchestrator.API.Helpers;
+namespace InvShopRevOrchestrator.API.Mappers;
 
 public class ShoppingCartMapperProfile : Profile
 {

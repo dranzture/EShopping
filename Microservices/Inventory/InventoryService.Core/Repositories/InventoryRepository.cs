@@ -12,7 +12,7 @@ public class InventoryRepository : IInventoryRepository
     {
         _context = context;
     }
-    
+
     public async Task<IQueryable<Inventory>> Queryable(CancellationToken cancellationToken = default)
     {
         return await _context.Queryable(cancellationToken);
@@ -25,12 +25,12 @@ public class InventoryRepository : IInventoryRepository
 
     public async Task UpdateAsync(Inventory item, CancellationToken cancellationToken = default)
     {
-         await _context.UpdateAsync(item, cancellationToken);
+        await _context.UpdateAsync(item, cancellationToken);
     }
 
     public async Task DeleteAsync(Inventory item, CancellationToken cancellationToken = default)
     {
-         await _context.DeleteAsync(item, cancellationToken);
+        await _context.DeleteAsync(item, cancellationToken);
     }
 
     public async Task<bool> SaveChangesAsync()
@@ -41,18 +41,21 @@ public class InventoryRepository : IInventoryRepository
     public async Task<HashSet<Inventory>> GetAllInventory(CancellationToken token = default)
     {
         var result = await Queryable(token);
-        return result.AsNoTracking().Where(e=>e.IsDeleted == false).ToHashSet();
+        return result.AsNoTracking().Where(e => e.IsDeleted == false).ToHashSet();
     }
 
     public async Task<Inventory?> GetById(Guid id, CancellationToken token = default)
     {
         var result = await Queryable(token);
-        return await result.AsNoTracking().FirstOrDefaultAsync(e => e.Id == id && e.IsDeleted == false, token);
+        return await result.AsNoTracking()
+            .Where(e => e.Id == id && e.IsDeleted == false)
+            .FirstOrDefaultAsync(token);
     }
 
     public async Task<Inventory?> GetByName(string name, CancellationToken token = default)
     {
         var result = await Queryable(token);
-        return await result.AsNoTracking().FirstOrDefaultAsync(e => e.Name == name && e.IsDeleted == false, token);
+        return await result.AsNoTracking().Where(e => e.Name == name && e.IsDeleted == false)
+            .FirstOrDefaultAsync(token);
     }
 }
