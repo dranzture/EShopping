@@ -14,110 +14,63 @@ public class ReviewService : IReviewService
         _grpcInventoryService = grpcInventoryService;
     }
 
-    public async Task<Guid> AddReview(ReviewDto dto, CancellationToken token = default)
+    public async Task<Guid> AddReview(ReviewDto dto, string username, CancellationToken token = default)
     {
-        try
+        var inventory = await _grpcInventoryService.GetById(dto.InventoryId, token);
+        if (inventory == null)
         {
-            var inventory = await _grpcInventoryService.GetById(dto.InventoryId, token);
-            if (inventory == null)
-            {
-                throw new ArgumentException("Inventory not found");
-            }
+            throw new ArgumentException("Inventory not found");
+        }
 
-            var reviewId = await _grpcReviewService.AddReview(dto, token);
-            return reviewId;
-        }
-        catch
-        {
-            throw;
-        }
+        var reviewId = await _grpcReviewService.AddReview(dto, username, token);
+        return reviewId;
     }
 
-    public async Task UpdateReview(ReviewDto dto, CancellationToken token = default)
+    public async Task UpdateReview(ReviewDto dto, string username, CancellationToken token = default)
     {
-        try
+        var review = await _grpcReviewService.GetReviewById(dto.Id, token);
+        if (review == null)
         {
-            var review = await _grpcReviewService.GetReviewById(dto.Id, token);
-            if (review == null)
-            {
-                throw new ArgumentException("Review not found");
-            }
+            throw new ArgumentException("Review not found");
+        }
 
-            await _grpcReviewService.UpdateReview(dto, token);
-        }
-        catch
-        {
-            throw;
-        }
+        await _grpcReviewService.UpdateReview(dto, username, token);
     }
 
-    public async Task DeleteReview(ReviewDto dto, CancellationToken token = default)
+    public async Task DeleteReview(Guid id, CancellationToken token = default)
     {
-        try
+        var review = await _grpcReviewService.GetReviewById(id, token);
+        if (review == null)
         {
-            var review = await _grpcReviewService.GetReviewById(dto.Id, token);
-            if (review == null)
-            {
-                throw new ArgumentException("Review not found");
-            }
+            throw new ArgumentException("Review not found");
+        }
 
-            await _grpcReviewService.DeleteReview(dto, token);
-        }
-        catch
-        {
-            throw;
-        }
+        await _grpcReviewService.DeleteReview(review, token);
     }
 
     public async Task<HashSet<ReviewDto>> GetReviewsByInventoryId(Guid id, CancellationToken token = default)
     {
-        try
-        {
-            var reviews = await _grpcReviewService.GetReviewsByInventoryId(id, token);
-            return reviews;
-        }
-        catch
-        {
-            throw;
-        }
+        var reviews = await _grpcReviewService.GetReviewsByInventoryId(id, token);
+        return reviews;
     }
 
-    public async Task<HashSet<ReviewDto>> GetReviewsByUserId(int userId, CancellationToken token = default)
+    public async Task<HashSet<ReviewDto>> GetReviewsByUsername(string username, CancellationToken token = default)
     {
-        try
-        {
-            var reviews = await _grpcReviewService.GetReviewsByUserId(userId, token);
-            return reviews;
-        }
-        catch
-        {
-            throw;
-        }
+        var reviews = await _grpcReviewService.GetReviewsByUsername(username, token);
+        return reviews;
     }
 
-    public async Task<ReviewDto?> GetReviewByUserIdAndInventoryId(Guid id, int userId, CancellationToken token = default)
+ 
+    public async Task<ReviewDto?> GetReviewByInventoryIdAndUsername(Guid id, string username,
+        CancellationToken token = default)
     {
-        try
-        {
-            var review = await _grpcReviewService.GetReviewByInventoryIdAndUserId(id,userId, token);
-            return review;
-        }
-        catch
-        {
-            throw;
-        }
+        var review = await _grpcReviewService.GetReviewByInventoryIdAndUsername(id, username, token);
+        return review;
     }
 
     public async Task<ReviewDto?> GetReviewById(Guid id, CancellationToken token = default)
     {
-        try
-        {
-            var review = await _grpcReviewService.GetReviewById(id, token);
-            return review;
-        }
-        catch
-        {
-            throw;
-        }
+        var review = await _grpcReviewService.GetReviewById(id, token);
+        return review;
     }
 }

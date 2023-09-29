@@ -19,7 +19,7 @@ var config = new ConfigurationBuilder()
 var appSettings = config.GetSection("AppSettings").Get<AppSettings>();
 builder.Services.AddSingleton<AppSettings>(appSettings);
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseInMemoryDatabase("InventoryServiceDb"));
+    options.UseInMemoryDatabase("InventoryServiceDb",b => b.EnableNullChecks(false)));
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

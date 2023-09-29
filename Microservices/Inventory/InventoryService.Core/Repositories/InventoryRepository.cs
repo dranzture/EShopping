@@ -13,9 +13,9 @@ public class InventoryRepository : IInventoryRepository
         _context = context;
     }
 
-    public async Task<IQueryable<Inventory>> Queryable(CancellationToken cancellationToken = default)
+    public IQueryable<Inventory> Queryable(CancellationToken cancellationToken = default)
     {
-        return await _context.Queryable(cancellationToken);
+        return _context.Queryable(cancellationToken);
     }
 
     public async Task AddAsync(Inventory item, CancellationToken cancellationToken = default)
@@ -38,24 +38,30 @@ public class InventoryRepository : IInventoryRepository
         return await _context.SaveChangesAsync();
     }
 
-    public async Task<HashSet<Inventory>> GetAllInventory(CancellationToken token = default)
+    public Task<HashSet<Inventory>> GetAllInventory(CancellationToken token = default)
     {
-        var result = await Queryable(token);
-        return result.AsNoTracking().Where(e => e.IsDeleted == false).ToHashSet();
+        var result = Queryable(token)
+            .Where(e => e.IsDeleted == false)
+            .ToHashSet();
+        
+        return Task.FromResult(result);
     }
 
     public async Task<Inventory?> GetById(Guid id, CancellationToken token = default)
     {
-        var result = await Queryable(token);
-        return await result.AsNoTracking()
+        var result = await Queryable(token)
             .Where(e => e.Id == id && e.IsDeleted == false)
             .FirstOrDefaultAsync(token);
+
+        return result;
     }
 
     public async Task<Inventory?> GetByName(string name, CancellationToken token = default)
     {
-        var result = await Queryable(token);
-        return await result.AsNoTracking().Where(e => e.Name == name && e.IsDeleted == false)
+        var result = await Queryable(token)
+            .Where(e => e.Name == name && e.IsDeleted == false)
             .FirstOrDefaultAsync(token);
+
+        return result;
     }
 }

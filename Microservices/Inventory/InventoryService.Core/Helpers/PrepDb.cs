@@ -16,7 +16,7 @@ public static class Helpers
 
     private static  async Task SeedInitial(IInventoryRepository repository)
     {
-        var queryable = await repository.Queryable();
+        var queryable = repository.Queryable();
         if (queryable.Any()) return;
         try
         {        

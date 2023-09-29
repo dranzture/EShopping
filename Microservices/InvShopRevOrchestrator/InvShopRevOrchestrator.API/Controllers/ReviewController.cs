@@ -2,12 +2,14 @@
 using InvShopRevOrchestrator.API.Helpers;
 using InvShopRevOrchestrator.Core.Dtos;
 using InvShopRevOrchestrator.Core.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InvShopRevOrchestrator.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class ReviewController : ControllerBase
 {
     private readonly IReviewService _reviewService;
@@ -24,7 +26,8 @@ public class ReviewController : ControllerBase
     {
         try
         {
-            var reviewId = await _reviewService.AddReview(dto, CancellationToken.None);
+            var reviewId =
+                await _reviewService.AddReview(dto, HttpContext!.User!.Identity!.Name!, CancellationToken.None);
 
             return Ok(new CreatedReviewResultDto
             {
@@ -47,7 +50,7 @@ public class ReviewController : ControllerBase
     {
         try
         {
-            await _reviewService.UpdateReview(dto, CancellationToken.None);
+            await _reviewService.UpdateReview(dto, HttpContext.User.Identity.Name, CancellationToken.None);
 
             _logger.LogInformation("Review updated successfully");
             return Ok("Review updated successfully.");
@@ -63,11 +66,11 @@ public class ReviewController : ControllerBase
     }
 
     [HttpDelete("DeleteReview")]
-    public async Task<IActionResult> DeleteReview([FromBody] ReviewDto dto)
+    public async Task<IActionResult> DeleteReview([FromQuery] Guid id)
     {
         try
         {
-            await _reviewService.DeleteReview(dto, CancellationToken.None);
+            await _reviewService.DeleteReview(id, CancellationToken.None);
 
             _logger.LogInformation("Review deleted successfully");
             return Ok("Review deleted successfully.");
@@ -100,12 +103,13 @@ public class ReviewController : ControllerBase
         }
     }
 
-    [HttpGet("GetReviewsByUserId")]
-    public async Task<IActionResult> GetReviewsByUserId(int userId)
+    [HttpGet("GetReviewsByUsername")]
+    public async Task<IActionResult> GetReviewsByUsername()
     {
         try
         {
-            var reviews = await _reviewService.GetReviewsByUserId(userId, CancellationToken.None);
+            var reviews =
+                await _reviewService.GetReviewsByUsername(HttpContext!.User!.Identity!.Name!, CancellationToken.None);
             return Ok(reviews);
         }
         catch (RpcException rpcEx)
@@ -118,12 +122,14 @@ public class ReviewController : ControllerBase
         }
     }
 
-    [HttpGet("GetReviewByUserIdAndInventoryId")]
-    public async Task<IActionResult> GetReviewByUserIdAndInventoryId(Guid id, int userId)
+    [HttpGet("GetReviewByInventoryIdAndUsername")]
+    public async Task<IActionResult> GetReviewByInventoryIdAndUsername(Guid id)
     {
         try
         {
-            var review = await _reviewService.GetReviewByUserIdAndInventoryId(id, userId, CancellationToken.None);
+            var review =
+                await _reviewService.GetReviewByInventoryIdAndUsername(id, HttpContext!.User!.Identity!.Name!,
+                    CancellationToken.None);
             return Ok(review);
         }
         catch (RpcException rpcEx)

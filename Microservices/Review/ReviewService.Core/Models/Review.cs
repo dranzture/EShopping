@@ -7,10 +7,9 @@ public class Review : BaseEntity
 {
     public Review(){}//For Ef
     
-    public Review(Guid inventoryId, int userId, string username, int stars, string? comment = null)
+    public Review(Guid inventoryId,  string username, int stars, string? comment = null)
     {
         InventoryId = inventoryId;
-        UserId = userId;
         Username = CreatedBy = username;
         Stars = stars;
         Comment = comment;
@@ -19,8 +18,6 @@ public class Review : BaseEntity
     [Required]
     public Guid InventoryId { get; private set; }
     
-    [Required]
-    public int UserId { get; private set; }
     
     [Required]
     public string Username { get; private set; }

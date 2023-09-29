@@ -41,10 +41,10 @@ public class ReviewRepository : IReviewRepository
     }
 
 
-    public async Task<HashSet<Review>> GetAllReviewsByInventoryId(Guid inventoryId, CancellationToken token = default)
+    public Task<HashSet<Review>> GetAllReviewsByInventoryId(Guid inventoryId, CancellationToken token = default)
     {
-        var result = await Task.Run(() => Queryable(token).Where(e => e.InventoryId == inventoryId).ToHashSet(), token);
-        return result;
+        var result = Queryable(token).Where(e => e.InventoryId == inventoryId).ToHashSet();
+        return Task.FromResult(result);
     }
 
     public async Task<Review?> GetById(Guid id, CancellationToken token = default)
@@ -52,21 +52,19 @@ public class ReviewRepository : IReviewRepository
         return await Queryable(token).Where(e => e.Id == id).FirstOrDefaultAsync(token);
     }
 
-    public async Task<Review?> GetByInventoryIdAndUserId(Guid inventoryId, int userId,
+    public async Task<Review?> GetByInventoryIdAndUsername(Guid inventoryId, string username,
         CancellationToken token = default)
     {
-        var result = await Queryable(token).Where(e => e.InventoryId == inventoryId && e.UserId == userId)
+        var result = await Queryable(token).Where(e => e.InventoryId == inventoryId && e.Username == username)
             .FirstOrDefaultAsync(token);
         return result;
     }
 
-    public async Task<HashSet<Review>> GetByUserId(int userId, CancellationToken token = default)
+    public  Task<HashSet<Review>> GetByUsername(string username, CancellationToken token = default)
     {
-        var result =
-            await Task.Run(
-                () => Queryable(token).Where(e => e.UserId == userId)
-                    .ToHashSet(), token);
-        return result;
+        var result = Queryable(token).Where(e =>e.Username == username)
+            .ToHashSet();
+        return Task.FromResult(result);
     }
 
     public async Task GetStatisticsByInventoryId(Guid inventoryId, CancellationToken token = default)

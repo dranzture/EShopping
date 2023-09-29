@@ -53,6 +53,8 @@ public class Inventory : BaseEntity
     
     [Required]
     public decimal Price { get; private set; }
+    [Timestamp]
+    public byte[] RowVersion{ get; set; }
     
     public void UpdateStock(int amount, string username)
     {

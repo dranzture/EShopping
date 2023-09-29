@@ -7,15 +7,14 @@ service GrpcReviewService{
     rpc UpdateReview(GrpcReviewDto) returns(Empty);
     rpc DeleteReview(GrpcReviewDto) returns(Empty);
     rpc GetReviewsByInventoryId(google.protobuf.StringValue) returns(GrpcListedReviews);
-    rpc GetReviewsByUserId(GrpcUserId) returns(GrpcListedReviews);
-    rpc GetReviewByInventoryIdAndUserId(GrpcUserAndInventoryId) returns(GrpcReviewDto);
+    rpc GetReviewsByUsername(google.protobuf.StringValue) returns(GrpcListedReviews);
+    rpc GetReviewByInventoryIdAndUsername(GrpcInventoryIdAndUsername) returns(GrpcReviewDto);
     rpc GetReviewById(google.protobuf.StringValue) returns (GrpcReviewDto);
 }
 
 message GrpcReviewDto {
     optional string id = 1;
     string inventory_id = 2;
-    int32 user_id = 3;
     string username = 4;
     int32 stars = 5;
     optional string comment = 6;
@@ -25,9 +24,9 @@ message GrpcListedReviews{
     repeated GrpcReviewDto dto = 1;
 }
 
-message GrpcUserAndInventoryId{
+message GrpcInventoryIdAndUsername{
     string inventory_id = 1;
-    int32 user_id = 2;
+    string username = 2;
 }
 
 message GrpcUserId{

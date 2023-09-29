@@ -4,7 +4,7 @@ namespace InventoryService.Core.Interfaces;
 
 public interface IRepository<T> where  T : class
 {
-    public Task<IQueryable<T>> Queryable(CancellationToken cancellationToken = default);
+    public IQueryable<T> Queryable(CancellationToken cancellationToken = default);
     
     public Task AddAsync(T item, CancellationToken cancellationToken = default);
     

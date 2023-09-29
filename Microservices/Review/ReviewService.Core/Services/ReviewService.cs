@@ -40,12 +40,12 @@ public class ReviewService : IReviewService
         
     }
 
-    public async Task UpdateReview(ReviewDto dto, CancellationToken token = default)
+    public async Task UpdateReview(ReviewDto dto,CancellationToken token = default)
     {
         try
         {
             var review = _mapper.Map<Review>(dto);
-            var updateCommand = new UpdateReviewCommand(_repository, review, dto.Username);
+            var updateCommand = new UpdateReviewCommand(_repository, review);
             if (!await updateCommand.CanExecute())
                 throw new RpcException(new Status(StatusCode.InvalidArgument, "Cannot update review."));
             await updateCommand.Execute();
@@ -60,7 +60,7 @@ public class ReviewService : IReviewService
     public async Task DeleteReview(ReviewDto dto, CancellationToken token = default)
     {
         var review = _mapper.Map<Review>(dto);
-        var deleteCommand = new DeleteReviewCommand(_repository, review, dto.Username);
+        var deleteCommand = new DeleteReviewCommand(_repository, review);
         if (!await deleteCommand.CanExecute())
             throw new RpcException(new Status(StatusCode.InvalidArgument, "Cannot delete review."));
         await deleteCommand.Execute();
@@ -72,16 +72,17 @@ public class ReviewService : IReviewService
         return _mapper.Map<HashSet<ReviewDto>>(result);
     }
 
-    public async Task<HashSet<ReviewDto>> GetReviewsByUserId(int userId, CancellationToken token = default)
+    public async Task<HashSet<ReviewDto>> GetReviewsByUsername(string username, CancellationToken token = default)
     {
-        var result = await _repository.GetByUserId(userId, token);
+        var result = await _repository.GetByUsername(username, token);
         return _mapper.Map<HashSet<ReviewDto>>(result);
     }
+    
 
-    public async Task<ReviewDto?> GetReviewByInventoryIdAndUserId(Guid id, int userId,
+    public async Task<ReviewDto?> GetReviewByInventoryIdAndUsername(Guid id, string username,
         CancellationToken token = default)
     {
-        var result = await _repository.GetByInventoryIdAndUserId(id ,userId, token);
+        var result = await _repository.GetByInventoryIdAndUsername(id ,username, token);
         return _mapper.Map<ReviewDto>(result);
     }
 

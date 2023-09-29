@@ -1,5 +1,6 @@
 ﻿using InventoryService.Core.Interfaces;
 using InventoryService.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace InventoryService.Infrastructure;
@@ -13,10 +14,9 @@ public class EfRepository<T> : IRepository<T> where T : class
         _context = context;
     }
 
-    public Task<IQueryable<T>> Queryable(CancellationToken cancellationToken = default)
+    public IQueryable<T> Queryable(CancellationToken cancellationToken = default)
     {
-        var result = _context.Set<T>().AsQueryable();
-        return Task.FromResult(result);
+        return _context.Set<T>().AsQueryable().AsNoTracking();
     }
 
     public async Task AddAsync(T item, CancellationToken cancellationToken = default)
@@ -36,17 +36,8 @@ public class EfRepository<T> : IRepository<T> where T : class
 
     public async Task<bool> SaveChangesAsync()
     {
-        var semaphore = new SemaphoreSlim(1, 1);
-        try
-        {
-            await semaphore.WaitAsync();
-            var result = await _context.SaveChangesAsync() > 0;
-            _context.ChangeTracker.Clear();
-            return result;
-        }
-        finally
-        {
-            semaphore.Release();
-        }
+        var result = await _context.SaveChangesAsync() > 0;
+        _context.ChangeTracker.Clear();
+        return result;
     }
 }

@@ -21,7 +21,7 @@ public class GrpcReviewService : IGrpcReviewService
         _channel = GrpcChannel.ForAddress(settings.ReviewUrl);
     }
 
-    public async Task<Guid> AddReview(ReviewDto dto, CancellationToken token = default)
+    public async Task<Guid> AddReview(ReviewDto dto, string username, CancellationToken token = default)
     {
         try
         {
@@ -31,8 +31,7 @@ public class GrpcReviewService : IGrpcReviewService
             {
                 Id = dto.Id.ToString(),
                 InventoryId = dto.InventoryId.ToString(),
-                UserId = dto.UserId,
-                Username = dto.Username,
+                Username = username,
                 Stars = dto.Stars,
                 Comment = dto.Comment
             };
@@ -55,7 +54,7 @@ public class GrpcReviewService : IGrpcReviewService
         }
     }
 
-    public async Task UpdateReview(ReviewDto dto, CancellationToken token = default)
+    public async Task UpdateReview(ReviewDto dto, string username, CancellationToken token = default)
     {
         try
         {
@@ -66,8 +65,7 @@ public class GrpcReviewService : IGrpcReviewService
             {
                 Id = dto.Id.ToString(),
                 InventoryId = dto.InventoryId.ToString(),
-                UserId = dto.UserId,
-                Username = dto.Username,
+                Username = username,
                 Stars = dto.Stars,
                 Comment = dto.Comment
             };
@@ -100,7 +98,6 @@ public class GrpcReviewService : IGrpcReviewService
             {
                 Id = dto.Id.ToString(),
                 InventoryId = dto.InventoryId.ToString(),
-                UserId = dto.UserId,
                 Username = dto.Username,
                 Stars = dto.Stars,
                 Comment = dto.Comment
@@ -141,7 +138,6 @@ public class GrpcReviewService : IGrpcReviewService
                 returnItem.Add(new ReviewDto()
                 {
                     Comment = item.Comment,
-                    UserId = item.UserId,
                     Id = Guid.Parse(item.Id),
                     InventoryId = Guid.Parse(item.InventoryId),
                     Stars = item.Stars,
@@ -165,16 +161,16 @@ public class GrpcReviewService : IGrpcReviewService
         }
     }
 
-    public async Task<HashSet<ReviewDto>> GetReviewsByUserId(int userId, CancellationToken token = default)
+    public async Task<HashSet<ReviewDto>> GetReviewsByUsername(string username, CancellationToken token = default)
     {
         try
         {
             var returnItem = new HashSet<ReviewDto>();
             var client = new ReviewServiceClient(_channel);
 
-            var result = await client.GetReviewsByUserIdAsync(new GrpcUserId()
+            var result = await client.GetReviewsByUsernameAsync(new StringValue()
                 {
-                    UserId = userId
+                    Value = username
                 }, deadline: DateTime.UtcNow.AddSeconds(10),
                 cancellationToken: token);
 
@@ -183,7 +179,6 @@ public class GrpcReviewService : IGrpcReviewService
                 returnItem.Add(new ReviewDto()
                 {
                     Comment = item.Comment,
-                    UserId = item.UserId,
                     Id = Guid.Parse(item.Id),
                     InventoryId = Guid.Parse(item.InventoryId),
                     Stars = item.Stars,
@@ -207,15 +202,15 @@ public class GrpcReviewService : IGrpcReviewService
         }
     }
 
-    public async Task<ReviewDto?> GetReviewByInventoryIdAndUserId(Guid id, int userId, CancellationToken token = default)
+    public async Task<ReviewDto?> GetReviewByInventoryIdAndUsername(Guid id, string username, CancellationToken token = default)
     {
         try
         {
             var client = new ReviewServiceClient(_channel);
 
-            var result = await client.GetReviewByInventoryIdAndUserIdAsync(new GrpcUserAndInventoryId()
+            var result = await client.GetReviewByInventoryIdAndUsernameAsync(new GrpcInventoryIdAndUsername()
                 {
-                    UserId = userId,
+                    Username = username,
                     InventoryId = id.ToString()
                 }, deadline: DateTime.UtcNow.AddSeconds(10),
                 cancellationToken: token);

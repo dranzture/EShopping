@@ -7,13 +7,11 @@ public class DeleteReviewCommand : ICommand
 {
     private readonly IReviewRepository _repository;
     private readonly Review _item;
-    private readonly string _username;
     
-    public DeleteReviewCommand(IReviewRepository repository, Review item, string username)
+    public DeleteReviewCommand(IReviewRepository repository, Review item)
     {
         _repository = repository;
         _item = item;
-        _username = username;
     }
 
     public async Task<bool> CanExecute()

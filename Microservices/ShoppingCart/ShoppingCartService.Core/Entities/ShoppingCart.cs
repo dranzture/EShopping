@@ -26,7 +26,8 @@ public class ShoppingCart : BaseEntity
         }
     }
 
-    [Required] public string Username { get; private set; }
+    [Required] 
+    public string Username { get; private set; }
 
     private readonly List<ShoppingItem> _shoppingItems = new List<ShoppingItem>();
 
@@ -71,7 +72,7 @@ public class ShoppingCart : BaseEntity
         }
 
         item.UpdateQuantity(quantity, inventory, username);
-        
+
         item.UpdateModifiedFields(username);
         UpdateModifiedFields(username);
     }

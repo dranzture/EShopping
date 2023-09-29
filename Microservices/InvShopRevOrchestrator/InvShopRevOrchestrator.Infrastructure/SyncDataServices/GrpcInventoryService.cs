@@ -28,7 +28,11 @@ public class GrpcInventoryService : IGrpcInventoryService
         {
             var client = new InventoryServiceClient(_channel);
 
-            var request = _mapper.Map<GrpcInventoryWithUsernameDto>(dto);
+            var request = new GrpcInventoryWithUsernameDto()
+            {
+                Dto = _mapper.Map<GrpcInventoryDto>(dto.Dto),
+                Username = dto.Username
+            };
             var result = await client.AddInventoryAsync(request, deadline: DateTime.UtcNow.AddSeconds(10),
                 cancellationToken: token);
 

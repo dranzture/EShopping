@@ -18,7 +18,7 @@ public static class Helpers
         if (repository.Queryable().Any()) return;
         try
         {
-            var newReview = new Review(guid, 1, "dranzture", 5, "Excellent Product");
+            var newReview = new Review(guid, "dranzture", 5, "Excellent Product");
             await repository.AddAsync(newReview);
             await repository.SaveChanges();
         }
