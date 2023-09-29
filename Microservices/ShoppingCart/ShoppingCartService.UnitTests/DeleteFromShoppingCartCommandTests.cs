@@ -45,7 +45,7 @@ public class DeleteFromShoppingCartCommandTests
         var mockRepository = Substitute.For<IShoppingCartRepository>();
         mockRepository.GetShoppingCartById(cartId).Returns(Task.FromResult(cart));
 
-      
+
         var command = new DeleteFromShoppingCartCommand(mockRepository, cartId, inventory, username);
 
         // Act
@@ -88,7 +88,7 @@ public class DeleteFromShoppingCartCommandTests
         cart.AddItem(inventory, 1, username);
         var mockRepository = Substitute.For<IShoppingCartRepository>();
         mockRepository.GetShoppingCartById(cartId).Returns(Task.FromResult(cart));
-        
+
         var command = new DeleteFromShoppingCartCommand(mockRepository, cartId, inventory, username);
 
         // Act
@@ -100,6 +100,6 @@ public class DeleteFromShoppingCartCommandTests
 
         // Ensure that the item is removed from the cart
         var removedItem = cart.ShoppingItems.FirstOrDefault(item => item.InventoryId == inventory.Id);
-        Assert.True(removedItem.IsDeleted);
+        Assert.Null(removedItem);
     }
 }

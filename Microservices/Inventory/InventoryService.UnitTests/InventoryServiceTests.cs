@@ -287,7 +287,7 @@ public class InventoryServiceTests
         };
         var cancellationToken = CancellationToken.None;
 
-        _repository.GetById(Arg.Any<Guid>()).Returns(inventory);
+        _repository.GetById(Arg.Any<Guid>()).Returns((Inventory?)null);
         _mapper.Map<Inventory>(inventoryDto).Returns(inventory);
 
         // Act & Assert
@@ -323,11 +323,13 @@ public class InventoryServiceTests
             InventoryId = inventoryId,
             Quantity = 5,
         };
-
+        _repository.GetById(Arg.Any<Guid>()).Returns(inventory);
+        _mapper.Map<Inventory>(inventoryDto).Returns(inventory);
         // Act
         await _inventoryService.DecreaseInventory(changeInventoryQuantityDto);
 
         // Assert: No exceptions are thrown for a successful decrease
+        await _repository.Received(1).SaveChangesAsync();
     }
 
     [Fact]

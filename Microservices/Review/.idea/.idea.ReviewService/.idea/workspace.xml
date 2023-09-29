@@ -19,38 +19,11 @@
   <component name="ChangeListManager">
     <list default="true" id="b098b9fc-78e3-4b55-9c2d-ccd260dce5f0" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Infrastructure/Data/Configuration/InventoryConfiguration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/Controllers/ReviewController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/Controllers/ReviewController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Dtos/Review/ReviewDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Dtos/Review/ReviewDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Interfaces/IGrpcReviewService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Interfaces/IGrpcReviewService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Interfaces/IReviewService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Interfaces/IReviewService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Services/ReviewService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Services/ReviewService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Infrastructure/Protos/review.proto" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Infrastructure/Protos/review.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Infrastructure/SyncDataServices/GrpcInventoryService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Infrastructure/SyncDataServices/GrpcInventoryService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Infrastructure/SyncDataServices/GrpcReviewService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Infrastructure/SyncDataServices/GrpcReviewService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.API/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Entities/Inventory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Entities/Inventory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Helpers/PrepDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Helpers/PrepDb.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Interfaces/IRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Interfaces/IRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Repositories/InventoryRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Core/Repositories/InventoryRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.Infrastructure/EfRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.Infrastructure/EfRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.UnitTests/InventoryServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.UnitTests/InventoryServiceTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ReviewService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ReviewService/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReviewService.API/Protos/review.proto" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.API/Protos/review.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReviewService.API/SyncDataServices/Grpc/GrpcService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.API/SyncDataServices/Grpc/GrpcService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReviewService.API/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.API/appsettings.Development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReviewService.Core/Commands/ReviewCommands/AddReviewCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.Core/Commands/ReviewCommands/AddReviewCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReviewService.Core/Commands/ReviewCommands/DeleteReviewCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.Core/Commands/ReviewCommands/DeleteReviewCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReviewService.Core/Commands/ReviewCommands/UpdateReviewCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.Core/Commands/ReviewCommands/UpdateReviewCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReviewService.Core/Helpers/PrepDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.Core/Helpers/PrepDb.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReviewService.Core/Interfaces/IReviewRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.Core/Interfaces/IReviewRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReviewService.Core/Interfaces/IReviewService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.Core/Interfaces/IReviewService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReviewService.Core/Models/Review.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.Core/Models/Review.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReviewService.Core/Repositories/ReviewRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.Core/Repositories/ReviewRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReviewService.Core/Services/ReviewService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.Core/Services/ReviewService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReviewService.UnitTests/ReviewCommandsTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ReviewService.UnitTests/ReviewCommandsTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ShoppingCart/.idea/.idea.ShoppingCartService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ShoppingCart/.idea/.idea.ShoppingCartService/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ShoppingCart/ShoppingCartService.Core/Entities/ShoppingCart.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../ShoppingCart/ShoppingCartService.Core/Entities/ShoppingCart.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ShoppingCart/ShoppingCartService.UnitTests/DeleteFromShoppingCartCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../ShoppingCart/ShoppingCartService.UnitTests/DeleteFromShoppingCartCommandTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -385,7 +358,7 @@
       <workItem from="1695422686364" duration="26000" />
       <workItem from="1695424091299" duration="747000" />
       <workItem from="1695567122447" duration="2451000" />
-      <workItem from="1695949536064" duration="2667000" />
+      <workItem from="1695949536064" duration="3137000" />
     </task>
     <task id="LOCAL-00001" summary="Seperated Inventory and Review Services">
       <option name="closed" value="true" />

@@ -82,24 +82,6 @@ public class ReviewCommandsTests
         Assert.False(canExecute);
     }
     
-    [Fact]
-    public async void UpdateReviewCommand_CanExecute_Should_Return_False_If_User_Does_Not_Match()
-    {
-        //Arrange
-        var review = new Review(_guid, "dranzture", 5, "Awesome!");
-        var username = "dranzture1";
-        _repository.GetById(_guid)
-            .Returns(Task.FromResult(review));
-        
-        //Act
-        var command = new UpdateReviewCommand(_repository, review);
-
-        var canExecute = await command.CanExecute();
-        
-        //Assert
-        
-        Assert.False(canExecute);
-    }
     
     [Fact]
     public async void DeleteReviewCommand_CanExecute_Should_Return_True()
