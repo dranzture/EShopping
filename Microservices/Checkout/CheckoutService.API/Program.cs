@@ -1,3 +1,4 @@
+using System;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using CheckoutService.Core;
@@ -6,7 +7,11 @@ using CheckoutService.Core.ValueObjects;
 using CheckoutService.Infrastructure;
 using CheckoutService.Infrastructure.Consumer;
 using CheckoutService.Infrastructure.Data;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 

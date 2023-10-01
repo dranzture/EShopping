@@ -14,7 +14,7 @@ namespace ShoppingCartService.Infrastructure.Consumer;
 public class ShoppingCartConsumerService : BackgroundService
 {
     private readonly IMediator _mediator;
-    private readonly string _topic = "update_cart_status";
+    private readonly string _topic = "process_checkout_response_topic";
     private readonly IConsumer<Ignore, string> _consumer;
     private readonly CancellationTokenSource _cancellationTokenSource;
 

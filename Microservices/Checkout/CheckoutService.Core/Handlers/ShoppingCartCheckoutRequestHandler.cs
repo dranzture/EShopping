@@ -1,4 +1,7 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using AutoMapper;
 using CheckoutService.Core.Commands;
 using CheckoutService.Core.Dtos;
 using CheckoutService.Core.Entities;
@@ -29,25 +32,36 @@ public class ShoppingCartCheckoutRequestHandler : IRequestHandler<ShoppingCartCh
 
     public async Task Handle(ShoppingCartCheckoutRequest request, CancellationToken cancellationToken)
     {
-        var paymentMethod = await _repository.GetByUsername(request.ShoppingCart.Username, cancellationToken);
-        
-        var shoppingCart = _mapper.Map<ShoppingCart>(request.ShoppingCart);
-        var processPaymentCommand = new ProcessPaymentCommand(paymentMethod.SelectedCreditCard, shoppingCart);
-        
-        shoppingCart.UpdateStatus(CheckoutStatus.Completed);
-        
-        await _shoppingCartPublisher.ProcessMessage(IMessageBusPublisher<ShoppingCartDto>.CheckoutTopic,
-            new Guid().ToString(), _mapper.Map<ShoppingCartDto>(shoppingCart));
-        
-        if (await processPaymentCommand.CanExecute())
+        try
         {
-            await processPaymentCommand.Execute();
+            var paymentMethod = await _repository.GetByUsername(request.ShoppingCart.Username, cancellationToken);
 
-            await _mediator.Send(new CreateOrderRequest(request.ShoppingCart, OrderStatus.Created), cancellationToken);
+            var shoppingCart = _mapper.Map<ShoppingCart>(request.ShoppingCart);
+            var processPaymentCommand = new ProcessPaymentCommand(paymentMethod.SelectedCreditCard, shoppingCart);
+
+            shoppingCart.UpdateStatus(CheckoutStatus.Completed);
+
+            await _shoppingCartPublisher.ProcessMessage(
+                IMessageBusPublisher<ShoppingCartDto>.ProcessShoppingCartResponseTopic,
+                new Guid().ToString(), _mapper.Map<ShoppingCartDto>(shoppingCart));
+
+            if (await processPaymentCommand.CanExecute())
+            {
+                await processPaymentCommand.Execute();
+
+                await _mediator.Send(new CreateOrderRequest(request.ShoppingCart, OrderStatus.Created),
+                    cancellationToken);
+            }
+            else
+            {
+                await _mediator.Send(new CreateOrderRequest(request.ShoppingCart, OrderStatus.PaymentFailed),
+                    cancellationToken);
+            }
         }
-        else
+        catch (Exception ex)
         {
-            await _mediator.Send(new CreateOrderRequest(request.ShoppingCart, OrderStatus.PaymentFailed), cancellationToken);
+            Console.WriteLine("---> Could not publish Checkout message due to: " + ex.Message);
         }
     }
+    
 }

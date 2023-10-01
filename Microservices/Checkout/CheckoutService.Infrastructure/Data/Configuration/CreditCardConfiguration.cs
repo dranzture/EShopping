@@ -1,5 +1,4 @@
 ﻿using CheckoutService.Core.Entities;
-using CheckoutService.Core.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

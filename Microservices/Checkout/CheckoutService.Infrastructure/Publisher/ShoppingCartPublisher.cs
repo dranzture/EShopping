@@ -1,4 +1,6 @@
-﻿using CheckoutService.Core.Dtos;
+﻿using System;
+using System.Threading.Tasks;
+using CheckoutService.Core.Dtos;
 using CheckoutService.Core.Interfaces;
 using CheckoutService.Core.ValueObjects;
 using Confluent.Kafka;

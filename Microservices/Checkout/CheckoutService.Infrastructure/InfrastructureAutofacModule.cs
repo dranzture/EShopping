@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Reflection;
 using Autofac;
 using CheckoutService.Core.Dtos;
@@ -21,7 +22,6 @@ public class InfrastructureAutofacModule : Module
 
     private void LoadAssemblies()
     {
-        // TODO: Replace these types with any type in the appropriate assembly/project
         var infrastructureAssembly = Assembly.GetAssembly(typeof(InfrastructureAutofacModule));
 
         AddToAssembliesIfNotNull(infrastructureAssembly);

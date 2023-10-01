@@ -15,11 +15,69 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f1709b6-fca2-4cfd-9a9e-505d5f094e8f" name="Changes" comment="Shopping Cart is fully functional with handling inventory side effects.">
+    <list default="true" id="8f1709b6-fca2-4cfd-9a9e-505d5f094e8f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/obj/CheckoutService.API.csproj.nuget.dgspec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/obj/CheckoutService.API.csproj.nuget.g.props" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/obj/CheckoutService.API.csproj.nuget.g.targets" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/obj/Debug/net7.0/CheckoutService.API.AssemblyInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/obj/Debug/net7.0/CheckoutService.API.AssemblyInfoInputs.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/obj/Debug/net7.0/CheckoutService.API.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/obj/Debug/net7.0/CheckoutService.API.GlobalUsings.g.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/obj/Debug/net7.0/CheckoutService.API.assets.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/obj/project.assets.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/obj/project.nuget.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/obj/project.packagespec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/obj/rider.project.restore.info" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/obj/CheckoutService.Core.csproj.nuget.dgspec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/obj/CheckoutService.Core.csproj.nuget.g.props" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/obj/CheckoutService.Core.csproj.nuget.g.targets" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/obj/Debug/net7.0/CheckoutService.Core.AssemblyInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/obj/Debug/net7.0/CheckoutService.Core.AssemblyInfoInputs.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/obj/Debug/net7.0/CheckoutService.Core.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/obj/Debug/net7.0/CheckoutService.Core.GlobalUsings.g.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/obj/Debug/net7.0/CheckoutService.Core.assets.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/obj/project.assets.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/obj/project.nuget.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/obj/project.packagespec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/obj/rider.project.restore.info" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/obj/CheckoutService.Infrastructure.csproj.nuget.dgspec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/obj/CheckoutService.Infrastructure.csproj.nuget.g.props" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/obj/CheckoutService.Infrastructure.csproj.nuget.g.targets" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/obj/Debug/net7.0/CheckoutService.Infrastructure.AssemblyInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/obj/Debug/net7.0/CheckoutService.Infrastructure.AssemblyInfoInputs.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/obj/Debug/net7.0/CheckoutService.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/obj/Debug/net7.0/CheckoutService.Infrastructure.GlobalUsings.g.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/obj/Debug/net7.0/CheckoutService.Infrastructure.assets.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/obj/project.assets.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/obj/project.nuget.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/obj/project.packagespec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/obj/rider.project.restore.info" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/CheckoutService.UnitTests.csproj.nuget.dgspec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/CheckoutService.UnitTests.csproj.nuget.g.props" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/CheckoutService.UnitTests.csproj.nuget.g.targets" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/Debug/net7.0/CheckoutService.UnitTests.AssemblyInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/Debug/net7.0/CheckoutService.UnitTests.AssemblyInfoInputs.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/Debug/net7.0/CheckoutService.UnitTests.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/Debug/net7.0/CheckoutService.UnitTests.GlobalUsings.g.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/Debug/net7.0/CheckoutService.UnitTests.assets.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/Debug/net7.0/CheckoutService.UnitTests.csproj.AssemblyReference.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/project.assets.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/project.nuget.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/project.packagespec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/rider.project.restore.info" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Handlers/ShoppingCartCheckoutRequestHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Handlers/ShoppingCartCheckoutRequestHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Interfaces/IMessageBusPublisher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Interfaces/IMessageBusPublisher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/InfrastructureAutofacModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/InfrastructureAutofacModule.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Review/.idea/.idea.ReviewService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Review/.idea/.idea.ReviewService/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShoppingCartService.UnitTests/DeleteFromShoppingCartCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.UnitTests/DeleteFromShoppingCartCommandTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ShoppingCartService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ShoppingCartService/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/Consumer/ShoppingCartConsumerService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/Consumer/ShoppingCartConsumerService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/Serializer/ShoppingCartSerializer.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,9 +115,8 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/de0f77bcc22bb94def9c5263f776ee0ab975fde6629e8e55cbe7a38de544ca/InterceptorPipelineBuilder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f4bc324a395d24ed12db75b0a81536b642509aa14825bf114d9b7c934e2b/Mediator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f5545b2656401abe1a371ad2756d7d2328a38293f7ee8b163801bbf55cee8/TestInvoker.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/fc539a5e5bdbd18a46bb3da429691af8cd4cf1923f9142441a246cee7f0de7d/IApplicationBuilder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/Controllers/ShoppingCartController.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/polat/RiderProjects/EShopping/Microservices/InvShopRevOrchestrator/InvShopRevOrchestrator.API/Controllers/ShoppingCartController.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/polat/RiderProjects/EShopping/Microservices/InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Dtos/Inventory/InventoryDto.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Dtos/Inventory/InventoryDto.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -102,7 +159,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.ShoppingCartService.API: http">
+  <component name="RunManager">
     <configuration name="ShoppingCartService.API: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile" temporary="true">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/ShoppingCartService.API/ShoppingCartService.API.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net7.0" />
@@ -138,7 +195,8 @@
       <workItem from="1695481442512" duration="2063000" />
       <workItem from="1695577925773" duration="3161000" />
       <workItem from="1695769498971" duration="65000" />
-      <workItem from="1695769649192" duration="46025000" />
+      <workItem from="1695769649192" duration="46422000" />
+      <workItem from="1696085031825" duration="13037000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <option name="closed" value="true" />
@@ -267,58 +325,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/ShoppingCartService.Infrastructure/Data/AppDbContext.cs</url>
-          <line>29</line>
-          <properties documentPath="C:\Users\polat\RiderProjects\EShopping\Microservices\ShoppingCart\ShoppingCartService.Infrastructure\Data\AppDbContext.cs" initialLine="29" containingFunctionPresentation="Method 'SaveChangesAsync'">
-            <startOffsets>
-              <option value="1009" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1091" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/ShoppingCartService.Infrastructure/Data/AppDbContext.cs</url>
-          <line>46</line>
-          <properties documentPath="C:\Users\polat\RiderProjects\EShopping\Microservices\ShoppingCart\ShoppingCartService.Infrastructure\Data\AppDbContext.cs" initialLine="46" containingFunctionPresentation="Method 'SaveChangesAsync'">
-            <startOffsets>
-              <option value="1654" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1684" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/ShoppingCartService.Infrastructure/Data/AppDbContext.cs</url>
-          <line>35</line>
-          <properties documentPath="C:\Users\polat\RiderProjects\EShopping\Microservices\ShoppingCart\ShoppingCartService.Infrastructure\Data\AppDbContext.cs" initialLine="35" containingFunctionPresentation="Method 'SaveChangesAsync'">
-            <startOffsets>
-              <option value="1272" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1489" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/ShoppingCartService.UnitTests/DeleteFromShoppingCartCommandTests.cs</url>
-          <line>82</line>
-          <properties documentPath="C:\Users\polat\RiderProjects\EShopping\Microservices\ShoppingCart\ShoppingCartService.UnitTests\DeleteFromShoppingCartCommandTests.cs" initialLine="82" containingFunctionPresentation="Method 'Execute_RemovesItemFromCartAndSavesChanges'">
-            <startOffsets>
-              <option value="2944" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2972" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="31" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
