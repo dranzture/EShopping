@@ -1,4 +1,4 @@
-﻿using ShoppingCartService.Core.Models;
+﻿using ShoppingCartService.Core.Entities;
 
 namespace ShoppingCartService.Infrastructure.Interfaces;
 

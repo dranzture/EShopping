@@ -1,7 +1,6 @@
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using ShoppingCartService.Core.Entities;
-using ShoppingCartService.Core.Models;
 using ShoppingCartService.Core.ValueObjects;
 using ShoppingCartService.Infrastructure.Interfaces;
 
@@ -10,6 +9,7 @@ namespace ShoppingCartService.Infrastructure.Data;
 public class AppDbContext : DbContext
 { 
     private readonly IDomainEventDispatcher? _dispatcher;
+    
     public AppDbContext(DbContextOptions<AppDbContext> options, IDomainEventDispatcher? dispatcher) : base(options)
     {
         _dispatcher = dispatcher;
@@ -23,6 +23,7 @@ public class AppDbContext : DbContext
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
+    
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
     {
         try

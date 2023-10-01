@@ -2,10 +2,10 @@
 
 public class AppSettings
 {
-    public KafkaSettings KafkaSettings { get; set; }
+    public KafkaSettings? KafkaSettings { get; set; }
 }
 
-public class KafkaSettings
+public abstract class KafkaSettings
 {
-    public string BootstrapServers { get; set; }
+    public string? BootstrapServers { get; set; }
 }

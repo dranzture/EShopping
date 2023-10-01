@@ -6,7 +6,6 @@ using ShoppingCartService.Core.Dtos;
 using ShoppingCartService.Core.Entities;
 using ShoppingCartService.Core.Extensions;
 using ShoppingCartService.Core.Interfaces;
-using ShoppingCartService.Core.Models;
 using ShoppingCartService.Core.ValueObjects;
 
 namespace ShoppingCartService.UnitTests;

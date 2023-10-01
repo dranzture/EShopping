@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Ardalis.GuardClauses;
-using ShoppingCartService.Core.Models;
 
 namespace ShoppingCartService.Core.Entities;
 

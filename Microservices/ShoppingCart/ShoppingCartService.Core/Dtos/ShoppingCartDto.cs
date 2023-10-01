@@ -1,6 +1,5 @@
 ﻿
 using ShoppingCartService.Core.Entities;
-using ShoppingCartService.Core.Models;
 using ShoppingCartService.Core.ValueObjects;
 
 namespace ShoppingCartService.Core.Dtos;

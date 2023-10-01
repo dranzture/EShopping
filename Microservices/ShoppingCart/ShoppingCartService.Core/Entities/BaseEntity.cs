@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using MediatR;
 
-namespace ShoppingCartService.Core.Models;
+namespace ShoppingCartService.Core.Entities;
 
 public abstract class BaseEntity
 {

@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ShoppingCartService.Core.Entities;
-using ShoppingCartService.Core.Models;
 using ShoppingCartService.Core.ValueObjects;
 
 namespace ShoppingCartService.Infrastructure.Data.Configurations;

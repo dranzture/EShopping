@@ -1,5 +1,3 @@
-using ShoppingCartService.Core.Models;
-
 namespace ShoppingCartService.Core.Entities;
 
 public class ShoppingItem : BaseEntity

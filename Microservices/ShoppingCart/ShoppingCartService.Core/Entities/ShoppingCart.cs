@@ -2,7 +2,6 @@ using System.ComponentModel.DataAnnotations;
 using ShoppingCartService.Core.Dtos;
 using ShoppingCartService.Core.Extensions;
 using ShoppingCartService.Core.Interfaces;
-using ShoppingCartService.Core.Models;
 using ShoppingCartService.Core.Notifications;
 using ShoppingCartService.Core.ValueObjects;
 

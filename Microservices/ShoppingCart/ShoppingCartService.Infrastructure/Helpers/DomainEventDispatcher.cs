@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using ShoppingCartService.Core.Models;
+using ShoppingCartService.Core.Entities;
 using ShoppingCartService.Infrastructure.Data;
 using ShoppingCartService.Infrastructure.Interfaces;
 

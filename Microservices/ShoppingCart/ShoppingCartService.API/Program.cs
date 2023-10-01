@@ -1,13 +1,6 @@
-using System;
-using System.IO;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using ShoppingCartService.API.SyncDataServices.Grpc;
 using ShoppingCartService.Core;
 using ShoppingCartService.Core.Extensions;
@@ -40,8 +33,9 @@ builder.Services.AddGrpc(options =>
     options.EnableDetailedErrors = true;
     options.Interceptors.Add<LoggerInterceptor>();
 });
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddGrpcReflection();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 {
