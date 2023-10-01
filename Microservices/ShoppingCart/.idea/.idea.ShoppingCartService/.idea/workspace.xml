@@ -15,70 +15,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f1709b6-fca2-4cfd-9a9e-505d5f094e8f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/obj/CheckoutService.API.csproj.nuget.dgspec.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/obj/CheckoutService.API.csproj.nuget.g.props" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/obj/CheckoutService.API.csproj.nuget.g.targets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/obj/Debug/net7.0/CheckoutService.API.AssemblyInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/obj/Debug/net7.0/CheckoutService.API.AssemblyInfoInputs.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/obj/Debug/net7.0/CheckoutService.API.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/obj/Debug/net7.0/CheckoutService.API.GlobalUsings.g.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/obj/Debug/net7.0/CheckoutService.API.assets.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/obj/project.assets.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/obj/project.nuget.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/obj/project.packagespec.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/obj/rider.project.restore.info" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/obj/CheckoutService.Core.csproj.nuget.dgspec.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/obj/CheckoutService.Core.csproj.nuget.g.props" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/obj/CheckoutService.Core.csproj.nuget.g.targets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/obj/Debug/net7.0/CheckoutService.Core.AssemblyInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/obj/Debug/net7.0/CheckoutService.Core.AssemblyInfoInputs.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/obj/Debug/net7.0/CheckoutService.Core.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/obj/Debug/net7.0/CheckoutService.Core.GlobalUsings.g.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/obj/Debug/net7.0/CheckoutService.Core.assets.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/obj/project.assets.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/obj/project.nuget.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/obj/project.packagespec.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/obj/rider.project.restore.info" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/obj/CheckoutService.Infrastructure.csproj.nuget.dgspec.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/obj/CheckoutService.Infrastructure.csproj.nuget.g.props" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/obj/CheckoutService.Infrastructure.csproj.nuget.g.targets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/obj/Debug/net7.0/CheckoutService.Infrastructure.AssemblyInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/obj/Debug/net7.0/CheckoutService.Infrastructure.AssemblyInfoInputs.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/obj/Debug/net7.0/CheckoutService.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/obj/Debug/net7.0/CheckoutService.Infrastructure.GlobalUsings.g.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/obj/Debug/net7.0/CheckoutService.Infrastructure.assets.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/obj/project.assets.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/obj/project.nuget.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/obj/project.packagespec.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/obj/rider.project.restore.info" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/CheckoutService.UnitTests.csproj.nuget.dgspec.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/CheckoutService.UnitTests.csproj.nuget.g.props" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/CheckoutService.UnitTests.csproj.nuget.g.targets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/Debug/net7.0/CheckoutService.UnitTests.AssemblyInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/Debug/net7.0/CheckoutService.UnitTests.AssemblyInfoInputs.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/Debug/net7.0/CheckoutService.UnitTests.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/Debug/net7.0/CheckoutService.UnitTests.GlobalUsings.g.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/Debug/net7.0/CheckoutService.UnitTests.assets.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/Debug/net7.0/CheckoutService.UnitTests.csproj.AssemblyReference.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/project.assets.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/project.nuget.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/project.packagespec.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.UnitTests/obj/rider.project.restore.info" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Handlers/ShoppingCartCheckoutRequestHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Handlers/ShoppingCartCheckoutRequestHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Interfaces/IMessageBusPublisher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Interfaces/IMessageBusPublisher.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/InfrastructureAutofacModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/InfrastructureAutofacModule.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ShoppingCartService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ShoppingCartService/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/Consumer/ShoppingCartConsumerService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/Consumer/ShoppingCartConsumerService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/Serializer/ShoppingCartSerializer.cs" beforeDir="false" />
-    </list>
+    <list default="true" id="8f1709b6-fca2-4cfd-9a9e-505d5f094e8f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -196,7 +133,7 @@
       <workItem from="1695577925773" duration="3161000" />
       <workItem from="1695769498971" duration="65000" />
       <workItem from="1695769649192" duration="46422000" />
-      <workItem from="1696085031825" duration="13037000" />
+      <workItem from="1696085031825" duration="13345000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <option name="closed" value="true" />
