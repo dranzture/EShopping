@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvShopRevOrchestrator.API", "InvShopRevOrchestrator.API\InvShopRevOrchestrator.API.csproj", "{D8C23422-4F25-41AB-8535-D38999483E08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvShopRevOrchestrator.Core", "InvShopRevOrchestrator.Core\InvShopRevOrchestrator.Core.csproj", "{7E8823FE-694D-4A17-88DB-3F5FE177A733}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvShopRevOrchestrator.Infrastructure", "InvShopRevOrchestrator.Infrastructure\InvShopRevOrchestrator.Infrastructure.csproj", "{9F12738C-88DD-4AC7-80D8-350E12E326A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvShopRevOrchestrator.UnitTests", "InvShopRevOrchestrator.UnitTests\InvShopRevOrchestrator.UnitTests.csproj", "{DCAD5993-02A9-4632-8299-B4A1694C57DA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D8C23422-4F25-41AB-8535-D38999483E08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8C23422-4F25-41AB-8535-D38999483E08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8C23422-4F25-41AB-8535-D38999483E08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8C23422-4F25-41AB-8535-D38999483E08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E8823FE-694D-4A17-88DB-3F5FE177A733}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E8823FE-694D-4A17-88DB-3F5FE177A733}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E8823FE-694D-4A17-88DB-3F5FE177A733}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E8823FE-694D-4A17-88DB-3F5FE177A733}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F12738C-88DD-4AC7-80D8-350E12E326A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F12738C-88DD-4AC7-80D8-350E12E326A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F12738C-88DD-4AC7-80D8-350E12E326A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F12738C-88DD-4AC7-80D8-350E12E326A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCAD5993-02A9-4632-8299-B4A1694C57DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCAD5993-02A9-4632-8299-B4A1694C57DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCAD5993-02A9-4632-8299-B4A1694C57DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCAD5993-02A9-4632-8299-B4A1694C57DA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

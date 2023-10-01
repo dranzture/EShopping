@@ -1,0 +1,15 @@
+C:\Users\polat\RiderProjects\EShopping\Microservices\Checkout\CheckoutService.Infrastructure\bin\Debug\net7.0\CheckoutService.Infrastructure.deps.json
+C:\Users\polat\RiderProjects\EShopping\Microservices\Checkout\CheckoutService.Infrastructure\bin\Debug\net7.0\CheckoutService.Infrastructure.dll
+C:\Users\polat\RiderProjects\EShopping\Microservices\Checkout\CheckoutService.Infrastructure\bin\Debug\net7.0\CheckoutService.Infrastructure.pdb
+C:\Users\polat\RiderProjects\EShopping\Microservices\Checkout\CheckoutService.Infrastructure\bin\Debug\net7.0\CheckoutService.Core.dll
+C:\Users\polat\RiderProjects\EShopping\Microservices\Checkout\CheckoutService.Infrastructure\bin\Debug\net7.0\CheckoutService.Core.pdb
+C:\Users\polat\RiderProjects\EShopping\Microservices\Checkout\CheckoutService.Infrastructure\obj\Debug\net7.0\CheckoutService.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\polat\RiderProjects\EShopping\Microservices\Checkout\CheckoutService.Infrastructure\obj\Debug\net7.0\CheckoutService.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\polat\RiderProjects\EShopping\Microservices\Checkout\CheckoutService.Infrastructure\obj\Debug\net7.0\CheckoutService.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\polat\RiderProjects\EShopping\Microservices\Checkout\CheckoutService.Infrastructure\obj\Debug\net7.0\CheckoutService.Infrastructure.AssemblyInfo.cs
+C:\Users\polat\RiderProjects\EShopping\Microservices\Checkout\CheckoutService.Infrastructure\obj\Debug\net7.0\CheckoutService.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\polat\RiderProjects\EShopping\Microservices\Checkout\CheckoutService.Infrastructure\obj\Debug\net7.0\CheckoutService.Infrastructure.csproj.CopyComplete
+C:\Users\polat\RiderProjects\EShopping\Microservices\Checkout\CheckoutService.Infrastructure\obj\Debug\net7.0\CheckoutService.Infrastructure.dll
+C:\Users\polat\RiderProjects\EShopping\Microservices\Checkout\CheckoutService.Infrastructure\obj\Debug\net7.0\refint\CheckoutService.Infrastructure.dll
+C:\Users\polat\RiderProjects\EShopping\Microservices\Checkout\CheckoutService.Infrastructure\obj\Debug\net7.0\CheckoutService.Infrastructure.pdb
+C:\Users\polat\RiderProjects\EShopping\Microservices\Checkout\CheckoutService.Infrastructure\obj\Debug\net7.0\ref\CheckoutService.Infrastructure.dll
