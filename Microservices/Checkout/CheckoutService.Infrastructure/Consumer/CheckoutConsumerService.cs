@@ -17,15 +17,13 @@ namespace CheckoutService.Infrastructure.Consumer;
 public class CheckoutConsumerService : BackgroundService
 {
     private readonly IMediator _mediator;
-    private readonly IMapper _mapper;
-    private readonly string _topic = "update_cart_status";
+    private readonly string _topic = "checkout_topic";
     private readonly IConsumer<Ignore, string> _consumer;
     private readonly CancellationTokenSource _cancellationTokenSource;
 
-    public CheckoutConsumerService(AppSettings settings, IMediator mediator, IMapper mapper)
+    public CheckoutConsumerService(AppSettings settings, IMediator mediator)
     {
         _mediator = mediator;
-        _mapper = mapper;
         var config = new ConsumerConfig
         {
             BootstrapServers = settings.KafkaSettings!.BootstrapServers,

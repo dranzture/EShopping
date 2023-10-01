@@ -13,9 +13,10 @@ public class ProcessPaymentCommand : ICommand
         _creditCard = creditCard;
         _shoppingCart = shoppingCart;
     }
+
     public Task<bool> CanExecute()
     {
-        return Task.FromResult(_creditCard.IsValidated && _shoppingCart.ShoppingItems.Sum(e => e.TotalPrice) > 0);
+        return Task.FromResult(_creditCard.CardNumber > 0 && _shoppingCart.ShoppingItems.Sum(e => e.TotalPrice) > 0);
     }
 
     public Task Execute()

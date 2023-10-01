@@ -20,7 +20,8 @@ public static class Helpers
         if (queryable.Any()) return;
         try
         {
-            var newInventory = new PaymentMethod("dranzture", new CreditCard("dranzture", 1234567890123456, true));
+            var newInventory =
+                new PaymentMethod("dranzture", new CreditCard("dranzture", 1234567890123456, true));
             await repository.AddAsync(newInventory);
             await repository.SaveChangesAsync();
         }

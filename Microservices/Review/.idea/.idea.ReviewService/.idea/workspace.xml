@@ -18,8 +18,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b098b9fc-78e3-4b55-9c2d-ccd260dce5f0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Commands/ProcessPaymentCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Commands/ProcessPaymentCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Entities/CreditCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Entities/CreditCard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Entities/PaymentMethod.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Entities/PaymentMethod.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Helpers/PrepDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Helpers/PrepDb.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Order/OrderService.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Order/OrderService.API/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ShoppingCart/.idea/.idea.ShoppingCartService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ShoppingCart/.idea/.idea.ShoppingCartService/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -357,6 +360,7 @@
       <workItem from="1695424091299" duration="747000" />
       <workItem from="1695567122447" duration="2451000" />
       <workItem from="1695949536064" duration="3264000" />
+      <workItem from="1696123702837" duration="1206000" />
     </task>
     <task id="LOCAL-00001" summary="Seperated Inventory and Review Services">
       <option name="closed" value="true" />
