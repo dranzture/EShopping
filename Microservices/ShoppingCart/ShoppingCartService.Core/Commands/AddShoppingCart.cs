@@ -7,24 +7,25 @@ public class AddShoppingCart : ICommand
 {
     private ShoppingCart? _result = null;
     private readonly IShoppingCartRepository _repository;
-    private readonly ShoppingCart _item;
+    private readonly string _username;
 
-    public AddShoppingCart(IShoppingCartRepository repository, ShoppingCart item)
+    public AddShoppingCart(IShoppingCartRepository repository, string username)
     {
         _repository = repository;
-        _item = item;
+        _username = username;
     }
     public async Task<bool> CanExecute()
     {
-        var item = await _repository.GetShoppingCartByUsername(_item.Username);
+        var item = await _repository.GetShoppingCartByUsername(_username);
         return item == null;
     }
 
     public async Task Execute()
     {
-        await _repository.AddAsync(_item);
+        var newShoppingCart = new ShoppingCart(_username);
+        await _repository.AddAsync(newShoppingCart);
         await _repository.SaveChangesAsync();
-        _result = _item;
+        _result = newShoppingCart;
     }
 
     public ShoppingCart? GetResult()

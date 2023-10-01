@@ -23,10 +23,9 @@ public class ShoppingCartService : IShoppingCartService
         _shoppingCartPublisher = shoppingCartPublisher;
     }
 
-    public async Task<string> AddShoppingCart(ShoppingCartDto dto, string username, CancellationToken token = default)
+    public async Task<string> AddShoppingCart(string username, CancellationToken token = default)
     {
-        var shoppingCart = _mapper.Map<ShoppingCart>(dto);
-        var command = new AddShoppingCart(_shoppingCartRepository, shoppingCart);
+        var command = new AddShoppingCart(_shoppingCartRepository, username);
         if (!await command.CanExecute())
         {
             throw new RpcException(new Status(StatusCode.InvalidArgument,
@@ -92,6 +91,7 @@ public class ShoppingCartService : IShoppingCartService
         }
 
         await command.Execute();
+        
     }
 
     public async Task<ShoppingCartDto> GetOrderDetails(Guid cartId, CancellationToken token = default)

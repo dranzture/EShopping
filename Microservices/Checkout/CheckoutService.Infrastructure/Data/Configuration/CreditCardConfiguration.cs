@@ -8,9 +8,8 @@ public class CreditCardConfiguration : IEntityTypeConfiguration<CreditCard>
 {
     public void Configure(EntityTypeBuilder<CreditCard> builder)
     {
-        builder.HasIndex(e => e.CardNumber);
         builder.HasOne<PaymentMethod>()
             .WithMany(e => e.CreditCards)
-            .HasForeignKey(e => e.Username);
+            .HasPrincipalKey(e => e.Username);
     }
 }

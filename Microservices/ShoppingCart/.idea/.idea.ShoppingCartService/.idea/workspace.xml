@@ -16,12 +16,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f1709b6-fca2-4cfd-9a9e-505d5f094e8f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Dtos/ShoppingCartDto/CheckoutShoppingCartDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Handlers/ShoppingCartCheckedOutEventHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Notifications/ShoppingCartCheckedOutEvent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.API/Helpers/MapperProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/Helpers/MapperProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.API/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/appsettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Commands/ProcessPaymentCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Commands/ProcessPaymentCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Entities/CreditCard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Entities/CreditCard.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Dtos/ShoppingCartDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Dtos/ShoppingCartDto.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Entities/PaymentMethod.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Entities/PaymentMethod.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Entities/ShoppingCart.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Entities/ShoppingItem.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Handlers/CreateOrderRequestHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Handlers/CreateOrderRequestHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Handlers/ShoppingCartCheckoutRequestHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Handlers/ShoppingCartCheckoutRequestHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Helpers/PrepDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Helpers/PrepDb.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Order/OrderService.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Order/OrderService.API/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Interfaces/IPaymentMethodRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Interfaces/IPaymentMethodRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Repositories/PaymentMethodRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Repositories/PaymentMethodRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/ValueObjects/AppSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/ValueObjects/AppSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/Data/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/Data/AppDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/Data/Configuration/CreditCardConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/Data/Configuration/CreditCardConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/EfRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/EfRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/Publisher/OrderPublisher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/Publisher/OrderPublisher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/Serializer/ShoppingCartSerializer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/Serializer/ShoppingCartSerializer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/Controllers/ShoppingCartController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/Controllers/ShoppingCartController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Review/.idea/.idea.ReviewService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Review/.idea/.idea.ReviewService/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ShoppingCartService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ShoppingCartService/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.API/SyncDataServices/Grpc/ShoppingCartGrpcService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.API/SyncDataServices/Grpc/ShoppingCartGrpcService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Commands/AddShoppingCart.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Commands/AddShoppingCart.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Commands/CheckoutShoppingCartCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Commands/CheckoutShoppingCartCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Dtos/ShoppingCartDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Dtos/ShoppingCartDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Entities/ShoppingCart.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Entities/ShoppingCart.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Handlers/UpdateShoppingCartStatusHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Handlers/UpdateShoppingCartStatusHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Interfaces/IShoppingCartService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Interfaces/IShoppingCartService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Requests/UpdateShoppingCartRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Requests/UpdateShoppingCartRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Services/ShoppingCartService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Services/ShoppingCartService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/ValueObjects/AppSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/ValueObjects/AppSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/ValueObjects/CheckoutStatus.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/ValueObjects/CheckoutStatus.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/Consumer/ShoppingCartConsumerService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/Consumer/ShoppingCartConsumerService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/InfrastructureAutofacModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/InfrastructureAutofacModule.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/Publisher/CheckoutPublisher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/Publisher/CheckoutPublisher.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.UnitTests/AddShoppingCardCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.UnitTests/AddShoppingCardCommandTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.UnitTests/ShoppingServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.UnitTests/ShoppingServiceTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,8 +83,10 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/43f3bb8b6b7cb281b070e466b5f7d37dd10f9d7e4bdc25e43b3e8b2394d3fe/UnaryServerMethodInvoker.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4911e3ae2958adee4bd59fc5ed0f95863f97ea7ce7877d13e6c9b4f1b56f/ReflectionActivator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6879c9ed20391a5ccfea363be5964fbcfe4f1dfde9558aa84b36df6b6ec92c6/List.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/78c860a4a0696d27b2942ef6996b8ceec84aec6b56a4221bd8ce81cc42954d/RequestHandlerWrapper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7a49b84f3e1fb21c9d7125669f3678c3594851efa24be36ddf667e7fc13ef/BoundConstructor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/829d6ac6e62b9bee9ef8e79e827d87d0c31a7c2eefbc354135d9a8f2c4deb/Mapper.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/85448f861b1cb95910693f28a5ce3363967c79953b460b176d97298ae5ed0/Nullable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a1e830db66f4537520b48f395e1d155c5280a87c9832c95b2e918185764c773/INotificationHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a42ba4db448ed38dcb9fb39194c637a317a8281856b88e139e8a905ee6d12b/Guid.Windows.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/aacc74311ca994f12b71cddb22241be9d6654c65e94f5985c5488dee396916f/DbContext.cs" root0="SKIP_HIGHLIGHTING" />
@@ -140,7 +176,7 @@
       <workItem from="1695577925773" duration="3161000" />
       <workItem from="1695769498971" duration="65000" />
       <workItem from="1695769649192" duration="46422000" />
-      <workItem from="1696085031825" duration="14208000" />
+      <workItem from="1696085031825" duration="20891000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <option name="closed" value="true" />
@@ -269,6 +305,32 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/ShoppingCartService.Core/Commands/CheckoutShoppingCartCommand.cs</url>
+          <line>30</line>
+          <properties documentPath="C:\Users\polat\RiderProjects\EShopping\Microservices\ShoppingCart\ShoppingCartService.Core\Commands\CheckoutShoppingCartCommand.cs" initialLine="30" containingFunctionPresentation="Method 'Execute'">
+            <startOffsets>
+              <option value="996" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1066" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/ShoppingCartService.Infrastructure/Consumer/ShoppingCartConsumerService.cs</url>
+          <line>52</line>
+          <properties documentPath="C:\Users\polat\RiderProjects\EShopping\Microservices\ShoppingCart\ShoppingCartService.Infrastructure\Consumer\ShoppingCartConsumerService.cs" initialLine="52" containingFunctionPresentation="Method 'StartConsumerLoop'">
+            <startOffsets>
+              <option value="1936" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2016" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

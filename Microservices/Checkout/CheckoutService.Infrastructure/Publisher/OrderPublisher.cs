@@ -34,14 +34,14 @@ public class OrderPublisher : IMessageBusPublisher<OrderDto>
 
             var deliveryReport = await _producer.ProduceAsync(topic, message);
             
-            Console.WriteLine("---> Produced message on topic of checkout");
+            Console.WriteLine("---> Produced message on topic of create order");
             
             return deliveryReport.Status == PersistenceStatus.Persisted;
             
         }
         catch (Exception ex)
         {
-            Console.WriteLine("---> Could not publish Checkout message due to: " + ex.Message);
+            Console.WriteLine("---> Could not publish Create Order message due to: " + ex.Message);
             return false;
         }
     }

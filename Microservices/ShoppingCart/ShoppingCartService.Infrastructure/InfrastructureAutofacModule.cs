@@ -74,6 +74,10 @@ public class InfrastructureAutofacModule : Module
             .As(typeof(INotificationHandler<ItemRemovedFromShoppingCartEvent>))
             .InstancePerLifetimeScope();
         
+        builder.RegisterType<ShoppingCartCheckedOutEventHandler>()
+            .As(typeof(INotificationHandler<ShoppingCartCheckedOutEvent>))
+            .InstancePerLifetimeScope();
+        
         builder.RegisterType<UpdateShoppingCartStatusHandler>()
             .As(typeof(IRequestHandler<UpdateShoppingCartRequest>))
             .InstancePerLifetimeScope();

@@ -4,6 +4,5 @@ public enum CheckoutStatus
 {
     None,
     InProgress,
-    Completed,
-    Failed
+    Completed
 }

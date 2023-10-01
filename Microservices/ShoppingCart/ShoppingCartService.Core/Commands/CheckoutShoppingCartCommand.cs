@@ -1,6 +1,6 @@
 ﻿using ShoppingCartService.Core.Dtos;
-using ShoppingCartService.Core.Entities;
 using ShoppingCartService.Core.Interfaces;
+using ShoppingCartService.Core.Notifications;
 using ShoppingCartService.Core.ValueObjects;
 
 namespace ShoppingCartService.Core.Commands;
@@ -43,6 +43,7 @@ public class CheckoutShoppingCartCommand : ICommand
                 ShoppingItems = shoppingItems
             });
         cartItem!.UpdateCheckoutStatus(CheckoutStatus.InProgress);
+        cartItem.AddDomainEvent(new ShoppingCartCheckedOutEvent(cartItem.Username));
         await _repository.UpdateAsync(cartItem);
         await _repository.SaveChangesAsync();
     }

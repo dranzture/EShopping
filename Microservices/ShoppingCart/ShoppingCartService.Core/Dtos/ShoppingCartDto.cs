@@ -10,7 +10,7 @@ public class ShoppingCartDto
     
     public string Username { get; set; }
 
-    public CheckoutStatus Status { get; private set; } = CheckoutStatus.None;
+    public CheckoutStatus Status { get; set; }
     
     public List<ShoppingItemDto> ShoppingItems { get; set; }
 }

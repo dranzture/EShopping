@@ -8,7 +8,6 @@ public class MapperProfile : Profile
 {
     public MapperProfile()
     {
-        CreateMap<ShoppingCartDto, ShoppingCart>()
-            .ReverseMap();
+
     }
 }

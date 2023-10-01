@@ -46,7 +46,7 @@ public class ShoppingServiceTests
         addShoppingCartCommand.CanExecute().Returns(Task.FromResult(true));
 
         // Act
-        var result = await service.AddShoppingCart(shoppingCartDto, username);
+        var result = await service.AddShoppingCart(username);
 
         // Assert
         Assert.Equal(cartId.ToString(), result);
@@ -86,7 +86,7 @@ public class ShoppingServiceTests
         mapper.Map<ShoppingCart>(Arg.Any<ShoppingCartDto>()).Returns(shoppingCart);
 
         // Act & Assert
-        await Assert.ThrowsAsync<RpcException>(() => service.AddShoppingCart(shoppingCartDto, username));
+        await Assert.ThrowsAsync<RpcException>(() => service.AddShoppingCart(username));
     }
 
     [Fact]

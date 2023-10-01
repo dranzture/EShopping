@@ -24,7 +24,7 @@ public class CreateOrderRequestHandler : IRequestHandler<CreateOrderRequest>
                 {
                     Id = new Guid(),
                     ShoppingCartId = request.ShoppingCart.Id,
-                    Status = OrderStatus.PaymentFailed
+                    Status = request.Status
                 });
         }
         catch (Exception ex)

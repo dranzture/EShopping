@@ -13,6 +13,7 @@ public class AppDbContext : DbContext
     }
     
     public DbSet<PaymentMethod> PaymentMethods { get; set; }
+    
     public DbSet<CreditCard> CreditCards { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

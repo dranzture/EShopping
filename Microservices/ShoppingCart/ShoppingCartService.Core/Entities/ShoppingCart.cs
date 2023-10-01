@@ -28,7 +28,7 @@ public class ShoppingCart : BaseEntity
     [Required] 
     public string Username { get; private set; }
 
-    private readonly List<ShoppingItem> _shoppingItems = new List<ShoppingItem>();
+    private readonly List<ShoppingItem> _shoppingItems;
 
     public IReadOnlyCollection<ShoppingItem> ShoppingItems => _shoppingItems;
 

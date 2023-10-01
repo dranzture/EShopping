@@ -25,11 +25,10 @@ public class ShoppingCartGrpcService : GrpcShoppingCartService.GrpcShoppingCartS
         ServerCallContext context)
     {
         var username = request.Username;
-        var dto = _mapper.Map<ShoppingCartDto>(request);
 
         try
         {
-            var cartId = await _shoppingCartService.AddShoppingCart(dto, username);
+            var cartId = await _shoppingCartService.AddShoppingCart(username);
             return new StringValue { Value = cartId };
         }
         catch (RpcException ex)

@@ -101,11 +101,11 @@ public class ShoppingCartController : ControllerBase
     }
 
     [HttpPost("CheckoutShoppingCart")]
-    public async Task<IActionResult> CheckoutShoppingCart([FromBody] Guid shoppingCartId)
+    public async Task<IActionResult> CheckoutShoppingCart([FromBody] CheckoutShoppingCartDto request)
     {
         try
         {
-            await _shoppingCartService.CheckoutShoppingCart(shoppingCartId, CancellationToken.None);
+            await _shoppingCartService.CheckoutShoppingCart(request.ShoppingCartId, CancellationToken.None);
             return Ok("Shopping cart checked out successfully.");
         }
         catch (RpcException rpcEx)

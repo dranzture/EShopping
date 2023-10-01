@@ -1,6 +1,5 @@
 using Confluent.Kafka;
 using ShoppingCartService.Core.Dtos;
-using ShoppingCartService.Core.Entities;
 using ShoppingCartService.Core.Interfaces;
 using ShoppingCartService.Core.ValueObjects;
 

@@ -22,7 +22,7 @@ public class UpdateShoppingCartStatusHandler : IRequestHandler<UpdateShoppingCar
         try
         {
             var shoppingCart = request._cart;
-            var command = new UpdateCheckoutStatusCommand(_repository, shoppingCart.Id, shoppingCart.Status);
+            var command = new UpdateCheckoutStatusCommand(_repository, shoppingCart.Id!.Value, shoppingCart.Status);
             if (!await command.CanExecute())
             {
                 throw new ArgumentException("Cannot update shopping cart's status in handler");

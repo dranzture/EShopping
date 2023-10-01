@@ -16,7 +16,7 @@ public class AddShoppingCardCommandTests
 
             var guid = Guid.NewGuid();
             var shoppingCart = new ShoppingCart(  "testuser", guid);
-            var addShoppingCartCommand = new AddShoppingCart(mockRepository, shoppingCart);
+            var addShoppingCartCommand = new AddShoppingCart(mockRepository, "testuser");
 
             // Act
             var canExecute = await addShoppingCartCommand.CanExecute();
@@ -34,7 +34,7 @@ public class AddShoppingCardCommandTests
             var mockRepository = Substitute.For<IShoppingCartRepository>();
             mockRepository.GetShoppingCartByUsername(existingShoppingCart.Username).Returns(Task.FromResult(existingShoppingCart));
 
-            var addShoppingCartCommand = new AddShoppingCart(mockRepository, existingShoppingCart);
+            var addShoppingCartCommand = new AddShoppingCart(mockRepository, "testuser");
 
             // Act
             var canExecute = await addShoppingCartCommand.CanExecute();
@@ -50,7 +50,7 @@ public class AddShoppingCardCommandTests
             var guid = Guid.NewGuid();
             var shoppingCart = new ShoppingCart(  "testuser", guid);
             var mockRepository = Substitute.For<IShoppingCartRepository>();
-            var addShoppingCartCommand = new AddShoppingCart(mockRepository, shoppingCart);
+            var addShoppingCartCommand = new AddShoppingCart(mockRepository, "testuser");
 
             // Act
             await addShoppingCartCommand.Execute();
@@ -67,7 +67,7 @@ public class AddShoppingCardCommandTests
             var guid = Guid.NewGuid();
             var shoppingCart = new ShoppingCart(  "testuser", guid);
             var mockRepository = Substitute.For<IShoppingCartRepository>();
-            var addShoppingCartCommand = new AddShoppingCart(mockRepository, shoppingCart);
+            var addShoppingCartCommand = new AddShoppingCart(mockRepository, "testuser");
 
             // Act
             addShoppingCartCommand.Execute().GetAwaiter().GetResult();

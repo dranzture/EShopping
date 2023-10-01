@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using CheckoutService.Core.Commands;
 using CheckoutService.Core.Dtos;
 using CheckoutService.Core.Entities;
@@ -17,7 +14,6 @@ public class ShoppingCartCheckoutRequestHandler : IRequestHandler<ShoppingCartCh
     private readonly IPaymentMethodRepository _repository;
     private readonly IMessageBusPublisher<ShoppingCartDto> _shoppingCartPublisher;
     private readonly IMediator _mediator;
-    private readonly IMapper _mapper;
 
     public ShoppingCartCheckoutRequestHandler(IPaymentMethodRepository repository,
         IMessageBusPublisher<ShoppingCartDto> shoppingCartPublisher,
@@ -27,23 +23,21 @@ public class ShoppingCartCheckoutRequestHandler : IRequestHandler<ShoppingCartCh
         _repository = repository;
         _shoppingCartPublisher = shoppingCartPublisher;
         _mediator = mediator;
-        _mapper = mapper;
     }
 
     public async Task Handle(ShoppingCartCheckoutRequest request, CancellationToken cancellationToken)
     {
         try
         {
-            var paymentMethod = await _repository.GetByUsername(request.ShoppingCart.Username, cancellationToken);
+            var paymentMethod = await _repository.GetDefaultCreditCardByUsername(request.ShoppingCart.Username, cancellationToken);
 
-            var shoppingCart = _mapper.Map<ShoppingCart>(request.ShoppingCart);
-            var processPaymentCommand = new ProcessPaymentCommand(paymentMethod.SelectedCreditCard, shoppingCart);
+            var processPaymentCommand = new ProcessPaymentCommand(paymentMethod, request.ShoppingCart);
 
-            shoppingCart.UpdateStatus(CheckoutStatus.Completed);
+            request.ShoppingCart.Status = CheckoutStatus.Completed;
 
             await _shoppingCartPublisher.ProcessMessage(
                 IMessageBusPublisher<ShoppingCartDto>.ProcessShoppingCartResponseTopic,
-                new Guid().ToString(), _mapper.Map<ShoppingCartDto>(shoppingCart));
+                new Guid().ToString(), request.ShoppingCart);
 
             if (await processPaymentCommand.CanExecute())
             {

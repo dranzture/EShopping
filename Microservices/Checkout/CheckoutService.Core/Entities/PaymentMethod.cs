@@ -8,38 +8,43 @@ public class PaymentMethod : BaseEntity
     {
     }
 
-    public PaymentMethod(string username, CreditCard? creditCard = null)
+    public PaymentMethod(string username)
     {
         Username = username;
-        if (creditCard == null) return;
-        if (creditCard.IsDefault)
-        {
-            UpdateDefaultCreditCard(creditCard);
-        }
-            
-        AddPaymentMethod(creditCard);
+        _creditCards = new List<CreditCard>();
     }
 
     public string Username { get; private set; }
 
-    private readonly List<CreditCard> _creditCards = new();
+    private readonly List<CreditCard> _creditCards;
     
     public IReadOnlyCollection<CreditCard> CreditCards => _creditCards;
-
-    public CreditCard? SelectedCreditCard { get; private set; }
-
-    private void AddPaymentMethod(CreditCard creditCard)
+    
+    public void AddPaymentMethod(CreditCard creditCard)
     {
+        if (creditCard.IsDefault)
+        {
+            UpdateDefaultCreditCard();
+        }
         _creditCards.Add(creditCard);
+        SetDefaultCreditCard();
     }
     
-    private void UpdateDefaultCreditCard(CreditCard creditCard)
+    private void UpdateDefaultCreditCard()
     {
-        SelectedCreditCard = creditCard;
-        var defaultCreditCard = _creditCards.FirstOrDefault(e => e.IsDefault);
-        if (defaultCreditCard != null)
+        var creditCards = _creditCards.Where(e => e.IsDefault).ToList();
+        foreach (var item in creditCards)
         {
-            defaultCreditCard.IsDefault = false;
+            item.IsDefault = false;
         }
+    }
+
+    private void SetDefaultCreditCard()
+    {
+        var creditCards = _creditCards.Count(e => e.IsDefault);
+        if (creditCards != 0) return;
+        var item = _creditCards.FirstOrDefault();
+        if (item == null) return;
+        item.IsDefault = true;
     }
 }

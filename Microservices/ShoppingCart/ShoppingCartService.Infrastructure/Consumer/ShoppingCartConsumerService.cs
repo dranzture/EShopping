@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Confluent.Kafka;
 using MediatR;
 using Microsoft.Extensions.Hosting;
+using ShoppingCartService.Core.Dtos;
 using ShoppingCartService.Core.Entities;
 using ShoppingCartService.Core.Requests;
 using ShoppingCartService.Core.ValueObjects;
@@ -23,7 +24,7 @@ public class ShoppingCartConsumerService : BackgroundService
         _mediator = mediator;
         var config = new ConsumerConfig
         {
-            BootstrapServers = settings.KafkaSettings.BootstrapServers,
+            BootstrapServers = settings.KafkaSettings!.BootstrapServers,
             GroupId = new Guid().ToString()
         }; 
         _consumer = new ConsumerBuilder<Ignore, string>(config).Build();
@@ -48,8 +49,8 @@ public class ShoppingCartConsumerService : BackgroundService
                     var consumeResult = _consumer.Consume(cancellationToken);
                     Console.WriteLine($"Received message: {consumeResult.Message.Value}");
                     // Handle the received message here
-                    var shoppingCart = JsonSerializer.Deserialize<ShoppingCart>(consumeResult.Message.Value);
-                    _mediator.Send(new UpdateShoppingCartRequest(shoppingCart), cancellationToken);
+                    var shoppingCart = JsonSerializer.Deserialize<ShoppingCartDto>(consumeResult.Message.Value);
+                    _mediator.Send(new UpdateShoppingCartRequest(shoppingCart!), cancellationToken);
                 }
                 catch (ConsumeException ex)
                 {

@@ -4,7 +4,7 @@ namespace ShoppingCartService.Core.Interfaces;
 
 public interface IShoppingCartService
 {
-    Task<string> AddShoppingCart(ShoppingCartDto dto, string username, CancellationToken token = default);
+    Task<string> AddShoppingCart(string username, CancellationToken token = default);
     
     Task AddShoppingItem(Guid shoppingCartId, InventoryDto inventoryDto, int quantity,
         string username, CancellationToken token = default);

@@ -1,13 +1,13 @@
 ﻿using MediatR;
-using ShoppingCartService.Core.Entities;
+using ShoppingCartService.Core.Dtos;
 
 namespace ShoppingCartService.Core.Requests;
 
 public class UpdateShoppingCartRequest : IRequest
 {
-    public readonly ShoppingCart _cart;
+    public ShoppingCartDto _cart { get; }
 
-    public UpdateShoppingCartRequest(ShoppingCart cart)
+    public UpdateShoppingCartRequest(ShoppingCartDto cart)
     {
         _cart = cart;
     }
