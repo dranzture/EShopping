@@ -16,46 +16,75 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f1709b6-fca2-4cfd-9a9e-505d5f094e8f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Dtos/ShoppingCartDto/CheckoutShoppingCartDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Handlers/ShoppingCartCheckedOutEventHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Notifications/ShoppingCartCheckedOutEvent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.API/Helpers/MapperProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/Helpers/MapperProfile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.API/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/appsettings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.API/Protos/order.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.API/SyncDataServices/Grpc/GrpcService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Commands/CreateOrderCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Commands/ReprocessOrderCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Commands/UpdateOrderStatusCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/CoreAutofacModule.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Dtos/CreateOrderDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Dtos/OrderDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Dtos/ReprocessOrderDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Dtos/UpdateOrderStatusDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Entities/BaseEntity.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Entities/Order.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Enums/OrderStatus.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Extensions/LoggerInterceptor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Handlers/CreateOrderNotificationHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Handlers/CreateShippingNotificationHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Handlers/UpdateOrderStatusNotificationHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Helpers/DomainEventBase.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Helpers/PrepDb.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Interfaces/ICommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Interfaces/IMessagePublisher.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Interfaces/IOrderRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Interfaces/IOrderService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Interfaces/IRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Notifications/CreateOrderNotification.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Notifications/CreateShippingNotification.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Notifications/UpdateOrderStatusNotification.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Repositories/OrderRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Services/OrderService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/ValueObjects/AppSettings.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Infrastructure/Consumer/CreateOrderConsumer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Infrastructure/Consumer/UpdateOrderConsumer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Infrastructure/Data/AppDbContext.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Infrastructure/EfRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Infrastructure/Helpers/DomainEventDispatcher.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Infrastructure/Helpers/PublisherSerializer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Infrastructure/InfrastructureAutofacModule.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Infrastructure/Interfaces/IDomainEventDispatcher.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Infrastructure/Publishers/CreateShippingPublisher.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Infrastructure/Publishers/ReprocessOrderPublisher.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Dto/ShippingItemDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Entities/BaseEntity.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Entities/ShippingItem.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Enums/ShippingStatus.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Handlers/CreateShippingNotificationHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Helpers/DomainEventBase.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Interfaces/ICommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Interfaces/IRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Interfaces/IShippingItemRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Interfaces/IShippingItemService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Notifications/CreateShippingNotification.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Repositories/ShippingItemRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/ValueObjects/AppSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.API/Helpers/MapperProfile.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Commands/ProcessPaymentCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Commands/ProcessPaymentCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Dtos/ShoppingCartDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Dtos/ShoppingCartDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Entities/PaymentMethod.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Entities/PaymentMethod.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Entities/ShoppingCart.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Entities/ShoppingItem.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Handlers/CreateOrderRequestHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Handlers/CreateOrderRequestHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Handlers/ShoppingCartCheckoutRequestHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Handlers/ShoppingCartCheckoutRequestHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Helpers/PrepDb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Helpers/PrepDb.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Interfaces/IPaymentMethodRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Interfaces/IPaymentMethodRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Repositories/PaymentMethodRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Repositories/PaymentMethodRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/ValueObjects/AppSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/ValueObjects/AppSettings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/Data/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/Data/AppDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/Data/Configuration/CreditCardConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/Data/Configuration/CreditCardConfiguration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/EfRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/EfRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/Publisher/OrderPublisher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/Publisher/OrderPublisher.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/Serializer/ShoppingCartSerializer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/Serializer/ShoppingCartSerializer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/Controllers/ShoppingCartController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/Controllers/ShoppingCartController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/Consumer/CheckoutConsumerService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/Consumer/CheckoutConsumerService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Order/OrderService.API/OrderService.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Order/OrderService.API/OrderService.API.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Order/OrderService.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Order/OrderService.API/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Order/OrderService.API/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Order/OrderService.API/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Order/OrderService.API/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Order/OrderService.API/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Order/OrderService.Core/OrderService.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Order/OrderService.Core/OrderService.Core.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Order/OrderService.Infrastructure/OrderService.Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Order/OrderService.Infrastructure/OrderService.Infrastructure.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Review/.idea/.idea.ReviewService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Review/.idea/.idea.ReviewService/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Shipping/ShippingService.API/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Shipping/ShippingService.API/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Shipping/ShippingService.API/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Shipping/ShippingService.API/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Shipping/ShippingService.Core/ShippingService.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/ShippingService.Core.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Shipping/ShippingService.Infrastructure/ShippingService.Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Infrastructure/ShippingService.Infrastructure.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ShoppingCartService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ShoppingCartService/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShoppingCartService.API/SyncDataServices/Grpc/ShoppingCartGrpcService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.API/SyncDataServices/Grpc/ShoppingCartGrpcService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Commands/AddShoppingCart.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Commands/AddShoppingCart.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Commands/CheckoutShoppingCartCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Commands/CheckoutShoppingCartCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Dtos/ShoppingCartDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Dtos/ShoppingCartDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Entities/ShoppingCart.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Entities/ShoppingCart.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Handlers/UpdateShoppingCartStatusHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Handlers/UpdateShoppingCartStatusHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Interfaces/IShoppingCartService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Interfaces/IShoppingCartService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Requests/UpdateShoppingCartRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Requests/UpdateShoppingCartRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Services/ShoppingCartService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Services/ShoppingCartService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/ValueObjects/AppSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/ValueObjects/AppSettings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/ValueObjects/CheckoutStatus.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/ValueObjects/CheckoutStatus.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/Consumer/ShoppingCartConsumerService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/Consumer/ShoppingCartConsumerService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/InfrastructureAutofacModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/InfrastructureAutofacModule.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/Publisher/CheckoutPublisher.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/Publisher/CheckoutPublisher.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShoppingCartService.UnitTests/AddShoppingCardCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.UnitTests/AddShoppingCardCommandTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ShoppingCartService.UnitTests/ShoppingServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.UnitTests/ShoppingServiceTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/Data/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Infrastructure/Data/AppDbContext.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,6 +127,8 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/fc539a5e5bdbd18a46bb3da429691af8cd4cf1923f9142441a246cee7f0de7d/IApplicationBuilder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/Controllers/ShoppingCartController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Dtos/Inventory/InventoryDto.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Shipping/ShippingService.Core/ValueObjects/AppSettings.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/polat/RiderProjects/EShopping/Microservices/ShoppingCart/ShoppingCartService.Infrastructure/Data/Configurations/ShoppingItemConfiguration.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -139,7 +170,7 @@
     ]
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected=".NET Launch Settings Profile.ShoppingCartService.API: http">
     <configuration name="ShoppingCartService.API: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile" temporary="true">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/ShoppingCartService.API/ShoppingCartService.API.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net7.0" />
@@ -177,6 +208,7 @@
       <workItem from="1695769498971" duration="65000" />
       <workItem from="1695769649192" duration="46422000" />
       <workItem from="1696085031825" duration="20891000" />
+      <workItem from="1696382837278" duration="6457000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <option name="closed" value="true" />

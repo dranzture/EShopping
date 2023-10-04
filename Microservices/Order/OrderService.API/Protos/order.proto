@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcOrderService";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+service GrpcOrderService {
+    rpc ReprocessOrderById (google.protobuf.StringValue) returns (google.protobuf.Empty);
+    rpc GetAllOrders (google.protobuf.Empty) returns (GrpcListOrderDto);
+    rpc GetOrdersByUsername (google.protobuf.StringValue) returns (GrpcListOrderDto);
+    rpc GetOrderById (google.protobuf.StringValue) returns (GrpcOrderDto);
+}
+
+message GrpcOrderDto {
+    string id = 1;
+    string shopping_cart_id = 2;
+    string username = 3;
+    int32 order_status = 4;
+}
+
+message GrpcListOrderDto {
+    repeated GrpcOrderDto orders = 1;
+}

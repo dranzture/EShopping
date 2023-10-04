@@ -23,6 +23,7 @@ public class ProcessPaymentCommand : ICommand
 
     public Task Execute()
     {
+        Console.WriteLine($"-->Using credit card: {_creditCard.CardNumber}");
         Console.WriteLine("Processing payment");
         Thread.Sleep(3000);
         Console.WriteLine("Payment processed");

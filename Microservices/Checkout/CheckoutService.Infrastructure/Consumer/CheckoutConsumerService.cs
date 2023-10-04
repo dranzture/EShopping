@@ -1,11 +1,5 @@
-﻿using System;
-using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using System.Text.Json;
 using CheckoutService.Core.Dtos;
-using CheckoutService.Core.Entities;
-using CheckoutService.Core.Handlers;
 using CheckoutService.Core.Requests;
 using CheckoutService.Core.ValueObjects;
 using Confluent.Kafka;

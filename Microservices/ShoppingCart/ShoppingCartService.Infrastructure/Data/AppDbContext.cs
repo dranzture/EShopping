@@ -7,23 +7,23 @@ using ShoppingCartService.Infrastructure.Interfaces;
 namespace ShoppingCartService.Infrastructure.Data;
 
 public class AppDbContext : DbContext
-{ 
+{
     private readonly IDomainEventDispatcher? _dispatcher;
-    
+
     public AppDbContext(DbContextOptions<AppDbContext> options, IDomainEventDispatcher? dispatcher) : base(options)
     {
         _dispatcher = dispatcher;
     }
 
     public DbSet<ShoppingCart> ShoppingCarts { get; set; }
-    
+
     public DbSet<ShoppingItem> ShoppingItems { get; set; }
-    
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
-    
+
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
     {
         try
@@ -48,8 +48,6 @@ public class AppDbContext : DbContext
             Console.WriteLine(ex.Message);
             return 0;
         }
-        
-
     }
 
     public override int SaveChanges()
