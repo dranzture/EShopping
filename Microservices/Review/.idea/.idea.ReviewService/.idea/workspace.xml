@@ -18,75 +18,57 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b098b9fc-78e3-4b55-9c2d-ccd260dce5f0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.API/Protos/order.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.API/SyncDataServices/Grpc/GrpcService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Commands/CreateOrderCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Commands/ReprocessOrderCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Commands/UpdateOrderStatusCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/CoreAutofacModule.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Dtos/CreateOrderDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Dtos/OrderDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Dtos/ReprocessOrderDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Dtos/UpdateOrderStatusDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Entities/BaseEntity.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Entities/Order.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Enums/OrderStatus.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Extensions/LoggerInterceptor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Handlers/CreateOrderNotificationHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Handlers/CreateShippingNotificationHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Handlers/UpdateOrderStatusNotificationHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Helpers/DomainEventBase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Helpers/PrepDb.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Interfaces/ICommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Interfaces/IMessagePublisher.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Interfaces/IOrderRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Interfaces/IOrderService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Interfaces/IRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Notifications/CreateOrderNotification.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Notifications/CreateShippingNotification.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Notifications/UpdateOrderStatusNotification.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Repositories/OrderRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/Services/OrderService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Core/ValueObjects/AppSettings.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Infrastructure/Consumer/CreateOrderConsumer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Infrastructure/Consumer/UpdateOrderConsumer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Infrastructure/Data/AppDbContext.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Infrastructure/EfRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Infrastructure/Helpers/DomainEventDispatcher.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Infrastructure/Helpers/PublisherSerializer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Infrastructure/InfrastructureAutofacModule.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Infrastructure/Interfaces/IDomainEventDispatcher.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Infrastructure/Publishers/CreateShippingPublisher.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.Infrastructure/Publishers/ReprocessOrderPublisher.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Dto/ShippingItemDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Entities/BaseEntity.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Entities/ShippingItem.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Enums/ShippingStatus.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Handlers/CreateShippingNotificationHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Helpers/DomainEventBase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Interfaces/ICommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Interfaces/IRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Interfaces/IShippingItemRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Interfaces/IShippingItemService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Notifications/CreateShippingNotification.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Repositories/ShippingItemRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/ValueObjects/AppSettings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.API/Helpers/MapperProfile.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Commands/ProcessPaymentCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Core/Commands/ProcessPaymentCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/Consumer/CheckoutConsumerService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.Infrastructure/Consumer/CheckoutConsumerService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Order/OrderService.API/OrderService.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Order/OrderService.API/OrderService.API.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Order/OrderService.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Order/OrderService.API/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Order/OrderService.API/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Order/OrderService.API/appsettings.Development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Order/OrderService.API/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Order/OrderService.API/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Order/OrderService.Core/OrderService.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Order/OrderService.Core/OrderService.Core.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Order/OrderService.Infrastructure/OrderService.Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Order/OrderService.Infrastructure/OrderService.Infrastructure.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.API/Helpers/MapperProfile.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.API/Protos/shipping_item.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.API/SyncDataServices/Grpc/GrpcService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Commands/CreateShippingCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Commands/UpdateShippingStatusCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/CoreAutofacModule.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Dto/OrderDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Extensions/LoggerInterceptor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Handlers/CreateShippingHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Handlers/UpdateShippingStatusNotificationHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Interfaces/IEmailSender.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Notifications/UpdateShippingStatusNotification.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Services/ShippingItemService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Infrastructure/Consumers/CreateShippingItemConsumer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Infrastructure/Data/AppDbContext.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Infrastructure/EfRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Infrastructure/Helpers/DomainEventDispatcher.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Infrastructure/InfrastructureAutofacModule.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Infrastructure/Interfaces/IDomainEventDispatcher.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Infrastructure/Mailing/FakeEmailSender.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/GlobalUsings.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/ShippingService.UnitTests.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/Debug/net7.0/ShippingService.UnitTests.AssemblyInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/Debug/net7.0/ShippingService.UnitTests.AssemblyInfoInputs.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/Debug/net7.0/ShippingService.UnitTests.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/Debug/net7.0/ShippingService.UnitTests.GlobalUsings.g.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/Debug/net7.0/ShippingService.UnitTests.assets.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/Debug/net7.0/ShippingService.UnitTests.csproj.AssemblyReference.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/ShippingService.UnitTests.csproj.nuget.dgspec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/ShippingService.UnitTests.csproj.nuget.g.props" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/ShippingService.UnitTests.csproj.nuget.g.targets" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/project.assets.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/project.nuget.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/project.packagespec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Order/OrderService.Infrastructure/InfrastructureAutofacModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Order/OrderService.Infrastructure/InfrastructureAutofacModule.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ReviewService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ReviewService/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Shipping/ShippingService.API/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Shipping/ShippingService.API/appsettings.Development.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Shipping/ShippingService.API/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Shipping/ShippingService.API/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Shipping/ShippingService.API/ShippingService.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Shipping/ShippingService.API/ShippingService.API.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Dto/ShippingItemDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Dto/ShippingItemDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Entities/ShippingItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Entities/ShippingItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Handlers/CreateShippingNotificationHandler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Interfaces/IRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Interfaces/IRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Interfaces/IShippingItemRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Interfaces/IShippingItemRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Interfaces/IShippingItemService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Interfaces/IShippingItemService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Notifications/CreateShippingNotification.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Notifications/CreateShippingNotification.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Repositories/ShippingItemRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/Repositories/ShippingItemRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Shipping/ShippingService.Core/ShippingService.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Core/ShippingService.Core.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Shipping/ShippingService.Infrastructure/ShippingService.Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Shipping/ShippingService.Infrastructure/ShippingService.Infrastructure.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Shipping/ShippingService.sln" beforeDir="false" afterPath="$PROJECT_DIR$/../Shipping/ShippingService.sln" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ShoppingCart/.idea/.idea.ShoppingCartService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ShoppingCart/.idea/.idea.ShoppingCartService/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ShoppingCart/ShoppingCartService.Infrastructure/Data/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../ShoppingCart/ShoppingCartService.Infrastructure/Data/AppDbContext.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -424,7 +406,7 @@
       <workItem from="1695567122447" duration="2451000" />
       <workItem from="1695949536064" duration="3264000" />
       <workItem from="1696123702837" duration="1759000" />
-      <workItem from="1696380231597" duration="2141000" />
+      <workItem from="1696380231597" duration="2741000" />
     </task>
     <task id="LOCAL-00001" summary="Seperated Inventory and Review Services">
       <option name="closed" value="true" />

@@ -7,11 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Confluent.Kafka" Version="2.2.0" />
       <PackageReference Include="MediatR" Version="12.1.1" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Interfaces\" />
+      <ProjectReference Include="..\ShippingService.Core\ShippingService.Core.csproj" />
     </ItemGroup>
 
 </Project>

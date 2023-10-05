@@ -13,4 +13,25 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
+      <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+      <PackageReference Include="Grpc.AspNetCore" Version="2.57.0" />
+      <PackageReference Include="Grpc.AspNetCore.Server.Reflection" Version="2.57.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.11" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <Protobuf Include="Protos\shipping_item.proto" GrpcServices="Server"/>
+    </ItemGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\ShippingService.Core\ShippingService.Core.csproj" />
+      <ProjectReference Include="..\ShippingService.Infrastructure\ShippingService.Infrastructure.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\ShippingService.Core\ShippingService.Core.csproj" />
+    </ItemGroup>
 </Project>

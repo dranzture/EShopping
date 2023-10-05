@@ -1,16 +1,16 @@
 using System.Reflection;
 using Autofac;
 using MediatR;
-using OrderService.Core.Dtos;
-using OrderService.Core.Handlers;
-using OrderService.Core.Interfaces;
-using OrderService.Core.Notifications;
-using OrderService.Infrastructure.Helpers;
-using OrderService.Infrastructure.Interfaces;
-using OrderService.Infrastructure.Publishers;
+using ShippingService.Core.Dto;
+using ShippingService.Core.Handlers;
+using ShippingService.Core.Interfaces;
+using ShippingService.Core.Notifications;
+using ShippingService.Infrastructure.Helpers;
+using ShippingService.Infrastructure.Interfaces;
+using ShippingService.Infrastructure.Mailing;
 using Module = Autofac.Module;
 
-namespace OrderService.Infrastructure;
+namespace ShippingService.Infrastructure;
 
 public class InfrastructureAutofacModule : Module
 {
@@ -41,8 +41,8 @@ public class InfrastructureAutofacModule : Module
         LoadAssemblies();
 
         RegisterEf(builder);
-        RegisterPublisher(builder);
         RegisterMediatr(builder);
+        RegisterMailing(builder);
     }
 
     private void RegisterEf(ContainerBuilder builder)
@@ -64,24 +64,18 @@ public class InfrastructureAutofacModule : Module
             .As<IDomainEventDispatcher>()
             .InstancePerLifetimeScope();
         
-        builder.RegisterType<CreateOrderNotificationHandler>()
-            .As(typeof(INotificationHandler<CreateOrderNotification>))
-            .InstancePerLifetimeScope();
         
-        builder.RegisterType<UpdateOrderStatusNotificationHandler>()
-            .As(typeof(INotificationHandler<UpdateOrderStatusNotification>))
+        builder.RegisterType<UpdateShippingStatusNotificationHandler>()
+            .As(typeof(INotificationHandler<UpdateShippingStatusNotification>))
             .InstancePerLifetimeScope();
-        
     }
 
-    private void RegisterPublisher(ContainerBuilder builder)
+    private void RegisterMailing(ContainerBuilder builder)
     {
-        builder.RegisterType<CreateShippingPublisher>()
-            .As(typeof(IMessagePublisher<OrderDto>))
-            .InstancePerLifetimeScope();
-
-        builder.RegisterType<ReprocessOrderPublisher>()
-            .As(typeof(IMessagePublisher<ReprocessOrderDto>))
+        builder
+            .RegisterType<FakeEmailSender>()
+            .As<IEmailSender>()
             .InstancePerLifetimeScope();
     }
 }
+
