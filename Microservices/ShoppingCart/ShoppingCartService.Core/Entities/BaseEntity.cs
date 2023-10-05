@@ -8,7 +8,7 @@ public abstract class BaseEntity
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Key]
-    public Guid Id { get; set; }
+    public Guid Id { get; protected set; }
     
     [Required]
     public DateTimeOffset CreatedDateTime { get; protected set; }

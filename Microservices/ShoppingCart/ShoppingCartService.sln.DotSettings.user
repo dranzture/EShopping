@@ -1,5 +1,15 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:Boolean x:Key="/Default/Environment/InlayHints/GeneralInlayHintsOptions/EnableInlayHints/@EntryValue">True</s:Boolean>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=398aec13_002D89d5_002D4c5b_002Daca1_002D85ed09e89462/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from ShoppingCartServiceTests.cs" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=398aec13_002D89d5_002D4c5b_002Daca1_002D85ed09e89462/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from ShoppingCartServiceTests.cs" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Project Location="C:\Users\polat\RiderProjects\EShopping\Microservices\ShoppingCart\ShoppingCartService.UnitTests" Presentation="&amp;lt;ShoppingCartService.UnitTests&amp;gt;" /&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=72c57eb9_002D9efa_002D43a7_002Db79d_002D04d77c2464b8/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GetResult_ReturnsAddedShoppingCart" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::C002BFF5-86E5-49CC-A94D-C551C80F1DAA::net7.0::ShoppingCartService.UnitTests.AddShoppingCardCommandTests.GetResult_ReturnsAddedShoppingCart&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f4397dab_002Dc48a_002D4ea1_002Db9fd_002D925abfe0bab1/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Execute_AddsShoppingCartAndSavesChanges" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::C002BFF5-86E5-49CC-A94D-C551C80F1DAA::net7.0::ShoppingCartService.UnitTests.AddShoppingCardCommandTests.Execute_AddsShoppingCartAndSavesChanges&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

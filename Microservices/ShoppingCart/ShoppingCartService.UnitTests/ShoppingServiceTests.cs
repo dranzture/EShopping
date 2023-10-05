@@ -1,4 +1,5 @@
 using AutoMapper;
+using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using NSubstitute;
 using ShoppingCartService.Core.Commands;
@@ -26,10 +27,9 @@ public class ShoppingServiceTests
             }
         };
         var username = "testuser";
-        var cartId = Guid.NewGuid();
 
         var shoppingCartRepository = Substitute.For<IShoppingCartRepository>();
-        shoppingCartRepository.GetShoppingCartById(cartId).Returns((ShoppingCart)null);
+        shoppingCartRepository.GetShoppingCartById(Arg.Any<Guid>()).Returns((ShoppingCart)null);
         shoppingCartRepository.AddAsync(Arg.Any<ShoppingCart>()).Returns(Task.CompletedTask);
         shoppingCartRepository.SaveChangesAsync().Returns(true);
 
@@ -39,7 +39,7 @@ public class ShoppingServiceTests
         shoppingCartPublisher.ProcessMessage(Arg.Any<string>(),Arg.Any<string>(), new ShoppingCartDto()).Returns(true);
     
         var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, shoppingCartPublisher);
-        var shoppingCart = new ShoppingCart(username, cartId);
+        var shoppingCart = new ShoppingCart(username);
         mapper.Map<ShoppingCart>(Arg.Any<ShoppingCartDto>()).Returns(shoppingCart);
 
         var addShoppingCartCommand = Substitute.For<ICommand>();
@@ -49,20 +49,19 @@ public class ShoppingServiceTests
         var result = await service.AddShoppingCart(username);
 
         // Assert
-        Assert.Equal(cartId.ToString(), result);
+        Assert.Equal(shoppingCart.Id.ToString(), result);
     }
 
     [Fact]
     public async Task AddShoppingCart_ThrowsException_WhenCommandFails()
     {
         // Arrange
-        var cartId = Guid.NewGuid();
         var username = "testuser";
-
+        var shoppingCart = new ShoppingCart(username);
         var shoppingCartDto = new ShoppingCartDto
         {
             // Initialize with necessary data using object initializer
-            Id = cartId,
+            Id = shoppingCart.Id,
             Username = username,
             ShoppingItems = new List<ShoppingItemDto>
             {
@@ -72,7 +71,7 @@ public class ShoppingServiceTests
 
 
         var shoppingCartRepository = Substitute.For<IShoppingCartRepository>();
-        shoppingCartRepository.GetShoppingCartByUsername(username).Returns(new ShoppingCart(username, cartId));
+        shoppingCartRepository.GetShoppingCartByUsername(username).Returns(shoppingCart);
         shoppingCartRepository.AddAsync(Arg.Any<ShoppingCart>()).Returns(Task.CompletedTask);
         shoppingCartRepository.SaveChangesAsync().Returns(true);
 
@@ -82,7 +81,6 @@ public class ShoppingServiceTests
         shoppingCartPublisher.ProcessMessage(Arg.Any<string>(),Arg.Any<string>(), new ShoppingCartDto()).Returns(true);
     
         var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, shoppingCartPublisher);
-        var shoppingCart = new ShoppingCart(username, cartId);
         mapper.Map<ShoppingCart>(Arg.Any<ShoppingCartDto>()).Returns(shoppingCart);
 
         // Act & Assert
@@ -93,14 +91,14 @@ public class ShoppingServiceTests
     public async Task AddShoppingItem_CallsExecute_WhenCommandCanExecute()
     {
         // Arrange
-        var cartId = Guid.NewGuid();
         var inventoryId = Guid.NewGuid();
         var username = "testuser";
+        var shoppingCart = new ShoppingCart(username);
         var quantity = 3;
         var shoppingCartDto = new ShoppingCartDto
         {
             // Initialize with necessary data using object initializer
-            Id = cartId,
+            Id = shoppingCart.Id,
             Username = username,
             ShoppingItems = new List<ShoppingItemDto>
             {
@@ -123,12 +121,11 @@ public class ShoppingServiceTests
             inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
 
         var shoppingCartRepository = Substitute.For<IShoppingCartRepository>();
-        shoppingCartRepository.GetShoppingCartByUsername(username).Returns(new ShoppingCart(username, cartId));
+        shoppingCartRepository.GetShoppingCartByUsername(username).Returns(shoppingCart);
         shoppingCartRepository.SaveChangesAsync().Returns(true);
-        shoppingCartRepository.GetShoppingCartById(Arg.Any<Guid>()).Returns(new ShoppingCart(username, cartId));
+        shoppingCartRepository.GetShoppingCartById(Arg.Any<Guid>()).Returns(shoppingCart);
         var mapper = Substitute.For<IMapper>();
 
-        var shoppingCart = new ShoppingCart(username, cartId);
         mapper.Map<ShoppingCart>(Arg.Any<ShoppingCartDto>()).Returns(shoppingCart);
         mapper.Map<Inventory>(Arg.Any<InventoryDto>()).Returns(inventory); 
 
@@ -140,7 +137,7 @@ public class ShoppingServiceTests
         addShoppingItemCommand.CanExecute().Returns(true);
 
         // Act
-        await service.AddShoppingItem(cartId, inventoryDto, quantity, username);
+        await service.AddShoppingItem(shoppingCart.Id, inventoryDto, quantity, username);
 
         // Assert
         await shoppingCartRepository.Received(1).SaveChangesAsync();
@@ -177,14 +174,13 @@ public class ShoppingServiceTests
     public async Task UpdateShoppingItem_CallsExecute_WhenCommandCanExecute()
     {
         // Arrange
-        var cartId = Guid.NewGuid();
         var inventoryId = Guid.NewGuid();
         var username = "testuser";
         var quantity = 3;
-
+        var shoppingCart = new ShoppingCart(username);
         var shoppingCartItemDto = new ShoppingItemDto()
         {
-            ShoppingCartId = cartId,
+            ShoppingCartId = shoppingCart.Id,
             InventoryId = inventoryId,
             TotalPrice = 1,
             Quantity = 1,
@@ -193,7 +189,7 @@ public class ShoppingServiceTests
         var shoppingCartDto = new ShoppingCartDto
         {
             // Initialize with necessary data using object initializer
-            Id = cartId,
+            Id = shoppingCart.Id,
             Username = username,
             ShoppingItems = new List<ShoppingItemDto>
             {
@@ -218,7 +214,7 @@ public class ShoppingServiceTests
             inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
             inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
 
-        var shoppingCart = new ShoppingCart(username, cartId);
+        
 
         var shoppingItem = new ShoppingItem(inventoryId, shoppingCart.Id, username);
         shoppingCart.AddItem(inventory, 1,"test");
@@ -239,7 +235,7 @@ public class ShoppingServiceTests
         var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, shoppingCartPublisher);
 
         // Act
-        await service.UpdateShoppingItem(cartId, inventoryDto, quantity, username);
+        await service.UpdateShoppingItem(shoppingCart.Id, inventoryDto, quantity, username);
 
         // Assert
         await shoppingCartRepository.Received(1).SaveChangesAsync();
@@ -249,14 +245,15 @@ public class ShoppingServiceTests
     public async Task UpdateShoppingItem_ThrowsException_WhenCommandFails()
     {
         // Arrange
-        var cartId = Guid.NewGuid();
         var inventoryId = Guid.NewGuid();
         var username = "testuser";
+        var shoppingCart = new ShoppingCart(username);
+
         var quantity = 3;
         var shoppingCartDto = new ShoppingCartDto
         {
             // Initialize with necessary data using object initializer
-            Id = cartId,
+            Id = shoppingCart.Id,
             Username = username,
             ShoppingItems = new List<ShoppingItemDto>
             {
@@ -279,12 +276,11 @@ public class ShoppingServiceTests
             inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
 
         var shoppingCartRepository = Substitute.For<IShoppingCartRepository>();
-        shoppingCartRepository.GetShoppingCartByUsername(username).Returns(new ShoppingCart(username, cartId));
+        shoppingCartRepository.GetShoppingCartByUsername(username).Returns(shoppingCart);
         shoppingCartRepository.SaveChangesAsync().Returns(true);
-        shoppingCartRepository.GetShoppingCartById(Arg.Any<Guid>()).Returns(new ShoppingCart(username, cartId));
+        shoppingCartRepository.GetShoppingCartById(Arg.Any<Guid>()).Returns(shoppingCart);
         var mapper = Substitute.For<IMapper>();
 
-        var shoppingCart = new ShoppingCart(username, cartId);
         mapper.Map<ShoppingCart>(Arg.Any<ShoppingCartDto>()).Returns(shoppingCart);
         mapper.Map<Inventory>(Arg.Any<InventoryDto>()).Returns(inventory); 
 
@@ -298,7 +294,7 @@ public class ShoppingServiceTests
 
         // Act & Assert
         await Assert.ThrowsAsync<RpcException>(() =>
-            service.UpdateShoppingItem(cartId, inventoryDto, quantity, username));
+            service.UpdateShoppingItem(shoppingCart.Id, inventoryDto, quantity, username));
     }
 
     [Fact]
@@ -309,7 +305,7 @@ public class ShoppingServiceTests
         var inventoryId = Guid.NewGuid();
         var username = "testuser";
         var quantity = 3;
-
+        var shoppingCart = new ShoppingCart(username);
         var shoppingCartItemDto = new ShoppingItemDto()
         {
             ShoppingCartId = cartId,
@@ -346,7 +342,7 @@ public class ShoppingServiceTests
             inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
             inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
 
-        var shoppingCart = new ShoppingCart(username, cartId);
+        
 
         var shoppingItem = new ShoppingItem(inventoryId, shoppingCart.Id, username);
         shoppingCart.AddItem(inventory, 1,"test");
@@ -377,14 +373,14 @@ public class ShoppingServiceTests
     public async Task DeleteShoppingItem_ThrowsException_WhenCommandFails()
     {
         // Arrange
-        var cartId = Guid.NewGuid();
         var inventoryId = Guid.NewGuid();
         var username = "testuser";
+        var shoppingCart = new ShoppingCart(username);
         var quantity = 3;
         var shoppingCartDto = new ShoppingCartDto
         {
             // Initialize with necessary data using object initializer
-            Id = cartId,
+            Id = shoppingCart.Id,
             Username = username,
             ShoppingItems = new List<ShoppingItemDto>
             {
@@ -407,12 +403,11 @@ public class ShoppingServiceTests
             inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
 
         var shoppingCartRepository = Substitute.For<IShoppingCartRepository>();
-        shoppingCartRepository.GetShoppingCartByUsername(username).Returns(new ShoppingCart(username, cartId));
+        shoppingCartRepository.GetShoppingCartByUsername(username).Returns(shoppingCart);
         shoppingCartRepository.SaveChangesAsync().Returns(true);
-        shoppingCartRepository.GetShoppingCartById(Arg.Any<Guid>()).Returns(new ShoppingCart(username, cartId));
+        shoppingCartRepository.GetShoppingCartById(Arg.Any<Guid>()).Returns(shoppingCart);
         var mapper = Substitute.For<IMapper>();
 
-        var shoppingCart = new ShoppingCart(username, cartId);
         mapper.Map<ShoppingCart>(Arg.Any<ShoppingCartDto>()).Returns(shoppingCart);
         mapper.Map<Inventory>(Arg.Any<InventoryDto>()).Returns(inventory); 
 
@@ -426,21 +421,21 @@ public class ShoppingServiceTests
 
         // Act & Assert
         await Assert.ThrowsAsync<RpcException>(
-            () => service.DeleteShoppingItem(cartId, inventoryDto, username));
+            () => service.DeleteShoppingItem(shoppingCart.Id, inventoryDto, username));
     }
 
     [Fact]
     public async Task CheckoutShoppingCart_CallsExecute_WhenCommandCanExecute()
     {
         // Arrange
-        var cartId = Guid.NewGuid();
         var inventoryId = Guid.NewGuid();
         var username = "testuser";
+        var shoppingCart = new ShoppingCart(username);
         var quantity = 3;
 
         var shoppingCartItemDto = new ShoppingItemDto()
         {
-            ShoppingCartId = cartId,
+            ShoppingCartId = shoppingCart.Id,
             InventoryId = inventoryId,
             TotalPrice = 1,
             Quantity = 1,
@@ -449,7 +444,7 @@ public class ShoppingServiceTests
         var shoppingCartDto = new ShoppingCartDto
         {
             // Initialize with necessary data using object initializer
-            Id = cartId,
+            Id = shoppingCart.Id,
             Username = username,
             ShoppingItems = new List<ShoppingItemDto>
             {
@@ -474,7 +469,7 @@ public class ShoppingServiceTests
             inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
             inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
 
-        var shoppingCart = new ShoppingCart(username, cartId);
+        
 
         var shoppingItem = new ShoppingItem(inventoryId, shoppingCart.Id, username);
         shoppingCart.AddItem(inventory, 1,"test");
@@ -490,12 +485,13 @@ public class ShoppingServiceTests
         mapper.Map<ShoppingItem>(Arg.Any<ShoppingItemDto>()).Returns(shoppingItem); 
 
         var shoppingCartPublisher = Substitute.For<IPublisher<ShoppingCartDto>>();
-        shoppingCartPublisher.ProcessMessage(Arg.Any<string>(),Arg.Any<string>(), new ShoppingCartDto()).Returns(true);
+        shoppingCartPublisher.ProcessMessage(Arg.Any<string>(),Arg.Any<string>(), 
+            new ShoppingCartDto()).Returns(true);
     
         var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, shoppingCartPublisher);
 
         // Act
-        await service.CheckoutShoppingCart(cartId);
+        await service.CheckoutShoppingCart(shoppingCart.Id);
 
         // Assert
         await shoppingCartRepository.Received(1).SaveChangesAsync();
@@ -505,14 +501,14 @@ public class ShoppingServiceTests
     public async Task CheckoutShoppingCart_ThrowsException_WhenCommandFails()
     {
                 // Arrange
-        var cartId = Guid.NewGuid();
         var inventoryId = Guid.NewGuid();
         var username = "testuser";
+        var shoppingCart = new ShoppingCart(username);
         var quantity = 3;
 
         var shoppingCartItemDto = new ShoppingItemDto()
         {
-            ShoppingCartId = cartId,
+            ShoppingCartId = shoppingCart.Id,
             InventoryId = inventoryId,
             TotalPrice = 1,
             Quantity = 1,
@@ -521,7 +517,7 @@ public class ShoppingServiceTests
         var shoppingCartDto = new ShoppingCartDto
         {
             // Initialize with necessary data using object initializer
-            Id = cartId,
+            Id = shoppingCart.Id,
             Username = username,
             ShoppingItems = new List<ShoppingItemDto>
             {
@@ -545,9 +541,8 @@ public class ShoppingServiceTests
         var inventory = new Inventory(inventoryDto.Name,
             inventoryDto.Description, inventoryDto.InStock, inventoryDto.Height, inventoryDto.Width,
             inventoryDto.Weight, inventoryDto.Price, username, inventoryId);
-
-        var shoppingCart = new ShoppingCart(username, cartId);
-
+        
+        
         var shoppingItem = new ShoppingItem(inventoryId, shoppingCart.Id, username);
         var shoppingCartRepository = Substitute.For<IShoppingCartRepository>();
         shoppingCartRepository.GetShoppingCartByUsername(username).Returns(shoppingCart);
@@ -560,19 +555,20 @@ public class ShoppingServiceTests
         mapper.Map<ShoppingItem>(Arg.Any<ShoppingItemDto>()).Returns(shoppingItem); 
 
         var shoppingCartPublisher = Substitute.For<IPublisher<ShoppingCartDto>>();
-        shoppingCartPublisher.ProcessMessage(Arg.Any<string>(),Arg.Any<string>(), new ShoppingCartDto()).Returns(true);
+        shoppingCartPublisher.ProcessMessage(Arg.Any<string>(),Arg.Any<string>(), 
+            new ShoppingCartDto()).Returns(true);
     
         var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, shoppingCartPublisher);
 
         // Act & Assert
-        await Assert.ThrowsAsync<RpcException>(() => service.CheckoutShoppingCart(cartId));
+        await Assert.ThrowsAsync<RpcException>(() => service.CheckoutShoppingCart(shoppingCart.Id));
     }
 
     [Fact]
     public async Task GetOrderDetails_ReturnsDto_WhenCartExists()
     {
         // Arrange
-        var cartId = Guid.NewGuid();
+        var shoppingCart = new ShoppingCart("testuser");
         var shoppingCartDto = new ShoppingCartDto
         {
             // Initialize with necessary data using object initializer
@@ -590,13 +586,13 @@ public class ShoppingServiceTests
         shoppingCartPublisher.ProcessMessage(Arg.Any<string>(),Arg.Any<string>(), new ShoppingCartDto()).Returns(true);
     
         var service = new Core.Services.ShoppingCartService(shoppingCartRepository, mapper, shoppingCartPublisher);
-        var shoppingCart = new ShoppingCart("testuser", cartId);
+        
         mapper.Map<ShoppingCartDto>(Arg.Any<ShoppingCart>()).Returns(shoppingCartDto);
 
-        shoppingCartRepository.GetShoppingCartById(cartId).Returns(shoppingCart);
+        shoppingCartRepository.GetShoppingCartById(shoppingCart.Id).Returns(shoppingCart);
 
         // Act
-        var result = await service.GetOrderDetails(cartId);
+        var result = await service.GetOrderDetails(shoppingCart.Id);
 
         // Assert
         Assert.NotNull(result);

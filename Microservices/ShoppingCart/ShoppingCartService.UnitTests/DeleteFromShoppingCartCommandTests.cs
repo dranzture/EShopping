@@ -13,16 +13,15 @@ public class DeleteFromShoppingCartCommandTests
     public async Task CanExecute_ReturnsTrue_WhenCartIsNotCheckedOutAndItemIsInCart()
     {
         // Arrange
-        var cartId = Guid.NewGuid();
         var username = "testuser";
         var inventoryId = Guid.NewGuid();
-        var cart = new ShoppingCart(username, cartId);
+        var cart = new ShoppingCart(username);
         var inventory = new Inventory("Product", "Description", 10, 5.0m, 3.0m, 1.5m, 25.99m, username, inventoryId);
         cart.AddItem(inventory, 1, username);
         var mockRepository = Substitute.For<IShoppingCartRepository>();
-        mockRepository.GetShoppingCartById(cartId).Returns(Task.FromResult(cart));
+        mockRepository.GetShoppingCartById(cart.Id).Returns(Task.FromResult(cart));
 
-        var command = new DeleteFromShoppingCartCommand(mockRepository, cartId, inventory, username);
+        var command = new DeleteFromShoppingCartCommand(mockRepository, cart.Id, inventory, username);
 
         // Act
         var canExecute = await command.CanExecute();
@@ -35,17 +34,16 @@ public class DeleteFromShoppingCartCommandTests
     public async Task CanExecute_ReturnsFalse_WhenCartIsCheckedOut()
     {
         // Arrange
-        var cartId = Guid.NewGuid();
         var username = "testuser";
         var inventoryId = Guid.NewGuid();
-        var cart = new ShoppingCart(username, cartId);
+        var cart = new ShoppingCart(username);
         cart.UpdateCheckoutStatus(CheckoutStatus.Completed); // Checked out
         var inventory = new Inventory("Product", "Description", 10, 5.0m, 3.0m, 1.5m, 25.99m, username, inventoryId);
         var mockRepository = Substitute.For<IShoppingCartRepository>();
-        mockRepository.GetShoppingCartById(cartId).Returns(Task.FromResult(cart));
+        mockRepository.GetShoppingCartById(cart.Id).Returns(Task.FromResult(cart));
 
 
-        var command = new DeleteFromShoppingCartCommand(mockRepository, cartId, inventory, username);
+        var command = new DeleteFromShoppingCartCommand(mockRepository, cart.Id, inventory, username);
 
         // Act
         var canExecute = await command.CanExecute();
@@ -58,15 +56,14 @@ public class DeleteFromShoppingCartCommandTests
     public async Task CanExecute_ReturnsFalse_WhenItemIsNotInCart()
     {
         // Arrange
-        var cartId = Guid.NewGuid();
         var username = "testuser";
         var inventoryId = Guid.NewGuid();
-        var cart = new ShoppingCart(username, cartId);
+        var cart = new ShoppingCart(username);
         var inventory = new Inventory("Product", "Description", 10, 5.0m, 3.0m, 1.5m, 25.99m, username, inventoryId);
         var mockRepository = Substitute.For<IShoppingCartRepository>();
-        mockRepository.GetShoppingCartById(cartId).Returns(Task.FromResult(cart));
+        mockRepository.GetShoppingCartById(cart.Id).Returns(Task.FromResult(cart));
 
-        var command = new DeleteFromShoppingCartCommand(mockRepository, cartId, inventory, username);
+        var command = new DeleteFromShoppingCartCommand(mockRepository, cart.Id, inventory, username);
 
         // Act
         var canExecute = await command.CanExecute();
@@ -79,16 +76,15 @@ public class DeleteFromShoppingCartCommandTests
     public async Task Execute_RemovesItemFromCartAndSavesChanges()
     {
         // Arrange
-        var cartId = Guid.NewGuid();
         var username = "testuser";
         var inventoryId = Guid.NewGuid();
-        var cart = new ShoppingCart(username, cartId);
+        var cart = new ShoppingCart(username);
         var inventory = new Inventory("Product", "Description", 10, 5.0m, 3.0m, 1.5m, 25.99m, username, inventoryId);
         cart.AddItem(inventory, 1, username);
         var mockRepository = Substitute.For<IShoppingCartRepository>();
-        mockRepository.GetShoppingCartById(cartId).Returns(Task.FromResult(cart));
+        mockRepository.GetShoppingCartById(cart.Id).Returns(Task.FromResult(cart));
 
-        var command = new DeleteFromShoppingCartCommand(mockRepository, cartId, inventory, username);
+        var command = new DeleteFromShoppingCartCommand(mockRepository, cart.Id, inventory, username);
 
         // Act
         await command.Execute();

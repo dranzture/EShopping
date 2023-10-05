@@ -13,16 +13,13 @@ public class ShoppingCart : BaseEntity
     {
     } //Ef Required
 
-    public ShoppingCart(string username, Guid? id = null)
+    public ShoppingCart(string username)
     {
+        Id = Guid.NewGuid();
         Username = username;
         CreatedBy = username;
         CreatedDateTime = DateTimeOffset.Now;
         _shoppingItems = new List<ShoppingItem>();
-        if (id.HasValue)
-        {
-            Id = id.Value;
-        }
     }
 
     [Required] 

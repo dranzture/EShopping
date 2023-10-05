@@ -14,14 +14,13 @@ public class UpdateCheckoutStatusCommandTests
     public async Task CanExecute_ReturnsTrue_WhenCartExistsAndStatusIsNotCompleted()
     {
         // Arrange
-        var cartId = Guid.NewGuid();
         var repository = Substitute.For<IShoppingCartRepository>();
 
-        var existingCart = new ShoppingCart("testUser",cartId);
+        var existingCart = new ShoppingCart("testUser");
 
-        repository.GetShoppingCartById(cartId).Returns(existingCart);
+        repository.GetShoppingCartById(existingCart.Id).Returns(existingCart);
 
-        var command = new UpdateCheckoutStatusCommand(repository, cartId, CheckoutStatus.Completed);
+        var command = new UpdateCheckoutStatusCommand(repository, existingCart.Id, CheckoutStatus.Completed);
 
         // Act
         var canExecute = await command.CanExecute();
@@ -34,11 +33,10 @@ public class UpdateCheckoutStatusCommandTests
     public async Task CanExecute_ReturnsFalse_WhenCartDoesNotExist()
     {
         // Arrange
-        var cartId = Guid.NewGuid();
         var repository = Substitute.For<IShoppingCartRepository>();
-        repository.GetShoppingCartById(cartId).Returns((ShoppingCart)null); // Cart does not exist
+        repository.GetShoppingCartById(Arg.Any<Guid>()).Returns((ShoppingCart)null); // Cart does not exist
 
-        var command = new UpdateCheckoutStatusCommand(repository, cartId, CheckoutStatus.Completed);
+        var command = new UpdateCheckoutStatusCommand(repository, new Guid(), CheckoutStatus.Completed);
 
         // Act
         var canExecute = await command.CanExecute();
@@ -51,14 +49,13 @@ public class UpdateCheckoutStatusCommandTests
     public async Task CanExecute_ReturnsFalse_WhenStatusIsCompleted()
     {
         // Arrange
-        var cartId = Guid.NewGuid();
         var repository = Substitute.For<IShoppingCartRepository>();
 
-        var existingCart = new ShoppingCart("testUser",cartId);
+        var existingCart = new ShoppingCart("testUser");
         existingCart.UpdateCheckoutStatus(CheckoutStatus.Completed);
-        repository.GetShoppingCartById(cartId).Returns(existingCart);
+        repository.GetShoppingCartById(existingCart.Id).Returns(existingCart);
 
-        var command = new UpdateCheckoutStatusCommand(repository, cartId, CheckoutStatus.InProgress);
+        var command = new UpdateCheckoutStatusCommand(repository, existingCart.Id, CheckoutStatus.InProgress);
 
         // Act
         var canExecute = await command.CanExecute();
@@ -71,14 +68,13 @@ public class UpdateCheckoutStatusCommandTests
     public async Task Execute_UpdatesCartStatus_AndCallsRepository()
     {
         // Arrange
-        var cartId = Guid.NewGuid();
         var repository = Substitute.For<IShoppingCartRepository>();
 
-        var existingCart = new ShoppingCart("testUser",cartId);
+        var existingCart = new ShoppingCart("testUser");
 
-        repository.GetShoppingCartById(cartId).Returns(existingCart);
+        repository.GetShoppingCartById(existingCart.Id).Returns(existingCart);
 
-        var command = new UpdateCheckoutStatusCommand(repository, cartId, CheckoutStatus.Completed);
+        var command = new UpdateCheckoutStatusCommand(repository, existingCart.Id, CheckoutStatus.Completed);
 
         // Act
         await command.Execute();

@@ -20,7 +20,7 @@ public static class Helpers
         if (queryable.Any()) return;
         try
         {
-            var newInventory = new ShoppingCart("dranzture", new Guid());
+            var newInventory = new ShoppingCart("dranzture");
             await repository.AddAsync(newInventory);
             await repository.SaveChangesAsync();
         }

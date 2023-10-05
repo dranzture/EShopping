@@ -78,12 +78,11 @@ public class AddToShoppingCartCommandTests
     {
         // Arrange
         var username = "testuser";
-        var guid = Guid.NewGuid();
         var inventory = new Inventory("Product", "Description", 10, 5.0m, 3.0m, 1.5m, 25.99m, username);
-        var cart = new ShoppingCart(username, guid);
+        var cart = new ShoppingCart(username);
         var mockRepository = Substitute.For<IShoppingCartRepository>();
         mockRepository.GetShoppingCartById(cart.Id).Returns(Task.FromResult(cart));
-        var command = new AddToShoppingCartCommand(mockRepository, guid, inventory, 2, username);
+        var command = new AddToShoppingCartCommand(mockRepository, cart.Id, inventory, 2, username);
 
         // Act
         await command.Execute();
