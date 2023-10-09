@@ -21,7 +21,7 @@ public class ShippingItemService : IShippingItemService
         var updateShippingStatusCommand = new UpdateShippingStatusCommand(_repository, dto);
         if (!await updateShippingStatusCommand.CanExecute())
         {
-            throw new RpcException(new Status(StatusCode.InvalidArgument, "Reprocess order is not allowed"));
+            throw new RpcException(new Status(StatusCode.InvalidArgument, "Update Status is not allowed"));
         }
 
         await updateShippingStatusCommand.Execute();

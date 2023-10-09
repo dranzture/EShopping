@@ -11,7 +11,7 @@ public class ShippingItem : BaseEntity
     public ShippingItem(Guid orderId, ShippingStatus status, string username)
     {
         Username = username;
-        Id = new Guid();
+        Id = Guid.NewGuid();
         UpdateStatus(status);
         OrderId = orderId;
         CreatedBy = username;
