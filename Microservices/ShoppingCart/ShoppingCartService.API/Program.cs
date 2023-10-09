@@ -24,6 +24,7 @@ builder.Services.AddSingleton<AppSettings>(appSettings);
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseInMemoryDatabase("ShoppingCartServiceDb"));
 builder.Services.AddHostedService<ShoppingCartConsumerService>();
+builder.Services.AddHostedService<ReprocessOrderConsumerService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

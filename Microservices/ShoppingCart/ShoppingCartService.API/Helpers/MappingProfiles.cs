@@ -46,5 +46,6 @@ public class MappingProfiles : Profile
         CreateMap<ShoppingCartDto, GrpcShoppingCartDto>()
             .ForMember(dest => dest.Id,
                 opt => opt.MapFrom(src => src.Id.HasValue ? src.Id.Value.ToString() : string.Empty));
+        
     }
 }

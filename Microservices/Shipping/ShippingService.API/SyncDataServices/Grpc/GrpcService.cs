@@ -7,7 +7,7 @@ using ShippingService.Core.Interfaces;
 
 namespace ShippingService.API.SyncDataServices.Grpc;
 
-public class GrpcService : GrpcShippingItemService.GrpcOrderService.GrpcOrderServiceBase
+public class GrpcService : GrpcShippingItemService.GrpcShippingItemService.GrpcShippingItemServiceBase
 {
     private readonly IShippingItemService _service;
     private readonly IMapper _mapper;
@@ -72,6 +72,26 @@ public class GrpcService : GrpcShippingItemService.GrpcOrderService.GrpcOrderSer
         try
         {
             var shippingItem = await _service.GetShippingItemById(new Guid(request.Value), context.CancellationToken);
+            return _mapper.Map<GrpcShippingItemDto>(shippingItem);
+        }
+        catch (RpcException ex)
+        {
+            _logger.LogError("Error in Updating Shipping: {Ex}", ex);
+            throw;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Unhandled exception in Updating Shipping: {Ex}", ex);
+            throw new RpcException(new Status(StatusCode.Internal, "Internal server error"));
+        }
+    }
+    
+    public override async Task<GrpcShippingItemDto> GetShippingByOrderId(StringValue request,
+        ServerCallContext context)
+    {
+        try
+        {
+            var shippingItem = await _service.GetShippingItemByOrderId(new Guid(request.Value), context.CancellationToken);
             return _mapper.Map<GrpcShippingItemDto>(shippingItem);
         }
         catch (RpcException ex)

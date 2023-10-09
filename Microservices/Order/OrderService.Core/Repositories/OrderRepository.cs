@@ -43,7 +43,13 @@ public class OrderRepository : IOrderRepository
         var result = await _context.Queryable(token);
         return await result.AsNoTracking().FirstOrDefaultAsync(e => e.Id==id, token);
     }
-
+    
+    public async Task<Order?> GetByShoppingCartId(Guid shoppingCartId, CancellationToken token = default)
+    {
+        var result = await _context.Queryable(token);
+        return await result.AsNoTracking().FirstOrDefaultAsync(e => e.ShoppingCartId==shoppingCartId, token);
+    }
+    
     public async Task<HashSet<Order>> GetOrdersByUsername(string username, CancellationToken token = default)
     {
         var result = await _context.Queryable(token);

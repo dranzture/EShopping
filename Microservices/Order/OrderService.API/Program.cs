@@ -24,8 +24,7 @@ builder.Services.AddSingleton<AppSettings>(appSettings);
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseInMemoryDatabase("OrderServiceDb"));
-builder.Services.AddHostedService<CreateOrderConsumer>();
-builder.Services.AddHostedService<UpdateOrderConsumer>();
+builder.Services.AddHostedService<OrderConsumer>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -35,7 +34,7 @@ builder.Services.AddGrpc(options =>
     options.Interceptors.Add<LoggerInterceptor>();
 });
 builder.Services.AddGrpcReflection();
-
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 {
@@ -55,7 +54,7 @@ app.MapGet("/protos/order.proto",
 
 app.MapGrpcReflectionService();
 
-app.PrepDb();
+//app.PrepDb();
 
 app.Use(async (context, next) =>
 {

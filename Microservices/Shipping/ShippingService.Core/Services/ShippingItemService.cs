@@ -39,4 +39,10 @@ public class ShippingItemService : IShippingItemService
         var result = await _repository.GetById(id,token);
         return _mapper.Map<ShippingItemDto>(result);
     }
+
+    public async Task<ShippingItemDto?> GetShippingItemByOrderId(Guid orderId, CancellationToken token = default)
+    {
+        var result = await _repository.GetByOrderId(orderId,token);
+        return _mapper.Map<ShippingItemDto>(result);
+    }
 }

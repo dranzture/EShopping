@@ -6,9 +6,9 @@ using OrderService.Infrastructure.Helpers;
 
 namespace OrderService.Infrastructure.Publishers;
 
-public class CreateShippingPublisher : IMessagePublisher<OrderDto>
+public class CreateShippingPublisher : IMessagePublisher<ShippingDto>
 {
-    private readonly IProducer<string, OrderDto> _producer;
+    private readonly IProducer<string, ShippingDto> _producer;
 
     public CreateShippingPublisher(AppSettings appSettings)
     {
@@ -19,14 +19,14 @@ public class CreateShippingPublisher : IMessagePublisher<OrderDto>
             Acks = Acks.Leader
         }; 
 
-        var producerBuilder = new ProducerBuilder<string, OrderDto>(config);
+        var producerBuilder = new ProducerBuilder<string, ShippingDto>(config);
         producerBuilder.SetValueSerializer(new CreateShippingPublisherSerializer());
         _producer = producerBuilder.Build();
     }
-    public async Task<bool> ProcessMessage(string topic, string key, OrderDto value)
+    public async Task<bool> ProcessMessage(string topic, string key, ShippingDto value)
     {
         
-        var message = new Message<string, OrderDto>()
+        var message = new Message<string, ShippingDto>()
         {
             Key = key,
             Value = value
@@ -36,9 +36,9 @@ public class CreateShippingPublisher : IMessagePublisher<OrderDto>
         Console.WriteLine($"---> Produced message on topic of create shipping on topic:{topic}");
         return deliveryReport.Status == PersistenceStatus.Persisted;
     }
-    private class CreateShippingPublisherSerializer : ISerializer<OrderDto>
+    private class CreateShippingPublisherSerializer : ISerializer<ShippingDto>
     {
-        public byte[] Serialize(OrderDto data, SerializationContext context)
+        public byte[] Serialize(ShippingDto data, SerializationContext context)
         {
             return PublisherHelpers.PublishSerializationHelper(data);
         }

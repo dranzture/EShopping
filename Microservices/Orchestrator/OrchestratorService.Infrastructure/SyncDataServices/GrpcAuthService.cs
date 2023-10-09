@@ -29,7 +29,7 @@ public class GrpcAuthService : IGrpcAuthService
             var client = new AuthenticationServiceClient(channel);
 
             var request = _mapper.Map<LoginUserRequest>(dto);
-            var response = await client.LoginUserAsync(request);
+            var response = await client.LoginUserAsync(request, deadline: DateTime.UtcNow.AddSeconds(10), cancellationToken: token);
             var returnItem = _mapper.Map<LoggedUserDto>(response);
             
             channel.Dispose();

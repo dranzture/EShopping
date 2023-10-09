@@ -20,13 +20,13 @@ public class ReprocessOrderCommand : ICommand
     public async Task<bool> CanExecute()
     {
         var result = await _orderRepository.GetById(_orderId);
-        return result is { OrderStatus: OrderStatus.PaymentFailed };
+        return result is { Status: OrderStatus.PaymentFailed };
     }
 
     public async Task Execute()
     {
         var result = await _orderRepository.GetById(_orderId);
-        await _publisher.ProcessMessage(IMessagePublisher<ReprocessOrderDto>.ReprocessOrderTopic, new Guid().ToString(),
+        await _publisher.ProcessMessage(IMessagePublisher<ReprocessOrderDto>.ReprocessOrderTopic, Guid.NewGuid().ToString(),
             new ReprocessOrderDto()
             {
                 OrderId = result.Id,

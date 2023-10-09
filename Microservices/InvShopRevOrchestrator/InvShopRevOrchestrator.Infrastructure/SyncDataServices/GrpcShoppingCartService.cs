@@ -80,7 +80,13 @@ public class GrpcShoppingCartService : IGrpcShoppingCartService
         try
         {
             var client = new ShoppingCartServiceClient(_channel);
-            var grpcRequest = _mapper.Map<GrpcUpdateShoppingCartItemCommandDto>(request);
+            var grpcRequest = new GrpcUpdateShoppingCartItemCommandDto()
+            {
+                ShoppingCartId = request.ShoppingCartId.ToString(),
+                Inventory = _mapper.Map<GrpcInventoryDto>(request.Inventory),
+                Quantity = request.Quantity,
+                Username = request.Username
+            };
 
             await client.UpdateShoppingItemAsync(grpcRequest, cancellationToken: token);
         }

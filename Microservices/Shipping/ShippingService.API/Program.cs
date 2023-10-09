@@ -26,7 +26,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseInMemoryDatabase("ShippingServiceDb"));
 builder.Services.AddHostedService<CreateShippingItemConsumer>();
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddGrpc(options =>
 {
@@ -34,7 +33,7 @@ builder.Services.AddGrpc(options =>
     options.Interceptors.Add<LoggerInterceptor>();
 });
 builder.Services.AddGrpcReflection();
-
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 {

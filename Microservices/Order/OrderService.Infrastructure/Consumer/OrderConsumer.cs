@@ -3,21 +3,24 @@ using Confluent.Kafka;
 using MediatR;
 using Microsoft.Extensions.Hosting;
 using OrderService.Core.Dtos;
+using OrderService.Core.Interfaces;
 using OrderService.Core.Notifications;
 using OrderService.Core.ValueObjects;
 
 namespace OrderService.Infrastructure.Consumer;
 
-public class UpdateOrderConsumer : BackgroundService
+public class OrderConsumer : BackgroundService
 {
     private readonly IMediator _mediator;
-    private readonly string _topic = "checkout_topic";
+    private readonly IOrderRepository _orderRepository;
+    private readonly string _topic = "order_topic";
     private readonly IConsumer<Ignore, string> _consumer;
     private readonly CancellationTokenSource _cancellationTokenSource;
 
-    public UpdateOrderConsumer(AppSettings settings, IMediator mediator)
+    public OrderConsumer(AppSettings settings, IMediator mediator, IOrderRepository orderRepository)
     {
         _mediator = mediator;
+        _orderRepository = orderRepository;
         var config = new ConsumerConfig
         {
             BootstrapServers = settings.KafkaSettings!.BootstrapServers,
@@ -34,7 +37,7 @@ public class UpdateOrderConsumer : BackgroundService
         await Task.Run(() => StartConsumerLoop(_cancellationTokenSource.Token), stoppingToken);
     }
 
-    private void StartConsumerLoop(CancellationToken cancellationToken)
+    private async Task StartConsumerLoop(CancellationToken cancellationToken)
     {
         try
         {
@@ -45,14 +48,25 @@ public class UpdateOrderConsumer : BackgroundService
                     var consumeResult = _consumer.Consume(cancellationToken);
                     Console.WriteLine($"Received message: {consumeResult.Message.Value}");
                     // Handle the received message here
-                    
-                    var createOrderDto = JsonSerializer.Deserialize<UpdateOrderStatusDto>(consumeResult.Message.Value);
-                    _mediator.Send(new UpdateOrderStatusNotification(createOrderDto),
-                        cancellationToken);
+
+                    var orderDto = JsonSerializer.Deserialize<OrderDto>(consumeResult.Message.Value);
+                    if (orderDto == null) continue;
+                    if (await _orderRepository.GetByShoppingCartId(orderDto.ShoppingCartId, cancellationToken) == null)
+                    {
+                        await _mediator.Publish(new CreateOrderNotification(orderDto), cancellationToken);
+                    }
+                    else
+                    {
+                        await _mediator.Publish(new UpdateOrderStatusNotification(orderDto), cancellationToken);
+                    }
                 }
                 catch (ConsumeException ex)
                 {
                     Console.Error.WriteLine($"Error consuming from Kafka: {ex.Error.Reason}");
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine($"Error consuming from Kafka: {ex.Message}");
                 }
             }
         }

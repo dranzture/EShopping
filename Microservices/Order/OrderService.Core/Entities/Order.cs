@@ -8,23 +8,25 @@ namespace OrderService.Core.Entities;
 
 public class Order : BaseEntity
 {
+    public Order(){}// Required by EF
+    
     public Order(Guid shoppingCartId, OrderStatus orderStatus, string username)
     {
-        Id = new Guid();
+        Id = Guid.NewGuid();
         CreatedDateTime = DateTimeOffset.Now;
         CreatedBy = Username = username;
         ShoppingCartId = shoppingCartId;
-        UpdateOrderStatus(OrderStatus);
+        UpdateOrderStatus(orderStatus);
         ShippingId = Guid.NewGuid();
     }
 
-    public Guid ShoppingCartId { get; }
+    public Guid ShoppingCartId { get; private set; }
 
-    public OrderStatus OrderStatus { get; protected set; }
+    public OrderStatus Status { get; protected set; }
     
     public string Username { get; protected set; }
     
-    public Guid ShippingId { get; set; }
+    public Guid ShippingId { get; private set; }
 
     private void AddDomainEvent(DomainEventBase domainEvent)
     {
@@ -38,14 +40,13 @@ public class Order : BaseEntity
 
     public void UpdateOrderStatus(OrderStatus orderStatus)
     {
-        OrderStatus = orderStatus;
+        Status = orderStatus;
         if (orderStatus == OrderStatus.Created)
         {
-            AddDomainEvent(new CreateShippingNotification(new OrderDto()
+            AddDomainEvent(new CreateShippingNotification(new ShippingDto()
             {
-                Id = Id,
-                ShoppingCartId = ShoppingCartId,
-                OrderStatus = OrderStatus,
+                OrderId = Id,
+                Username = Username
             }));
         }
     }

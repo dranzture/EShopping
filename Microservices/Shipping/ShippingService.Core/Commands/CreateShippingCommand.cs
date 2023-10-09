@@ -8,9 +8,9 @@ namespace ShippingService.Core.Commands;
 public class CreateShippingCommand : ICommand
 {
     private readonly IShippingItemRepository _repository;
-    private readonly OrderDto _dto;
+    private readonly ShippingItemDto _dto;
 
-    public CreateShippingCommand(IShippingItemRepository repository, OrderDto dto)
+    public CreateShippingCommand(IShippingItemRepository repository, ShippingItemDto dto)
     {
         _repository = repository;
         _dto = dto;
@@ -18,13 +18,13 @@ public class CreateShippingCommand : ICommand
     
     public async Task<bool> CanExecute()
     {
-        var shippingItem = await _repository.GetByOrderId(_dto.Id); 
+        var shippingItem = await _repository.GetByOrderId(_dto.OrderId); 
         return shippingItem == null;
     }
 
     public async Task Execute()
     {
-        var shippingItem = new ShippingItem(_dto.Id, ShippingStatus.LabelCreated, _dto.Username);
+        var shippingItem = new ShippingItem(_dto.OrderId, ShippingStatus.LabelCreated, _dto.Username);
         await _repository.AddAsync(shippingItem);
         await _repository.SaveChangesAsync();
     }

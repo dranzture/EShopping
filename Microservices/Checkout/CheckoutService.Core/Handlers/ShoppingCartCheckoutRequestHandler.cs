@@ -29,7 +29,8 @@ public class ShoppingCartCheckoutRequestHandler : IRequestHandler<ShoppingCartCh
     {
         try
         {
-            var paymentMethod = await _repository.GetDefaultCreditCardByUsername(request.ShoppingCart.Username, cancellationToken);
+            var paymentMethod =
+                await _repository.GetDefaultCreditCardByUsername(request.ShoppingCart.Username, cancellationToken);
 
             var processPaymentCommand = new ProcessPaymentCommand(paymentMethod, request.ShoppingCart);
 
@@ -42,20 +43,26 @@ public class ShoppingCartCheckoutRequestHandler : IRequestHandler<ShoppingCartCh
             if (await processPaymentCommand.CanExecute())
             {
                 await processPaymentCommand.Execute();
+            }
+            //For testing purposes on Orders.
 
-                await _mediator.Send(new CreateOrderRequest(request.ShoppingCart, OrderStatus.Created),
+            var random = new Random().Next(0, 10);
+            if (random % 2 == 0)
+            {
+                await _mediator.Send(new OrderRequest(request.ShoppingCart, OrderStatus.PaymentFailed),
                     cancellationToken);
             }
             else
             {
-                await _mediator.Send(new CreateOrderRequest(request.ShoppingCart, OrderStatus.PaymentFailed),
+                await _mediator.Send(new OrderRequest(request.ShoppingCart, OrderStatus.Created),
                     cancellationToken);
             }
+            
+            
         }
         catch (Exception ex)
         {
             Console.WriteLine("---> Could not publish Checkout message due to: " + ex.Message);
         }
     }
-    
 }

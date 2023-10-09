@@ -81,6 +81,10 @@ public class InfrastructureAutofacModule : Module
         builder.RegisterType<UpdateShoppingCartStatusHandler>()
             .As(typeof(IRequestHandler<UpdateShoppingCartRequest>))
             .InstancePerLifetimeScope();
+        
+        builder.RegisterType<ReprocessOrderRequestHandler>()
+            .As(typeof(IRequestHandler<ReprocessOrderRequest>))
+            .InstancePerLifetimeScope();
     }
 
     private void RegisterPublisher(ContainerBuilder builder)

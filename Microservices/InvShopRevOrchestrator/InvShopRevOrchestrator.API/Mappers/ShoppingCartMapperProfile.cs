@@ -11,7 +11,7 @@ public class ShoppingCartMapperProfile : Profile
         CreateMap<InventoryDto, GrpcInventoryDto>()
             .ForMember(dest => dest.Id,
                 opt =>
-                    opt.MapFrom(src => src.Id.HasValue ? src.Id.ToString() : null));
+                    opt.MapFrom(src => src.Id.ToString()));
         
         CreateMap<GrpcShoppingCartDto, ShoppingCartDto>().ForMember(dest => dest.Id,
                 opt => opt.MapFrom(src => string.IsNullOrEmpty(src.Id) ? (Guid?)null : Guid.Parse(src.Id)))

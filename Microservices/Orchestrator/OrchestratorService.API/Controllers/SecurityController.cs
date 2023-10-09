@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Grpc.Core;
+using Microsoft.AspNetCore.Mvc;
+using OrchestratorService.API.Helpers;
 using OrchestratorService.Core.Dtos;
 using OrchestratorService.Core.Interfaces;
 
@@ -8,22 +10,28 @@ namespace OrchestratorService.API.Controllers;
 public class SecurityController : ControllerBase
 {
     private readonly IGrpcAuthService _service;
+    private readonly ILogger<SecurityController> _logger;
 
-    public SecurityController(IGrpcAuthService service)
+    public SecurityController(IGrpcAuthService service, ILogger<SecurityController> logger)
     {
         _service = service;
+        _logger = logger;
     }
 
     [HttpPost(("Login"))]
-    public async Task<ActionResult<LoggedUserDto>> Login(LoginRequestDto dto, CancellationToken token)
+    public async Task<IActionResult> Login(LoginRequestDto dto, CancellationToken token)
     {
         try
         {
             return Ok(await _service.Login(dto, token));
         }
-        catch
+        catch (RpcException rpcEx)
         {
-            return BadRequest();
+            return this.HandleRpcException(rpcEx, _logger);
+        }
+        catch (Exception ex)
+        {
+            return this.HandleException(ex, _logger);
         }
     }
 }

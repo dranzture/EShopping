@@ -24,7 +24,7 @@ public class ShoppingCartService : IShoppingCartService
     public async Task AddShoppingItem(Guid shoppingCartId, InventoryDto inventoryDto, int quantity, string username,
         CancellationToken token = default)
     {
-        var inventory = await _grpcInventoryService.GetById(inventoryDto.Id.Value, token);
+        var inventory = await _grpcInventoryService.GetById(inventoryDto.Id, token);
         if (inventory == null)
         {
             throw new ArgumentException("Inventory not found");

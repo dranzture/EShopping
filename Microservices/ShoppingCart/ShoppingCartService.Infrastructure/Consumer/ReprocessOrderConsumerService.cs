@@ -2,27 +2,27 @@
 using Confluent.Kafka;
 using MediatR;
 using Microsoft.Extensions.Hosting;
-using OrderService.Core.Dtos;
-using OrderService.Core.Notifications;
-using OrderService.Core.ValueObjects;
+using ShoppingCartService.Core.Dtos;
+using ShoppingCartService.Core.Requests;
+using ShoppingCartService.Core.ValueObjects;
 
-namespace OrderService.Infrastructure.Consumer;
+namespace ShoppingCartService.Infrastructure.Consumer;
 
-public class CreateOrderConsumer : BackgroundService
+public class ReprocessOrderConsumerService: BackgroundService
 {
     private readonly IMediator _mediator;
-    private readonly string _topic = "checkout_topic";
+    private readonly string _topic = "reprocess_order_topic";
     private readonly IConsumer<Ignore, string> _consumer;
     private readonly CancellationTokenSource _cancellationTokenSource;
 
-    public CreateOrderConsumer(AppSettings settings, IMediator mediator)
+    public ReprocessOrderConsumerService(AppSettings settings, IMediator mediator)
     {
         _mediator = mediator;
         var config = new ConsumerConfig
         {
             BootstrapServers = settings.KafkaSettings!.BootstrapServers,
             GroupId = new Guid().ToString()
-        };
+        }; 
         _consumer = new ConsumerBuilder<Ignore, string>(config).Build();
         _consumer.Subscribe(_topic);
 
@@ -45,10 +45,8 @@ public class CreateOrderConsumer : BackgroundService
                     var consumeResult = _consumer.Consume(cancellationToken);
                     Console.WriteLine($"Received message: {consumeResult.Message.Value}");
                     // Handle the received message here
-                    
-                    var createOrderDto = JsonSerializer.Deserialize<CreateOrderDto>(consumeResult.Message.Value);
-                    _mediator.Send(new CreateOrderNotification(createOrderDto),
-                        cancellationToken);
+                    var orderDto = JsonSerializer.Deserialize<OrderDto>(consumeResult.Message.Value);
+                    _mediator.Send(new ReprocessOrderRequest(orderDto!), cancellationToken);
                 }
                 catch (ConsumeException ex)
                 {

@@ -5,9 +5,9 @@ namespace ShippingService.Core.Notifications;
 
 public class CreateShippingNotification : DomainEventBase
 {
-    public OrderDto _dto { get; }
+    public ShippingItemDto _dto { get; }
 
-    public CreateShippingNotification(OrderDto dto)
+    public CreateShippingNotification(ShippingItemDto dto)
     {
         _dto = dto;
     }

@@ -13,13 +13,17 @@ public class UpdateShippingStatusCommand : ICommand
         _repository = repository;
         _dto = dto;
     }
-    public Task<bool> CanExecute()
+    public async Task<bool> CanExecute()
     {
-        throw new NotImplementedException();
+        var shippingItem = await _repository.GetById(_dto.Id); 
+        return shippingItem != null;
     }
 
-    public Task Execute()
+    public async Task Execute()
     {
-        throw new NotImplementedException();
+        var shippingItem = await _repository.GetById(_dto.Id); 
+        shippingItem!.UpdateStatus(_dto.Status);
+        await _repository.UpdateAsync(shippingItem);
+        await _repository.SaveChangesAsync();
     }
 }

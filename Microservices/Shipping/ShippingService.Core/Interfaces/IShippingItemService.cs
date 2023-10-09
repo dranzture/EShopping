@@ -9,4 +9,6 @@ public interface IShippingItemService
     Task<HashSet<ShippingItemDto>> GetAllShippingItems(CancellationToken token = default);
     
     Task<ShippingItemDto?> GetShippingItemById(Guid id, CancellationToken token = default);
+    
+    Task<ShippingItemDto?> GetShippingItemByOrderId(Guid orderId, CancellationToken token = default);
 }

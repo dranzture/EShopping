@@ -64,6 +64,9 @@ public class InfrastructureAutofacModule : Module
             .As<IDomainEventDispatcher>()
             .InstancePerLifetimeScope();
         
+        builder.RegisterType<CreateShippingHandler>()
+            .As(typeof(INotificationHandler<CreateShippingNotification>))
+            .InstancePerLifetimeScope();
         
         builder.RegisterType<UpdateShippingStatusNotificationHandler>()
             .As(typeof(INotificationHandler<UpdateShippingStatusNotification>))

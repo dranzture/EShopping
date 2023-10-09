@@ -37,6 +37,8 @@ public class AppDbContext : DbContext
 
             await _dispatcher.DispatchAndClearEvents(entitiesWithEvents);
 
+            ChangeTracker.Clear();
+            
             return result;
         }
         catch (Exception ex)

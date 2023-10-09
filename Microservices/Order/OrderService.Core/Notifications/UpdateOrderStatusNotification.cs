@@ -6,9 +6,9 @@ namespace OrderService.Core.Notifications;
 
 public class UpdateOrderStatusNotification : DomainEventBase
 {
-    public UpdateOrderStatusDto Dto { get; }
+    public OrderDto Dto { get; }
 
-    public UpdateOrderStatusNotification(UpdateOrderStatusDto dto)
+    public UpdateOrderStatusNotification(OrderDto dto)
     {
         Dto = dto;
         EventOccurred = DateTimeOffset.Now;

@@ -1,48 +1,33 @@
-using AutoMapper;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
+using OrchestratorService.API.Helpers;
 using OrchestratorService.Core.Interfaces;
 using OrchestratorService.Core.Models;
+using OrchestratorService.Core.ValueObjects;
 using OrchestratorService.Infrastructure.SyncDataServices;
-using GrpcInventoryServiceClient = OrchestratorService.Infrastructure.SyncDataServices.GrpcInventoryService;
-using GrpcReviewServiceClient = OrchestratorService.Infrastructure.SyncDataServices.GrpcReviewService;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var env = builder.Environment.EnvironmentName;
 var config = new ConfigurationBuilder()
     .AddJsonFile($"appsettings.{env}.json", optional: false)
+    .AddJsonFile($"appsecrets.{env}.json", optional: false)
     .Build();
+
 var appSettings = config.GetSection("AppSettings").Get<AppSettings>();
+var appSecrets = config.GetSection("AppSecrets").Get<AppSecrets>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSingleton(appSettings!);
+
 builder.Services.AddScoped<IGrpcAuthService, GrpcAuthService>();
-builder.Services.AddScoped<IGrpcInventoryService, GrpcInventoryServiceClient>();
-builder.Services.AddScoped<IGrpcReviewService, GrpcReviewServiceClient>();
+builder.Services.AddScoped<IGrpcOrderService, OrchestratorService.Infrastructure.SyncDataServices.GrpcOrderService>();
+builder.Services.AddScoped<IGrpcShippingItemService, OrchestratorService.Infrastructure.SyncDataServices.GrpcShippingItemService>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-builder.Services.AddAuthentication(e=>
-    {
-        e.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        e.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    })
-    .AddJwtBearer(e =>
-        e.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidIssuer = "PolatCoban",
-            ValidAudience = "EShopping.NET",
-        });
+builder.Services.AddAuthenticationSettings(appSecrets);
 
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Orchestrator API", Version = "v1" });
-});
+builder.Services.AddSwaggerSettings();
 
 var app = builder.Build();
 
@@ -53,11 +38,11 @@ if (builder.Environment.IsDevelopment())
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Orchestrator API v1"));
 }
 
+app.UseAuthentication();
+
 app.UseRouting();
 
 app.UseAuthorization();
-
-app.UseAuthentication();
 
 app.MapControllers();
 

@@ -21,7 +21,7 @@ public static class Helpers
         if (queryable.Any()) return;
         try
         {
-            var newOrder = new Order(new Guid(), OrderStatus.PaymentFailed, "username");
+            var newOrder = new Order(new Guid("26c9ee61-3518-42e7-8568-9a7c68d7f4c9"), OrderStatus.PaymentFailed, "dranzture");
             await repository.AddAsync(newOrder);
             await repository.SaveChangesAsync();
         }

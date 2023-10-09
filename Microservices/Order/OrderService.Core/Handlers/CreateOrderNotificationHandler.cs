@@ -9,17 +9,15 @@ namespace OrderService.Core.Handlers;
 public class CreateOrderNotificationHandler : INotificationHandler<CreateOrderNotification>
 {
     private readonly IOrderRepository _orderRepository;
-    private readonly CreateOrderDto _dto;
 
-    public CreateOrderNotificationHandler(IOrderRepository orderRepository, CreateOrderDto dto)
+    public CreateOrderNotificationHandler(IOrderRepository orderRepository)
     {
         _orderRepository = orderRepository;
-        _dto = dto;
     }
 
     public async Task Handle(CreateOrderNotification notification, CancellationToken cancellationToken)
     {
-        var createOrderCommand = new CreateOrderCommand(_orderRepository, _dto);
+        var createOrderCommand = new CreateOrderCommand(_orderRepository, notification.Dto);
         if (!await createOrderCommand.CanExecute())
         {
             throw new ArgumentException("Order cannot be created");

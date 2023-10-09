@@ -5,12 +5,12 @@ using MediatR;
 
 namespace CheckoutService.Core.Requests;
 
-public class CreateOrderRequest : IRequest
+public class OrderRequest : IRequest
 {
     public ShoppingCartDto ShoppingCart { get; }
     public OrderStatus Status { get; }
 
-    public CreateOrderRequest(ShoppingCartDto shoppingCart, OrderStatus status)
+    public OrderRequest(ShoppingCartDto shoppingCart, OrderStatus status)
     {
         ShoppingCart = shoppingCart;
         Status = status;

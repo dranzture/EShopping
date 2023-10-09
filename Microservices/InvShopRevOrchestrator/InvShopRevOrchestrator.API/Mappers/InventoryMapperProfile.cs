@@ -16,7 +16,7 @@ public class InventoryMapperProfile : Profile
         CreateMap<InventoryDto, GrpcInventoryDto>()
             .ForMember(dest => dest.Id,
                 opt =>
-                    opt.MapFrom(src => src.Id.HasValue ? src.Id.ToString() : null));
+                    opt.MapFrom(src => src.Id.ToString() ?? Guid.NewGuid().ToString()));
             
 
 

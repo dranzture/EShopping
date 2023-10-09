@@ -11,7 +11,7 @@ namespace ShippingService.Infrastructure.Consumers;
 public class CreateShippingItemConsumer : BackgroundService
 {
     private readonly IMediator _mediator;
-    private readonly string _topic = "create_shipping_item_topic";
+    private readonly string _topic = "create_shipping_topic";
     private readonly IConsumer<Ignore, string> _consumer;
     private readonly CancellationTokenSource _cancellationTokenSource;
 
@@ -34,7 +34,7 @@ public class CreateShippingItemConsumer : BackgroundService
         await Task.Run(() => StartConsumerLoop(_cancellationTokenSource.Token), stoppingToken);
     }
 
-    private void StartConsumerLoop(CancellationToken cancellationToken)
+    private async Task StartConsumerLoop(CancellationToken cancellationToken)
     {
         try
         {
@@ -45,14 +45,18 @@ public class CreateShippingItemConsumer : BackgroundService
                     var consumeResult = _consumer.Consume(cancellationToken);
                     Console.WriteLine($"Received message: {consumeResult.Message.Value}");
                     // Handle the received message here
-                    
-                    var orderDto = JsonSerializer.Deserialize<OrderDto>(consumeResult.Message.Value);
-                    _mediator.Send(new CreateShippingNotification(orderDto),
+
+                    var shippingItemDto = JsonSerializer.Deserialize<ShippingItemDto>(consumeResult.Message.Value);
+                    await _mediator.Publish(new CreateShippingNotification(shippingItemDto),
                         cancellationToken);
                 }
                 catch (ConsumeException ex)
                 {
-                    Console.Error.WriteLine($"Error consuming from Kafka: {ex.Error.Reason}");
+                    await Console.Error.WriteLineAsync($"Error consuming from Kafka: {ex.Error.Reason}");
+                }
+                catch (Exception ex)
+                {
+                    await Console.Error.WriteLineAsync($"Error consuming from Kafka: {ex.Message}");
                 }
             }
         }

@@ -31,6 +31,7 @@ public class EfRepository<T> : IRepository<T> where T : class
 
     public async Task<bool> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
-        return await _context.SaveChangesAsync(cancellationToken) > 0; 
+        var result = await _context.SaveChangesAsync(cancellationToken) > 0;
+        return result;
     }
 }

@@ -7,15 +7,15 @@ namespace OrderService.Core.Handlers;
 
 public class CreateShippingNotificationHandler : INotificationHandler<CreateShippingNotification>
 {
-    private readonly IMessagePublisher<OrderDto> _publisher;
+    private readonly IMessagePublisher<ShippingDto> _publisher;
 
-    public CreateShippingNotificationHandler(IMessagePublisher<OrderDto> publisher)
+    public CreateShippingNotificationHandler(IMessagePublisher<ShippingDto> publisher)
     {
         _publisher = publisher;
     }
     
     public async Task Handle(CreateShippingNotification notification, CancellationToken cancellationToken)
     {
-        await _publisher.ProcessMessage(IMessagePublisher<OrderDto>.CreateShippingTopic, new Guid().ToString(),notification._dto);
+        await _publisher.ProcessMessage(IMessagePublisher<ShippingDto>.CreateShippingTopic, new Guid().ToString(),notification._dto);
     }
 }

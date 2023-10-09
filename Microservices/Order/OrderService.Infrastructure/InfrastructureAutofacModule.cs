@@ -1,6 +1,7 @@
 using System.Reflection;
 using Autofac;
 using MediatR;
+using MediatR.Pipeline;
 using OrderService.Core.Dtos;
 using OrderService.Core.Handlers;
 using OrderService.Core.Interfaces;
@@ -58,18 +59,23 @@ public class InfrastructureAutofacModule : Module
             .RegisterType<Mediator>()
             .As<IMediator>()
             .InstancePerLifetimeScope();
-
+        
         builder
             .RegisterType<DomainEventDispatcher>()
             .As<IDomainEventDispatcher>()
             .InstancePerLifetimeScope();
-        
+
         builder.RegisterType<CreateOrderNotificationHandler>()
             .As(typeof(INotificationHandler<CreateOrderNotification>))
             .InstancePerLifetimeScope();
         
+        
         builder.RegisterType<UpdateOrderStatusNotificationHandler>()
             .As(typeof(INotificationHandler<UpdateOrderStatusNotification>))
+            .InstancePerLifetimeScope();
+        
+        builder.RegisterType<CreateShippingNotificationHandler>()
+            .As(typeof(INotificationHandler<CreateShippingNotification>))
             .InstancePerLifetimeScope();
         
     }
@@ -77,7 +83,7 @@ public class InfrastructureAutofacModule : Module
     private void RegisterPublisher(ContainerBuilder builder)
     {
         builder.RegisterType<CreateShippingPublisher>()
-            .As(typeof(IMessagePublisher<OrderDto>))
+            .As(typeof(IMessagePublisher<ShippingDto>))
             .InstancePerLifetimeScope();
 
         builder.RegisterType<ReprocessOrderPublisher>()

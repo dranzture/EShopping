@@ -24,6 +24,8 @@
         <Protobuf Include="Protos/inventory.proto" GrpcServices="Client" />
         <Protobuf Include="Protos/review.proto" GrpcServices="Client" />
         <Protobuf Include="Protos/authentication.proto" GrpcServices="Client" />
+        <Protobuf Include="Protos/shipping_item.proto" GrpcServices="Client" />
+        <Protobuf Include="Protos/order.proto" GrpcServices="Client" />
     </ItemGroup>
     
 </Project>

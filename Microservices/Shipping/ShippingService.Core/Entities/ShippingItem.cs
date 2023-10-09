@@ -14,6 +14,8 @@ public class ShippingItem : BaseEntity
         Id = new Guid();
         UpdateStatus(status);
         OrderId = orderId;
+        CreatedBy = username;
+        CreatedDateTime = DateTime.Now;
     }
     
     public Guid OrderId { get; private set; }

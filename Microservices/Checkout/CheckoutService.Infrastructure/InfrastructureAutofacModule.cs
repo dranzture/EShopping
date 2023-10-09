@@ -57,13 +57,13 @@ public class InfrastructureAutofacModule : Module
             .RegisterType<Mediator>()
             .As<IMediator>()
             .InstancePerLifetimeScope();
-        
-        builder.RegisterType<CreateOrderRequestHandler>()
-            .As(typeof(IRequestHandler<CreateOrderRequest>))
-            .InstancePerLifetimeScope();
-        
+
         builder.RegisterType<ShoppingCartCheckoutRequestHandler>()
             .As(typeof(IRequestHandler<ShoppingCartCheckoutRequest>))
+            .InstancePerLifetimeScope();
+        
+        builder.RegisterType<OrderRequestHandler>()
+            .As(typeof(IRequestHandler<OrderRequest>))
             .InstancePerLifetimeScope();
     }
 

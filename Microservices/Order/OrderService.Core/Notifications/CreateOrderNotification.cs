@@ -6,9 +6,9 @@ namespace OrderService.Core.Notifications;
 
 public class CreateOrderNotification : DomainEventBase
 {
-    public CreateOrderDto Dto { get; }
+    public OrderDto Dto { get; }
 
-    public CreateOrderNotification(CreateOrderDto dto)
+    public CreateOrderNotification(OrderDto dto)
     {
         Dto = dto;
         EventOccurred = DateTimeOffset.Now;
