@@ -22,7 +22,7 @@ public class CheckoutShoppingCartCommand : ICommand
     public async Task<bool> CanExecute()
     {
         var result = await _repository.GetShoppingCartById(_shoppingCartId);
-        return result != null;
+        return result != null && result is not { Status: CheckoutStatus.InProgress } && result.ShoppingItems.Count > 0;
     }
 
     public async Task Execute()

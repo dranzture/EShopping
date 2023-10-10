@@ -16,7 +16,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f1709b6-fca2-4cfd-9a9e-505d5f094e8f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.UnitTests/ReprocessOrderCommandTests.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/Debug/net7.0/ShippingService.UnitTests.AssemblyInfo.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/Debug/net7.0/ShippingService.UnitTests.AssemblyInfoInputs.cache" afterDir="false" />
@@ -32,9 +31,10 @@
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/project.packagespec.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/rider.project.model.nuget.info" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Order/OrderService.UnitTests/CreateOrderCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Order/OrderService.UnitTests/CreateOrderCommandTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Review/.idea/.idea.ReviewService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Review/.idea/.idea.ReviewService/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ShoppingCartService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ShoppingCartService/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.Core/Commands/CheckoutShoppingCartCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.Core/Commands/CheckoutShoppingCartCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.UnitTests/ShoppingServiceTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.UnitTests/ShoppingServiceTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +120,7 @@
     ]
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected=".NET Launch Settings Profile.ShoppingCartService.API: http">
     <configuration name="ShoppingCartService.API: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile" temporary="true">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/ShoppingCartService.API/ShoppingCartService.API.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net7.0" />
@@ -159,7 +159,7 @@
       <workItem from="1695769649192" duration="46422000" />
       <workItem from="1696085031825" duration="20891000" />
       <workItem from="1696382837278" duration="10891000" />
-      <workItem from="1696798964443" duration="8386000" />
+      <workItem from="1696798964443" duration="9505000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <option name="closed" value="true" />

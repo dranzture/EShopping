@@ -18,7 +18,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b098b9fc-78e3-4b55-9c2d-ccd260dce5f0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Order/OrderService.UnitTests/ReprocessOrderCommandTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.UnitTests/UpdateOrderStatusCommandTests.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/Debug/net7.0/ShippingService.UnitTests.AssemblyInfo.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/Debug/net7.0/ShippingService.UnitTests.AssemblyInfoInputs.cache" afterDir="false" />
@@ -34,9 +34,6 @@
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/project.packagespec.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/rider.project.model.nuget.info" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Order/OrderService.UnitTests/CreateOrderCommandTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Order/OrderService.UnitTests/CreateOrderCommandTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ReviewService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ReviewService/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ShoppingCart/.idea/.idea.ShoppingCartService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ShoppingCart/.idea/.idea.ShoppingCartService/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
