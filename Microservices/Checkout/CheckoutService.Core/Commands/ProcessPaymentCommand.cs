@@ -17,7 +17,7 @@ public class ProcessPaymentCommand : ICommand
 
     public Task<bool> CanExecute()
     {
-        return Task.FromResult(_creditCard is { CardNumber: > 0 } &&
+        return Task.FromResult(_creditCard.CardNumber.ToString().Length == 16 &&
                                _shoppingCartDto.ShoppingItems.Sum(e => e.TotalPrice) > 0);
     }
 
