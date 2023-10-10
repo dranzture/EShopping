@@ -1,85 +1,82 @@
-﻿using OrderService.Core.Dtos;
-using OrderService.Core.Entities;
-using OrderService.Core.Interfaces;
-using OrderService.Core.Commands;
+﻿using FluentAssertions;
 using NSubstitute;
-using FluentAssertions;
+using OrderService.Core.Commands;
+using OrderService.Core.Dtos;
+using OrderService.Core.Entities;
 using OrderService.Core.Enums;
+using OrderService.Core.Interfaces;
 
-namespace OrderService.CreateOrderCommandTests
+namespace OrderService.UnitTests
 {
     public class CreateOrderCommandTests
     {
         [Fact]
-        public async Task CanExecute_ReturnsTrue_WhenOrderDoesNotExist()
+        public async Task Execute_Should_CreateOrder()
         {
             // Arrange
-            var createOrderDto = new OrderDto
-            {
-                ShoppingCartId = Guid.NewGuid(),
-                Status = OrderStatus.Created,
-                Username = "testuser"
-            };
+            var shoppingCartId = Guid.NewGuid();
+            var username = "testuser";
+            var orderDto = new OrderDto { ShoppingCartId = shoppingCartId, Status = OrderStatus.Created, Username = username };
 
-            var mockRepository = Substitute.For<IOrderRepository>();
-            mockRepository.Queryable().Returns(Task.FromResult(Enumerable.Empty<Order>().AsQueryable()));
+            // Create a mock for IOrderRepository
+            var orderRepository = Substitute.For<IOrderRepository>();
 
-            var createOrderCommand = new CreateOrderCommand(mockRepository, createOrderDto);
+            // Create an instance of the CreateOrderCommand
+            var command = new CreateOrderCommand(orderRepository, orderDto);
 
             // Act
-            var canExecute = await createOrderCommand.CanExecute();
+            await command.Execute();
+
+            // Assert
+            await orderRepository.Received(1).AddAsync(Arg.Is<Order>(order =>
+                order.ShoppingCartId == shoppingCartId &&
+                order.Status == OrderStatus.Created &&
+                order.Username == username &&
+                order.ShippingId != Guid.Empty));
+
+            await orderRepository.Received(1).SaveChangesAsync();
+        }
+
+        [Fact]
+        public async Task CanExecute_Should_ReturnTrue_IfOrderDoesNotExist()
+        {
+            // Arrange
+            var shoppingCartId = Guid.NewGuid();
+            var orderDto = new OrderDto { ShoppingCartId = shoppingCartId };
+
+            // Create a mock for IOrderRepository
+            var orderRepository = Substitute.For<IOrderRepository>();
+            orderRepository.GetByShoppingCartId(shoppingCartId).Returns(Task.FromResult<Order>(null));
+
+            // Create an instance of the CreateOrderCommand
+            var command = new CreateOrderCommand(orderRepository, orderDto);
+
+            // Act
+            var canExecute = await command.CanExecute();
 
             // Assert
             canExecute.Should().BeTrue();
         }
 
         [Fact]
-        public async Task CanExecute_ReturnsFalse_WhenOrderExists()
+        public async Task CanExecute_Should_ReturnFalse_IfOrderExists()
         {
             // Arrange
-            var guid = Guid.NewGuid();
-            var createOrderDto = new OrderDto
-            {
-                ShoppingCartId = guid,
-                Status = OrderStatus.Created,
-                Username = "testuser"
-            };
+            var shoppingCartId = Guid.NewGuid();
+            var orderDto = new OrderDto { ShoppingCartId = shoppingCartId };
 
-            var existingOrder = new Order(guid, OrderStatus.Created, "testuser");
+            // Create a mock for IOrderRepository
+            var orderRepository = Substitute.For<IOrderRepository>();
+            orderRepository.GetByShoppingCartId(shoppingCartId).Returns(Task.FromResult(new Order()));
 
-            var mockRepository = Substitute.For<IOrderRepository>();
-            
-
-            var createOrderCommand = new CreateOrderCommand(mockRepository, createOrderDto);
+            // Create an instance of the CreateOrderCommand
+            var command = new CreateOrderCommand(orderRepository, orderDto);
 
             // Act
-            var canExecute = await createOrderCommand.CanExecute();
+            var canExecute = await command.CanExecute();
 
             // Assert
             canExecute.Should().BeFalse();
-        }
-
-        [Fact]
-        public async Task Execute_AddsNewOrderAndSavesChanges()
-        {
-            // Arrange
-            var guid = Guid.NewGuid();
-            var createOrderDto = new OrderDto
-            {
-                ShoppingCartId = guid,
-                Status = OrderStatus.Created,
-                Username = "testuser"
-            };
-
-            var mockRepository = Substitute.For<IOrderRepository>();
-            var createOrderCommand = new CreateOrderCommand(mockRepository, createOrderDto);
-
-            // Act
-            await createOrderCommand.Execute();
-
-            // Assert
-            await mockRepository.Received().AddAsync(Arg.Any<Order>());
-            await mockRepository.Received().SaveChangesAsync();
         }
     }
 }
