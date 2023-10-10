@@ -31,6 +31,7 @@
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/project.packagespec.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/rider.project.model.nuget.info" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/ShippingService.UnitTests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/ShippingService.UnitTests.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
