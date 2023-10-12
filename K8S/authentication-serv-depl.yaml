@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authentication-serv-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: authentication-serv
+  template:
+    metadata:
+      labels:
+        app: authentication-serv
+    spec:
+      containers:
+        - name: authentication-serv
+          image: ghcr.io/dranzture/authentication-serv-image:latest
+      imagePullSecrets:
+        - name: git-secrets
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: authentication-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: authentication-serv
+  ports:
+  - name: authentication-serv-grpc
+    protocol: TCP
+    port: 666
+    targetPort: 666

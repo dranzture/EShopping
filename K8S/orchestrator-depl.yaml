@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orchestrator-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orchestrator
+  template:
+    metadata:
+      labels:
+        app: orchestrator
+    spec:
+      containers:
+        - name: orchestrator
+          image: ghcr.io/dranzture/orchestrator-image:latest
+      imagePullSecrets:
+        - name: git-secrets
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: orchestrator-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: orchestrator
+  ports:
+  - name: orchestrator
+    protocol: TCP
+    port: 80
+    targetPort: 80

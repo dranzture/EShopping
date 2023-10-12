@@ -18,6 +18,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b098b9fc-78e3-4b55-9c2d-ccd260dce5f0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../Authentication/AuthenticationService.API/appsecrets.Production.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Authentication/AuthenticationService.API/appsettings.Production.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/appsecrets.Production.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/appsettings.Production.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/Debug/net7.0/ShippingService.UnitTests.AssemblyInfo.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/Debug/net7.0/ShippingService.UnitTests.AssemblyInfoInputs.cache" afterDir="false" />
@@ -33,7 +37,21 @@
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/project.packagespec.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/rider.project.model.nuget.info" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/ShippingService.UnitTests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/ShippingService.UnitTests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Authentication/AuthenticationService.API/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.API/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.sln.DotSettings.user" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.API/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.sln.DotSettings.user" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/qodana.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Orchestrator/.dockerignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/OrchestratorService.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/OrchestratorService.API.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Order/OrderService.API/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../Order/OrderService.API/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ReviewService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ReviewService/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReviewService.sln.DotSettings.user" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ShoppingCart/.idea/.idea.ShoppingCartService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ShoppingCart/.idea/.idea.ShoppingCartService/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ShoppingCart/ShoppingCartService.sln.DotSettings.user" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -374,6 +392,7 @@
       <workItem from="1696380231597" duration="3314000" />
       <workItem from="1696798957212" duration="698000" />
       <workItem from="1696808103281" duration="596000" />
+      <workItem from="1697078640409" duration="21000" />
     </task>
     <task id="LOCAL-00001" summary="Seperated Inventory and Review Services">
       <option name="closed" value="true" />

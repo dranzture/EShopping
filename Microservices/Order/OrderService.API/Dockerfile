@@ -1,20 +1,17 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
+﻿FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
-WORKDIR /src
-COPY ["OrderService.API/OrderService.API.csproj", "OrderService.API/"]
-RUN dotnet restore "OrderService.API/OrderService.API.csproj"
-COPY . .
-WORKDIR "/src/OrderService.API"
-RUN dotnet build "OrderService.API.csproj" -c Release -o /app/build
+# copy csproj and restore as distinct layers
+COPY *.csproj ./
+RUN dotnet restore
 
-FROM build AS publish
-RUN dotnet publish "OrderService.API.csproj" -c Release -o /app/publish /p:UseAppHost=false
+# copy everything else and build app
+COPY . ./
+RUN dotnet publish -c Release -o out
 
-FROM base AS final
+
+# final stage/image
+FROM mcr.microsoft.com/dotnet/aspnet:7.0
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=build /app/out .
 ENTRYPOINT ["dotnet", "OrderService.API.dll"]
