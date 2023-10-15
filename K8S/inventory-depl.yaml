@@ -1,0 +1,33 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventory-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: inventory
+  template:
+    metadata:
+      labels:
+        app: inventory
+    spec:
+      containers:
+        - name: inventory
+          image: ghcr.io/dranzture/inventory-image:latest
+      imagePullSecrets:
+        - name: git-secrets
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: inventory-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: inventory
+  ports:
+    - name: inventory-grpc
+      protocol: TCP
+      port: 666
+      targetPort: 666

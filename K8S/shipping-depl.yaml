@@ -1,0 +1,33 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shipping-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shipping
+  template:
+    metadata:
+      labels:
+        app: shipping
+    spec:
+      containers:
+        - name: shipping
+          image: ghcr.io/dranzture/shipping-image:latest
+      imagePullSecrets:
+        - name: git-secrets
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shipping-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: shipping
+  ports:
+    - name: shipping-grpc
+      protocol: TCP
+      port: 666
+      targetPort: 666

@@ -16,8 +16,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f1709b6-fca2-4cfd-9a9e-505d5f094e8f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Authentication/AuthenticationService.API/appsecrets.Production.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Authentication/AuthenticationService.API/appsettings.Production.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../K8S/DockerInstructions.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../K8S/IngressSetup.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../K8S/KafkaIntegration.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../K8S/checkout-depl.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../K8S/inventory-depl.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../K8S/invshoprev-orchestrator-serv-depl.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../K8S/order-depl.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../K8S/review-depl.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../K8S/shipping-depl.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../K8S/shopping-cart-depl.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/appsettings.Production.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/appsettings.Production.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Inventory/InventoryService.API/appsettings.Production.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Order/OrderService.API/appsettings.Production.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Review/ReviewService.API/appsettings.Production.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.API/appsettings.Production.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/Debug/net7.0/ShippingService.UnitTests.AssemblyInfo.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/Debug/net7.0/ShippingService.UnitTests.AssemblyInfoInputs.cache" afterDir="false" />
@@ -33,10 +47,26 @@
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/project.packagespec.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/rider.project.model.nuget.info" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Authentication/AuthenticationService.API/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../Authentication/AuthenticationService.API/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Order/OrderService.API/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../Order/OrderService.API/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ShoppingCartService.API/appsettings.Production.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../K8S/ingress-serv.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../K8S/ingress-serv.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../K8S/orchestrator-depl.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../K8S/orchestrator-serv-depl.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/../Authentication/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/InvShopRevOrchestrator.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/InvShopRevOrchestrator.API.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/.dockerignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.API/InventoryService.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.API/InventoryService.API.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/appsettings.Production.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Orchestrator/OrchestratorService.API/appsettings.Production.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Review/.idea/.idea.ReviewService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Review/.idea/.idea.ReviewService/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Shipping/.dockerignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Shipping/ShippingService.API/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Shipping/ShippingService.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Shipping/ShippingService.API/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Shipping/ShippingService.API/ShippingService.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Shipping/ShippingService.API/ShippingService.API.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/ShippingService.UnitTests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/ShippingService.UnitTests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dockerignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ShoppingCartService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ShoppingCartService/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.API/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.API/ShoppingCartService.API.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.API/ShoppingCartService.API.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ShoppingCartService.sln.DotSettings.user" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +76,13 @@
   <component name="ChangesViewManager">
     <option name="groupingKeys">
       <option value="directory" />
+    </option>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JSON File" />
+      </list>
     </option>
   </component>
   <component name="Git.Settings">
@@ -81,6 +118,18 @@
     <setting file="file://$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.Core/Dtos/Inventory/InventoryDto.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Shipping/ShippingService.Core/ValueObjects/AppSettings.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/polat/RiderProjects/EShopping/Microservices/ShoppingCart/ShoppingCartService.Infrastructure/Data/Configurations/ShoppingItemConfiguration.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="KubernetesApiProvider">{
+  &quot;contexts&quot;: [
+    {
+      &quot;name&quot;: &quot;docker-desktop&quot;,
+      &quot;originalNamespace&quot;: &quot;kafka&quot;
+    }
+  ],
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="KubernetesSettings">
+    <option name="contextName" value="docker-desktop" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -122,7 +171,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.ShoppingCartService.API: http">
+  <component name="RunManager">
     <configuration name="ShoppingCartService.API: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile" temporary="true">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/ShoppingCartService.API/ShoppingCartService.API.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net7.0" />
@@ -162,6 +211,8 @@
       <workItem from="1696085031825" duration="20891000" />
       <workItem from="1696382837278" duration="10891000" />
       <workItem from="1696798964443" duration="10171000" />
+      <workItem from="1697326125033" duration="2229000" />
+      <workItem from="1697332062164" duration="598000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <option name="closed" value="true" />

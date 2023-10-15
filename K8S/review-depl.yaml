@@ -1,0 +1,33 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: review-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: review
+  template:
+    metadata:
+      labels:
+        app: review
+    spec:
+      containers:
+        - name: review
+          image: ghcr.io/dranzture/review-image:latest
+      imagePullSecrets:
+        - name: git-secrets
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: review-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: review
+  ports:
+    - name: review-grpc
+      protocol: TCP
+      port: 666
+      targetPort: 666

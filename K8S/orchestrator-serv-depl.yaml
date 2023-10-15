@@ -6,11 +6,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: orchestrator
+      app: orchestrator-serv
   template:
     metadata:
       labels:
-        app: orchestrator
+        app: orchestrator-serv
     spec:
       containers:
         - name: orchestrator
@@ -25,9 +25,8 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: orchestrator
+    app: orchestrator-serv
   ports:
-  - name: orchestrator
-    protocol: TCP
+  - protocol: TCP
     port: 80
     targetPort: 80

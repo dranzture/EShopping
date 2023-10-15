@@ -1,0 +1,32 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: invshoprev-orchestrator-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: invshoprev-orchestrator-serv
+  template:
+    metadata:
+      labels:
+        app: invshoprev-orchestrator-serv
+    spec:
+      containers:
+        - name: orchestrator
+          image: ghcr.io/dranzture/invshoprev-orchestrator-image:latest
+      imagePullSecrets:
+        - name: git-secrets
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: invshoprev-orchestrator-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: invshoprev-orchestrator-serv
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

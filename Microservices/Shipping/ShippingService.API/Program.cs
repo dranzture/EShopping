@@ -20,7 +20,7 @@ var config = new ConfigurationBuilder()
     .Build();
 
 var appSettings = config.GetSection("AppSettings").Get<AppSettings>();
-builder.Services.AddSingleton<AppSettings>(appSettings);
+builder.Services.AddSingleton<AppSettings>(appSettings!);
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseInMemoryDatabase("ShippingServiceDb"));

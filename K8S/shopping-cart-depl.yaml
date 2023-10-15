@@ -1,0 +1,33 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shopping-cart-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shopping-cart
+  template:
+    metadata:
+      labels:
+        app: shopping-cart
+    spec:
+      containers:
+        - name: shopping-cart
+          image: ghcr.io/dranzture/shopping-cart-image:latest
+      imagePullSecrets:
+        - name: git-secrets
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shopping-cart-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: shopping-cart
+  ports:
+    - name: shopping-cart-grpc
+      protocol: TCP
+      port: 666
+      targetPort: 666

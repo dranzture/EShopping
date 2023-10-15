@@ -8,9 +8,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Content Include="..\.dockerignore">
-            <Link>.dockerignore</Link>
-        </Content>
         <Content Include="obj\Debug\net7.0\ShoppingCartService.API.assets.cache"/>
         <Content Include="obj\Debug\net7.0\ShoppingCartService.API.csproj.AssemblyReference.cache"/>
         <Content Include="obj\project.assets.json"/>

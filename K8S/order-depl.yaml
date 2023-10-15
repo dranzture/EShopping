@@ -1,0 +1,33 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order
+  template:
+    metadata:
+      labels:
+        app: order
+    spec:
+      containers:
+        - name: order
+          image: ghcr.io/dranzture/order-image:latest
+      imagePullSecrets:
+        - name: git-secrets
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: order
+  ports:
+    - name: order-grpc
+      protocol: TCP
+      port: 666
+      targetPort: 666
