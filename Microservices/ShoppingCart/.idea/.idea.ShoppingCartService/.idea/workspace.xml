@@ -16,17 +16,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f1709b6-fca2-4cfd-9a9e-505d5f094e8f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../K8S/confluent-platform.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../K8S/ingress-confluent-serv.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Checkout/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InvShopRevOrchestrator/InvShopRevOrchestrator.API/appsecrets.Production.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Inventory/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Inventory/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Orchestrator/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Shipping/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Shipping/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../K8S/kafka-ui-depl.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../K8S/values.yml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/Debug/net7.0/ShippingService.UnitTests.AssemblyInfo.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/Debug/net7.0/ShippingService.UnitTests.AssemblyInfoInputs.cache" afterDir="false" />
@@ -42,10 +33,11 @@
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/project.packagespec.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/rider.project.model.nuget.info" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Shipping/ShippingService.UnitTests/obj/rider.project.restore.info" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Checkout/CheckoutService.API/appsettings.Production.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Checkout/CheckoutService.API/appsettings.Production.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../K8S/KafkaIntegration.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../K8S/KafkaIntegration.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../K8S/confluent-platform.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../K8S/ingress-confluent-serv.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../K8S/ingress-serv.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../K8S/ingress-serv.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Inventory/InventoryService.API/appsettings.Production.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/InventoryService.API/appsettings.Production.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Order/OrderService.API/appsettings.Production.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Order/OrderService.API/appsettings.Production.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Shipping/ShippingService.API/appsettings.Production.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Shipping/ShippingService.API/appsettings.Production.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ShoppingCartService/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ShoppingCartService/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ShoppingCartService.API/appsettings.Production.json" beforeDir="false" afterPath="$PROJECT_DIR$/ShoppingCartService.API/appsettings.Production.json" afterDir="false" />
@@ -195,6 +187,7 @@
       <workItem from="1696798964443" duration="10171000" />
       <workItem from="1697326125033" duration="2229000" />
       <workItem from="1697332062164" duration="3270000" />
+      <workItem from="1697507811627" duration="2112000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <option name="closed" value="true" />

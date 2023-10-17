@@ -52,4 +52,12 @@ spec:
                 name: invshoprev-orchestrator-clusterip-srv
                 port:
                   number: 80
-          
+          - path: /kafka-dashboard
+            pathType: Prefix
+            backend:
+              service:
+                name: kafka-ui-clusterip-service
+                port:
+                  number: 8080
+
+        
