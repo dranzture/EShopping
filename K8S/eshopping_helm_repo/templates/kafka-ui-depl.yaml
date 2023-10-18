@@ -1,7 +1,7 @@
 ﻿apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: eshopping
+  namespace: {{ .Values.namespace }}
   name: kafka-ui-deployment
   labels:
     app: kafka-ui
@@ -22,7 +22,7 @@ spec:
             - name: KAFKA_CLUSTERS_0_NAME
               value: "K8 Kafka Cluster"
             - name: KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS
-              value: bitnami-apache-kafka-controller-0.bitnami-apache-kafka-controller-headless.eshopping.svc.cluster.local:9092 # <- service-name.namespace:9092
+              value: bitnami-apache-kafka-controller-0.bitnami-apache-kafka-controller-headless.{{.Values.namespace}}.svc.cluster.local:9092 # <- service-name.namespace:9092
           imagePullPolicy: Always
           resources:
             requests:
@@ -38,7 +38,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: eshopping
+  namespace: {{ .Values.namespace }}
   name: kafka-ui-clusterip-service
 spec:
   selector: 

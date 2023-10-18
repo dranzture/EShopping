@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: eshopping
+  namespace: {{ .Values.namespace }}
   name: authentication-serv-depl
 spec:
   replicas: 1
@@ -22,7 +22,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: eshopping
+  namespace: {{ .Values.namespace }}
   name: authentication-clusterip-srv
 spec:
   type: ClusterIP

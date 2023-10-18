@@ -1,0 +1,9 @@
+apiVersion: v2
+version: 0.1.0
+appVersion: "1.0.0"
+name: eshopping
+description: A Prototype for E-Commerce microservices.
+type: application
+maintainers:
+  - name: polatcoban
+    email: polatcoban@gmail.com

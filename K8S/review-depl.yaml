@@ -1,6 +1,7 @@
 ﻿apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: eshopping
   name: review-depl
 spec:
   replicas: 1
@@ -21,6 +22,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: eshopping
   name: review-clusterip-srv
 spec:
   type: ClusterIP
