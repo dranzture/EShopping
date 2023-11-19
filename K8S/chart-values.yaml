@@ -1,0 +1,7 @@
+﻿kafka:
+  replicaCount: 1
+  listeners:
+    client:
+      protocol: plaintext
+  auth:
+    interBrokerProtocol: plaintext

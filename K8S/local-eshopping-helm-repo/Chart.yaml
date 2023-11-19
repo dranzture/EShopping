@@ -1,7 +1,7 @@
 apiVersion: v2
-version: 0.1.0
+version: 0.1.2
 appVersion: "1.0.0"
-name: eshopping
+name: local-eshopping
 description: A Prototype for E-Commerce microservices.
 type: application
 maintainers:

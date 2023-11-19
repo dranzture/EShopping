@@ -1,6 +1,5 @@
 using System.Text;
 using InvShopRevOrchestrator.API.Helpers;
-using InvShopRevOrchestrator.Core.Extensions;
 using InvShopRevOrchestrator.Core.Interfaces;
 using InvShopRevOrchestrator.Core.Services;
 using InvShopRevOrchestrator.Core.ValueObjects;
@@ -29,7 +28,7 @@ builder.Services.AddScoped<IReviewService, ReviewService>();
 builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-builder.Services.AddAuthenticationSettings(appSecrets);
+builder.Services.AddAuthenticationSettings(appSecrets!);
 
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();

@@ -17,7 +17,9 @@ spec:
         - name: orchestrator
           image: ghcr.io/dranzture/invshoprev-orchestrator-image:latest
       imagePullSecrets:
-        - name: git-secrets
+        {{- range .Values.imagePullSecrets }}
+        - name: {{ .name }}
+        {{- end }}
 ---
 apiVersion: v1
 kind: Service

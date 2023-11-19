@@ -17,7 +17,9 @@ spec:
         - name: authentication-serv
           image: ghcr.io/dranzture/authentication-serv-image:latest
       imagePullSecrets:
-        - name: git-secrets
+        {{- range .Values.imagePullSecrets }}
+        - name: {{ .name }}
+        {{- end }}
 ---
 apiVersion: v1
 kind: Service

@@ -1,7 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-srv  
+  name: ingress-srv
+  namespace: {{ .Values.namespace }}
   annotations:
     nginx.ingress.kubernetes.io/use-regex: 'true'
 spec:  

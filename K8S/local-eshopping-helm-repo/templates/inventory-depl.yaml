@@ -2,34 +2,36 @@
 kind: Deployment
 metadata:
   namespace: {{ .Values.namespace }}
-  name: shopping-cart-depl
+  name: inventory-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: shopping-cart
+      app: inventory
   template:
     metadata:
       labels:
-        app: shopping-cart
+        app: inventory
     spec:
       containers:
-        - name: shopping-cart
-          image: ghcr.io/dranzture/shopping-cart-image:latest
+        - name: inventory
+          image: ghcr.io/dranzture/inventory-image:latest
       imagePullSecrets:
-        - name: git-secrets
+        {{- range .Values.imagePullSecrets }}
+        - name: {{ .name }}
+        {{- end }}
 ---
 apiVersion: v1
 kind: Service
 metadata:
   namespace: {{ .Values.namespace }}
-  name: shopping-cart-clusterip-srv
+  name: inventory-clusterip-srv
 spec:
   type: ClusterIP
   selector:
-    app: shopping-cart
+    app: inventory
   ports:
-    - name: shopping-cart-grpc
+    - name: inventory-grpc
       protocol: TCP
       port: 666
       targetPort: 666

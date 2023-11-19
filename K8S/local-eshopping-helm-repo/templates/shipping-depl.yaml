@@ -2,34 +2,36 @@
 kind: Deployment
 metadata:
   namespace: {{ .Values.namespace }}
-  name: inventory-depl
+  name: shipping-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: inventory
+      app: shipping
   template:
     metadata:
       labels:
-        app: inventory
+        app: shipping
     spec:
       containers:
-        - name: inventory
-          image: ghcr.io/dranzture/inventory-image:latest
+        - name: shipping
+          image: ghcr.io/dranzture/shipping-image:latest
       imagePullSecrets:
-        - name: git-secrets
+        {{- range .Values.imagePullSecrets }}
+        - name: {{ .name }}
+        {{- end }}
 ---
 apiVersion: v1
 kind: Service
 metadata:
   namespace: {{ .Values.namespace }}
-  name: inventory-clusterip-srv
+  name: shipping-clusterip-srv
 spec:
   type: ClusterIP
   selector:
-    app: inventory
+    app: shipping
   ports:
-    - name: inventory-grpc
+    - name: shipping-grpc
       protocol: TCP
       port: 666
       targetPort: 666

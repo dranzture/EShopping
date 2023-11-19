@@ -17,7 +17,9 @@ spec:
         - name: checkout
           image: ghcr.io/dranzture/checkout-image:latest
       imagePullSecrets:
-        - name: git-secrets
+        {{- range .Values.imagePullSecrets }}
+        - name: {{ .name }}
+        {{- end }}
 ---
 apiVersion: v1
 kind: Service

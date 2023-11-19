@@ -3,7 +3,7 @@ using InvShopRevOrchestrator.Core.ValueObjects;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
-namespace InvShopRevOrchestrator.Core.Extensions;
+namespace InvShopRevOrchestrator.API.Helpers;
 
 public static class AuthenticationSettings
 {

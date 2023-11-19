@@ -2,34 +2,36 @@
 kind: Deployment
 metadata:
   namespace: {{ .Values.namespace }}
-  name: shipping-depl
+  name: review-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: shipping
+      app: review
   template:
     metadata:
       labels:
-        app: shipping
+        app: review
     spec:
       containers:
-        - name: shipping
-          image: ghcr.io/dranzture/shipping-image:latest
+        - name: review
+          image: ghcr.io/dranzture/review-image:latest
       imagePullSecrets:
-        - name: git-secrets
+        {{- range .Values.imagePullSecrets }}
+        - name: {{ .name }}
+        {{- end }}
 ---
 apiVersion: v1
 kind: Service
 metadata:
   namespace: {{ .Values.namespace }}
-  name: shipping-clusterip-srv
+  name: review-clusterip-srv
 spec:
   type: ClusterIP
   selector:
-    app: shipping
+    app: review
   ports:
-    - name: shipping-grpc
+    - name: review-grpc
       protocol: TCP
       port: 666
       targetPort: 666

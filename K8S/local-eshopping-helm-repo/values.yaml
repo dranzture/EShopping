@@ -1,0 +1,10 @@
+namespace: "local-eshopping"
+nginx-ingress:
+  controller:
+    service:
+      type: LoadBalancer
+      externalTrafficPolicy: Local
+imagePullSecrets:
+  - name: git-secrets
+  
+    
