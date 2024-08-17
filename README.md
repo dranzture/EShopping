@@ -1,5 +1,5 @@
-.NET7 (Clean Architecture)
-gRPC
-Kafka Apache
-Docker
+.NET7 (Clean Architecture)<br/>
+gRPC<br/>
+Kafka Apache<br/>
+Docker<br/>
 Kubernetes
